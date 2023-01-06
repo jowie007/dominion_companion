@@ -40,7 +40,7 @@ class DominionCard extends StatelessWidget {
             Align(
               alignment: Alignment.bottomLeft,
               child: Container(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16),
                 child: const FractionallySizedBox(
                   heightFactor: 0.12,
                   child: Image(
@@ -52,18 +52,70 @@ class DominionCard extends StatelessWidget {
             Align(
               alignment: Alignment.bottomLeft,
               child: Container(
-                padding: const EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 16.0),
+                padding: const EdgeInsets.fromLTRB(30, 0, 0, 16),
                 child: const Text("3",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontFamily: 'Minion', fontSize: 46)),
               ),
             ),
-            const Align(
-              heightFactor: 1.6,
-              alignment: Alignment.center,
-              child: Text("Keller",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontFamily: 'TrajanPro', fontSize: 30)),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                child: const Text("Keller",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontFamily: 'TrajanPro', fontSize: 30)),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 28),
+                child: const Text("Aktion",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontFamily: 'TrajanPro', fontSize: 20)),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(0, 260, 0, 0),
+                child: RichText(
+                  text: TextSpan(
+                    // Note: Styles for TextSpans must be explicitly defined.
+                    // Child text spans will inherit styles from parent
+                    style: const TextStyle(
+                        fontFamily: 'Times New Roman',
+                        fontSize: 20,
+                        color: Colors.black),
+                    children: [
+                      const TextSpan(text: 'Hello '),
+                      WidgetSpan(
+                        child: Stack(
+                          children: [
+                            const Image(
+                              width: 24,
+                              image: AssetImage('assets/cards/other/coin.png'),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.fromLTRB(6, 0, 0, 0),
+                              child: const Text("1",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontFamily: 'TrajanPro', fontSize: 20)),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const TextSpan(
+                          text: ' World',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ],
         ));
