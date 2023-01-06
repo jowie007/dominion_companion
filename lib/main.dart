@@ -72,15 +72,76 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/menu/adventures.webp"),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+              child: const FractionallySizedBox(
+                heightFactor: 0.2,
+                child: Image(
+                  image: AssetImage('assets/menu/title.webp'),
+                ),
+              ),
+            ),
+          ),
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: FractionallySizedBox(
+              child: Image(
+                image: AssetImage('assets/menu/spear-left.png'),
+              ),
+            ),
+          ),
+          const Align(
+            alignment: Alignment.centerRight,
+            child: FractionallySizedBox(
+              child: Image(
+                image: AssetImage('assets/menu/spear-right.png'),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(0, 180, 0, 0),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: const FractionallySizedBox(
+                      heightFactor: 0.14,
+                      child: Image(
+                        image: AssetImage('assets/menu/copper_button.jpg'),
+                      ),
+                    ),
+                  ),
+                  const Text("Play",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontFamily: 'TrajanPro',
+                          fontSize: 30,
+                          color: Colors.white)),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
+    );
+    // Center is a layout widget. It takes a single child and positions it
+    // in the middle of the parent.
+    /*child: Column(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -104,7 +165,6 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            const DominionCard(),
           ],
         ),
       ),
@@ -112,7 +172,6 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+      ), // This trailing comma makes auto-formatting nicer for build methods. */
   }
 }
