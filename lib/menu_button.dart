@@ -1,32 +1,45 @@
 import 'package:flutter/material.dart';
 
 class MenuButton extends StatelessWidget {
-  const MenuButton({Key? key, required this.text}) : super(key: key);
+  const MenuButton(
+      {Key? key,
+      required this.text,
+      this.type = "copper",
+      required this.navigationPage})
+      : super(key: key);
 
   final String text;
+  final String type;
+  final StatelessWidget navigationPage;
 
   @override
   Widget build(BuildContext context) {
     // Dominion card size 91mm x 59mm
-    return MaterialButton(
-      onPressed: () {  },
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: const FractionallySizedBox(
-              heightFactor: 0.4,
-              child: Image(
-                image: AssetImage('assets/menu/copper_button.jpg'),
-              ),
+    return SizedBox(
+      height: 80,
+      child: MaterialButton(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => navigationPage),
+          );
+        },
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Image(
+              image: AssetImage('assets/menu/${type}_button.png'),
             ),
-          ),
-          Text(text,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontFamily: 'TrajanPro', fontSize: 30, color: Colors.white)),
-        ],
+            Text(text,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontFamily: 'TrajanPro',
+                    fontSize: 24,
+                    color: Colors.white)),
+          ],
+        ),
       ),
     );
   }

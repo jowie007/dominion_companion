@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:dominion_comanion/menu_button.dart';
+import 'package:dominion_comanion/pages/deck_page.dart';
 import 'package:flutter/material.dart';
 
 import 'dominion_card.dart';
@@ -66,6 +69,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final boxartList = [
+      "adventures.webp",
+      "allies.jpg",
+      "base.webp",
+      "cornucopia.jpg",
+      "empires.jpg",
+      "hinterlands.jpg",
+      "hinterlands2.jpg",
+      "nocturne.jpg",
+      "prosperity.jpg",
+      "seaside.jpg",
+      "seaside2.jpg"
+    ];
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -76,9 +93,10 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Stack(
         children: [
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/menu/adventures.webp"),
+                image: AssetImage(
+                    "assets/boxart/${boxartList[Random().nextInt(boxartList.length)]}"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -114,14 +132,25 @@ class _MyHomePageState extends State<MyHomePage> {
           Align(
             alignment: Alignment.topCenter,
             child: Container(
-              padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+              padding: const EdgeInsets.fromLTRB(0, 200, 0, 0),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: const [
-                    Expanded(child: MenuButton(text: "Play")),
-                    Expanded(child: MenuButton(text: "Play")),
-                    Expanded(child: MenuButton(text: "Play")),
+                    MenuButton(
+                        text: "Decks",
+                        type: "copper",
+                        navigationPage: DeckPage()),
+                    SizedBox(height: 10),
+                    MenuButton(
+                        text: "Cards",
+                        type: "copper",
+                        navigationPage: DeckPage()),
+                    SizedBox(height: 10),
+                    MenuButton(
+                        text: "Settings",
+                        type: "copper",
+                        navigationPage: DeckPage()),
                   ]),
             ),
           ),
