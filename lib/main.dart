@@ -156,6 +156,22 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        backgroundColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        child: Container(
+            width: 120,
+            height: 120,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/cards/other/coin.png"),
+                  fit: BoxFit.cover),
+            ),
+            child: const Icon(Icons.music_note, color: Colors.black) // button text
+            ),
+      ),
     );
     // Center is a layout widget. It takes a single child and positions it
     // in the middle of the parent.
