@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MenuButton extends StatelessWidget {
-  const MenuButton(
-      {Key? key,
-      required this.text,
-      this.type = "copper",
-      required this.navigationPage})
+  const MenuButton({Key? key, required this.text, required this.navigationPage})
       : super(key: key);
 
   final String text;
-  final String type;
   final StatelessWidget navigationPage;
 
   @override
@@ -29,15 +24,15 @@ class MenuButton extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Image(
-              image: AssetImage('assets/menu/${type}_button.png'),
+            const Image(
+              image: AssetImage('assets/menu/button_filled.png'),
             ),
             Text(text,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     fontFamily: 'TrajanPro',
                     fontSize: 24,
-                    color: Colors.white)),
+                    color: Colors.black)),
           ],
         ),
       ),

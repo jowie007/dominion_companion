@@ -137,20 +137,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: const [
-                    MenuButton(
-                        text: "Decks",
-                        type: "copper",
-                        navigationPage: DeckPage()),
+                    MenuButton(text: "Decks", navigationPage: DeckPage()),
                     SizedBox(height: 10),
-                    MenuButton(
-                        text: "Cards",
-                        type: "copper",
-                        navigationPage: DeckPage()),
+                    MenuButton(text: "Cards", navigationPage: DeckPage()),
                     SizedBox(height: 10),
-                    MenuButton(
-                        text: "Settings",
-                        type: "copper",
-                        navigationPage: DeckPage()),
+                    MenuButton(text: "Settings", navigationPage: DeckPage()),
                   ]),
             ),
           ),
@@ -169,7 +160,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   image: AssetImage("assets/cards/other/coin.png"),
                   fit: BoxFit.cover),
             ),
-            child: const Icon(Icons.music_note, color: Colors.black) // button text
+            child:
+                const Icon(Icons.music_note, color: Colors.black) // button text
             ),
       ),
     );
