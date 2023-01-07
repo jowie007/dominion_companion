@@ -1,3 +1,4 @@
+import 'package:dominion_comanion/menu_button.dart';
 import 'package:flutter/material.dart';
 
 import 'dominion_card.dart';
@@ -113,27 +114,15 @@ class _MyHomePageState extends State<MyHomePage> {
           Align(
             alignment: Alignment.topCenter,
             child: Container(
-              padding: const EdgeInsets.fromLTRB(0, 180, 0, 0),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: const FractionallySizedBox(
-                      heightFactor: 0.14,
-                      child: Image(
-                        image: AssetImage('assets/menu/copper_button.jpg'),
-                      ),
-                    ),
-                  ),
-                  const Text("Play",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontFamily: 'TrajanPro',
-                          fontSize: 30,
-                          color: Colors.white)),
-                ],
-              ),
+              padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    Expanded(child: MenuButton(text: "Play")),
+                    Expanded(child: MenuButton(text: "Play")),
+                    Expanded(child: MenuButton(text: "Play")),
+                  ]),
             ),
           ),
         ],
