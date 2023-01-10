@@ -5,7 +5,7 @@ class MenuButton extends StatelessWidget {
       : super(key: key);
 
   final String text;
-  final StatelessWidget navigationPage;
+  final StatefulWidget navigationPage;
 
   @override
   Widget build(BuildContext context) {
