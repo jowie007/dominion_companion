@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:dominion_comanion/router/routes.dart' as route;
 
 class MenuButton extends StatelessWidget {
-  const MenuButton({Key? key, required this.text, required this.navigationPage})
+  const MenuButton({Key? key, required this.text, required this.onPressed})
       : super(key: key);
 
   final String text;
-  final StatefulWidget navigationPage;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,7 @@ class MenuButton extends StatelessWidget {
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => navigationPage),
-          );
+          onPressed;
         },
         child: Stack(
           alignment: Alignment.center,
