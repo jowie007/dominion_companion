@@ -1,6 +1,7 @@
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/create_deck_component.dart';
 import 'package:dominion_comanion/components/deck_component.dart';
+import 'package:dominion_comanion/components/expansion_expandable.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
               ),
             ),
           ),
-          const Text('Deck erstellen')
+          const ExpansionExpandable()
         ],
       ),
     );
