@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BasicAppBar extends StatelessWidget implements PreferredSizeWidget  {
+class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   const BasicAppBar({super.key, required this.title});
 
   final String title;
@@ -10,9 +10,9 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget  {
     // Dominion card size 91mm x 59mm
 
     return AppBar(
-      title: Text(
-        title,
-      ),
+      title: Text(title,
+          style: const TextStyle(
+              fontFamily: 'TrajanPro')),
       centerTitle: true,
       flexibleSpace: Container(
         decoration: const BoxDecoration(

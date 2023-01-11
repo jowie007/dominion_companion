@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:dominion_comanion/router/routes.dart' as route;
 
 class MenuButton extends StatelessWidget {
-  const MenuButton({Key? key, required this.text, required this.onPressed})
+  const MenuButton({Key? key, required this.text, required this.callback})
       : super(key: key);
 
   final String text;
-  final Function() onPressed;
+  final VoidCallback callback;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +15,7 @@ class MenuButton extends StatelessWidget {
       child: MaterialButton(
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
-        onPressed: () {
-          onPressed;
-        },
+        onPressed: callback,
         child: Stack(
           alignment: Alignment.center,
           children: [

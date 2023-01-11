@@ -1,4 +1,4 @@
-import 'package:dominion_comanion/model/deck/deck_model.dart';
+import 'package:dominion_comanion/router/routes.dart' as route;
 import 'package:flutter/material.dart';
 
 class CreateDeckButton extends StatelessWidget {
@@ -10,7 +10,7 @@ class CreateDeckButton extends StatelessWidget {
       iconSize: 72,
       icon: const Icon(Icons.add),
       onPressed: () {
-        // ...
+        Navigator.pushNamed(context, route.createDeckPage);
       },
     );
   }

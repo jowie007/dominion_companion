@@ -1,7 +1,7 @@
+import 'dart:developer';
 import 'dart:math';
 
 import 'package:dominion_comanion/components/menu_button.dart';
-import 'package:dominion_comanion/pages/deck_page.dart';
 import 'package:flutter/material.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
 
@@ -95,19 +95,19 @@ class _HomePageState extends State<HomePage> {
               child: Column(children: [
                 MenuButton(
                     text: "Decks",
-                    onPressed: () {
+                    callback: () {
                       Navigator.pushNamed(context, route.deckPage);
                     }),
                 const SizedBox(height: 10),
                 MenuButton(
                     text: "Cards",
-                    onPressed: () {
+                    callback: () {
                       Navigator.pushNamed(context, route.deckPage);
                     }),
                 const SizedBox(height: 10),
                 MenuButton(
                     text: "Settings",
-                    onPressed: () {
+                    callback: () {
                       Navigator.pushNamed(context, route.deckPage);
                     }),
               ]),
