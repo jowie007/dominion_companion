@@ -104,9 +104,9 @@ class _MyHomePageState extends State<MyHomePage> {
           Align(
             alignment: Alignment.topCenter,
             child: Container(
-              padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-              child: const FractionallySizedBox(
-                heightFactor: 0.2,
+              padding: const EdgeInsets.fromLTRB(0, 28, 0, 0),
+              child: const SizedBox(
+                height: 140,
                 child: Image(
                   image: AssetImage('assets/menu/title.webp'),
                 ),

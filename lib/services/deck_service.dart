@@ -6,6 +6,7 @@ class DeckService {
   final DeckDatabase deckDatabase = DeckDatabase();
 
   Future<List<Deck>> getDeckList() {
+    // deckDatabase.insertDeck(const Deck(id: "2", name: "Test deck", cardIds: ["1", "2", "3"]));
     return deckDatabase.getDeckList();
   }
 

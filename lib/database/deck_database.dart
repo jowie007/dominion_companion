@@ -11,10 +11,10 @@ class DeckDatabase {
   Future openDb() async {
     _database = await openDatabase(join(await getDatabasesPath(), "deck.db"),
         version: 1, onCreate: (Database db, int version) async {
-          await db.execute(
-            "CREATE TABLE deck(name STRING PRIMARY KEY)",
-          );
-        });
+      await db.execute(
+        "CREATE TABLE deck(id int PRIMARY KEY, name STRING, cardIds STRING)",
+      );
+    });
     return _database;
   }
 
@@ -26,20 +26,16 @@ class DeckDatabase {
   Future<List<Deck>> getDeckList() async {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.query('deck');
-
     return List.generate(maps.length, (i) {
-      return Deck(
-        id: maps[i]['id'],
-        name: maps[i]['name'],
-        cardIds: maps[i]['cardIds'],
-      );
+      return Deck.fromDatabase(maps[i]['id'].toString(),
+          maps[i]['name'].toString(), maps[i]['cardIds'].toString());
     });
   }
 
   Future<int> updateDeck(Deck deck) async {
     await openDb();
-    return await _database.update('deck', deck.toJson(),
-        where: "name = ?", whereArgs: [deck.name]);
+    return await _database
+        .update('deck', deck.toJson(), where: "id = ?", whereArgs: [deck.id]);
   }
 
   Future<int> deleteDeckById(int id) async {
