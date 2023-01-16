@@ -1,73 +1,95 @@
 import 'package:flutter/material.dart';
 
-// stores ExpansionPanel state information
-class Item {
-  Item({
-    required this.expandedValue,
-    required this.headerValue,
-    this.isExpanded = false,
-  });
-
-  String expandedValue;
-  String headerValue;
-  bool isExpanded;
-}
-
-List<Item> generateItems(int numberOfItems) {
-  return List<Item>.generate(numberOfItems, (int index) {
-    return Item(
-      headerValue: 'Panel $index',
-      expandedValue: 'This is item number $index',
-    );
-  });
-}
-
 class ExpansionExpandable extends StatefulWidget {
   const ExpansionExpandable({super.key});
 
   @override
-  State<ExpansionExpandable> createState() => _ExpansionExpandableState();
+  State<ExpansionExpandable> createState() => _MyStatefulWidgetState();
 }
 
-class _ExpansionExpandableState extends State<ExpansionExpandable> {
-  final List<Item> _data = generateItems(8);
+class _MyStatefulWidgetState extends State<ExpansionExpandable> {
+  dynamic _allSelected = false;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        child: _buildPanel(),
-      ),
-    );
-  }
-
-  Widget _buildPanel() {
-    return ExpansionPanelList(
-      expansionCallback: (int index, bool isExpanded) {
-        setState(() {
-          _data[index].isExpanded = !isExpanded;
-        });
-      },
-      children: _data.map<ExpansionPanel>((Item item) {
-        return ExpansionPanel(
-          headerBuilder: (BuildContext context, bool isExpanded) {
-            return ListTile(
-              title: Text(item.headerValue),
-            );
-          },
-          body: ListTile(
-              title: Text(item.expandedValue),
-              subtitle:
-              const Text('To delete this panel, tap the trash can icon'),
-              trailing: const Icon(Icons.delete),
-              onTap: () {
-                setState(() {
-                  _data.removeWhere((Item currentItem) => item == currentItem);
-                });
-              }),
-          isExpanded: item.isExpanded,
-        );
-      }).toList(),
+    return Column(
+      children: <Widget>[
+        Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16.0),
+                child: Stack(
+                  children: [
+                    Container(
+                      width: 400,
+                      height: 56,
+                      child: Image.asset(
+                        "assets/boxart/adventures.webp",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: ExpansionTile(
+                        title: const Text('ExpansionTile 1',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              shadows: <Shadow>[
+                                Shadow(
+                                  offset: Offset(1.0, 1.0),
+                                  blurRadius: 1.0,
+                                  color: Colors.black,
+                                ),
+                                Shadow(
+                                  offset: Offset(1.0, 1.0),
+                                  blurRadius: 2.0,
+                                  color: Colors.black,
+                                ),
+                              ],
+                            )),
+                        children: <Widget>[
+                          Container(
+                            color: Colors.white,
+                            child: const ListTile(
+                                title: Text('This is tile number 1'),
+                                tileColor: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              left: 0.0,
+              top: 0.0,
+              child: Transform.scale(
+                scale: 1.3,
+                child: Checkbox(
+                  // https://api.flutter.dev/flutter/material/Checkbox/tristate.html
+                  tristate: true,
+                  checkColor: Colors.white,
+                  value: _allSelected,
+                  shape: const CircleBorder(),
+                  onChanged: (bool? value) {
+                    setState(() {
+                      if (_allSelected == null) {
+                        _allSelected = false;
+                      } else {
+                        _allSelected = value;
+                      }
+                    });
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

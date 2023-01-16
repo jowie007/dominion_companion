@@ -13,9 +13,7 @@ class DominionCompanion extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: Colors.orangeAccent,
-          secondary: Colors.deepPurple,
-          primaryVariant: Colors.greenAccent,
-          secondaryVariant: Colors.blueAccent,),
+          secondary: Colors.deepPurple,),
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Colors.white,
           selectionColor: Colors.white.withOpacity(0.2),
