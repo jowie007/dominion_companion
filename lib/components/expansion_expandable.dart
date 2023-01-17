@@ -13,6 +13,15 @@ class ExpansionExpandable extends StatefulWidget {
 class _MyStatefulWidgetState extends State<ExpansionExpandable> {
   dynamic _allSelected = false;
 
+  void _onCheckboxChanged(bool? newValue) =>
+      setState(() {
+        if (_allSelected == null) {
+          _allSelected = false;
+        } else {
+          _allSelected = !_allSelected;
+        }
+      });
+
   // https://stackoverflow.com/questions/53908025/flutter-sortable-drag-and-drop-listview
 
   @override
@@ -73,11 +82,8 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
               left: 0.0,
               top: 0.0,
               child: RoundCheckbox(
-                callback: (bool? newValue) {
-                  _allSelected = true;
-                  log("${newValue}NV");
-                },
-                selected: _allSelected,
+                onChanged: _onCheckboxChanged,
+                value: _allSelected,
               ),
             ),
           ],

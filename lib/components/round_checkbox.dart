@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 class RoundCheckbox extends StatefulWidget {
   const RoundCheckbox(
-      {super.key, required this.callback, required this.selected});
+      {super.key, required this.onChanged, required this.value});
 
-  final void Function(bool? value) callback;
-  final bool? selected;
+  final void Function(bool? value) onChanged;
+  final bool? value;
 
   @override
   State<RoundCheckbox> createState() => _RoundCheckboxState();
@@ -28,17 +28,9 @@ class _RoundCheckboxState extends State<RoundCheckbox> {
           tristate: true,
           checkColor: Colors.white,
           activeColor: Colors.red,
-          value: widget.selected,
+          value: widget.value,
           shape: const CircleBorder(),
-          onChanged: (bool? value) {
-            if(widget.selected == null) {
-              widget.callback(false);
-              log("${false}H");
-            } else {
-              widget.callback(widget.selected!);
-              log("${value}B");
-            }
-          },
+          onChanged: widget.onChanged,
         ),
       ),
     );
