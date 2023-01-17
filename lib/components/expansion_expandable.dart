@@ -73,6 +73,10 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
               left: 0.0,
               top: 0.0,
               child: RoundCheckbox(
+                callback: (bool? newValue) {
+                  _allSelected = true;
+                  log("${newValue}NV");
+                },
                 selected: _allSelected,
               ),
             ),
