@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:dominion_comanion/components/round_checkbox.dart';
 import 'package:flutter/material.dart';
 
 class ExpansionExpandable extends StatefulWidget {
@@ -69,24 +72,8 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
             Positioned(
               left: 0.0,
               top: 0.0,
-              child: Transform.scale(
-                scale: 1.3,
-                child: Checkbox(
-                  // https://api.flutter.dev/flutter/material/Checkbox/tristate.html
-                  tristate: true,
-                  checkColor: Colors.white,
-                  value: _allSelected,
-                  shape: const CircleBorder(),
-                  onChanged: (bool? value) {
-                    setState(() {
-                      if (_allSelected == null) {
-                        _allSelected = false;
-                      } else {
-                        _allSelected = value;
-                      }
-                    });
-                  },
-                ),
+              child: RoundCheckbox(
+                selected: _allSelected,
               ),
             ),
           ],
