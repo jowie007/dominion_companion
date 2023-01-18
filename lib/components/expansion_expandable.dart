@@ -13,8 +13,7 @@ class ExpansionExpandable extends StatefulWidget {
 class _MyStatefulWidgetState extends State<ExpansionExpandable> {
   dynamic _allSelected = false;
 
-  void _onCheckboxChanged(bool? newValue) =>
-      setState(() {
+  void _onCheckboxChanged(bool? newValue) => setState(() {
         if (_allSelected == null) {
           _allSelected = false;
         } else {
@@ -67,9 +66,14 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                         children: <Widget>[
                           Container(
                             color: Colors.white,
-                            child: const ListTile(
-                                title: Text('This is tile number 1'),
-                                tileColor: Colors.white),
+                            child: CheckboxListTile(
+                              title: Text('This is tile number 1'),
+                              tileColor: Colors.white,
+                              value: true,
+                              onChanged: (bool? value) {
+                                log(value.toString());
+                              },
+                            ),
                           ),
                         ],
                       ),
