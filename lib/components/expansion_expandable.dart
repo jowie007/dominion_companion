@@ -65,9 +65,18 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                             )),
                         children: <Widget>[
                           Container(
-                            color: Colors.white,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                //I assumed you want to occupy the entire space of the card
+                                image: AssetImage(
+                                  "assets/cards/types/small/treasure-victory.png",
+                                ),
+                              ),
+                            ),
                             child: CheckboxListTile(
                               title: Text('This is tile number 1'),
+                              subtitle: Text('This is tile number 2'),
                               tileColor: Colors.white,
                               value: true,
                               onChanged: (bool? value) {
