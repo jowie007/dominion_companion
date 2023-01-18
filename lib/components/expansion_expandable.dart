@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dominion_comanion/components/coin_component.dart';
 import 'package:dominion_comanion/components/round_checkbox.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +26,11 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final newCheckBoxTheme = theme.checkboxTheme.copyWith(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+    );
+
     return Column(
       children: <Widget>[
         Stack(
@@ -35,7 +41,7 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                 borderRadius: BorderRadius.circular(16.0),
                 child: Stack(
                   children: [
-                    Container(
+                    SizedBox(
                       width: 400,
                       height: 56,
                       child: Image.asset(
@@ -46,11 +52,19 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                     Container(
                       alignment: Alignment.center,
                       child: ExpansionTile(
-                        title: const Text('ExpansionTile 1',
+                        title: const Text('Seaside',
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
+                              fontFamily: 'TrajanPro',
+                              fontSize: 24,
                               shadows: <Shadow>[
+                                Shadow(
+                                  offset: Offset(0.0, 0.0),
+                                  blurRadius: 1.0,
+                                  color: Colors.black,
+                                ),
                                 Shadow(
                                   offset: Offset(1.0, 1.0),
                                   blurRadius: 1.0,
@@ -65,7 +79,7 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                             )),
                         children: <Widget>[
                           Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               image: DecorationImage(
                                 fit: BoxFit.cover,
                                 //I assumed you want to occupy the entire space of the card
@@ -74,14 +88,35 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                                 ),
                               ),
                             ),
-                            child: CheckboxListTile(
-                              title: Text('This is tile number 1'),
-                              subtitle: Text('This is tile number 2'),
-                              tileColor: Colors.white,
-                              value: true,
-                              onChanged: (bool? value) {
-                                log(value.toString());
-                              },
+                            child: Theme(
+                              data: theme.copyWith(
+                                  checkboxTheme: newCheckBoxTheme),
+                              child: CheckboxListTile(
+                                title: Row(
+                                  children: const <Widget>[
+                                    CostComponent(
+                                        width: 40, type: 'coin', value: "2"),
+                                    SizedBox(width: 2),
+                                    CostComponent(width: 26, type: 'potion'),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "Jahrmarkt",
+                                      style: TextStyle(
+                                          fontFamily: 'TrajanPro',
+                                          fontSize: 16,
+                                          color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                                // subtitle: const Text('This is tile number 2'),
+                                value: true,
+                                checkColor: Colors.white,
+                                activeColor: Colors.black,
+                                shape: const CircleBorder(),
+                                onChanged: (bool? value) {
+                                  log(value.toString());
+                                },
+                              ),
                             ),
                           ),
                         ],
