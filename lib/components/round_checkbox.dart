@@ -21,16 +21,35 @@ class _RoundCheckboxState extends State<RoundCheckbox> {
       scale: 1.3,
       child: Theme(
         data: Theme.of(context).copyWith(
-          unselectedWidgetColor: Colors.white,
+          unselectedWidgetColor: Colors.black,
         ),
-        child: Checkbox(
-          // https://api.flutter.dev/flutter/material/Checkbox/tristate.html
-          tristate: true,
-          checkColor: Colors.white,
-          activeColor: Colors.black,
-          value: widget.value,
-          shape: const CircleBorder(),
-          onChanged: widget.onChanged,
+        child: Stack(
+          children: [
+            Container(
+              margin: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+              alignment: Alignment.topLeft,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage("assets/menu/main_scroll_crop.png"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: const SizedBox(
+                width: 28,
+                height: 28,
+              ),
+            ),
+            Checkbox(
+              // https://api.flutter.dev/flutter/material/Checkbox/tristate.html
+              tristate: true,
+              checkColor: Colors.black,
+              activeColor: Colors.transparent,
+              value: widget.value,
+              shape: const CircleBorder(),
+              onChanged: widget.onChanged,
+            ),
+          ],
         ),
       ),
     );

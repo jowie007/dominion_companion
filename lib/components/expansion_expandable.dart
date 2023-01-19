@@ -6,7 +6,8 @@ import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:flutter/material.dart';
 
 class ExpansionExpandable extends StatefulWidget {
-  const ExpansionExpandable({super.key, required this.title, required this.cards});
+  const ExpansionExpandable(
+      {super.key, required this.title, required this.cards});
 
   final String title;
   final List<CardModel> cards;
@@ -48,12 +49,43 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                         fit: BoxFit.cover,
                       ),
                     ),
+                    /*SizedBox(
+                      width: 40,
+                      height: 40,
+                      child: Image.asset(
+                        "assets/menu/main_scroll_crop.png",
+                        fit: BoxFit.cover,
+                      ),
+                    ),*/
                     Container(
                       alignment: Alignment.center,
                       child: ExpansionTile(
-                        title: Text(widget.title,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
+                        collapsedIconColor: Colors.white,
+                        title: Container(
+                          padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      "assets/menu/main_scroll_crop.png"),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                alignment: Alignment.center,
+                                child: Text(widget.title,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'TrajanPro',
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                    )
+                                    /* style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'TrajanPro',
@@ -75,7 +107,12 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                                   color: Colors.black,
                                 ),
                               ],
-                            )),
+                            )*/
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ),
                         children: <Widget>[
                           ListView.builder(
                               // padding: const EdgeInsets.all(8),

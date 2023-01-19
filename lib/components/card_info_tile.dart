@@ -45,11 +45,21 @@ class CardInfoTile extends StatelessWidget {
                   ? const CostComponent(width: 26, type: 'potion')
                   : const SizedBox(width: 26),
               const SizedBox(width: 10),
-              Text(
-                card.name,
-                style: const TextStyle(
-                    fontFamily: 'TrajanPro', fontSize: 16, color: Colors.black),
-              ),
+              Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      card.name,
+                      style: const TextStyle(
+                        fontFamily: 'TrajanPro', fontSize: 18, color: Colors.black),
+                    ),
+                    Text(
+                      card.cardType.getFileName(),
+                      style: const TextStyle(
+                        fontFamily: 'TrajanPro', fontSize: 14, color: Colors.black),
+                    ),
+                  ]),
               const Spacer(),
               RoundCheckbox(
                 onChanged: onChanged,
