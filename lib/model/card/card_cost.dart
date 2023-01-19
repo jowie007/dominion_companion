@@ -1,11 +1,13 @@
 class CardCost {
-  final int coin;
-  final int pot;
+  final int? coin;
+  final int? debt;
+  final int? potion;
 
-  CardCost(this.coin, this.pot);
+  CardCost(this.coin, this.debt, this.potion);
 
   Map<String, dynamic> toJson() => {
         'coin': coin,
-        'pot': pot,
+        'debt': debt,
+        'potion': potion,
       };
 }

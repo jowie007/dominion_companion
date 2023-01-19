@@ -7,7 +7,7 @@ class CostComponent extends StatelessWidget {
 
   final double width;
   final String type;
-  final String? value;
+  final int? value;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class CostComponent extends StatelessWidget {
         value != null
             ? Container(
                 padding: EdgeInsets.fromLTRB(width * 0.28, width * 0.14, 0, 0),
-                child: Text(value!,
+                child: Text(value.toString(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: 'TrajanPro', fontSize: width * 0.75)),

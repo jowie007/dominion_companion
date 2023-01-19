@@ -1,23 +1,25 @@
 import 'package:dominion_comanion/model/card/card_cost.dart';
 import 'package:dominion_comanion/model/card/card_type.dart';
-import 'package:dominion_comanion/model/expansion/expansion_model.dart';
 
-class Card {
-  final int id;
+class CardModel {
+  final String id;
   final String name;
-  final int expansionId;
+  final String expansionId;
   final CardType cardType;
   final CardCost cardCost;
   final String text;
+  final bool selected;
 
-  Card(this.id, this.name, this.expansionId, this.cardType, this.cardCost, this.text);
+  CardModel(this.id, this.name, this.expansionId, this.cardType, this.cardCost,
+      this.text, this.selected);
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'name': name,
-    'expansionId': expansionId,
-    'cardType': cardType.toJson(),
-    'cardCost': cardCost.toJson(),
-    'text': text,
-  };
+        'id': id,
+        'name': name,
+        'expansionId': expansionId,
+        'cardType': cardType.toJson(),
+        'cardCost': cardCost.toJson(),
+        'text': text,
+        'selected': selected,
+      };
 }

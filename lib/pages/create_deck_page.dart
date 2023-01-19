@@ -2,6 +2,9 @@ import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/create_deck_component.dart';
 import 'package:dominion_comanion/components/deck_component.dart';
 import 'package:dominion_comanion/components/expansion_expandable.dart';
+import 'package:dominion_comanion/model/card/card_cost.dart';
+import 'package:dominion_comanion/model/card/card_model.dart';
+import 'package:dominion_comanion/model/card/card_type.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +42,40 @@ class _CreateDeckState extends State<CreateDeckPage> {
               ),
             ),
           ),
-          const ExpansionExpandable()
+          Column(
+            children: [
+              ExpansionExpandable(title: "Seaside", cards: [
+                CardModel(
+                    "1",
+                    "Testkarte",
+                    "seaside",
+                    CardType(false, false, false, false, true, true),
+                    CardCost(1, 0, 1),
+                    "Beschreibung",
+                    false)
+              ]),
+              ExpansionExpandable(title: "Empires", cards: [
+                CardModel(
+                    "1",
+                    "Testkarte",
+                    "seaside",
+                    CardType(false, false, false, false, true, true),
+                    CardCost(1, 0, 1),
+                    "Beschreibung",
+                    false)
+              ]),
+              ExpansionExpandable(title: "Nocturne", cards: [
+                CardModel(
+                    "1",
+                    "Testkarte",
+                    "seaside",
+                    CardType(false, false, false, false, true, true),
+                    CardCost(1, 0, 1),
+                    "Beschreibung",
+                    false)
+              ])
+            ],
+          ),
         ],
       ),
     );

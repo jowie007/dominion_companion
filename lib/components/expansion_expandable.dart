@@ -1,11 +1,15 @@
 import 'dart:developer';
 
-import 'package:dominion_comanion/components/coin_component.dart';
+import 'package:dominion_comanion/components/card_info_tile.dart';
 import 'package:dominion_comanion/components/round_checkbox.dart';
+import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:flutter/material.dart';
 
 class ExpansionExpandable extends StatefulWidget {
-  const ExpansionExpandable({super.key});
+  const ExpansionExpandable({super.key, required this.title, required this.cards});
+
+  final String title;
+  final List<CardModel> cards;
 
   @override
   State<ExpansionExpandable> createState() => _MyStatefulWidgetState();
@@ -26,11 +30,6 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final newCheckBoxTheme = theme.checkboxTheme.copyWith(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-    );
-
     return Column(
       children: <Widget>[
         Stack(
@@ -45,16 +44,16 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                       width: 400,
                       height: 56,
                       child: Image.asset(
-                        "assets/boxart/adventures.webp",
+                        "assets/boxart/${widget.title.toLowerCase()}.jpg",
                         fit: BoxFit.cover,
                       ),
                     ),
                     Container(
                       alignment: Alignment.center,
                       child: ExpansionTile(
-                        title: const Text('Seaside',
+                        title: Text(widget.title,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'TrajanPro',
@@ -78,47 +77,16 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                               ],
                             )),
                         children: <Widget>[
-                          Container(
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                //I assumed you want to occupy the entire space of the card
-                                image: AssetImage(
-                                  "assets/cards/types/small/treasure-victory.png",
-                                ),
-                              ),
-                            ),
-                            child: Theme(
-                              data: theme.copyWith(
-                                  checkboxTheme: newCheckBoxTheme),
-                              child: CheckboxListTile(
-                                title: Row(
-                                  children: const <Widget>[
-                                    CostComponent(
-                                        width: 40, type: 'coin', value: "2"),
-                                    SizedBox(width: 2),
-                                    CostComponent(width: 26, type: 'potion'),
-                                    SizedBox(width: 10),
-                                    Text(
-                                      "Jahrmarkt",
-                                      style: TextStyle(
-                                          fontFamily: 'TrajanPro',
-                                          fontSize: 16,
-                                          color: Colors.black),
-                                    ),
-                                  ],
-                                ),
-                                // subtitle: const Text('This is tile number 2'),
-                                value: true,
-                                checkColor: Colors.white,
-                                activeColor: Colors.black,
-                                shape: const CircleBorder(),
-                                onChanged: (bool? value) {
-                                  log(value.toString());
-                                },
-                              ),
-                            ),
-                          ),
+                          ListView.builder(
+                              // padding: const EdgeInsets.all(8),
+                              shrinkWrap: true,
+                              itemCount: widget.cards.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return CardInfoTile(
+                                  onChanged: _onCheckboxChanged,
+                                  card: widget.cards[index],
+                                );
+                              })
                         ],
                       ),
                     ),

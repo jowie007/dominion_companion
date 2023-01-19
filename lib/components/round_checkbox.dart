@@ -27,7 +27,7 @@ class _RoundCheckboxState extends State<RoundCheckbox> {
           // https://api.flutter.dev/flutter/material/Checkbox/tristate.html
           tristate: true,
           checkColor: Colors.white,
-          activeColor: Colors.red,
+          activeColor: Colors.black,
           value: widget.value,
           shape: const CircleBorder(),
           onChanged: widget.onChanged,
