@@ -10,6 +10,7 @@ import 'package:dominion_comanion/database/model/card/card_type_db_model.dart';
 import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
+import 'package:dominion_comanion/services/expansion_service.dart';
 import 'package:dominion_comanion/services/json_service.dart';
 import 'package:flutter/material.dart';
 
@@ -38,13 +39,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
-    JsonService().getExpansions().forEach((element) async {
-      var expansion = await element;
-      _expansionDatabase.insertExpansion(ExpansionDBModel.fromModel(expansion));
-      for (var element in expansion.cards) {
-        _cardDatabase.insertCard(CardDBModel.fromModel(element));
-      }
-    });
+    ExpansionService().loadAllExpansions();
     return Scaffold(
       appBar: const BasicAppBar(title: 'Deck erstellen'),
       body: Stack(

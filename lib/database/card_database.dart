@@ -43,6 +43,13 @@ class CardDatabase {
     });
   }
 
+  Future<CardDBModel> getCardById(String id) async {
+    await openDb();
+    final maps =
+        await _database.query('card') as List<Map<String, CardDBModel>>;
+    return maps.first.values.first;
+  }
+
   Future<int> updateCard(CardDBModel card) async {
     await openDb();
     return await _database

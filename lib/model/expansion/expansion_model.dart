@@ -1,3 +1,4 @@
+import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
 
 class ExpansionModel {
@@ -15,5 +16,12 @@ class ExpansionModel {
     cards = (json['cards'] as List)
         .map((data) => CardModel.fromJson(data))
         .toList();
+  }
+
+  ExpansionModel.fromDBModelAndCards(
+      ExpansionDBModel dbModel, this.cards) {
+    id = dbModel.id;
+    name = dbModel.name;
+    version = dbModel.version;
   }
 }
