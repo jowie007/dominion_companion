@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/expansion_expandable.dart';
+import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/database/expansion_database.dart';
 import 'package:dominion_comanion/database/model/card/card_cost_db_model.dart';
 import 'package:dominion_comanion/database/model/card/card_db_model.dart';
@@ -21,6 +24,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
   late DeckService _deckService;
   late Future<List<DeckDBModel>> _decks;
   late ExpansionDatabase _expansionDatabase;
+  late CardDatabase _cardDatabase;
 
   @override
   initState() {
@@ -28,14 +32,18 @@ class _CreateDeckState extends State<CreateDeckPage> {
     _deckService = DeckService();
     _decks = _deckService.getDeckList();
     _expansionDatabase = ExpansionDatabase();
+    _cardDatabase = CardDatabase();
   }
 
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
     JsonService().getExpansions().forEach((element) async {
-      _expansionDatabase
-          .insertExpansion(ExpansionDBModel.fromModel(await element));
+      var expansion = await element;
+      _expansionDatabase.insertExpansion(ExpansionDBModel.fromModel(expansion));
+      for (var element in expansion.cards) {
+        _cardDatabase.insertCard(CardDBModel.fromModel(element));
+      }
     });
     return Scaffold(
       appBar: const BasicAppBar(title: 'Deck erstellen'),
@@ -55,31 +63,25 @@ class _CreateDeckState extends State<CreateDeckPage> {
                 CardDBModel(
                     "1",
                     "Testkarte",
-                    "seaside",
                     CardTypeDBModel(false, false, false, false, true, true),
                     CardCostDBModel(1, 0, 1),
-                    "Beschreibung",
-                    false)
+                    "Beschreibung")
               ]),
               ExpansionExpandable(title: "Empires", cards: [
                 CardDBModel(
                     "1",
                     "Testkarte",
-                    "seaside",
                     CardTypeDBModel(false, false, false, false, true, true),
                     CardCostDBModel(1, 0, 1),
-                    "Beschreibung",
-                    false)
+                    "Beschreibung")
               ]),
               ExpansionExpandable(title: "Nocturne", cards: [
                 CardDBModel(
                     "1",
                     "Testkarte",
-                    "seaside",
                     CardTypeDBModel(false, false, false, false, true, true),
                     CardCostDBModel(1, 0, 1),
-                    "Beschreibung",
-                    false)
+                    "Beschreibung")
               ])
             ],
           ),

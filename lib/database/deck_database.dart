@@ -38,7 +38,7 @@ class DeckDatabase {
         .update('deck', deck.toJson(), where: "id = ?", whereArgs: [deck.id]);
   }
 
-  Future<int> deleteDeckById(int id) async {
+  Future<int> deleteDeckById(String id) async {
     await openDb();
     return await _database.delete('deck', where: "id = ?", whereArgs: [id]);
   }

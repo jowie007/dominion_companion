@@ -14,7 +14,7 @@ class DeckService {
     return deckDatabase.insertDeck(deck);
   }
 
-  Future<int> deleteDeckById(int id) {
+  Future<int> deleteDeckById(String id) {
     return deckDatabase.deleteDeckById(id);
   }
 }

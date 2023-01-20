@@ -1,12 +1,12 @@
-import 'dart:collection';
+import 'package:dominion_comanion/model/card/card_type_model.dart';
 
 class CardTypeDBModel {
-  final bool action;
-  final bool attack;
-  final bool curse;
-  final bool duration;
-  final bool treasure;
-  final bool victory;
+  late bool action;
+  late bool attack;
+  late bool curse;
+  late bool duration;
+  late bool treasure;
+  late bool victory;
   var fileNameMap = {};
 
   CardTypeDBModel(this.action, this.attack, this.curse, this.duration, this.treasure,
@@ -19,6 +19,15 @@ class CardTypeDBModel {
       'treasure': treasure,
       'victory': victory
     });
+  }
+
+  CardTypeDBModel.fromModel(CardTypeModel model) {
+    action = model.action;
+    attack = model.attack;
+    curse = model.curse;
+    duration = model.duration;
+    treasure = model.treasure;
+    victory = model.victory;
   }
 
   String getFileName() {

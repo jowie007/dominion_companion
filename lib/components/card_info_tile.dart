@@ -63,7 +63,7 @@ class CardInfoTile extends StatelessWidget {
               const Spacer(),
               RoundCheckbox(
                 onChanged: onChanged,
-                value: card.selected,
+                value: false,
               )
             ],
           ),

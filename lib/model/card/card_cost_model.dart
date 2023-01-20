@@ -7,7 +7,7 @@ class CardCostModel {
 
   CardCostModel.fromJson(Map<String, dynamic> json) {
     coin = json['coin'];
-    coin = json['debt'];
-    coin = json['potion'];
+    debt = json['debt'];
+    potion = json['potion'];
   }
 }

@@ -9,12 +9,13 @@ class ExpansionDatabase {
   late Database _database;
 
   Future openDb() async {
-    _database = await openDatabase(join(await getDatabasesPath(), "expansion.db"),
+    _database = await openDatabase(
+        join(await getDatabasesPath(), "expansion.db"),
         version: 1, onCreate: (Database db, int version) async {
-          await db.execute(
-            "CREATE TABLE expansion(id STRING PRIMARY KEY, name STRING, version STRING, cardIds STRING)",
-          );
-        });
+      await db.execute(
+        "CREATE TABLE expansion(id STRING PRIMARY KEY, name STRING, version STRING, cardIds STRING)",
+      );
+    });
     return _database;
   }
 
@@ -33,12 +34,13 @@ class ExpansionDatabase {
 
   Future<int> updateExpansion(ExpansionDBModel expansion) async {
     await openDb();
-    return await _database
-        .update('expansion', expansion.toJson(), where: "id = ?", whereArgs: [expansion.id]);
+    return await _database.update('expansion', expansion.toJson(),
+        where: "id = ?", whereArgs: [expansion.id]);
   }
 
-  Future<int> deleteExpansionById(int id) async {
+  Future<int> deleteExpansionById(String id) async {
     await openDb();
-    return await _database.delete('expansion', where: "id = ?", whereArgs: [id]);
+    return await _database
+        .delete('expansion', where: "id = ?", whereArgs: [id]);
   }
 }
