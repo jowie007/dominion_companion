@@ -49,17 +49,13 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    /*SizedBox(
-                      width: 40,
-                      height: 40,
-                      child: Image.asset(
-                        "assets/menu/main_scroll_crop.png",
-                        fit: BoxFit.cover,
-                      ),
-                    ),*/
                     Container(
                       alignment: Alignment.center,
                       child: ExpansionTile(
+                        trailing: const SizedBox(
+                          width: 0,
+                          height: 0,
+                        ),
                         collapsedIconColor: Colors.white,
                         title: Container(
                           padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
@@ -77,38 +73,16 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                               child: FittedBox(
                                 fit: BoxFit.scaleDown,
                                 alignment: Alignment.center,
-                                child: Text(widget.title,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'TrajanPro',
-                                      fontSize: 20,
-                                      color: Colors.black,
-                                    )
-                                    /* style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'TrajanPro',
-                              fontSize: 24,
-                              shadows: <Shadow>[
-                                Shadow(
-                                  offset: Offset(0.0, 0.0),
-                                  blurRadius: 1.0,
-                                  color: Colors.black,
+                                child: Text(
+                                  widget.title,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'TrajanPro',
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                                Shadow(
-                                  offset: Offset(1.0, 1.0),
-                                  blurRadius: 1.0,
-                                  color: Colors.black,
-                                ),
-                                Shadow(
-                                  offset: Offset(1.0, 1.0),
-                                  blurRadius: 2.0,
-                                  color: Colors.black,
-                                ),
-                              ],
-                            )*/
-                                    ),
                               ),
                             ),
                           ),
