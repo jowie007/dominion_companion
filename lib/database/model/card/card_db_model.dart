@@ -15,9 +15,15 @@ class CardDBModel {
   CardDBModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    cardType = CardTypeDBModel(json['action'], json['attack'], json['curse'],
-        json['duration'], json['treasure'], json['victory']);
-    cardCost = CardCostDBModel(json['coin'], json['debt'], json['potion']);
+    cardType = CardTypeDBModel(
+        json['action'] == 1 ? true : false,
+        json['attack'] == 1 ? true : false,
+        json['curse'] == 1 ? true : false,
+        json['duration'] == 1 ? true : false,
+        json['treasure'] == 1 ? true : false,
+        json['victory'] == 1 ? true : false);
+    cardCost = CardCostDBModel(
+        json['coin'] as int?, json['debt'] as int?, json['potion'] as int?);
     text = json['text'];
   }
 

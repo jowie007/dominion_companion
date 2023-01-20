@@ -1,6 +1,6 @@
 import 'package:dominion_comanion/components/coin_component.dart';
 import 'package:dominion_comanion/components/round_checkbox.dart';
-import 'package:dominion_comanion/database/model/card/card_db_model.dart';
+import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:flutter/material.dart';
 
 class CardInfoTile extends StatelessWidget {
@@ -11,7 +11,7 @@ class CardInfoTile extends StatelessWidget {
   });
 
   final void Function(bool? value) onChanged;
-  final CardDBModel card;
+  final CardModel card;
 
   @override
   Widget build(BuildContext context) {

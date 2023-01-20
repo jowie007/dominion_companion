@@ -9,8 +9,8 @@ class CardTypeDBModel {
   late bool victory;
   var fileNameMap = {};
 
-  CardTypeDBModel(this.action, this.attack, this.curse, this.duration, this.treasure,
-      this.victory) {
+  CardTypeDBModel(this.action, this.attack, this.curse, this.duration,
+      this.treasure, this.victory) {
     fileNameMap.addAll({
       'action': action,
       'attack': attack,
@@ -21,6 +21,15 @@ class CardTypeDBModel {
     });
   }
 
+  CardTypeDBModel.fromJson(Map<String, dynamic> json) {
+    action = json['coin'] as bool;
+    attack = json['attack'] as bool;
+    curse = json['curse'] as bool;
+    duration = json['duration'] as bool;
+    treasure = json['treasure'] as bool;
+    victory = json['victory'] as bool;
+  }
+
   CardTypeDBModel.fromModel(CardTypeModel model) {
     action = model.action;
     attack = model.attack;
@@ -28,22 +37,6 @@ class CardTypeDBModel {
     duration = model.duration;
     treasure = model.treasure;
     victory = model.victory;
-  }
-
-  String getFileName() {
-    String fileName = "";
-    bool firstSet = false;
-    fileNameMap.forEach((key, value) {
-      if (value) {
-        if (!firstSet) {
-          firstSet = true;
-        } else {
-          fileName += '-';
-        }
-        fileName += key;
-      }
-    });
-    return fileName;
   }
 
   Map<String, dynamic> toJson() => {

@@ -1,17 +1,10 @@
-import 'dart:developer';
 
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/expansion_expandable.dart';
-import 'package:dominion_comanion/database/card_database.dart';
-import 'package:dominion_comanion/database/expansion_database.dart';
-import 'package:dominion_comanion/database/model/card/card_cost_db_model.dart';
-import 'package:dominion_comanion/database/model/card/card_db_model.dart';
-import 'package:dominion_comanion/database/model/card/card_type_db_model.dart';
-import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
-import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
-import 'package:dominion_comanion/services/deck_service.dart';
+import 'package:dominion_comanion/model/card/card_cost_model.dart';
+import 'package:dominion_comanion/model/card/card_model.dart';
+import 'package:dominion_comanion/model/card/card_type_model.dart';
 import 'package:dominion_comanion/services/expansion_service.dart';
-import 'package:dominion_comanion/services/json_service.dart';
 import 'package:flutter/material.dart';
 
 class CreateDeckPage extends StatefulWidget {
@@ -22,24 +15,15 @@ class CreateDeckPage extends StatefulWidget {
 }
 
 class _CreateDeckState extends State<CreateDeckPage> {
-  late DeckService _deckService;
-  late Future<List<DeckDBModel>> _decks;
-  late ExpansionDatabase _expansionDatabase;
-  late CardDatabase _cardDatabase;
 
   @override
   initState() {
     super.initState();
-    _deckService = DeckService();
-    _decks = _deckService.getDeckList();
-    _expansionDatabase = ExpansionDatabase();
-    _cardDatabase = CardDatabase();
   }
 
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
-    ExpansionService().loadAllExpansions();
     return Scaffold(
       appBar: const BasicAppBar(title: 'Deck erstellen'),
       body: Stack(
@@ -54,30 +38,48 @@ class _CreateDeckState extends State<CreateDeckPage> {
           ),
           Column(
             children: [
-              ExpansionExpandable(title: "Seaside", cards: [
-                CardDBModel(
-                    "1",
-                    "Testkarte",
-                    CardTypeDBModel(false, false, false, false, true, true),
-                    CardCostDBModel(1, 0, 1),
-                    "Beschreibung")
-              ]),
-              ExpansionExpandable(title: "Empires", cards: [
-                CardDBModel(
-                    "1",
-                    "Testkarte",
-                    CardTypeDBModel(false, false, false, false, true, true),
-                    CardCostDBModel(1, 0, 1),
-                    "Beschreibung")
-              ]),
+              FutureBuilder(
+                future: ExpansionService().loadAllExpansions(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const CircularProgressIndicator(),
+                        Visibility(
+                          visible: snapshot.hasData,
+                          child: const Text(
+                            "Warte auf Erweiterungen",
+                            style: TextStyle(color: Colors.black, fontSize: 24),
+                          ),
+                        )
+                      ],
+                    );
+                  } else if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasError) {
+                      return Text(snapshot.error.toString());
+                    } else if (snapshot.hasData) {
+                      return snapshot.data != null && snapshot.data!.isNotEmpty
+                          ? ExpansionExpandable(
+                              title: "Seaside", cards: snapshot.data![0].cards)
+                          : const Text('Keine Erweiterungen gefunden');
+                    } else {
+                      return const Text('Keine Erweiterungen gefunden');
+                    }
+                  } else {
+                    return Text('State: ${snapshot.connectionState}');
+                  }
+                },
+              ),
               ExpansionExpandable(title: "Nocturne", cards: [
-                CardDBModel(
+                CardModel(
                     "1",
                     "Testkarte",
-                    CardTypeDBModel(false, false, false, false, true, true),
-                    CardCostDBModel(1, 0, 1),
+                    CardTypeModel(false, false, false, false, true, true),
+                    CardCostModel(1, 0, 1),
                     "Beschreibung")
-              ])
+              ]),
             ],
           ),
         ],

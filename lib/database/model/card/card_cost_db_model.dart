@@ -13,6 +13,12 @@ class CardCostDBModel {
     potion = model.potion;
   }
 
+  CardCostDBModel.fromJson(Map<String, dynamic> json) {
+    coin = json['coin'] as int?;
+    debt = json['debt'] as int?;
+    potion = json['potion'] as int?;
+  }
+
   Map<String, dynamic> toJson() => {
         'coin': coin,
         'debt': debt,

@@ -1,6 +1,6 @@
 import 'package:dominion_comanion/components/card_info_tile.dart';
 import 'package:dominion_comanion/components/round_checkbox.dart';
-import 'package:dominion_comanion/database/model/card/card_db_model.dart';
+import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:flutter/material.dart';
 
 class ExpansionExpandable extends StatefulWidget {
@@ -8,7 +8,7 @@ class ExpansionExpandable extends StatefulWidget {
       {super.key, required this.title, required this.cards});
 
   final String title;
-  final List<CardDBModel> cards;
+  final List<CardModel> cards;
 
   @override
   State<ExpansionExpandable> createState() => _MyStatefulWidgetState();

@@ -7,12 +7,10 @@ import 'package:dominion_comanion/services/card_service.dart';
 import 'package:dominion_comanion/services/json_service.dart';
 
 class ExpansionService {
-  late JsonService _jsonService;
   late ExpansionDatabase _expansionDatabase;
   late CardService _cardService;
 
   ExpansionService() {
-    _jsonService = JsonService();
     _expansionDatabase = ExpansionDatabase();
     _cardService = CardService();
   }
@@ -31,13 +29,13 @@ class ExpansionService {
     });
   }
 
-  Future<void> loadAllExpansions() async {
-    (await getExpansionFromDB()).map((expansion) async =>
-        ExpansionModel.fromDBModelAndCards(
+  Future<List<ExpansionModel>> loadAllExpansions() async {
+    return await Future.wait((await getExpansionFromDB()).map(
+        (expansion) async => ExpansionModel.fromDBModelAndCards(
             expansion,
             (await _cardService.getCardsByExpansionFromDB(expansion))
                 .map((card) => CardModel.fromDBModel(card))
-                .toList()));
+                .toList())));
   }
 
   Future<List<ExpansionDBModel>> getExpansionFromDB() {
