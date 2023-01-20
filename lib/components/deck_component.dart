@@ -1,10 +1,10 @@
-import 'package:dominion_comanion/model/deck/deck_model.dart';
+import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
 import 'package:flutter/material.dart';
 
 class DeckComponent extends StatelessWidget {
   const DeckComponent({Key? key, required this.deck}) : super(key: key);
 
-  final Deck deck;
+  final DeckDBModel deck;
 
   @override
   Widget build(BuildContext context) {

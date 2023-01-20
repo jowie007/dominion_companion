@@ -1,13 +1,12 @@
-class Deck {
+import 'package:flutter/material.dart';
+
+class DeckModel {
   final String id;
   final String name;
-  final List<String> cardIds;
+  final List<Card> cards;
 
-  const Deck({required this.id, required this.name, required this.cardIds});
+  const DeckModel({required this.id, required this.name, required this.cards});
 
-  factory Deck.fromDatabase(String id, String name, String cardIds) =>
-      Deck(id: id, name: name, cardIds: cardIds.split(','));
-
-  Map<String, dynamic> toJson() =>
-      {'id': id, 'name': name, 'cardIds': "1"};
+  factory DeckModel.fromDatabase(String id, String name, List<Card> cards) =>
+      DeckModel(id: id, name: name, cards: cards);
 }

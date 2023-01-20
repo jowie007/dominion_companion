@@ -1,12 +1,13 @@
 import 'package:dominion_comanion/components/basic_appbar.dart';
-import 'package:dominion_comanion/components/create_deck_component.dart';
-import 'package:dominion_comanion/components/deck_component.dart';
 import 'package:dominion_comanion/components/expansion_expandable.dart';
-import 'package:dominion_comanion/model/card/card_cost.dart';
-import 'package:dominion_comanion/model/card/card_model.dart';
-import 'package:dominion_comanion/model/card/card_type.dart';
-import 'package:dominion_comanion/model/deck/deck_model.dart';
+import 'package:dominion_comanion/database/expansion_database.dart';
+import 'package:dominion_comanion/database/model/card/card_cost_db_model.dart';
+import 'package:dominion_comanion/database/model/card/card_db_model.dart';
+import 'package:dominion_comanion/database/model/card/card_type_db_model.dart';
+import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
+import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
+import 'package:dominion_comanion/services/json_service.dart';
 import 'package:flutter/material.dart';
 
 class CreateDeckPage extends StatefulWidget {
@@ -18,18 +19,24 @@ class CreateDeckPage extends StatefulWidget {
 
 class _CreateDeckState extends State<CreateDeckPage> {
   late DeckService _deckService;
-  late Future<List<Deck>> _decks;
+  late Future<List<DeckDBModel>> _decks;
+  late ExpansionDatabase _expansionDatabase;
 
   @override
   initState() {
     super.initState();
     _deckService = DeckService();
     _decks = _deckService.getDeckList();
+    _expansionDatabase = ExpansionDatabase();
   }
 
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
+    JsonService().getExpansions().forEach((element) async {
+      _expansionDatabase
+          .insertExpansion(ExpansionDBModel.fromModel(await element));
+    });
     return Scaffold(
       appBar: const BasicAppBar(title: 'Deck erstellen'),
       body: Stack(
@@ -45,32 +52,32 @@ class _CreateDeckState extends State<CreateDeckPage> {
           Column(
             children: [
               ExpansionExpandable(title: "Seaside", cards: [
-                CardModel(
+                CardDBModel(
                     "1",
                     "Testkarte",
                     "seaside",
-                    CardType(false, false, false, false, true, true),
-                    CardCost(1, 0, 1),
+                    CardTypeDBModel(false, false, false, false, true, true),
+                    CardCostDBModel(1, 0, 1),
                     "Beschreibung",
                     false)
               ]),
               ExpansionExpandable(title: "Empires", cards: [
-                CardModel(
+                CardDBModel(
                     "1",
                     "Testkarte",
                     "seaside",
-                    CardType(false, false, false, false, true, true),
-                    CardCost(1, 0, 1),
+                    CardTypeDBModel(false, false, false, false, true, true),
+                    CardCostDBModel(1, 0, 1),
                     "Beschreibung",
                     false)
               ]),
               ExpansionExpandable(title: "Nocturne", cards: [
-                CardModel(
+                CardDBModel(
                     "1",
                     "Testkarte",
                     "seaside",
-                    CardType(false, false, false, false, true, true),
-                    CardCost(1, 0, 1),
+                    CardTypeDBModel(false, false, false, false, true, true),
+                    CardCostDBModel(1, 0, 1),
                     "Beschreibung",
                     false)
               ])

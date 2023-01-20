@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:dominion_comanion/model/deck/deck_model.dart';
+import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -18,21 +18,21 @@ class DeckDatabase {
     return _database;
   }
 
-  Future<int> insertDeck(Deck deck) async {
+  Future<int> insertDeck(DeckDBModel deck) async {
     await openDb();
     return await _database.insert('deck', deck.toJson());
   }
 
-  Future<List<Deck>> getDeckList() async {
+  Future<List<DeckDBModel>> getDeckList() async {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.query('deck');
     return List.generate(maps.length, (i) {
-      return Deck.fromDatabase(maps[i]['id'].toString(),
+      return DeckDBModel.fromDatabase(maps[i]['id'].toString(),
           maps[i]['name'].toString(), maps[i]['cardIds'].toString());
     });
   }
 
-  Future<int> updateDeck(Deck deck) async {
+  Future<int> updateDeck(DeckDBModel deck) async {
     await openDb();
     return await _database
         .update('deck', deck.toJson(), where: "id = ?", whereArgs: [deck.id]);

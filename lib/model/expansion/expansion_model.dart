@@ -1,13 +1,19 @@
-class Expansion {
-  final int id;
-  final String name;
-  final double version;
+import 'package:dominion_comanion/model/card/card_model.dart';
 
-  Expansion(this.id, this.name, this.version);
+class ExpansionModel {
+  late String id;
+  late String name;
+  late String version;
+  late List<CardModel> cards;
 
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'name': name,
-    'version': version,
-  };
+  ExpansionModel(this.id, this.name, this.version, this.cards);
+
+  ExpansionModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    version = json['version'];
+    cards = (json['cards'] as List)
+        .map((data) => CardModel.fromJson(data))
+        .toList();
+  }
 }

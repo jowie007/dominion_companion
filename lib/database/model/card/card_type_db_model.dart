@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-class CardType {
+class CardTypeDBModel {
   final bool action;
   final bool attack;
   final bool curse;
@@ -9,7 +9,7 @@ class CardType {
   final bool victory;
   var fileNameMap = {};
 
-  CardType(this.action, this.attack, this.curse, this.duration, this.treasure,
+  CardTypeDBModel(this.action, this.attack, this.curse, this.duration, this.treasure,
       this.victory) {
     fileNameMap.addAll({
       'action': action,

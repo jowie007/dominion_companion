@@ -1,0 +1,26 @@
+{
+  "id": "base_v2",
+  "name": "Basisspiel",
+  "version": "2",
+  "cards": [
+    {
+      "id": "base_v2-cellar",
+      "name": "Keller",
+      "expansionId": "base_v2",
+      "cardType": {
+        "action": true,
+        "attack": false,
+        "curse": false,
+        "duration": false,
+        "treasure": false,
+        "victory": false
+      },
+      "cardCost": {
+        "coin": 2,
+        "debt": null,
+        "potion": null
+      },
+      "text": ""
+    }
+  ]
+}

@@ -68,6 +68,7 @@ flutter:
     - assets/cards/types/small/
     - assets/cards/images/base/
     - assets/cards/other/
+    - assets/cards/json/
     - assets/menu/
     - assets/boxart/
 

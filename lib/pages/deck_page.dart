@@ -1,8 +1,9 @@
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/create_deck_component.dart';
 import 'package:dominion_comanion/components/deck_component.dart';
-import 'package:dominion_comanion/model/deck/deck_model.dart';
+import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
+import 'package:dominion_comanion/services/json_service.dart';
 import 'package:flutter/material.dart';
 
 class DeckPage extends StatefulWidget {
@@ -14,7 +15,7 @@ class DeckPage extends StatefulWidget {
 
 class _DeckState extends State<DeckPage> {
   late DeckService _deckService;
-  late Future<List<Deck>> _decks;
+  late Future<List<DeckDBModel>> _decks;
 
   @override
   initState() {
