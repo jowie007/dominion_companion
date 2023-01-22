@@ -1,9 +1,8 @@
-
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/expansion_expandable.dart';
 import 'package:dominion_comanion/model/card/card_cost_model.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
-import 'package:dominion_comanion/model/card/card_type_model.dart';
+import 'package:dominion_comanion/model/card/card_type_enum.dart';
 import 'package:dominion_comanion/services/expansion_service.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +14,6 @@ class CreateDeckPage extends StatefulWidget {
 }
 
 class _CreateDeckState extends State<CreateDeckPage> {
-
   @override
   initState() {
     super.initState();
@@ -76,7 +74,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
                 CardModel(
                     "1",
                     "Testkarte",
-                    CardTypeModel(false, false, false, false, true, true),
+                    [CardTypeEnum.treasure, CardTypeEnum.victory],
                     CardCostModel(1, 0, 1),
                     "Beschreibung")
               ]),

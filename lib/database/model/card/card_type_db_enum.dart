@@ -1,6 +1,6 @@
-import 'package:dominion_comanion/model/card/card_type_model.dart';
+import 'package:dominion_comanion/model/card/card_type_enum.dart';
 
-class CardTypeDBModel {
+/*class CardTypeDBModel {
   late bool action;
   late bool attack;
   late bool curse;
@@ -47,4 +47,4 @@ class CardTypeDBModel {
         'treasure': treasure,
         'victory': victory,
       };
-}
+}*/

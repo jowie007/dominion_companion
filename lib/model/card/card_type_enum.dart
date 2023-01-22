@@ -1,8 +1,17 @@
 import 'dart:collection';
 
-import 'package:dominion_comanion/database/model/card/card_type_db_model.dart';
+import 'package:dominion_comanion/database/model/card/card_type_db_enum.dart';
 
-class CardTypeModel {
+enum CardTypeEnum {
+  action,
+  attack,
+  curse,
+  duration,
+  treasure,
+  victory,
+}
+
+/*class CardTypeModel {
   late bool action;
   late bool attack;
   late bool curse;
@@ -13,14 +22,7 @@ class CardTypeModel {
 
   CardTypeModel(this.action, this.attack, this.curse, this.duration,
       this.treasure, this.victory) {
-    fileNameMap.addAll({
-      'action': action,
-      'attack': attack,
-      'curse': curse,
-      'duration': duration,
-      'treasure': treasure,
-      'victory': victory
-    });
+    initFileNameMap();
   }
 
   CardTypeModel.fromJson(Map<String, dynamic> json) {
@@ -30,6 +32,7 @@ class CardTypeModel {
     duration = json['duration'] as bool;
     treasure = json['treasure'] as bool;
     victory = json['victory'] as bool;
+    initFileNameMap();
   }
 
   CardTypeModel.fromDBModel(CardTypeDBModel dbModel) {
@@ -39,6 +42,18 @@ class CardTypeModel {
     duration = dbModel.duration;
     treasure = dbModel.treasure;
     victory = dbModel.victory;
+    initFileNameMap();
+  }
+
+  void initFileNameMap() {
+    fileNameMap.addAll({
+      'action': action,
+      'attack': attack,
+      'curse': curse,
+      'duration': duration,
+      'treasure': treasure,
+      'victory': victory
+    });
   }
 
   String getFileName() {
@@ -56,4 +71,4 @@ class CardTypeModel {
     });
     return fileName;
   }
-}
+}*/

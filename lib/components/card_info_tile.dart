@@ -1,6 +1,7 @@
 import 'package:dominion_comanion/components/coin_component.dart';
 import 'package:dominion_comanion/components/round_checkbox.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
+import 'package:dominion_comanion/services/card_service.dart';
 import 'package:flutter/material.dart';
 
 class CardInfoTile extends StatelessWidget {
@@ -19,6 +20,7 @@ class CardInfoTile extends StatelessWidget {
     final newCheckBoxTheme = theme.checkboxTheme.copyWith(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
     );
+    final CardService _cardService = CardService();
 
     return Container(
       decoration: BoxDecoration(
@@ -26,7 +28,7 @@ class CardInfoTile extends StatelessWidget {
           fit: BoxFit.cover,
           //I assumed you want to occupy the entire space of the card
           image: AssetImage(
-            "assets/cards/types/small/${card.cardType.getFileName()}.png",
+            "assets/cards/types/small/${_cardService.getFilenameByCardTypes(card.cardTypes)}.png",
           ),
         ),
       ),
@@ -52,12 +54,16 @@ class CardInfoTile extends StatelessWidget {
                     Text(
                       card.name,
                       style: const TextStyle(
-                        fontFamily: 'TrajanPro', fontSize: 18, color: Colors.black),
+                          fontFamily: 'TrajanPro',
+                          fontSize: 18,
+                          color: Colors.black),
                     ),
                     Text(
-                      card.cardType.getFileName(),
+                      _cardService.getFilenameByCardTypes(card.cardTypes),
                       style: const TextStyle(
-                        fontFamily: 'TrajanPro', fontSize: 14, color: Colors.black),
+                          fontFamily: 'TrajanPro',
+                          fontSize: 14,
+                          color: Colors.black),
                     ),
                   ]),
               const Spacer(),

@@ -23,7 +23,7 @@ class ExpansionService {
     }
   }
 
-  void insertExpansionsIntoDB() {
+  void loadJsonExpansionsIntoDB() {
     JsonService().getExpansions().forEach((expansionModel) async {
       insertExpansionIntoDB(await expansionModel);
     });
