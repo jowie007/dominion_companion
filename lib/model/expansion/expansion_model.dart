@@ -10,9 +10,9 @@ class ExpansionModel {
   ExpansionModel(this.id, this.name, this.version, this.cards);
 
   ExpansionModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id'].toString();
     name = json['name'];
-    version = json['version'];
+    version = json['version'].toString();
     cards = (json['cards'] as List)
         .map((data) => CardModel.fromJson(data))
         .toList();

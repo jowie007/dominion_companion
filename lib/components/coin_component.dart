@@ -7,7 +7,7 @@ class CostComponent extends StatelessWidget {
 
   final double width;
   final String type;
-  final int? value;
+  final String? value;
 
   @override
   Widget build(BuildContext context) {

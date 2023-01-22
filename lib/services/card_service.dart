@@ -22,7 +22,7 @@ class CardService {
   }
 
   String getFilenameByCardTypes(List<CardTypeEnum> cardTypes) {
-    String fileName = cardTypes.join("-");
+    String fileName = cardTypes.map((e) => e.name).join("-");
     return fileName;
   }
 }

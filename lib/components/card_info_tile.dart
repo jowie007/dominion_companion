@@ -20,7 +20,7 @@ class CardInfoTile extends StatelessWidget {
     final newCheckBoxTheme = theme.checkboxTheme.copyWith(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
     );
-    final CardService _cardService = CardService();
+    final CardService cardService = CardService();
 
     return Container(
       decoration: BoxDecoration(
@@ -28,7 +28,7 @@ class CardInfoTile extends StatelessWidget {
           fit: BoxFit.cover,
           //I assumed you want to occupy the entire space of the card
           image: AssetImage(
-            "assets/cards/types/small/${_cardService.getFilenameByCardTypes(card.cardTypes)}.png",
+            "assets/cards/types/small/${cardService.getFilenameByCardTypes(card.cardTypes)}.png",
           ),
         ),
       ),
@@ -40,10 +40,12 @@ class CardInfoTile extends StatelessWidget {
             children: <Widget>[
               CostComponent(
                   width: 40,
-                  type: card.cardCost.coin != null ? 'coin' : 'debt',
-                  value: card.cardCost.coin ?? card.cardCost.debt),
+                  type: card.cardCost.coin != "" ? 'coin' : 'debt',
+                  value: card.cardCost.coin != ""
+                      ? card.cardCost.coin
+                      : card.cardCost.debt),
               const SizedBox(width: 2),
-              card.cardCost.potion != null
+              card.cardCost.potion != ''
                   ? const CostComponent(width: 26, type: 'potion')
                   : const SizedBox(width: 26),
               const SizedBox(width: 10),
@@ -59,7 +61,7 @@ class CardInfoTile extends StatelessWidget {
                           color: Colors.black),
                     ),
                     Text(
-                      _cardService.getFilenameByCardTypes(card.cardTypes),
+                      cardService.getFilenameByCardTypes(card.cardTypes),
                       style: const TextStyle(
                           fontFamily: 'TrajanPro',
                           fontSize: 14,

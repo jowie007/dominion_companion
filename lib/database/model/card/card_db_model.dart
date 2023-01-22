@@ -7,26 +7,41 @@ import 'card_type_db_enum.dart';
 class CardDBModel {
   late String id;
   late String name;
+  late String setId;
+  late String parentId;
+  late List<String> relatedCardIds;
+  late bool invisible;
   late List<CardTypeEnum> cardTypes;
   late CardCostDBModel cardCost;
   late String text;
 
-  CardDBModel(this.id, this.name, this.cardTypes, this.cardCost, this.text);
+  CardDBModel(this.id, this.name, this.setId, this.parentId, this.cardTypes,
+      this.cardCost, this.text);
 
   CardDBModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    cardTypes = json['cardType']
-        .split(',')
-        .map((value) => value.toString().trim() as CardTypeEnum);
-    cardCost = CardCostDBModel(
-        json['coin'] as int?, json['debt'] as int?, json['potion'] as int?);
-    text = json['text'];
+    setId = json['setId'] ?? '';
+    parentId = json['parentId'] ?? '';
+    relatedCardIds = json['relatedCardIds'] != null
+        ? json['relatedCardIds'].toString().split(',')
+        : List.empty();
+    invisible = json['invisible'] != null ? json['invisible'] > 0 : false;
+    cardTypes = List<CardTypeEnum>.from(json['cardTypes'].split(',').map(
+        (value) => (CardTypeEnum.values.firstWhere((e) =>
+            e.toString() == 'CardTypeEnum.${value.toString().trim()}'))));
+    cardCost = CardCostDBModel(json['coin'].toString(), json['debt'].toString(),
+        json['potion'].toString());
+    text = json['text'] ?? '';
   }
 
   CardDBModel.fromModel(CardModel model) {
     id = model.id;
     name = model.name;
+    setId = model.setId;
+    parentId = model.parentId;
+    relatedCardIds = model.relatedCardIds;
+    invisible = model.invisible;
     cardTypes = model.cardTypes;
     cardCost = CardCostDBModel.fromModel(model.cardCost);
     text = model.text;
@@ -35,13 +50,14 @@ class CardDBModel {
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
-        'cardType': cardTypes.join(","),
-        /*'action': cardType.action,
-        'attack': cardType.attack,
-        'curse': cardType.curse,
-        'duration': cardType.duration,
-        'treasure': cardType.treasure,
-        'victory': cardType.victory,*/
+        'setId': setId,
+        'parentId': parentId,
+        'relatedCardIds': relatedCardIds.join(','),
+        'invisible': invisible ? 1 : 0,
+        'cardTypes': cardTypes
+            .map((e) =>
+                e.toString().split('.')[e.toString().split('.').length - 1])
+            .join(","),
         'coin': cardCost.coin,
         'debt': cardCost.debt,
         'potion': cardCost.potion,

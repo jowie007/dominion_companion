@@ -9,9 +9,9 @@ class ExpansionDBModel {
   ExpansionDBModel(this.id, this.name, this.version, this.cardIds);
 
   ExpansionDBModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    version = json['version'];
+    id = json['id'].toString();
+    name = json['name'].toString();
+    version = json['version'].toString();
     cardIds = json['cardIds'].split(',');
   }
 

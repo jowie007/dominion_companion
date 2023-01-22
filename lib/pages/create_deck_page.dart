@@ -75,7 +75,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
                     "1",
                     "Testkarte",
                     [CardTypeEnum.treasure, CardTypeEnum.victory],
-                    CardCostModel(1, 0, 1),
+                    CardCostModel("1", "0", "1"),
                     "Beschreibung")
               ]),
             ],

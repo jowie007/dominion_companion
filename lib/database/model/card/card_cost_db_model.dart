@@ -1,9 +1,9 @@
 import 'package:dominion_comanion/model/card/card_cost_model.dart';
 
 class CardCostDBModel {
-  late int? coin;
-  late int? debt;
-  late int? potion;
+  late String coin;
+  late String debt;
+  late String potion;
 
   CardCostDBModel(this.coin, this.debt, this.potion);
 
@@ -14,9 +14,9 @@ class CardCostDBModel {
   }
 
   CardCostDBModel.fromJson(Map<String, dynamic> json) {
-    coin = json['coin'] as int?;
-    debt = json['debt'] as int?;
-    potion = json['potion'] as int?;
+    coin = json['coin'] != null ? json['coin'].toString() : '';
+    debt = json['debt'] != null ? json['debt'].toString() : '';
+    potion = json['potion'] != null ? json['potion'].toString() : '';
   }
 
   Map<String, dynamic> toJson() => {
