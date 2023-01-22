@@ -1,14 +1,272 @@
 {
-  "id": "base_v2",
+  "id": "basisspiel_v2",
   "name": "Basisspiel",
   "version": "2",
   "cards": [
     {
-      "id": "base_v2-cellar",
-      "name": "Keller",
-      "cardTypes": "action",
+      "id": "basisspiel_v2-kapelle",
+      "name": "Kapelle",
+      "cardTypes": "aktion",
       "cardCost": {
         "coin": 2
+      }
+    },
+    {
+      "id": "basisspiel_v2-keller",
+      "name": "Keller",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 2
+      }
+    },
+    {
+      "id": "basisspiel_v2-dorf",
+      "name": "Dorf",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 3
+      }
+    },
+    {
+      "id": "basisspiel_v2-händlerin",
+      "name": "Händlerin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 3
+      }
+    },
+    {
+      "id": "basisspiel_v2-vasall",
+      "name": "Vasall",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 3
+      }
+    },
+    {
+      "id": "basisspiel_v2-werkstatt",
+      "name": "Werkstatt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 3
+      }
+    },
+    {
+      "id": "basisspiel_v2-werkstatt",
+      "name": "Werkstatt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 3
+      }
+    },
+    {
+      "id": "basisspiel_v2-geldverleiher",
+      "name": "Geldverleiher",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 4
+      }
+    },
+    {
+      "id": "basisspiel_v2-schmiede",
+      "name": "Schmiede",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 4
+      }
+    },
+    {
+      "id": "basisspiel_v2-thronsaal",
+      "name": "Thronsaal",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 4
+      }
+    },
+    {
+      "id": "basisspiel_v2-umbau",
+      "name": "Umbau",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 4
+      }
+    },
+    {
+      "id": "basisspiel_v2-wilddiebin",
+      "name": "Wilddiebin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 4
+      }
+    },
+    {
+      "id": "basisspiel_v2-bibliothek",
+      "name": "Bibliothek",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 5
+      }
+    },
+    {
+      "id": "basisspiel_v2-jahrmarkt",
+      "name": "Jahrmarkt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 5
+      }
+    },
+    {
+      "id": "basisspiel_v2-laboratorium",
+      "name": "Laboratorium",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 5
+      }
+    },
+    {
+      "id": "basisspiel_v2-markt",
+      "name": "Markt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 5
+      }
+    },
+    {
+      "id": "basisspiel_v2-mine",
+      "name": "Mine",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 5
+      }
+    },
+    {
+      "id": "basisspiel_v2-ratsversammlung",
+      "name": "Ratsversammlung",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 5
+      }
+    },
+    {
+      "id": "basisspiel_v2-torwächterin",
+      "name": "Torwächterin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 5
+      }
+    },
+    {
+      "id": "basisspiel_v2-töpferei",
+      "name": "Töpferei",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 5
+      }
+    },
+    {
+      "id": "basisspiel_v2-bürokrat",
+      "name": "Bürokrat",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": 4
+      }
+    },
+    {
+      "id": "basisspiel_v2-miliz",
+      "name": "Miliz",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": 4
+      }
+    },
+    {
+      "id": "basisspiel_v2-banditin",
+      "name": "Banditin",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": 5
+      }
+    },
+    {
+      "id": "basisspiel_v2-Hexe",
+      "name": "Hexe",
+      "relatedCardIds": "basisspiel_v2-fluch",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": 5
+      }
+    },
+    {
+      "id": "basisspiel_v2-burggraben",
+      "name": "Burggraben",
+      "relatedCardIds": "basisspiel_v2-burggraben",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": 2
+      }
+    },
+    {
+      "id": "basisspiel_v2-gärten",
+      "name": "Gärten",
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": 2
+      }
+    },
+    {
+      "id": "basisspiel_v2-kupfer",
+      "name": "Kupfer",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": 0
+      }
+    },
+    {
+      "id": "basisspiel_v2-silber",
+      "name": "Silber",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": 0
+      }
+    },
+    {
+      "id": "basisspiel_v2-gold",
+      "name": "Gold",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": 0
+      }
+    },
+    {
+      "id": "basisspiel_v2-anwesen",
+      "name": "Anwesen",
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": 2
+      }
+    },
+    {
+      "id": "basisspiel_v2-herzogtum",
+      "name": "Herzogtum",
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": 5
+      }
+    },
+    {
+      "id": "basisspiel_v2-provinz",
+      "name": "Provinz",
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": 8
+      }
+    },
+    {
+      "id": "basisspiel_v2-fluch",
+      "name": "Fluch",
+      "cardTypes": "fluch",
+      "cardCost": {
+        "coin": 0
       }
     }
   ]

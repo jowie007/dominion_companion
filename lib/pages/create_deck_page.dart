@@ -34,51 +34,41 @@ class _CreateDeckState extends State<CreateDeckPage> {
               ),
             ),
           ),
-          Column(
-            children: [
-              FutureBuilder(
-                future: ExpansionService().loadAllExpansions(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const CircularProgressIndicator(),
-                        Visibility(
-                          visible: snapshot.hasData,
-                          child: const Text(
-                            "Warte auf Erweiterungen",
-                            style: TextStyle(color: Colors.black, fontSize: 24),
-                          ),
-                        )
-                      ],
-                    );
-                  } else if (snapshot.connectionState == ConnectionState.done) {
-                    if (snapshot.hasError) {
-                      return Text(snapshot.error.toString());
-                    } else if (snapshot.hasData) {
-                      return snapshot.data != null && snapshot.data!.isNotEmpty
-                          ? ExpansionExpandable(
-                              title: "Seaside", cards: snapshot.data![0].cards)
-                          : const Text('Keine Erweiterungen gefunden');
-                    } else {
-                      return const Text('Keine Erweiterungen gefunden');
-                    }
+          SingleChildScrollView(
+            child: FutureBuilder(
+              future: ExpansionService().loadAllExpansions(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CircularProgressIndicator(),
+                      Visibility(
+                        visible: snapshot.hasData,
+                        child: const Text(
+                          "Warte auf Erweiterungen",
+                          style: TextStyle(color: Colors.black, fontSize: 24),
+                        ),
+                      )
+                    ],
+                  );
+                } else if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasError) {
+                    return Text(snapshot.error.toString());
+                  } else if (snapshot.hasData) {
+                    return snapshot.data != null && snapshot.data!.isNotEmpty
+                        ? ExpansionExpandable(
+                            title: "Seaside", cards: snapshot.data![0].cards)
+                        : const Text('Keine Erweiterungen gefunden');
                   } else {
-                    return Text('State: ${snapshot.connectionState}');
+                    return const Text('Keine Erweiterungen gefunden');
                   }
-                },
-              ),
-              ExpansionExpandable(title: "Nocturne", cards: [
-                CardModel(
-                    "1",
-                    "Testkarte",
-                    [CardTypeEnum.treasure, CardTypeEnum.victory],
-                    CardCostModel("1", "0", "1"),
-                    "Beschreibung")
-              ]),
-            ],
+                } else {
+                  return Text('State: ${snapshot.connectionState}');
+                }
+              },
+            ),
           ),
         ],
       ),
