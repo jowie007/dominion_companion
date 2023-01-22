@@ -23,7 +23,10 @@ class ExpansionService {
     }
   }
 
-  void loadJsonExpansionsIntoDB() {
+  Future<void> loadJsonExpansionsIntoDB() async {
+    /* await Future.wait(JsonService().getExpansions().map((element) async => {
+      _expansionDatabase.deleteExpansionById((await element).id)
+    }).toList()); */
     JsonService().getExpansions().forEach((expansionModel) async {
       insertExpansionIntoDB(await expansionModel);
     });

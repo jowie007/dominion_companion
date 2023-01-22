@@ -6,15 +6,10 @@
     {
       "id": "base_v2-cellar",
       "name": "Keller",
-      "expansionId": "base_v2",
-      "setId": "base_v2-cellar",
-      "parentId": null,
-      "invisible": false,
       "cardTypes": "action",
       "cardCost": {
         "coin": 2
-      },
-      "text": ""
+      }
     }
   ]
 }

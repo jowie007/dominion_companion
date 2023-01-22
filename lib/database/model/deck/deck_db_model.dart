@@ -9,5 +9,5 @@ class DeckDBModel {
       DeckDBModel(id: id, name: name, cardIds: cardIds.split(','));
 
   Map<String, dynamic> toJson() =>
-      {'id': id, 'name': name, 'cardIds': "1"};
+      {'id': id, 'name': name, 'cardIds': cardIds};
 }
