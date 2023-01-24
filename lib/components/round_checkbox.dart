@@ -16,7 +16,6 @@ class RoundCheckbox extends StatefulWidget {
 class _RoundCheckboxState extends State<RoundCheckbox> {
   @override
   Widget build(BuildContext context) {
-    // Dominion card size 91mm x 59mm
     return Transform.scale(
       scale: 1.3,
       child: Theme(

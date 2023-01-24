@@ -1,0 +1,15 @@
+{
+  "id": "basisspiel_v3",
+  "name": "Basisspiel",
+  "version": "V3",
+  "cards": [
+    {
+      "id": "basisspiel_v2-kapelle",
+      "name": "Kapelle",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": 2
+      }
+    }
+  ]
+}

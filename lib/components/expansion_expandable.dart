@@ -1,15 +1,21 @@
 import 'package:dominion_comanion/components/card_info_tile.dart';
 import 'package:dominion_comanion/components/round_checkbox.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
+import 'package:dominion_comanion/services/selected_card_service.dart';
 import 'package:flutter/material.dart';
 
 class ExpansionExpandable extends StatefulWidget {
   const ExpansionExpandable(
-      {super.key, required this.imagePath, required this.title, required this.cards});
+      {super.key,
+      required this.imagePath,
+      required this.title,
+      required this.cards,
+      required this.selectedCardService});
 
   final String imagePath;
   final String title;
   final List<CardModel> cards;
+  final SelectedCardService selectedCardService;
 
   @override
   State<ExpansionExpandable> createState() => _MyStatefulWidgetState();
@@ -93,8 +99,14 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                           itemBuilder: (BuildContext context, int index) {
                             return !widget.cards[index].invisible
                                 ? CardInfoTile(
-                                    onChanged: _onCheckboxChanged,
+                                    onChanged: (bool? newValue) => widget
+                                        .selectedCardService
+                                        .toggleSelectedCardIdDB(
+                                            widget.cards[index].id),
                                     card: widget.cards[index],
+                                    value: widget
+                                        .selectedCardService.selectedCardIds
+                                        .contains(widget.cards[index].id),
                                   )
                                 : Container();
                           })

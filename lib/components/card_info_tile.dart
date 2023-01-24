@@ -9,10 +9,12 @@ class CardInfoTile extends StatelessWidget {
     super.key,
     required this.card,
     required this.onChanged,
+    required this.value,
   });
 
   final void Function(bool? value) onChanged;
   final CardModel card;
+  final bool value;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,7 @@ class CardInfoTile extends StatelessWidget {
               const Spacer(),
               RoundCheckbox(
                 onChanged: onChanged,
-                value: false,
+                value: value,
               )
             ],
           ),

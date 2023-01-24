@@ -6,6 +6,8 @@ import 'package:dominion_comanion/model/card/card_type_enum.dart';
 import 'package:dominion_comanion/services/expansion_service.dart';
 import 'package:flutter/material.dart';
 
+import '../services/selected_card_service.dart';
+
 class CreateDeckPage extends StatefulWidget {
   const CreateDeckPage({super.key});
 
@@ -19,9 +21,12 @@ class _CreateDeckState extends State<CreateDeckPage> {
     super.initState();
   }
 
+  final _selectedCardService = SelectedCardService();
+
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
+    _selectedCardService.initializeSelectedCardIds();
     return Scaffold(
       appBar: const BasicAppBar(title: 'Deck erstellen'),
       body: Stack(
@@ -58,10 +63,15 @@ class _CreateDeckState extends State<CreateDeckPage> {
                     return Text(snapshot.error.toString());
                   } else if (snapshot.hasData) {
                     return snapshot.data != null && snapshot.data!.isNotEmpty
-                        ? ExpansionExpandable(
-                            imagePath: snapshot.data![0].id,
-                            title: [snapshot.data![0].name, snapshot.data![0].version].join(" - "),
-                            cards: snapshot.data![0].cards)
+                        ? Column(children: [
+                            for (var expansion in snapshot.data!)
+                              ExpansionExpandable(
+                                  imagePath: expansion.id,
+                                  title: [expansion.name, expansion.version]
+                                      .join(" - "),
+                                  cards: expansion.cards,
+                                  selectedCardService: _selectedCardService)
+                          ])
                         : const Text('Keine Erweiterungen gefunden');
                   } else {
                     return const Text('Keine Erweiterungen gefunden');
