@@ -50,6 +50,7 @@ class CardInfoTile extends StatelessWidget {
                   : const SizedBox(width: 26),
               const SizedBox(width: 10),
               Column(
+                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -61,7 +62,7 @@ class CardInfoTile extends StatelessWidget {
                           color: Colors.black),
                     ),
                     Text(
-                      cardService.getFilenameByCardTypes(card.cardTypes),
+                      cardService.getCardTypesString(card.cardTypes),
                       style: const TextStyle(
                           fontFamily: 'TrajanPro',
                           fontSize: 14,

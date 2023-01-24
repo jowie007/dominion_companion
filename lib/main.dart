@@ -26,7 +26,7 @@ class _DominionCompanionState extends State<DominionCompanion> {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: Colors.orangeAccent,
-          secondary: Colors.deepPurple,
+          secondary: Colors.brown,
         ),
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Colors.white,

@@ -14,7 +14,8 @@ class CardService {
     _cardDatabase.insertCard(cardDBModel);
   }
 
-  Future<List<CardDBModel>> getCardsByExpansionFromDB(ExpansionDBModel expansion) async {
+  Future<List<CardDBModel>> getCardsByExpansionFromDB(
+      ExpansionDBModel expansion) async {
     var cards = expansion.cardIds
         .map((cardId) async => await _cardDatabase.getCardById(cardId))
         .toList();
@@ -23,6 +24,15 @@ class CardService {
 
   String getFilenameByCardTypes(List<CardTypeEnum> cardTypes) {
     String fileName = cardTypes.map((e) => e.name).join("-");
+    return fileName;
+  }
+
+  String getCardTypesString(List<CardTypeEnum> cardTypes) {
+    String fileName = cardTypes
+        .map((e) =>
+            e.name.substring(0, 1).toUpperCase() +
+            e.name.substring(1, e.name.length).toUpperCase())
+        .join("-");
     return fileName;
   }
 }

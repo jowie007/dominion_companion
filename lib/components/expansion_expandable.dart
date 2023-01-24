@@ -86,13 +86,16 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                     children: <Widget>[
                       ListView.builder(
                           // padding: const EdgeInsets.all(8),
+                          physics: const ClampingScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: widget.cards.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return CardInfoTile(
-                              onChanged: _onCheckboxChanged,
-                              card: widget.cards[index],
-                            );
+                            return !widget.cards[index].invisible
+                                ? CardInfoTile(
+                                    onChanged: _onCheckboxChanged,
+                                    card: widget.cards[index],
+                                  )
+                                : Container();
                           })
                     ],
                   ),

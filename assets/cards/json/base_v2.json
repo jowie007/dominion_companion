@@ -216,6 +216,7 @@
     {
       "id": "basisspiel_v2-kupfer",
       "name": "Kupfer",
+      "invisible": true,
       "cardTypes": "geld",
       "cardCost": {
         "coin": 0
@@ -224,6 +225,7 @@
     {
       "id": "basisspiel_v2-silber",
       "name": "Silber",
+      "invisible": true,
       "cardTypes": "geld",
       "cardCost": {
         "coin": 0
@@ -232,6 +234,7 @@
     {
       "id": "basisspiel_v2-gold",
       "name": "Gold",
+      "invisible": true,
       "cardTypes": "geld",
       "cardCost": {
         "coin": 0
@@ -240,6 +243,7 @@
     {
       "id": "basisspiel_v2-anwesen",
       "name": "Anwesen",
+      "invisible": true,
       "cardTypes": "punkte",
       "cardCost": {
         "coin": 2
@@ -248,6 +252,7 @@
     {
       "id": "basisspiel_v2-herzogtum",
       "name": "Herzogtum",
+      "invisible": true,
       "cardTypes": "punkte",
       "cardCost": {
         "coin": 5
@@ -256,6 +261,7 @@
     {
       "id": "basisspiel_v2-provinz",
       "name": "Provinz",
+      "invisible": true,
       "cardTypes": "punkte",
       "cardCost": {
         "coin": 8
@@ -264,6 +270,7 @@
     {
       "id": "basisspiel_v2-fluch",
       "name": "Fluch",
+      "invisible": true,
       "cardTypes": "fluch",
       "cardCost": {
         "coin": 0
