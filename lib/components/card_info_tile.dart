@@ -28,7 +28,7 @@ class CardInfoTile extends StatelessWidget {
           fit: BoxFit.cover,
           //I assumed you want to occupy the entire space of the card
           image: AssetImage(
-            "assets/cards/types/small/${cardService.getFilenameByCardTypes(card.cardTypes)}.png",
+            "assets/cards/types/small/${cardService.getFilenameByCardTypes(card.cardTypes)}.jpg",
           ),
         ),
       ),

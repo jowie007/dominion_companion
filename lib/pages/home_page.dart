@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                    "assets/boxart/${boxartList[Random().nextInt(boxartList.length)]}"),
+                    "assets/artwork/background/${boxartList[Random().nextInt(boxartList.length)]}"),
                 fit: BoxFit.cover,
               ),
             ),

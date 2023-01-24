@@ -59,7 +59,9 @@ class _CreateDeckState extends State<CreateDeckPage> {
                   } else if (snapshot.hasData) {
                     return snapshot.data != null && snapshot.data!.isNotEmpty
                         ? ExpansionExpandable(
-                            title: "Seaside", cards: snapshot.data![0].cards)
+                            imagePath: snapshot.data![0].id,
+                            title: [snapshot.data![0].name, snapshot.data![0].version].join(" - "),
+                            cards: snapshot.data![0].cards)
                         : const Text('Keine Erweiterungen gefunden');
                   } else {
                     return const Text('Keine Erweiterungen gefunden');

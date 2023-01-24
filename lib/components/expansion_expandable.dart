@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class ExpansionExpandable extends StatefulWidget {
   const ExpansionExpandable(
-      {super.key, required this.title, required this.cards});
+      {super.key, required this.imagePath, required this.title, required this.cards});
 
+  final String imagePath;
   final String title;
   final List<CardModel> cards;
 
@@ -41,7 +42,7 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                   width: 400,
                   height: 56,
                   child: Image.asset(
-                    "assets/boxart/${widget.title.toLowerCase()}.jpg",
+                    "assets/artwork/boxart/${widget.imagePath}.jpg",
                     fit: BoxFit.cover,
                   ),
                 ),
