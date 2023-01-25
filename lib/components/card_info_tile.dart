@@ -21,7 +21,6 @@ class CardInfoTile extends StatefulWidget {
 }
 
 class _CardInfoTileState extends State<CardInfoTile> {
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -31,7 +30,7 @@ class _CardInfoTileState extends State<CardInfoTile> {
     final CardService cardService = CardService();
 
     return Container(
-      decoration: BoxDecoration(
+      /* decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
           //I assumed you want to occupy the entire space of the card
@@ -39,7 +38,8 @@ class _CardInfoTileState extends State<CardInfoTile> {
             "assets/cards/types/small/${cardService.getFilenameByCardTypes(widget.card.cardTypes)}.jpg",
           ),
         ),
-      ),
+      ),*/
+      color: Colors.white.withOpacity(0.4),
       child: Theme(
         data: theme.copyWith(checkboxTheme: newCheckBoxTheme),
         child: ListTile(
@@ -58,29 +58,47 @@ class _CardInfoTileState extends State<CardInfoTile> {
                   : const SizedBox(width: 26),
               const SizedBox(width: 10),
               Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.card.name,
-                      style: const TextStyle(
-                          fontFamily: 'TrajanPro',
-                          fontSize: 18,
-                          color: Colors.black),
-                    ),
-                    Text(
-                      cardService.getCardTypesString(widget.card.cardTypes),
-                      style: const TextStyle(
-                          fontFamily: 'TrajanPro',
-                          fontSize: 14,
-                          color: Colors.black),
-                    ),
-                  ]),
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.card.name,
+                    style: const TextStyle(
+                        fontFamily: 'TrajanPro',
+                        fontSize: 18,
+                        color: Colors.black),
+                  ),
+                  Text(
+                    cardService.getCardTypesString(widget.card.cardTypes),
+                    style: const TextStyle(
+                        fontFamily: 'TrajanPro',
+                        fontSize: 14,
+                        color: Colors.black),
+                  ),
+                ],
+              ),
               const Spacer(),
-              RoundCheckbox(
-                onChanged: widget.onChanged,
-                value: widget.value,
+              Stack(
+                children: [
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(
+                          "assets/cards/types/small/${cardService.getFilenameByCardTypes(widget.card.cardTypes)}.jpg",
+                        ),
+                      ),
+                    ),
+                  ),
+                  RoundCheckbox(
+                    onChanged: widget.onChanged,
+                    value: widget.value,
+                  )
+                ],
               )
             ],
           ),
