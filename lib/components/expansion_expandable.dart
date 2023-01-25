@@ -18,10 +18,10 @@ class ExpansionExpandable extends StatefulWidget {
   final SelectedCardService selectedCardService;
 
   @override
-  State<ExpansionExpandable> createState() => _MyStatefulWidgetState();
+  State<ExpansionExpandable> createState() => _ExpansionExpandableState();
 }
 
-class _MyStatefulWidgetState extends State<ExpansionExpandable> {
+class _ExpansionExpandableState extends State<ExpansionExpandable> {
   dynamic _allSelected = false;
 
   void _onCheckboxChanged(bool? newValue) => setState(() {
@@ -99,10 +99,11 @@ class _MyStatefulWidgetState extends State<ExpansionExpandable> {
                           itemBuilder: (BuildContext context, int index) {
                             return !widget.cards[index].invisible
                                 ? CardInfoTile(
-                                    onChanged: (bool? newValue) => widget
-                                        .selectedCardService
-                                        .toggleSelectedCardIdDB(
-                                            widget.cards[index].id),
+                                    onChanged: (bool? newValue) => setState(() {
+                                      widget.selectedCardService
+                                          .toggleSelectedCardIdDB(
+                                              widget.cards[index].id);
+                                    }),
                                     card: widget.cards[index],
                                     value: widget
                                         .selectedCardService.selectedCardIds

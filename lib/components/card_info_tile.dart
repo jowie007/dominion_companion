@@ -4,7 +4,7 @@ import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/services/card_service.dart';
 import 'package:flutter/material.dart';
 
-class CardInfoTile extends StatelessWidget {
+class CardInfoTile extends StatefulWidget {
   const CardInfoTile({
     super.key,
     required this.card,
@@ -15,6 +15,12 @@ class CardInfoTile extends StatelessWidget {
   final void Function(bool? value) onChanged;
   final CardModel card;
   final bool value;
+
+  @override
+  State<CardInfoTile> createState() => _CardInfoTileState();
+}
+
+class _CardInfoTileState extends State<CardInfoTile> {
 
   @override
   Widget build(BuildContext context) {
@@ -30,24 +36,24 @@ class CardInfoTile extends StatelessWidget {
           fit: BoxFit.cover,
           //I assumed you want to occupy the entire space of the card
           image: AssetImage(
-            "assets/cards/types/small/${cardService.getFilenameByCardTypes(card.cardTypes)}.jpg",
+            "assets/cards/types/small/${cardService.getFilenameByCardTypes(widget.card.cardTypes)}.jpg",
           ),
         ),
       ),
       child: Theme(
         data: theme.copyWith(checkboxTheme: newCheckBoxTheme),
         child: ListTile(
-          onTap: () => onChanged(false),
+          onTap: () => widget.onChanged(false),
           title: Row(
             children: <Widget>[
               CostComponent(
                   width: 40,
-                  type: card.cardCost.coin != "" ? 'coin' : 'debt',
-                  value: card.cardCost.coin != ""
-                      ? card.cardCost.coin
-                      : card.cardCost.debt),
+                  type: widget.card.cardCost.coin != "" ? 'coin' : 'debt',
+                  value: widget.card.cardCost.coin != ""
+                      ? widget.card.cardCost.coin
+                      : widget.card.cardCost.debt),
               const SizedBox(width: 2),
-              card.cardCost.potion != ''
+              widget.card.cardCost.potion != ''
                   ? const CostComponent(width: 26, type: 'potion')
                   : const SizedBox(width: 26),
               const SizedBox(width: 10),
@@ -57,14 +63,14 @@ class CardInfoTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      card.name,
+                      widget.card.name,
                       style: const TextStyle(
                           fontFamily: 'TrajanPro',
                           fontSize: 18,
                           color: Colors.black),
                     ),
                     Text(
-                      cardService.getCardTypesString(card.cardTypes),
+                      cardService.getCardTypesString(widget.card.cardTypes),
                       style: const TextStyle(
                           fontFamily: 'TrajanPro',
                           fontSize: 14,
@@ -73,8 +79,8 @@ class CardInfoTile extends StatelessWidget {
                   ]),
               const Spacer(),
               RoundCheckbox(
-                onChanged: onChanged,
-                value: value,
+                onChanged: widget.onChanged,
+                value: widget.value,
               )
             ],
           ),

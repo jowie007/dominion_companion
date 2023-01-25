@@ -52,14 +52,6 @@
       }
     },
     {
-      "id": "basisspiel_v2-werkstatt",
-      "name": "Werkstatt",
-      "cardTypes": "aktion",
-      "cardCost": {
-        "coin": 3
-      }
-    },
-    {
       "id": "basisspiel_v2-geldverleiher",
       "name": "Geldverleiher",
       "cardTypes": "aktion",

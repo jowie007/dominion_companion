@@ -4,7 +4,7 @@
   "version": "V3",
   "cards": [
     {
-      "id": "basisspiel_v2-kapelle",
+      "id": "basisspiel_v3-kapelle",
       "name": "Kapelle",
       "cardTypes": "aktion",
       "cardCost": {
