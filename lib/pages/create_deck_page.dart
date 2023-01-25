@@ -1,4 +1,5 @@
 import 'package:dominion_comanion/components/basic_appbar.dart';
+import 'package:dominion_comanion/components/basic_infobar.dart';
 import 'package:dominion_comanion/components/expansion_expandable.dart';
 import 'package:dominion_comanion/model/card/card_cost_model.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
@@ -27,8 +28,16 @@ class _CreateDeckState extends State<CreateDeckPage> {
   @override
   Widget build(BuildContext context) {
     _selectedCardService.initializeSelectedCardIds();
+    var topBarText = "${_selectedCardService.selectedCardIds.length}/20+";
     return Scaffold(
       appBar: const BasicAppBar(title: 'Deck erstellen'),
+      /* bottomNavigationBar: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: ElevatedButton(
+          onPressed: () {},
+          child: Text('Create Deck'),
+        ),
+      ),*/
       body: Stack(
         children: [
           Container(
@@ -39,48 +48,69 @@ class _CreateDeckState extends State<CreateDeckPage> {
               ),
             ),
           ),
-          SingleChildScrollView(
-            child: FutureBuilder(
-              future: ExpansionService().loadAllExpansions(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const CircularProgressIndicator(),
-                      Visibility(
-                        visible: snapshot.hasData,
-                        child: const Text(
-                          "Warte auf Erweiterungen",
-                          style: TextStyle(color: Colors.black, fontSize: 24),
-                        ),
-                      )
-                    ],
-                  );
-                } else if (snapshot.connectionState == ConnectionState.done) {
-                  if (snapshot.hasError) {
-                    return Text(snapshot.error.toString());
-                  } else if (snapshot.hasData) {
-                    return snapshot.data != null && snapshot.data!.isNotEmpty
-                        ? Column(children: [
-                            for (var expansion in snapshot.data!)
-                              ExpansionExpandable(
-                                  imagePath: expansion.id,
-                                  title: [expansion.name, expansion.version]
-                                      .join(" - "),
-                                  cards: expansion.cards,
-                                  selectedCardService: _selectedCardService)
-                          ])
-                        : const Text('Keine Erweiterungen gefunden');
-                  } else {
-                    return const Text('Keine Erweiterungen gefunden');
-                  }
-                } else {
-                  return Text('State: ${snapshot.connectionState}');
-                }
-              },
-            ),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                   child: Container(
+                    padding: const EdgeInsets.fromLTRB(0, 36, 0, 0),
+                    child: FutureBuilder(
+                      future: ExpansionService().loadAllExpansions(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const CircularProgressIndicator(),
+                              Visibility(
+                                visible: snapshot.hasData,
+                                child: const Text(
+                                  "Warte auf Erweiterungen",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 24),
+                                ),
+                              )
+                            ],
+                          );
+                        } else if (snapshot.connectionState ==
+                            ConnectionState.done) {
+                          if (snapshot.hasError) {
+                            return Text(snapshot.error.toString());
+                          } else if (snapshot.hasData) {
+                            return snapshot.data != null &&
+                                    snapshot.data!.isNotEmpty
+                                ? Column(children: [
+                                    for (var expansion in snapshot.data!)
+                                      ExpansionExpandable(
+                                          imagePath: expansion.id,
+                                          title: [
+                                            expansion.name,
+                                            expansion.version
+                                          ].join(" - "),
+                                          cards: expansion.cards,
+                                          selectedCardService:
+                                              _selectedCardService)
+                                  ])
+                                : const Text('Keine Erweiterungen gefunden');
+                          } else {
+                            return const Text('Keine Erweiterungen gefunden');
+                          }
+                        } else {
+                          return Text('State: ${snapshot.connectionState}');
+                        }
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 0,
+                child: BasicInfoBar(text: topBarText),
+              ),
+            ],
           ),
         ],
       ),
