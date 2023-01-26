@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/basic_infobar.dart';
 import 'package:dominion_comanion/components/expansion_expandable.dart';
@@ -53,7 +55,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
             children: [
               Expanded(
                 child: SingleChildScrollView(
-                   child: Container(
+                  child: Container(
                     padding: const EdgeInsets.fromLTRB(0, 36, 0, 0),
                     child: FutureBuilder(
                       future: ExpansionService().loadAllExpansions(),
@@ -85,14 +87,20 @@ class _CreateDeckState extends State<CreateDeckPage> {
                                 ? Column(children: [
                                     for (var expansion in snapshot.data!)
                                       ExpansionExpandable(
-                                          imagePath: expansion.id,
-                                          title: [
-                                            expansion.name,
-                                            expansion.version
-                                          ].join(" - "),
-                                          cards: expansion.cards,
-                                          selectedCardService:
-                                              _selectedCardService)
+                                        imagePath: expansion.id,
+                                        title: [
+                                          expansion.name,
+                                          expansion.version
+                                        ].join(" - "),
+                                        cards: expansion.cards,
+                                        selectedCardService:
+                                            _selectedCardService,
+                                        onChanged: () => setState(() {
+                                          log("Has changed");
+                                          topBarText =
+                                              "${_selectedCardService.selectedCardIds.length}/20+";
+                                        }),
+                                      )
                                   ])
                                 : const Text('Keine Erweiterungen gefunden');
                           } else {

@@ -20,7 +20,7 @@ class _BasicInfoBarState extends State<BasicInfoBar> {
         bottomRight: Radius.circular(80),
       ),
       child: Container(
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).colorScheme.secondary.withOpacity(0.8),
         width: MediaQuery.of(context).size.width,
         height: 32.0,
         child: Center(

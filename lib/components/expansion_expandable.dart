@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/components/card_info_tile.dart';
 import 'package:dominion_comanion/components/round_checkbox.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
@@ -10,12 +12,14 @@ class ExpansionExpandable extends StatefulWidget {
       required this.imagePath,
       required this.title,
       required this.cards,
-      required this.selectedCardService});
+      required this.selectedCardService,
+      required this.onChanged});
 
   final String imagePath;
   final String title;
   final List<CardModel> cards;
   final SelectedCardService selectedCardService;
+  final void Function() onChanged;
 
   @override
   State<ExpansionExpandable> createState() => _ExpansionExpandableState();
@@ -93,6 +97,7 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                                       widget.selectedCardService
                                           .toggleSelectedCardIdDB(
                                               widget.cards[index].id);
+                                      widget.onChanged();
                                     }),
                                     card: widget.cards[index],
                                     value: widget
@@ -115,6 +120,7 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
               onChanged: (bool? newValue) => setState(() {
                     widget.selectedCardService
                         .toggleSelectedExpansion(expansionCardIds);
+                    widget.onChanged();
                   }),
               value: widget.selectedCardService
                   .isExpansionSelected(expansionCardIds)),
