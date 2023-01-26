@@ -44,46 +44,14 @@ class _CardInfoTileState extends State<CardInfoTile> {
         data: theme.copyWith(checkboxTheme: newCheckBoxTheme),
         child: ListTile(
           onTap: () => widget.onChanged(false),
-          title: Row(
-            children: <Widget>[
-              CostComponent(
-                  width: 40,
-                  type: widget.card.cardCost.coin != "" ? 'coin' : 'debt',
-                  value: widget.card.cardCost.coin != ""
-                      ? widget.card.cardCost.coin
-                      : widget.card.cardCost.debt),
-              const SizedBox(width: 2),
-              widget.card.cardCost.potion != ''
-                  ? const CostComponent(width: 26, type: 'potion')
-                  : const SizedBox(width: 26),
-              const SizedBox(width: 10),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.card.name,
-                    style: const TextStyle(
-                        fontFamily: 'TrajanPro',
-                        fontSize: 18,
-                        color: Colors.black),
-                  ),
-                  Text(
-                    cardService.getCardTypesString(widget.card.cardTypes),
-                    style: const TextStyle(
-                        fontFamily: 'TrajanPro',
-                        fontSize: 14,
-                        color: Colors.black),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              Stack(
+          title: Stack(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: 50,
-                    height: 50,
+                    width: 72,
+                    height: 48,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
                       image: DecorationImage(
@@ -94,16 +62,53 @@ class _CardInfoTileState extends State<CardInfoTile> {
                       ),
                     ),
                   ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  CostComponent(
+                      width: 40,
+                      type: widget.card.cardCost.coin != "" ? 'coin' : 'debt',
+                      value: widget.card.cardCost.coin != ""
+                          ? widget.card.cardCost.coin
+                          : widget.card.cardCost.debt),
+                  const SizedBox(width: 2),
+                  widget.card.cardCost.potion != ''
+                      ? const CostComponent(width: 26, type: 'potion')
+                      : const SizedBox(width: 26),
+                  const SizedBox(width: 10),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.card.name,
+                        style: const TextStyle(
+                            fontFamily: 'TrajanPro',
+                            fontSize: 18,
+                            color: Colors.black),
+                      ),
+                      Text(
+                        cardService.getCardTypesString(widget.card.cardTypes),
+                        style: const TextStyle(
+                            fontFamily: 'TrajanPro',
+                            fontSize: 14,
+                            color: Colors.black),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
                   RoundCheckbox(
                     onChanged: widget.onChanged,
                     value: widget.value,
                   )
                 ],
-              )
+              ),
             ],
           ),
-          // subtitle: const Text('This is tile number 2'),
         ),
+        // subtitle: const Text('This is tile number 2'),
       ),
     );
   }
