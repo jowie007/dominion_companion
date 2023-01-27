@@ -31,6 +31,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
   Widget build(BuildContext context) {
     _selectedCardService.initializeSelectedCardIds();
     var topBarText = "${_selectedCardService.selectedCardIds.length}/20+";
+    ValueNotifier<bool> _notifier = ValueNotifier(false);
     return Scaffold(
       appBar: const BasicAppBar(title: 'Deck erstellen'),
       /* bottomNavigationBar: Padding(
@@ -84,24 +85,22 @@ class _CreateDeckState extends State<CreateDeckPage> {
                           } else if (snapshot.hasData) {
                             return snapshot.data != null &&
                                     snapshot.data!.isNotEmpty
-                                ? Column(children: [
-                                    for (var expansion in snapshot.data!)
-                                      ExpansionExpandable(
-                                        imagePath: expansion.id,
-                                        title: [
-                                          expansion.name,
-                                          expansion.version
-                                        ].join(" - "),
-                                        cards: expansion.cards,
-                                        selectedCardService:
-                                            _selectedCardService,
-                                        onChanged: () => setState(() {
-                                          log("Has changed");
-                                          topBarText =
-                                              "${_selectedCardService.selectedCardIds.length}/20+";
-                                        }),
-                                      )
-                                  ])
+                                ? Column(
+                                    children: [
+                                      for (var expansion in snapshot.data!)
+                                        ExpansionExpandable(
+                                            imagePath: expansion.id,
+                                            title: [
+                                              expansion.name,
+                                              expansion.version
+                                            ].join(" - "),
+                                            cards: expansion.cards,
+                                            selectedCardService:
+                                                _selectedCardService,
+                                            onChanged: () => _notifier.value =
+                                                !_notifier.value),
+                                    ],
+                                  )
                                 : const Text('Keine Erweiterungen gefunden');
                           } else {
                             return const Text('Keine Erweiterungen gefunden');
@@ -116,7 +115,13 @@ class _CreateDeckState extends State<CreateDeckPage> {
               ),
               Positioned(
                 top: 0,
-                child: BasicInfoBar(text: topBarText),
+                child: ValueListenableBuilder(
+                    valueListenable: _notifier,
+                    builder: (BuildContext context, bool val, Widget? child) {
+                      return BasicInfoBar(
+                          text:
+                              "${_selectedCardService.selectedCardIds.length}/20+");
+                    }),
               ),
             ],
           ),
