@@ -24,6 +24,7 @@ class _DominionCompanionState extends State<DominionCompanion> {
     return MaterialApp(
       title: 'Connect Page',
       theme: ThemeData(
+        fontFamily: 'TrajanPro',
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: Colors.orangeAccent,
           secondary: const Color(0xff966a22),

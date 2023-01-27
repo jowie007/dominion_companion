@@ -1,13 +1,15 @@
 import 'dart:developer';
 
 import 'package:dominion_comanion/components/basic_appbar.dart';
-import 'package:dominion_comanion/components/basic_infobar.dart';
+import 'package:dominion_comanion/components/basic_infobar_bottom.dart';
 import 'package:dominion_comanion/components/expansion_expandable.dart';
+import 'package:dominion_comanion/components/floating_action_button_coin.dart';
 import 'package:dominion_comanion/model/card/card_cost_model.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/model/card/card_type_enum.dart';
 import 'package:dominion_comanion/services/expansion_service.dart';
 import 'package:flutter/material.dart';
+import 'package:dominion_comanion/router/routes.dart' as route;
 
 import '../services/selected_card_service.dart';
 
@@ -30,17 +32,9 @@ class _CreateDeckState extends State<CreateDeckPage> {
   @override
   Widget build(BuildContext context) {
     _selectedCardService.initializeSelectedCardIds();
-    var topBarText = "${_selectedCardService.selectedCardIds.length}/20+";
     ValueNotifier<bool> notifier = ValueNotifier(false);
     return Scaffold(
       appBar: const BasicAppBar(title: 'Deck erstellen'),
-      /* bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: ElevatedButton(
-          onPressed: () {},
-          child: Text('Create Deck'),
-        ),
-      ),*/
       body: Stack(
         children: [
           Container(
@@ -57,7 +51,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
               Expanded(
                 child: SingleChildScrollView(
                   child: Container(
-                    padding: const EdgeInsets.fromLTRB(0, 36, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
                     child: FutureBuilder(
                       future: ExpansionService().loadAllExpansions(),
                       builder: (context, snapshot) {
@@ -113,19 +107,25 @@ class _CreateDeckState extends State<CreateDeckPage> {
                   ),
                 ),
               ),
-              Positioned(
-                top: 0,
-                child: ValueListenableBuilder(
-                    valueListenable: notifier,
-                    builder: (BuildContext context, bool val, Widget? child) {
-                      return BasicInfoBar(
-                          text:
-                              "${_selectedCardService.selectedCardIds.length}/20+");
-                    }),
-              ),
             ],
           ),
+          Positioned(
+            bottom: 0,
+            child: ValueListenableBuilder(
+              valueListenable: notifier,
+              builder: (BuildContext context, bool val, Widget? child) {
+                return BasicInfoBarBottom(
+                    text:
+                    "${_selectedCardService.selectedCardIds.length}/20+");
+              },
+            ),
+          ),
         ],
+      ),
+      floatingActionButton: FloatingActionButtonCoin(
+        icon: Icons.play_arrow,
+        tooltip: "Deck erzeugen",
+        onPressed: () => Navigator.pushNamed(context, route.createDeckPage),
       ),
     );
   }

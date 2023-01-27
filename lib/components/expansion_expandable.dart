@@ -75,7 +75,6 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'TrajanPro',
                                 fontSize: 20,
                                 color: Colors.black,
                               ),

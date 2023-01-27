@@ -22,8 +22,7 @@ class CostComponent extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(width * 0.28, width * 0.14, 0, 0),
                 child: Text(value.toString(),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'TrajanPro', fontSize: width * 0.75)),
+                    style: TextStyle(fontSize: width * 0.75)),
               )
             : Container(),
       ],

@@ -64,7 +64,7 @@ class DominionCard extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                 child: const Text("Keller",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontFamily: 'TrajanPro', fontSize: 30)),
+                    style: TextStyle(fontSize: 30)),
               ),
             ),
             Align(
@@ -73,7 +73,7 @@ class DominionCard extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 28),
                 child: const Text("Aktion",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontFamily: 'TrajanPro', fontSize: 20)),
+                    style: TextStyle(fontSize: 20)),
               ),
             ),
             Align(
@@ -101,8 +101,7 @@ class DominionCard extends StatelessWidget {
                               padding: const EdgeInsets.fromLTRB(6, 0, 0, 0),
                               child: const Text("1",
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontFamily: 'TrajanPro', fontSize: 20)),
+                                  style: TextStyle(fontSize: 20)),
                             ),
                           ],
                         ),

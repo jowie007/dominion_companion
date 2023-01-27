@@ -85,14 +85,12 @@ class _CardInfoTileState extends State<CardInfoTile> {
                       Text(
                         widget.card.name,
                         style: const TextStyle(
-                            fontFamily: 'TrajanPro',
                             fontSize: 18,
                             color: Colors.black),
                       ),
                       Text(
                         cardService.getCardTypesString(widget.card.cardTypes),
                         style: const TextStyle(
-                            fontFamily: 'TrajanPro',
                             fontSize: 14,
                             color: Colors.black),
                       ),

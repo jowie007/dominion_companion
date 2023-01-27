@@ -10,7 +10,6 @@ class DeckComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(deck.name,
         textAlign: TextAlign.center,
-        style: const TextStyle(
-            fontFamily: 'TrajanPro', fontSize: 24, color: Colors.black));
+        style: const TextStyle(fontSize: 24, color: Colors.black));
   }
 }

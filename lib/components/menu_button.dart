@@ -25,7 +25,6 @@ class MenuButton extends StatelessWidget {
             Text(text,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    fontFamily: 'TrajanPro',
                     fontSize: 24,
                     color: Colors.black)),
           ],
