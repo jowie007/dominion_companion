@@ -28,17 +28,12 @@ class _CardInfoTileState extends State<CardInfoTile> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
     );
     final CardService cardService = CardService();
+    final cardTypeString =
+        cardService.getCardTypesString(widget.card.cardTypes);
+    final cardColors =
+        cardService.getColorsByCardTypeString(cardTypeString);
 
     return Container(
-      /* decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          //I assumed you want to occupy the entire space of the card
-          image: AssetImage(
-            "assets/cards/types/small/${cardService.getFilenameByCardTypes(widget.card.cardTypes)}.jpg",
-          ),
-        ),
-      ),*/
       color: Colors.white.withOpacity(0.4),
       child: Theme(
         data: theme.copyWith(checkboxTheme: newCheckBoxTheme),
@@ -49,19 +44,23 @@ class _CardInfoTileState extends State<CardInfoTile> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: 72,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                          "assets/cards/types/small/${cardService.getFilenameByCardTypes(widget.card.cardTypes)}.jpg",
-                        ),
-                      ),
-                    ),
-                  ),
+                  // https://stackoverflow.com/questions/57699497/how-to-create-a-background-with-stripes-in-flutter
+                  cardColors != null
+                      ? Container(
+                          width: 68,
+                          height: 48,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              stops: cardService.getStopsByColors(cardColors, 1),
+                              colors: cardColors,
+                              tileMode: TileMode.repeated,
+                            ),
+                          ),
+                        )
+                      : Container(),
                 ],
               ),
               Row(
@@ -84,15 +83,13 @@ class _CardInfoTileState extends State<CardInfoTile> {
                     children: [
                       Text(
                         widget.card.name,
-                        style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.black),
+                        style:
+                            const TextStyle(fontSize: 18, color: Colors.black),
                       ),
                       Text(
-                        cardService.getCardTypesString(widget.card.cardTypes),
-                        style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.black),
+                        cardTypeString,
+                        style:
+                            const TextStyle(fontSize: 14, color: Colors.black),
                       ),
                     ],
                   ),
