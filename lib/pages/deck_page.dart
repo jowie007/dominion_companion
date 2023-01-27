@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/create_deck_component.dart';
 import 'package:dominion_comanion/components/deck_component.dart';
+import 'package:dominion_comanion/components/floating_action_button_coin.dart';
 import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
-import 'package:dominion_comanion/services/json_service.dart';
+import 'package:dominion_comanion/router/routes.dart' as route;
 import 'package:flutter/material.dart';
 
 class DeckPage extends StatefulWidget {
@@ -24,9 +27,11 @@ class _DeckState extends State<DeckPage> {
     _decks = _deckService.getDeckList();
   }
 
+  // https://docs.flutter.dev/cookbook/navigation/navigate-with-arguments
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
+    ValueNotifier<bool> fabExtended = ValueNotifier(false);
     return Scaffold(
       appBar: const BasicAppBar(title: 'Decks'),
       body: Stack(
@@ -44,8 +49,7 @@ class _DeckState extends State<DeckPage> {
             child: Container(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Column(
-                children:  [
-                  const CreateDeckButton(),
+                children: [
                   const SizedBox(height: 10),
                   FutureBuilder(
                     future: _decks,
@@ -88,6 +92,52 @@ class _DeckState extends State<DeckPage> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: ValueListenableBuilder(
+        valueListenable: fabExtended,
+        builder: (BuildContext context, bool val, Widget? child) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Visibility(
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                visible: fabExtended.value,
+                child: Transform.scale(
+                  scale: 0.8,
+                  child: FloatingActionButtonCoin(
+                    onPressed: () => Navigator.pushNamed(context, route.createDeckPage),
+                    icon: Icons.shuffle,
+                    tooltip: 'Deck mit zufälligen Karten erstellen',
+                  ),
+                ),
+              ),
+              Visibility(
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                visible: fabExtended.value,
+                child: Transform.scale(
+                  scale: 0.8,
+                  child: FloatingActionButtonCoin(
+                    onPressed: () => Navigator.pushNamed(context, route.createDeckPage),
+                    icon: Icons.checklist,
+                    tooltip: 'Deck mit ausgewählten Karten erstellen',
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              FloatingActionButtonCoin(
+                onPressed: () => fabExtended.value = !fabExtended.value,
+                icon: Icons.play_arrow,
+                tooltip: 'Neues Deck erstellen',
+              ),
+            ],
+          );
+        },
       ),
     );
   }
