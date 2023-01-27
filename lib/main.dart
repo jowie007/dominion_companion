@@ -16,11 +16,11 @@ class _DominionCompanionState extends State<DominionCompanion> {
   @override
   initState() {
     super.initState();
+    ExpansionService().loadJsonExpansionsIntoDB();
   }
 
   @override
   Widget build(BuildContext context) {
-    ExpansionService().loadJsonExpansionsIntoDB();
     return MaterialApp(
       title: 'Connect Page',
       theme: ThemeData(

@@ -2,8 +2,11 @@ import 'dart:developer';
 import 'dart:math';
 
 import 'package:dominion_comanion/components/menu_button.dart';
+import 'package:dominion_comanion/services/music_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
+
+import '../components/floating_action_button_coin.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,6 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _counter = 0;
+  final _musicService = MusicService();
 
   void _incrementCounter() {
     setState(() {
@@ -115,22 +119,15 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        backgroundColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        child: Container(
-            width: 120,
-            height: 120,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/cards/other/coin.png"),
-                  fit: BoxFit.cover),
-            ),
-            child:
-                const Icon(Icons.music_note, color: Colors.black) // button text
-            ),
+      floatingActionButton: ValueListenableBuilder(
+        valueListenable: _musicService.notifier,
+        builder: (BuildContext context, bool val, Widget? child) {
+          return FloatingActionButtonCoin(
+            icon: _musicService.isPlaying ? Icons.music_note : Icons.music_off,
+            tooltip: _musicService.getTooltip(),
+            onPressed: () => _musicService.togglePlaying(),
+          );
+        },
       ),
     );
     // Center is a layout widget. It takes a single child and positions it
