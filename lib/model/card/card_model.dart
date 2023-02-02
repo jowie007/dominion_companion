@@ -27,7 +27,6 @@ class CardModel {
         ? json['relatedCardIds'].toString().split(',')
         : List.empty();
     invisible = json['invisible'] ?? false;
-    log(json.toString(), name: 'my.app.category');
     cardTypes = List<CardTypeEnum>.from(json['cardTypes'].split(',').map(
         (value) => (CardTypeEnum.values.firstWhere((e) =>
             e.toString() == 'CardTypeEnum.${value.toString().trim()}'))));

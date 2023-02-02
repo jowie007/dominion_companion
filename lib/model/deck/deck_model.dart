@@ -1,12 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
+import 'package:dominion_comanion/model/card/card_model.dart';
 
 class DeckModel {
-  final String id;
-  final String name;
-  final List<Card> cards;
+  late String name;
+  late List<CardModel> cards;
 
-  const DeckModel({required this.id, required this.name, required this.cards});
+  DeckModel(this.name, this.cards);
 
-  factory DeckModel.fromDatabase(String id, String name, List<Card> cards) =>
-      DeckModel(id: id, name: name, cards: cards);
+  DeckModel.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    cards = json['cardIds'].split(',');
+  }
 }

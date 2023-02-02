@@ -2,36 +2,36 @@ import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/basic_infobar_bottom.dart';
 import 'package:dominion_comanion/components/expansion_expandable.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
-import 'package:dominion_comanion/services/deck_service.dart';
+import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:dominion_comanion/services/expansion_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
 
 import '../services/selected_card_service.dart';
 
-class CreateDeckPage extends StatefulWidget {
-  const CreateDeckPage({super.key});
+class DeckInfoPage extends StatefulWidget {
+  const DeckInfoPage({super.key});
 
   @override
-  State<CreateDeckPage> createState() => _CreateDeckState();
+  State<DeckInfoPage> createState() => _DeckInfoState();
 }
 
-class _CreateDeckState extends State<CreateDeckPage> {
+class _DeckInfoState extends State<DeckInfoPage> {
   @override
   initState() {
     super.initState();
   }
 
   final _selectedCardService = SelectedCardService();
-  final _deckService = DeckService();
 
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
+    final deck = ModalRoute.of(context)!.settings.arguments as DeckModel;
     _selectedCardService.initializeSelectedCardIds();
     ValueNotifier<bool> notifier = ValueNotifier(false);
     return Scaffold(
-      appBar: const BasicAppBar(title: 'Deck erstellen'),
+      appBar: const BasicAppBar(title: 'Deck Info'),
       body: Stack(
         children: [
           Container(
@@ -75,23 +75,23 @@ class _CreateDeckState extends State<CreateDeckPage> {
                             return Text(snapshot.error.toString());
                           } else if (snapshot.hasData) {
                             return snapshot.data != null &&
-                                    snapshot.data!.isNotEmpty
+                                snapshot.data!.isNotEmpty
                                 ? Column(
-                                    children: [
-                                      for (var expansion in snapshot.data!)
-                                        ExpansionExpandable(
-                                            imagePath: expansion.id,
-                                            title: [
-                                              expansion.name,
-                                              expansion.version
-                                            ].join(" - "),
-                                            cards: expansion.cards,
-                                            selectedCardService:
-                                                _selectedCardService,
-                                            onChanged: () => notifier.value =
-                                                !notifier.value),
-                                    ],
-                                  )
+                              children: [
+                                for (var expansion in snapshot.data!)
+                                  ExpansionExpandable(
+                                      imagePath: expansion.id,
+                                      title: [
+                                        expansion.name,
+                                        expansion.version
+                                      ].join(" - "),
+                                      cards: expansion.cards,
+                                      selectedCardService:
+                                      _selectedCardService,
+                                      onChanged: () => notifier.value =
+                                      !notifier.value),
+                              ],
+                            )
                                 : const Text('Keine Erweiterungen gefunden');
                           } else {
                             return const Text('Keine Erweiterungen gefunden');
@@ -112,7 +112,8 @@ class _CreateDeckState extends State<CreateDeckPage> {
               valueListenable: notifier,
               builder: (BuildContext context, bool val, Widget? child) {
                 return BasicInfoBarBottom(
-                    text: "${_selectedCardService.selectedCardIds.length}/20+");
+                    text:
+                    "${_selectedCardService.selectedCardIds.length}/20+");
               },
             ),
           ),
@@ -121,12 +122,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
       floatingActionButton: FloatingActionButtonCoin(
         icon: Icons.play_arrow,
         tooltip: "Deck erzeugen",
-        onPressed: () => Navigator.pushNamed(
-          context,
-          route.deckInfoPage,
-          arguments: _deckService.createTemporaryDeck(
-              "", _selectedCardService.selectedCardIds),
-        ),
+        onPressed: () => Navigator.pushNamed(context, route.createDeckPage),
       ),
     );
   }

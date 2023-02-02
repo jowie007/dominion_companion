@@ -1,13 +1,21 @@
 class DeckDBModel {
-  final String id;
-  final String name;
-  final List<String> cardIds;
+  late String name;
+  late List<String> cardIds;
 
-  const DeckDBModel({required this.id, required this.name, required this.cardIds});
+  DeckDBModel(this.name, this.cardIds);
 
-  factory DeckDBModel.fromDatabase(String id, String name, String cardIds) =>
-      DeckDBModel(id: id, name: name, cardIds: cardIds.split(','));
+  DeckDBModel.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    cardIds = json['cardIds'].split(',');
+  }
 
-  Map<String, dynamic> toJson() =>
-      {'id': id, 'name': name, 'cardIds': cardIds};
+  DeckDBModel.fromModel(DeckDBModel model) {
+    name = model.name;
+    cardIds = model.cardIds;
+  }
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'cardIds': cardIds.join(','),
+      };
 }

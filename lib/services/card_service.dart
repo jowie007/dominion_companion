@@ -20,7 +20,7 @@ class CardService {
 
   Future<List<CardDBModel>> getCardsByExpansionFromDB(
       ExpansionDBModel expansion) async {
-    var cards = expansion.cardIds
+    final cards = expansion.cardIds
         .map((cardId) async => await _cardDatabase.getCardById(cardId))
         .toList();
     return await Future.wait(cards);
