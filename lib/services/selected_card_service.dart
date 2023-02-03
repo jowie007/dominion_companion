@@ -1,15 +1,20 @@
 import 'dart:developer';
 
 import 'package:dominion_comanion/database/selectedCardsDatabase.dart';
+import 'package:dominion_comanion/model/deck/deck_model.dart';
 
 class SelectedCardService {
-  late SelectedCardDatabase _selectedCardDatabase;
-  late List<String> selectedCardIds;
+  final SelectedCardDatabase _selectedCardDatabase = SelectedCardDatabase();
+  late List<String> selectedCardIds = [];
+  late Future<DeckModel> temporaryDeck;
 
-  SelectedCardService() {
-    _selectedCardDatabase = SelectedCardDatabase();
-    selectedCardIds = [];
+  static final SelectedCardService _selectedCardService = SelectedCardService._internal();
+
+  factory SelectedCardService() {
+    return _selectedCardService;
   }
+
+  SelectedCardService._internal();
 
   Future<void> initializeSelectedCardIds() async {
     selectedCardIds = await _selectedCardDatabase.getSelectedCardIdList();

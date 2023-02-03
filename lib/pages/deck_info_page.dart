@@ -27,7 +27,6 @@ class _DeckInfoState extends State<DeckInfoPage> {
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
-    final deck = ModalRoute.of(context)!.settings.arguments as DeckModel;
     _selectedCardService.initializeSelectedCardIds();
     ValueNotifier<bool> notifier = ValueNotifier(false);
     return Scaffold(
@@ -50,7 +49,7 @@ class _DeckInfoState extends State<DeckInfoPage> {
                   child: Container(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
                     child: FutureBuilder(
-                      future: ExpansionService().loadAllExpansions(),
+                      future: _selectedCardService.temporaryDeck,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -74,24 +73,14 @@ class _DeckInfoState extends State<DeckInfoPage> {
                           if (snapshot.hasError) {
                             return Text(snapshot.error.toString());
                           } else if (snapshot.hasData) {
-                            return snapshot.data != null &&
-                                snapshot.data!.isNotEmpty
-                                ? Column(
-                              children: [
-                                for (var expansion in snapshot.data!)
-                                  ExpansionExpandable(
-                                      imagePath: expansion.id,
-                                      title: [
-                                        expansion.name,
-                                        expansion.version
-                                      ].join(" - "),
-                                      cards: expansion.cards,
-                                      selectedCardService:
-                                      _selectedCardService,
-                                      onChanged: () => notifier.value =
-                                      !notifier.value),
-                              ],
-                            )
+                            return snapshot.data != null
+                                ? ExpansionExpandable(
+                                    imagePath: "expansion.id",
+                                    title: "Test Deck",
+                                    cards: snapshot.data!.cards,
+                                    selectedCardService: _selectedCardService,
+                                    onChanged: () =>
+                                        notifier.value = !notifier.value)
                                 : const Text('Keine Erweiterungen gefunden');
                           } else {
                             return const Text('Keine Erweiterungen gefunden');
@@ -112,8 +101,7 @@ class _DeckInfoState extends State<DeckInfoPage> {
               valueListenable: notifier,
               builder: (BuildContext context, bool val, Widget? child) {
                 return BasicInfoBarBottom(
-                    text:
-                    "${_selectedCardService.selectedCardIds.length}/20+");
+                    text: "${_selectedCardService.selectedCardIds.length}/20+");
               },
             ),
           ),

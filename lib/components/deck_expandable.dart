@@ -80,14 +80,12 @@ class _DeckExpandableState extends State<DeckExpandable> {
                         // padding: const EdgeInsets.all(8),
                           physics: const ClampingScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: widget.deckModel.cardIds.length,
+                          itemCount: widget.deckModel.cards.length,
                           itemBuilder: (BuildContext context, int index) {
                             return CardInfoTile(
-                              onChanged: (bool? newValue) => (),
-                              card: widget.cards[index],
-                              value: widget
-                                  .selectedCardService.selectedCardIds
-                                  .contains(widget.cards[index].id),
+                              onChanged: (bool? newValue) => (newValue),
+                              card: widget.deckModel.cards[index],
+                              value: true,
                             );
                           })
                     ],
@@ -96,18 +94,6 @@ class _DeckExpandableState extends State<DeckExpandable> {
               ],
             ),
           ),
-        ),
-        Positioned(
-          left: 0.0,
-          top: 0.0,
-          child: RoundCheckbox(
-              onChanged: (bool? newValue) => setState(() {
-                widget.selectedCardService
-                    .toggleSelectedDeck(DeckCardIds);
-                widget.onChanged();
-              }),
-              value: widget.selectedCardService
-                  .isDeckSelected(DeckCardIds)),
         ),
       ],
     );

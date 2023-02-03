@@ -121,12 +121,14 @@ class _CreateDeckState extends State<CreateDeckPage> {
       floatingActionButton: FloatingActionButtonCoin(
         icon: Icons.play_arrow,
         tooltip: "Deck erzeugen",
-        onPressed: () => Navigator.pushNamed(
-          context,
-          route.deckInfoPage,
-          arguments: _deckService.createTemporaryDeck(
+        onPressed: () async => {
+          _selectedCardService.temporaryDeck = _deckService.createTemporaryDeck(
               "", _selectedCardService.selectedCardIds),
-        ),
+          Navigator.pushNamed(
+            context,
+            route.deckInfoPage,
+          ),
+        },
       ),
     );
   }
