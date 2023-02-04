@@ -1,5 +1,6 @@
 import 'package:dominion_comanion/components/coin_component.dart';
 import 'package:dominion_comanion/components/round_checkbox.dart';
+import 'package:dominion_comanion/components/expansion_icon.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/services/card_service.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +11,13 @@ class CardInfoTile extends StatefulWidget {
     required this.card,
     required this.onChanged,
     required this.value,
+    this.hasCheckbox = true,
   });
 
   final void Function(bool? value) onChanged;
   final CardModel card;
   final bool value;
+  final bool hasCheckbox;
 
   @override
   State<CardInfoTile> createState() => _CardInfoTileState();
@@ -30,8 +33,7 @@ class _CardInfoTileState extends State<CardInfoTile> {
     final CardService cardService = CardService();
     final cardTypeString =
         cardService.getCardTypesString(widget.card.cardTypes);
-    final cardColors =
-        cardService.getColorsByCardTypeString(cardTypeString);
+    final cardColors = cardService.getColorsByCardTypeString(cardTypeString);
 
     return Container(
       color: Colors.white.withOpacity(0.4),
@@ -54,7 +56,8 @@ class _CardInfoTileState extends State<CardInfoTile> {
                             gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
-                              stops: cardService.getStopsByColors(cardColors, 1),
+                              stops:
+                                  cardService.getStopsByColors(cardColors, 1),
                               colors: cardColors,
                               tileMode: TileMode.repeated,
                             ),
@@ -94,10 +97,12 @@ class _CardInfoTileState extends State<CardInfoTile> {
                     ],
                   ),
                   const Spacer(),
-                  RoundCheckbox(
-                    onChanged: widget.onChanged,
-                    value: widget.value,
-                  )
+                  widget.hasCheckbox
+                      ? RoundCheckbox(
+                          onChanged: widget.onChanged,
+                          value: widget.value,
+                        )
+                      : ExpansionIcon(icon: widget.card.id.split('-')[0])
                 ],
               ),
             ],

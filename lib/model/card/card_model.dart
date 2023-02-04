@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dominion_comanion/database/model/card/card_db_model.dart';
 
 import 'card_cost_model.dart';

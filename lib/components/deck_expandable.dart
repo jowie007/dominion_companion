@@ -80,6 +80,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                               onChanged: (bool? newValue) => (newValue),
                               card: widget.deckModel.cards[index],
                               value: true,
+                              hasCheckbox: false,
                             );
                           })
                     ],

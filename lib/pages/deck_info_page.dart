@@ -1,12 +1,7 @@
 import 'package:dominion_comanion/components/basic_appbar.dart';
-import 'package:dominion_comanion/components/basic_infobar_bottom.dart';
 import 'package:dominion_comanion/components/deck_expandable.dart';
-import 'package:dominion_comanion/components/expansion_expandable.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
-import 'package:dominion_comanion/model/deck/deck_model.dart';
-import 'package:dominion_comanion/services/expansion_service.dart';
 import 'package:flutter/material.dart';
-import 'package:dominion_comanion/router/routes.dart' as route;
 
 import '../services/selected_card_service.dart';
 
@@ -92,22 +87,12 @@ class _DeckInfoState extends State<DeckInfoPage> {
               ),
             ],
           ),
-          Positioned(
-            bottom: 0,
-            child: ValueListenableBuilder(
-              valueListenable: notifier,
-              builder: (BuildContext context, bool val, Widget? child) {
-                return BasicInfoBarBottom(
-                    text: "${_selectedCardService.selectedCardIds.length}/20+");
-              },
-            ),
-          ),
         ],
       ),
       floatingActionButton: FloatingActionButtonCoin(
-        icon: Icons.play_arrow,
-        tooltip: "Deck erzeugen",
-        onPressed: () => Navigator.pushNamed(context, route.createDeckPage),
+        icon: Icons.save,
+        tooltip: "Deck speichern",
+        onPressed: () => (""),
       ),
     );
   }
