@@ -1,5 +1,6 @@
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/basic_infobar_bottom.dart';
+import 'package:dominion_comanion/components/deck_expandable.dart';
 import 'package:dominion_comanion/components/expansion_expandable.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
@@ -74,13 +75,9 @@ class _DeckInfoState extends State<DeckInfoPage> {
                             return Text(snapshot.error.toString());
                           } else if (snapshot.hasData) {
                             return snapshot.data != null
-                                ? ExpansionExpandable(
-                                    imagePath: "expansion.id",
-                                    title: "Test Deck",
-                                    cards: snapshot.data!.cards,
-                                    selectedCardService: _selectedCardService,
-                                    onChanged: () =>
-                                        notifier.value = !notifier.value)
+                                ? DeckExpandable(
+                                    deckModel: snapshot.data!,
+                                  )
                                 : const Text('Keine Erweiterungen gefunden');
                           } else {
                             return const Text('Keine Erweiterungen gefunden');

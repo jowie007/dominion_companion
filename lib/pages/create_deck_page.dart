@@ -80,14 +80,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
                                     children: [
                                       for (var expansion in snapshot.data!)
                                         ExpansionExpandable(
-                                            imagePath: expansion.id,
-                                            title: [
-                                              expansion.name,
-                                              expansion.version
-                                            ].join(" - "),
-                                            cards: expansion.cards,
-                                            selectedCardService:
-                                                _selectedCardService,
+                                            expansion: expansion,
                                             onChanged: () => notifier.value =
                                                 !notifier.value),
                                     ],

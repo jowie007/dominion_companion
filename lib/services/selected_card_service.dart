@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dominion_comanion/database/selectedCardsDatabase.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 

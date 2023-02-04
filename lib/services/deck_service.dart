@@ -6,13 +6,11 @@ import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:dominion_comanion/services/card_service.dart';
 
 class DeckService {
-  late CardService _cardService;
   late DeckDatabase _deckDatabase;
   late CardDatabase _cardDatabase;
   final int deckSize = 10;
 
   DeckService() {
-    _cardService = CardService();
     _deckDatabase = DeckDatabase();
     _cardDatabase = CardDatabase();
   }

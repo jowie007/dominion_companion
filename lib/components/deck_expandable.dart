@@ -1,10 +1,5 @@
-import 'dart:developer';
-
 import 'package:dominion_comanion/components/card_info_tile.dart';
-import 'package:dominion_comanion/components/round_checkbox.dart';
-import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
-import 'package:dominion_comanion/services/selected_card_service.dart';
 import 'package:flutter/material.dart';
 
 class DeckExpandable extends StatefulWidget {
@@ -30,14 +25,13 @@ class _DeckExpandableState extends State<DeckExpandable> {
             borderRadius: BorderRadius.circular(16.0),
             child: Stack(
               children: [
-                /*SizedBox(
+                Container(
                   width: 400,
                   height: 56,
-                  child: Image.asset(
-                    "assets/artwork/boxart/${widget.imagePath}.jpg",
-                    fit: BoxFit.cover,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.6)
                   ),
-                ),*/
+                ),
                 Container(
                   alignment: Alignment.center,
                   child: ExpansionTile(
@@ -63,7 +57,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                             fit: BoxFit.scaleDown,
                             alignment: Alignment.center,
                             child: Text(
-                              widget.deckModel.name,
+                              widget.deckModel.name != "" ? widget.deckModel.name : "Temporäres Deck",
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,

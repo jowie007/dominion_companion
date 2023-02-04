@@ -1,24 +1,14 @@
-import 'dart:developer';
-
 import 'package:dominion_comanion/components/card_info_tile.dart';
 import 'package:dominion_comanion/components/round_checkbox.dart';
-import 'package:dominion_comanion/model/card/card_model.dart';
+import 'package:dominion_comanion/model/expansion/expansion_model.dart';
 import 'package:dominion_comanion/services/selected_card_service.dart';
 import 'package:flutter/material.dart';
 
 class ExpansionExpandable extends StatefulWidget {
   const ExpansionExpandable(
-      {super.key,
-      required this.imagePath,
-      required this.title,
-      required this.cards,
-      required this.selectedCardService,
-      required this.onChanged});
+      {super.key, required this.expansion, required this.onChanged});
 
-  final String imagePath;
-  final String title;
-  final List<CardModel> cards;
-  final SelectedCardService selectedCardService;
+  final ExpansionModel expansion;
   final void Function() onChanged;
 
   @override
@@ -29,7 +19,11 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
   // https://stackoverflow.com/questions/53908025/flutter-sortable-drag-and-drop-listview
   @override
   Widget build(BuildContext context) {
-    final expansionCardIds = widget.cards.map((e) => e.id).toList();
+    final selectedCardService = SelectedCardService();
+    final expansionCardIds = widget.expansion.cards
+        .where((card) => !card.invisible)
+        .map((card) => card.id)
+        .toList();
     return Stack(
       children: [
         Padding(
@@ -42,7 +36,7 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                   width: 400,
                   height: 56,
                   child: Image.asset(
-                    "assets/artwork/boxart/${widget.imagePath}.jpg",
+                    "assets/artwork/boxart/${widget.expansion.id}.jpg",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -71,7 +65,8 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                             fit: BoxFit.scaleDown,
                             alignment: Alignment.center,
                             child: Text(
-                              widget.title,
+                              [widget.expansion.name, widget.expansion.version]
+                                  .join(" - "),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -88,20 +83,20 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                           // padding: const EdgeInsets.all(8),
                           physics: const ClampingScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: widget.cards.length,
+                          itemCount: widget.expansion.cards.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return !widget.cards[index].invisible
+                            return !widget.expansion.cards[index].invisible
                                 ? CardInfoTile(
                                     onChanged: (bool? newValue) => setState(() {
-                                      widget.selectedCardService
+                                      selectedCardService
                                           .toggleSelectedCardIdDB(
-                                              widget.cards[index].id);
+                                              widget.expansion.cards[index].id);
                                       widget.onChanged();
                                     }),
-                                    card: widget.cards[index],
-                                    value: widget
-                                        .selectedCardService.selectedCardIds
-                                        .contains(widget.cards[index].id),
+                                    card: widget.expansion.cards[index],
+                                    value: selectedCardService.selectedCardIds
+                                        .contains(
+                                            widget.expansion.cards[index].id),
                                   )
                                 : Container();
                           })
@@ -117,12 +112,11 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
           top: 0.0,
           child: RoundCheckbox(
               onChanged: (bool? newValue) => setState(() {
-                    widget.selectedCardService
+                    selectedCardService
                         .toggleSelectedExpansion(expansionCardIds);
                     widget.onChanged();
                   }),
-              value: widget.selectedCardService
-                  .isExpansionSelected(expansionCardIds)),
+              value: selectedCardService.isExpansionSelected(expansionCardIds)),
         ),
       ],
     );
