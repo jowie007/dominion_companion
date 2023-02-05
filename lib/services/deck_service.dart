@@ -19,21 +19,24 @@ class DeckService {
     return _deckDatabase.getDeckList();
   }
 
-  Future<int> addDeck(deck) {
-    return _deckDatabase.insertDeck(deck);
+  Future<int> addDeck(DeckModel deckModel) {
+    return _deckDatabase.insertDeck(DeckDBModel.fromModel(deckModel));
   }
 
   Future<int> deleteDeckByName(String name) {
     return _deckDatabase.deleteDeckByName(name);
   }
 
-  Future<DeckModel> createTemporaryDeck(String name,
-      List<String> cardIds) async {
+  Future<DeckModel> createTemporaryDeck(
+      String name, List<String> cardIds) async {
     cardIds.shuffle();
     return DeckModel(
         name,
-        await Future.wait(cardIds.take(deckSize).toList().map((cardId) async =>
-            CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
+        await Future.wait(cardIds
+            .take(deckSize)
+            .toList()
+            .map((cardId) async =>
+                CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
             .toList()));
   }
 }

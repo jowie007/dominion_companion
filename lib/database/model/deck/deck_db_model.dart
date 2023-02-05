@@ -1,3 +1,5 @@
+import '../../../model/deck/deck_model.dart';
+
 class DeckDBModel {
   late String name;
   late List<String> cardIds;
@@ -9,9 +11,9 @@ class DeckDBModel {
     cardIds = json['cardIds'].split(',');
   }
 
-  DeckDBModel.fromModel(DeckDBModel model) {
+  DeckDBModel.fromModel(DeckModel model) {
     name = model.name;
-    cardIds = model.cardIds;
+    cardIds = model.cards.map((card) => card.id).toList();
   }
 
   Map<String, dynamic> toJson() => {

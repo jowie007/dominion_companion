@@ -4,6 +4,7 @@ import 'package:dominion_comanion/components/expansion_expandable.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:dominion_comanion/services/expansion_service.dart';
+import 'package:dominion_comanion/services/temporary_deck_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
 
@@ -23,6 +24,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
   }
 
   final _selectedCardService = SelectedCardService();
+  final _temporaryDeckService = TemporaryDeckService();
   final _deckService = DeckService();
 
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
@@ -115,8 +117,9 @@ class _CreateDeckState extends State<CreateDeckPage> {
         icon: Icons.play_arrow,
         tooltip: "Deck erzeugen",
         onPressed: () async => {
-          _selectedCardService.temporaryDeck = _deckService.createTemporaryDeck(
-              "", _selectedCardService.selectedCardIds),
+          _temporaryDeckService.saved = false,
+          _temporaryDeckService.temporaryDeck = _deckService
+              .createTemporaryDeck("", _selectedCardService.selectedCardIds),
           Navigator.pushNamed(
             context,
             route.deckInfoPage,

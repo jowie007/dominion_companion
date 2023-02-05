@@ -1,6 +1,10 @@
 import 'package:dominion_comanion/components/basic_appbar.dart';
+import 'package:dominion_comanion/components/name_deck_dialog.dart';
 import 'package:dominion_comanion/components/deck_expandable.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
+import 'package:dominion_comanion/model/deck/deck_model.dart';
+import 'package:dominion_comanion/services/deck_service.dart';
+import 'package:dominion_comanion/services/temporary_deck_service.dart';
 import 'package:flutter/material.dart';
 
 import '../services/selected_card_service.dart';
@@ -18,13 +22,13 @@ class _DeckInfoState extends State<DeckInfoPage> {
     super.initState();
   }
 
-  final _selectedCardService = SelectedCardService();
+  final _temporaryDeckService = TemporaryDeckService();
+  final _deckService = DeckService();
 
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
-    _selectedCardService.initializeSelectedCardIds();
-    ValueNotifier<bool> notifier = ValueNotifier(false);
+    late DeckModel temporaryDeck;
     return Scaffold(
       appBar: const BasicAppBar(title: 'Deck Info'),
       body: Stack(
@@ -45,7 +49,7 @@ class _DeckInfoState extends State<DeckInfoPage> {
                   child: Container(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
                     child: FutureBuilder(
-                      future: _selectedCardService.temporaryDeck,
+                      future: _temporaryDeckService.temporaryDeck,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -69,9 +73,12 @@ class _DeckInfoState extends State<DeckInfoPage> {
                           if (snapshot.hasError) {
                             return Text(snapshot.error.toString());
                           } else if (snapshot.hasData) {
+                            if (snapshot.data != null) {
+                              temporaryDeck = snapshot.data!;
+                            }
                             return snapshot.data != null
                                 ? DeckExpandable(
-                                    deckModel: snapshot.data!,
+                                    deckModel: temporaryDeck,
                                   )
                                 : const Text('Keine Erweiterungen gefunden');
                           } else {
@@ -89,11 +96,24 @@ class _DeckInfoState extends State<DeckInfoPage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButtonCoin(
-        icon: Icons.save,
-        tooltip: "Deck speichern",
-        onPressed: () => (""),
-      ),
+      floatingActionButton: !_temporaryDeckService.saved
+          ? FloatingActionButtonCoin(
+              icon: Icons.save,
+              tooltip: "Deck speichern",
+              onPressed: () => showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => NameDeckDialog(
+                  onSaved: (deckName) => setState(
+                    () {
+                      temporaryDeck.name = deckName;
+                      _deckService.addDeck(temporaryDeck);
+                      _temporaryDeckService.saved = true;
+                    },
+                  ),
+                ),
+              ),
+            )
+          : Container(),
     );
   }
 }

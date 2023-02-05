@@ -1,10 +1,8 @@
 import 'package:dominion_comanion/database/selectedCardsDatabase.dart';
-import 'package:dominion_comanion/model/deck/deck_model.dart';
 
 class SelectedCardService {
   final SelectedCardDatabase _selectedCardDatabase = SelectedCardDatabase();
   late List<String> selectedCardIds = [];
-  late Future<DeckModel> temporaryDeck;
 
   static final SelectedCardService _selectedCardService = SelectedCardService._internal();
 
