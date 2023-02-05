@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
               child: const SizedBox(
                 height: 140,
                 child: Image(
-                  image: AssetImage('assets/menu/title.webp'),
+                  image: AssetImage('assets/menu/jdc.png'),
                 ),
               ),
             ),
