@@ -1,7 +1,8 @@
-import 'package:dominion_comanion/database/selectedCardsDatabase.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
+import 'package:dominion_comanion/services/deck_service.dart';
 
 class TemporaryDeckService {
+  final DeckService _deckService = DeckService();
   late Future<DeckModel> temporaryDeck;
   bool saved = false;
 
@@ -13,4 +14,8 @@ class TemporaryDeckService {
   }
 
   TemporaryDeckService._internal();
+
+  void createTemporaryDeck(String name, List<String> cardIds) {
+    temporaryDeck = _deckService.deckFromNameAndCardIds(name, cardIds);
+  }
 }

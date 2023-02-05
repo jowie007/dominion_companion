@@ -1,13 +1,15 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/components/card_info_tile.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:flutter/material.dart';
 
 class DeckExpandable extends StatefulWidget {
-  const DeckExpandable(
-      {super.key,
-        required this.deckModel});
+  const DeckExpandable({super.key, required this.deckModel, this.onLongPress});
 
   final DeckModel deckModel;
+
+  final void Function()? onLongPress;
 
   @override
   State<DeckExpandable> createState() => _DeckExpandableState();
@@ -28,9 +30,8 @@ class _DeckExpandableState extends State<DeckExpandable> {
                 Container(
                   width: 400,
                   height: 56,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.6)
-                  ),
+                  decoration:
+                      BoxDecoration(color: Colors.white.withOpacity(0.6)),
                 ),
                 Container(
                   alignment: Alignment.center,
@@ -40,29 +41,38 @@ class _DeckExpandableState extends State<DeckExpandable> {
                       height: 0,
                     ),
                     collapsedIconColor: Colors.white,
-                    title: Container(
-                      padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20.0),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                  "assets/menu/main_scroll_crop.png"),
-                              fit: BoxFit.cover,
+                    title: GestureDetector(
+                      onLongPress: () {
+                        if(widget.onLongPress != null) {
+                          widget.onLongPress!();
+                        }
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    "assets/menu/main_scroll_crop.png"),
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
-                          padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            alignment: Alignment.center,
-                            child: Text(
-                              widget.deckModel.name != "" ? widget.deckModel.name : "Temporäres Deck",
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Colors.black,
+                            padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.center,
+                              child: Text(
+                                widget.deckModel.name != ""
+                                    ? widget.deckModel.name
+                                    : "Temporäres Deck",
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),
@@ -71,7 +81,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                     ),
                     children: <Widget>[
                       ListView.builder(
-                        // padding: const EdgeInsets.all(8),
+                          // padding: const EdgeInsets.all(8),
                           physics: const ClampingScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: widget.deckModel.cards.length,

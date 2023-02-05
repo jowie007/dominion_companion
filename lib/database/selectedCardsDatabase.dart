@@ -28,7 +28,7 @@ class SelectedCardDatabase {
     final List<Map<String, dynamic>> maps =
         await _database.query('selectedCard');
     return List.generate(maps.length, (i) {
-      return maps[i]['selectedCard'];
+      return maps[i]['id'];
     });
   }
 

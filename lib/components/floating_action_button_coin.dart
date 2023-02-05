@@ -17,6 +17,7 @@ class _FloatingActionButtonCoinState extends State<FloatingActionButtonCoin> {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      heroTag: null,
       onPressed: () => widget.onPressed(),
       tooltip: widget.tooltip,
       backgroundColor: Colors.transparent,

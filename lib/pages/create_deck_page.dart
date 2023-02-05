@@ -25,7 +25,6 @@ class _CreateDeckState extends State<CreateDeckPage> {
 
   final _selectedCardService = SelectedCardService();
   final _temporaryDeckService = TemporaryDeckService();
-  final _deckService = DeckService();
 
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
@@ -47,55 +46,52 @@ class _CreateDeckState extends State<CreateDeckPage> {
           Stack(
             alignment: Alignment.center,
             children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
-                    child: FutureBuilder(
-                      future: ExpansionService().loadAllExpansions(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const CircularProgressIndicator(),
-                              Visibility(
-                                visible: snapshot.hasData,
-                                child: const Text(
-                                  "Warte auf Erweiterungen",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 24),
-                                ),
-                              )
-                            ],
-                          );
-                        } else if (snapshot.connectionState ==
-                            ConnectionState.done) {
-                          if (snapshot.hasError) {
-                            return Text(snapshot.error.toString());
-                          } else if (snapshot.hasData) {
-                            return snapshot.data != null &&
-                                    snapshot.data!.isNotEmpty
-                                ? Column(
-                                    children: [
-                                      for (var expansion in snapshot.data!)
-                                        ExpansionExpandable(
-                                            expansion: expansion,
-                                            onChanged: () => notifier.value =
-                                                !notifier.value),
-                                    ],
-                                  )
-                                : const Text('Keine Erweiterungen gefunden');
-                          } else {
-                            return const Text('Keine Erweiterungen gefunden');
-                          }
+              SingleChildScrollView(
+                child: Container(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
+                  child: FutureBuilder(
+                    future: ExpansionService().loadAllExpansions(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const CircularProgressIndicator(),
+                            Visibility(
+                              visible: snapshot.hasData,
+                              child: const Text(
+                                "Warte auf Erweiterungen",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 24),
+                              ),
+                            )
+                          ],
+                        );
+                      } else if (snapshot.connectionState ==
+                          ConnectionState.done) {
+                        if (snapshot.hasError) {
+                          return Text(snapshot.error.toString());
+                        } else if (snapshot.hasData) {
+                          return snapshot.data != null &&
+                                  snapshot.data!.isNotEmpty
+                              ? Column(
+                                  children: [
+                                    for (var expansion in snapshot.data!)
+                                      ExpansionExpandable(
+                                          expansion: expansion,
+                                          onChanged: () =>
+                                              notifier.value = !notifier.value),
+                                  ],
+                                )
+                              : const Text('Keine Erweiterungen gefunden');
                         } else {
-                          return Text('State: ${snapshot.connectionState}');
+                          return const Text('Keine Erweiterungen gefunden');
                         }
-                      },
-                    ),
+                      } else {
+                        return Text('State: ${snapshot.connectionState}');
+                      }
+                    },
                   ),
                 ),
               ),
@@ -107,7 +103,8 @@ class _CreateDeckState extends State<CreateDeckPage> {
               valueListenable: notifier,
               builder: (BuildContext context, bool val, Widget? child) {
                 return BasicInfoBarBottom(
-                    text: "${_selectedCardService.selectedCardIds.length}/20+");
+                    text:
+                        "${_selectedCardService.selectedCardIds.length}/${DeckService.deckSize}+");
               },
             ),
           ),
@@ -118,8 +115,8 @@ class _CreateDeckState extends State<CreateDeckPage> {
         tooltip: "Deck erzeugen",
         onPressed: () async => {
           _temporaryDeckService.saved = false,
-          _temporaryDeckService.temporaryDeck = _deckService
-              .createTemporaryDeck("", _selectedCardService.selectedCardIds),
+          _temporaryDeckService.createTemporaryDeck(
+              "", _selectedCardService.selectedCardIds),
           Navigator.pushNamed(
             context,
             route.deckInfoPage,
