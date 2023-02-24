@@ -3,6 +3,7 @@ import 'package:dominion_comanion/components/round_checkbox.dart';
 import 'package:dominion_comanion/components/expansion_icon.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/services/card_service.dart';
+import 'package:dominion_comanion/services/player_service.dart';
 import 'package:flutter/material.dart';
 
 class CardInfoTile extends StatefulWidget {
@@ -33,6 +34,7 @@ class _CardInfoTileState extends State<CardInfoTile> {
     final CardService cardService = CardService();
     final cardTypeString = CardModel.getCardTypesString(widget.card.cardTypes);
     final cardColors = cardService.getColorsByCardTypeString(cardTypeString);
+    final PlayerService playerService = PlayerService();
 
     return Container(
       color: Colors.white.withOpacity(0.4),
@@ -104,6 +106,31 @@ class _CardInfoTileState extends State<CardInfoTile> {
                       : ExpansionIcon(icon: widget.card.id.split('-')[0])
                 ],
               ),
+              widget.card.count.isNotEmpty
+                  ? Row(
+                      children: [
+                        const SizedBox(width: 36),
+                        Container(
+                          width: 40,
+                          height: 18,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Colors.white,
+                          ),
+                          child: ValueListenableBuilder(
+                            valueListenable: playerService.notifier,
+                            builder: (BuildContext context, bool val,
+                                Widget? child) {
+                              return Text(
+                                widget.card.count[playerService.players - 1],
+                                textAlign: TextAlign.center,
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                  : Container()
             ],
           ),
         ),

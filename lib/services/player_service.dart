@@ -13,15 +13,19 @@ class PlayerService {
 
   PlayerService._internal();
 
+  ValueNotifier<bool> notifier = ValueNotifier(false);
+
   void addPlayer() {
     if (players < maxPlayers) {
       players++;
+      notifier.value = !notifier.value;
     }
   }
 
   void subtractPlayer() {
     if (players > minPlayers) {
       players--;
+      notifier.value = !notifier.value;
     }
   }
 }

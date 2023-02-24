@@ -37,7 +37,7 @@ class CardDBModel {
     text = json['text'] ?? '';
     count = json['count'] != null
         ? List<String>.from(json['count'].split(','))
-        : [];
+        : List.empty();
   }
 
   CardDBModel.fromModel(CardModel model) {
@@ -70,6 +70,6 @@ class CardDBModel {
         'debt': cardCost.debt,
         'potion': cardCost.potion,
         'text': text,
-        'count': count.join(','),
+        'count': count.isNotEmpty ? count.join(',') : null,
       };
 }

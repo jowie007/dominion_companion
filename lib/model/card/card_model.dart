@@ -35,7 +35,7 @@ class CardModel {
     text = json['text'] ?? '';
     count = json['count'] != null
         ? List<String>.from(json['count'].split(','))
-        : [];
+        : List.empty();
   }
 
   CardModel.fromDBModel(CardDBModel dbModel) {
@@ -55,8 +55,8 @@ class CardModel {
   static String getCardTypesString(List<CardTypeEnum> cardTypes) {
     String fileName = cardTypes
         .map((e) =>
-    e.name.substring(0, 1).toUpperCase() +
-        e.name.substring(1, e.name.length).toUpperCase())
+            e.name.substring(0, 1).toUpperCase() +
+            e.name.substring(1, e.name.length).toUpperCase())
         .join("-");
     return fileName;
   }

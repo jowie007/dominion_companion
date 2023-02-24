@@ -126,7 +126,7 @@ class _DeckState extends State<DeckPage> {
                   ),
                 ),
               ),
-              Positioned(bottom: 22, left: 22, child: ButtonPlayerCount()),
+              const Positioned(bottom: 22, left: 22, child: ButtonPlayerCount()),
             ],
           ),
           floatingActionButton: ValueListenableBuilder(

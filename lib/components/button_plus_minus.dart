@@ -47,7 +47,7 @@ class _ButtonPlusMinusState extends State<ButtonPlusMinus> {
               ],
             ),
           ),
-          Text(widget.text),
+          Text(widget.text, style: const TextStyle(fontSize: 18)),
           MaterialButton(
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,

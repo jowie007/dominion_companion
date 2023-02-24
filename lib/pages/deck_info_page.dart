@@ -1,4 +1,5 @@
 import 'package:dominion_comanion/components/basic_appbar.dart';
+import 'package:dominion_comanion/components/button_player_count.dart';
 import 'package:dominion_comanion/components/deck_expandable_loader.dart';
 import 'package:dominion_comanion/components/name_deck_dialog.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
@@ -49,6 +50,7 @@ class _DeckInfoState extends State<DeckInfoPage> {
               ),
             ),
           ),
+          const Positioned(bottom: 22, left: 22, child: ButtonPlayerCount()),
         ],
       ),
       floatingActionButton: !_temporaryDeckService.saved
