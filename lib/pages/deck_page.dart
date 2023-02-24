@@ -1,4 +1,7 @@
 import 'package:dominion_comanion/components/basic_appbar.dart';
+import 'package:dominion_comanion/components/basic_infobar_bottom.dart';
+import 'package:dominion_comanion/components/button_player_count.dart';
+import 'package:dominion_comanion/components/button_plus_minus.dart';
 import 'package:dominion_comanion/components/deck_expandable_loader.dart';
 import 'package:dominion_comanion/components/delete_deck_dialog.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
@@ -123,6 +126,7 @@ class _DeckState extends State<DeckPage> {
                   ),
                 ),
               ),
+              Positioned(bottom: 22, left: 22, child: ButtonPlayerCount()),
             ],
           ),
           floatingActionButton: ValueListenableBuilder(
