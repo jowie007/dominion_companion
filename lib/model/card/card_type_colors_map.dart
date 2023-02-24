@@ -6,4 +6,6 @@ final Map<String, List<Color>> cardTypeColorsMap = {
   "aktion-angriff": [Colors.white],
   "aktion-reaktion": [Colors.blueAccent],
   "punkte": [Colors.green],
+  "geld": [Colors.orangeAccent],
+  "fluch": [Colors.deepPurple],
 };

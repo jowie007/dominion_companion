@@ -44,7 +44,8 @@ class _DeckInfoState extends State<DeckInfoPage> {
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
               child: DeckExpandableLoader(
                 futureDeckModel: _temporaryDeckService.temporaryDeck,
-                onLoaded: (deckModel) => temporaryDeck = deckModel,
+                onLoaded: (deckModel) =>
+                    {deckModel.sortCards(), temporaryDeck = deckModel},
               ),
             ),
           ),

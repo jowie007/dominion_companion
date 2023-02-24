@@ -51,4 +51,13 @@ class CardModel {
     text = dbModel.text;
     count = dbModel.count;
   }
+
+  static String getCardTypesString(List<CardTypeEnum> cardTypes) {
+    String fileName = cardTypes
+        .map((e) =>
+    e.name.substring(0, 1).toUpperCase() +
+        e.name.substring(1, e.name.length).toUpperCase())
+        .join("-");
+    return fileName;
+  }
 }

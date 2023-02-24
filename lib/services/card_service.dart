@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/database/model/card/card_db_model.dart';
 import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
+import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/model/card/card_type_colors_map.dart';
 import 'package:dominion_comanion/model/card/card_type_enum.dart';
 import 'package:flutter/material.dart';
@@ -32,15 +31,6 @@ class CardService {
 
   String getFilenameByCardTypes(List<CardTypeEnum> cardTypes) {
     String fileName = cardTypes.map((e) => e.name).join("-");
-    return fileName;
-  }
-
-  String getCardTypesString(List<CardTypeEnum> cardTypes) {
-    String fileName = cardTypes
-        .map((e) =>
-            e.name.substring(0, 1).toUpperCase() +
-            e.name.substring(1, e.name.length).toUpperCase())
-        .join("-");
     return fileName;
   }
 

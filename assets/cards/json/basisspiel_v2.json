@@ -223,7 +223,7 @@
       "invisible": true,
       "cardTypes": "geld",
       "cardCost": {
-        "coin": 0
+        "coin": 3
       },
       "count": "0,40,40,40,80,80"
     },
@@ -234,7 +234,7 @@
       "invisible": true,
       "cardTypes": "geld",
       "cardCost": {
-        "coin": 0
+        "coin": 6
       },
       "count": "0,30,30,30,60,60"
     },

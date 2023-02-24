@@ -31,8 +31,7 @@ class _CardInfoTileState extends State<CardInfoTile> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
     );
     final CardService cardService = CardService();
-    final cardTypeString =
-        cardService.getCardTypesString(widget.card.cardTypes);
+    final cardTypeString = CardModel.getCardTypesString(widget.card.cardTypes);
     final cardColors = cardService.getColorsByCardTypeString(cardTypeString);
 
     return Container(

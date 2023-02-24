@@ -42,6 +42,7 @@ class DeckExpandableLoader extends StatelessWidget {
             if (snapshot.data != null && onLoaded != null) {
               onLoaded!(snapshot.data!);
             }
+            snapshot.data!.sortCards();
             return snapshot.data != null
                 ? DeckExpandable(
                     deckModel: snapshot.data!,
