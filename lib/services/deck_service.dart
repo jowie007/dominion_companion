@@ -9,6 +9,9 @@ class DeckService {
   final DeckDatabase _deckDatabase = DeckDatabase();
   final CardDatabase _cardDatabase = CardDatabase();
   late ValueNotifier<bool> changeNotify;
+  var players = 2;
+  final minPlayers = 2;
+  final maxPlayers = 6;
 
   static final DeckService _deckService = DeckService._internal();
 
@@ -48,5 +51,17 @@ class DeckService {
             .map((cardId) async =>
                 CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
             .toList()));
+  }
+
+  void addPlayer() {
+    if (players + 1 < maxPlayers) {
+      players++;
+    }
+  }
+
+  void subtractPlayer() {
+    if (players - 1 > minPlayers) {
+      players--;
+    }
   }
 }
