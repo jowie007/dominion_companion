@@ -14,6 +14,7 @@ class CardDatabase {
       await db.execute(
         "CREATE TABLE card("
         "id STRING PRIMARY KEY, "
+        "always TRUE, "
         "name STRING, "
         "setId STRING, "
         "parentId STRING, "
@@ -23,7 +24,8 @@ class CardDatabase {
         "coin STRING, "
         "debt STRING, "
         "potion STRING, "
-        "text STRING)",
+        "text STRING, "
+        "count STRING)",
       );
     });
     return _database;
@@ -42,9 +44,19 @@ class CardDatabase {
     });
   }
 
+  Future<List<CardDBModel>> getAlwaysCardList() async {
+    await openDb();
+    final List<Map<String, dynamic>> maps =
+    await _database.rawQuery('SELECT * FROM card WHERE always=?', [1]);
+    return List.generate(maps.length, (i) {
+      return CardDBModel.fromJson(maps[i]);
+    });
+  }
+
   Future<CardDBModel> getCardById(String id) async {
     await openDb();
-    final List<Map<String, dynamic>> maps = await _database.rawQuery('SELECT * FROM card WHERE id=?', [id]);
+    final List<Map<String, dynamic>> maps =
+        await _database.rawQuery('SELECT * FROM card WHERE id=?', [id]);
     return CardDBModel.fromJson(maps.first);
   }
 

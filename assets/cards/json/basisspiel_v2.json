@@ -208,65 +208,79 @@
     {
       "id": "basisspiel_v2-kupfer",
       "name": "Kupfer",
+      "always": true,
       "invisible": true,
       "cardTypes": "geld",
       "cardCost": {
         "coin": 0
-      }
+      },
+      "count": "0,60,60,60,120,120"
     },
     {
       "id": "basisspiel_v2-silber",
       "name": "Silber",
+      "always": true,
       "invisible": true,
       "cardTypes": "geld",
       "cardCost": {
         "coin": 0
-      }
+      },
+      "count": "0,40,40,40,80,80"
     },
     {
       "id": "basisspiel_v2-gold",
       "name": "Gold",
+      "always": true,
       "invisible": true,
       "cardTypes": "geld",
       "cardCost": {
         "coin": 0
-      }
+      },
+      "count": "0,30,30,30,60,60"
     },
     {
       "id": "basisspiel_v2-anwesen",
       "name": "Anwesen",
+      "always": true,
       "invisible": true,
       "cardTypes": "punkte",
       "cardCost": {
         "coin": 2
-      }
+      },
+      "count": "0,8,12,12,12,12"
     },
     {
       "id": "basisspiel_v2-herzogtum",
       "name": "Herzogtum",
+      "always": true,
       "invisible": true,
       "cardTypes": "punkte",
       "cardCost": {
         "coin": 5
-      }
+      },
+      "count": "0,8,12,12,12,12"
     },
     {
       "id": "basisspiel_v2-provinz",
       "name": "Provinz",
+      "always": true,
       "invisible": true,
       "cardTypes": "punkte",
       "cardCost": {
         "coin": 8
-      }
+      },
+      "count": "0,8,12,12,15,18"
     },
     {
       "id": "basisspiel_v2-fluch",
       "name": "Fluch",
+      "always": true,
       "invisible": true,
       "cardTypes": "fluch",
       "cardCost": {
         "coin": 0
-      }
+      },
+      "count": "0,10,20,30,40,50"
     }
   ]
 }

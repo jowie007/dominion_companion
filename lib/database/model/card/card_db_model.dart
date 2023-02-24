@@ -6,6 +6,7 @@ import 'card_cost_db_model.dart';
 class CardDBModel {
   late String id;
   late String name;
+  late bool always;
   late String setId;
   late String parentId;
   late List<String> relatedCardIds;
@@ -13,13 +14,15 @@ class CardDBModel {
   late List<CardTypeEnum> cardTypes;
   late CardCostDBModel cardCost;
   late String text;
+  late List<String> count;
 
-  CardDBModel(this.id, this.name, this.setId, this.parentId, this.cardTypes,
-      this.cardCost, this.text);
+  CardDBModel(this.id, this.name, this.always, this.setId, this.parentId,
+      this.cardTypes, this.cardCost, this.text, this.count);
 
   CardDBModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    always = json['always'] != null ? json['always'] > 0 : false;
     setId = json['setId'] ?? '';
     parentId = json['parentId'] ?? '';
     relatedCardIds = json['relatedCardIds'] != null
@@ -32,11 +35,15 @@ class CardDBModel {
     cardCost = CardCostDBModel(json['coin'].toString(), json['debt'].toString(),
         json['potion'].toString());
     text = json['text'] ?? '';
+    count = json['count'] != null
+        ? List<String>.from(json['count'].split(','))
+        : [];
   }
 
   CardDBModel.fromModel(CardModel model) {
     id = model.id;
     name = model.name;
+    always = model.always;
     setId = model.setId;
     parentId = model.parentId;
     relatedCardIds = model.relatedCardIds;
@@ -44,11 +51,13 @@ class CardDBModel {
     cardTypes = model.cardTypes;
     cardCost = CardCostDBModel.fromModel(model.cardCost);
     text = model.text;
+    count = model.count;
   }
 
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
+        'always': always,
         'setId': setId,
         'parentId': parentId,
         'relatedCardIds': relatedCardIds.join(','),
@@ -61,5 +70,6 @@ class CardDBModel {
         'debt': cardCost.debt,
         'potion': cardCost.potion,
         'text': text,
+        'count': count.join(','),
       };
 }

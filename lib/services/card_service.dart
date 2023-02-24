@@ -18,6 +18,10 @@ class CardService {
     _cardDatabase.insertCard(cardDBModel);
   }
 
+  Future<List<CardDBModel>> getAlwaysCards() async {
+    return await _cardDatabase.getAlwaysCardList();
+  }
+
   Future<List<CardDBModel>> getCardsByExpansionFromDB(
       ExpansionDBModel expansion) async {
     final cards = expansion.cardIds

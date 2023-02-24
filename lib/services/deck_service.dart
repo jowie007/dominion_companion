@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/database/deck_database.dart';
 import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
@@ -12,9 +10,9 @@ class DeckService {
   final CardDatabase _cardDatabase = CardDatabase();
   late ValueNotifier<bool> changeNotify;
 
-  static int deckSize = 10;
-
   static final DeckService _deckService = DeckService._internal();
+
+  static int deckSize = 10;
 
   factory DeckService() {
     return _deckService;
@@ -46,7 +44,6 @@ class DeckService {
     return DeckModel(
         name,
         await Future.wait(cardIds
-            .take(deckSize)
             .toList()
             .map((cardId) async =>
                 CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
