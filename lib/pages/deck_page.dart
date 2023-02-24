@@ -53,7 +53,6 @@ class _DeckState extends State<DeckPage> {
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: Column(
                     children: [
-                      const SizedBox(height: 10),
                       FutureBuilder(
                         future: _deckService.getDeckList(),
                         builder: (context, snapshot) {
