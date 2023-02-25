@@ -8,11 +8,11 @@ class ExpansionDBModel {
 
   ExpansionDBModel(this.id, this.name, this.version, this.cardIds);
 
-  ExpansionDBModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'].toString();
-    name = json['name'].toString();
-    version = json['version'].toString();
-    cardIds = json['cardIds'].split(',');
+  ExpansionDBModel.fromDB(Map<String, dynamic> dbData) {
+    id = dbData['id'].toString();
+    name = dbData['name'].toString();
+    version = dbData['version'].toString();
+    cardIds = dbData['cardIds'].split(',');
   }
 
   ExpansionDBModel.fromModel(ExpansionModel model) {

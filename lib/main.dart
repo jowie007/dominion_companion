@@ -1,5 +1,4 @@
 import 'package:dominion_comanion/services/expansion_service.dart';
-import 'package:dominion_comanion/services/json_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
 
@@ -16,7 +15,7 @@ class _DominionCompanionState extends State<DominionCompanion> {
   @override
   initState() {
     super.initState();
-    ExpansionService().loadJsonExpansionsIntoDB();
+    // ExpansionService().loadJsonExpansionsIntoDB();
   }
 
   @override

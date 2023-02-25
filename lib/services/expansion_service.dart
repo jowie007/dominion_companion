@@ -15,6 +15,10 @@ class ExpansionService {
     _cardService = CardService();
   }
 
+   Future<int> deleteExpansionTable() {
+    return _expansionDatabase.deleteExpansionTable();
+  }
+
   void insertExpansionIntoDB(ExpansionModel expansionModel) {
     _expansionDatabase
         .insertExpansion(ExpansionDBModel.fromModel(expansionModel));

@@ -37,6 +37,7 @@ class DeckExpandableLoader extends StatelessWidget {
           );
         } else if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
+            throw Exception(snapshot.error);
             return Text(snapshot.error.toString());
           } else if (snapshot.hasData) {
             if (snapshot.data != null && onLoaded != null) {

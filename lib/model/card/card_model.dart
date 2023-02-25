@@ -1,3 +1,7 @@
+import 'dart:collection';
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:dominion_comanion/database/model/card/card_db_model.dart';
 
 import 'card_cost_model.dart';
@@ -7,7 +11,7 @@ class CardModel {
   late String id;
   late String name;
   late bool always;
-  late int? whenDeckConsistsOfXCardsOfExpansion;
+  late Map<int, List<List<CardTypeEnum>>>? whenDeckConsistsOfXCardsOfExpansion;
   late String setId;
   late String parentId;
   late List<String> relatedCardIds;
@@ -24,16 +28,17 @@ class CardModel {
     name = json['name'];
     always = json['always'] ?? false;
     whenDeckConsistsOfXCardsOfExpansion =
-        json['whenDeckConsistsOfXCardsOfExpansion'];
+        json['whenDeckConsistsOfXCardsOfExpansion'] != null
+            ? whenDeckConsistsOfXCardsOfExpansionFromJSON(
+                json['whenDeckConsistsOfXCardsOfExpansion'])
+            : null;
     setId = json['setId'] ?? '';
     parentId = json['parentId'] ?? '';
     relatedCardIds = json['relatedCardIds'] != null
         ? json['relatedCardIds'].toString().split(',')
         : List.empty();
     invisible = json['invisible'] ?? false;
-    cardTypes = List<CardTypeEnum>.from(json['cardTypes'].split(',').map(
-        (value) => (CardTypeEnum.values.firstWhere((e) =>
-            e.toString() == 'CardTypeEnum.${value.toString().trim()}'))));
+    cardTypes = cardTypesFromString(json['cardTypes']);
     cardCost = CardCostModel.fromJson(json['cardCost']);
     text = json['text'] ?? '';
     count = json['count'] != null
@@ -68,5 +73,28 @@ class CardModel {
 
   String getCardExpansion() {
     return id.split('-').first;
+  }
+
+  static List<CardTypeEnum> cardTypesFromString(String cardTypes) {
+    return List<CardTypeEnum>.from(cardTypes.split(',').map((value) =>
+        (CardTypeEnum.values.firstWhere((e) =>
+            e.toString() == 'CardTypeEnum.${value.toString().trim()}'))));
+  }
+
+  static Map<int, List<List<CardTypeEnum>>>
+      whenDeckConsistsOfXCardsOfExpansionFromJSON(dynamic json) {
+    // Müsste erledigt sein
+    // TODO Type ist bei
+    // Holen aus JSON -> _InternalLinkedHashMap<String, dynamic>
+    // Holen aus DB -> String
+    log(json.runtimeType.toString());
+    Map<int, List<List<CardTypeEnum>>> retMap = {};
+    var jsonMap = Map<String, List<dynamic>>.from(json);
+    for (var stringMapKey in jsonMap.keys) {
+      retMap[int.parse(stringMapKey)] = List<String>.from(json[stringMapKey])
+          .map((e) => cardTypesFromString(e))
+          .toList();
+    }
+    return retMap;
   }
 }

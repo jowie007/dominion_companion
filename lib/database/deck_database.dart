@@ -27,7 +27,7 @@ class DeckDatabase {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.query('deck');
     return List.generate(maps.length, (i) {
-      return DeckDBModel.fromJson(maps[i]);
+      return DeckDBModel.fromDB(maps[i]);
     });
   }
 

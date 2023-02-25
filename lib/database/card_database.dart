@@ -32,6 +32,11 @@ class CardDatabase {
     return _database;
   }
 
+  Future<int> deleteCardTable() async {
+    await openDb();
+    return await _database.delete('card');
+  }
+
   Future<int> insertCard(CardDBModel card) async {
     await openDb();
     return await _database.insert('card', card.toJson());
@@ -41,7 +46,7 @@ class CardDatabase {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.query('card');
     return List.generate(maps.length, (i) {
-      return CardDBModel.fromJson(maps[i]);
+      return CardDBModel.fromDB(maps[i]);
     });
   }
 
@@ -50,7 +55,7 @@ class CardDatabase {
     final List<Map<String, dynamic>> maps =
         await _database.rawQuery('SELECT * FROM card WHERE always=?', [1]);
     return List.generate(maps.length, (i) {
-      return CardDBModel.fromJson(maps[i]);
+      return CardDBModel.fromDB(maps[i]);
     });
   }
 
@@ -58,10 +63,9 @@ class CardDatabase {
       getWhenDeckConsistsOfXCardsOfExpansionCards() async {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.rawQuery(
-        'SELECT * FROM card WHERE whenDeckConsistsOfXCardsOfExpansion>?',
-        [0]);
+        'SELECT * FROM card WHERE length(whenDeckConsistsOfXCardsOfExpansion) > 0');
     return List.generate(maps.length, (i) {
-      return CardDBModel.fromJson(maps[i]);
+      return CardDBModel.fromDB(maps[i]);
     });
   }
 
@@ -69,7 +73,7 @@ class CardDatabase {
     await openDb();
     final List<Map<String, dynamic>> maps =
         await _database.rawQuery('SELECT * FROM card WHERE id=?', [id]);
-    return CardDBModel.fromJson(maps.first);
+    return CardDBModel.fromDB(maps.first);
   }
 
   Future<int> updateCard(CardDBModel card) async {

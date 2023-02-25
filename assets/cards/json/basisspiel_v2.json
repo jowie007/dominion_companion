@@ -182,7 +182,6 @@
     {
       "id": "basisspiel_v2-Hexe",
       "name": "Hexe",
-      "relatedCardIds": "basisspiel_v2-fluch",
       "cardTypes": "aktion, angriff",
       "cardCost": {
         "coin": "5"
@@ -191,7 +190,6 @@
     {
       "id": "basisspiel_v2-burggraben",
       "name": "Burggraben",
-      "relatedCardIds": "basisspiel_v2-burggraben",
       "cardTypes": "aktion, reaktion",
       "cardCost": {
         "coin": "2"

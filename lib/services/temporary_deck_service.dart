@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
@@ -41,16 +43,21 @@ class TemporaryDeckService {
     List<CardModel> whenDeckConsistsOfXCardsCards = await Future.wait(
         (await _cardService.getWhenDeckConsistsOfXCardsOfExpansionCards())
             .map((card) async => CardModel.fromDBModel(card)));
+
     for (var whenDeckConsistsOfXCardsCard in whenDeckConsistsOfXCardsCards) {
       var expansionCardCount = 0;
       for (var selectedCard in selectedCards) {
         if (whenDeckConsistsOfXCardsCard.getCardExpansion() ==
             selectedCard.getCardExpansion()) {
+          whenDeckConsistsOfXCardsCard
+              .whenDeckConsistsOfXCardsOfExpansion!.values.first
+              .contains(selectedCard.cardTypes);
           expansionCardCount++;
         }
       }
       if (expansionCardCount >=
-          whenDeckConsistsOfXCardsCard.whenDeckConsistsOfXCardsOfExpansion!) {
+          whenDeckConsistsOfXCardsCard
+              .whenDeckConsistsOfXCardsOfExpansion!.keys.first) {
         selectedCards.add(whenDeckConsistsOfXCardsCard);
       }
     }

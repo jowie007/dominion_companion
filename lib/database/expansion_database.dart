@@ -19,6 +19,11 @@ class ExpansionDatabase {
     return _database;
   }
 
+  Future<int> deleteExpansionTable() async {
+    await openDb();
+    return await _database.delete('expansion');
+  }
+
   Future<int> insertExpansion(ExpansionDBModel expansion) async {
     await openDb();
     return await _database.insert('expansion', expansion.toJson());
@@ -28,7 +33,7 @@ class ExpansionDatabase {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.query('expansion');
     return List.generate(maps.length, (i) {
-      return ExpansionDBModel.fromJson(maps[i]);
+      return ExpansionDBModel.fromDB(maps[i]);
     });
   }
 

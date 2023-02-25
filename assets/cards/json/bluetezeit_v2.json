@@ -206,7 +206,13 @@
     {
       "id": "bluetezeit_v2-platin",
       "name": "Platin",
-      "whenDeckConsistsOfXCardsOfExpansion": 5,
+      "whenDeckConsistsOfXCardsOfExpansion": {
+        "4": [
+          "aktion",
+          "aktion, reaktion",
+          "aktion, angriff"
+        ]
+      },
       "invisible": true,
       "cardTypes": "geld",
       "cardCost": {
@@ -217,7 +223,13 @@
     {
       "id": "bluetezeit_v2-kolonie",
       "name": "Kolonie",
-      "whenDeckConsistsOfXCardsOfExpansion": 5,
+      "whenDeckConsistsOfXCardsOfExpansion": {
+        "4": [
+          "aktion",
+          "aktion, reaktion",
+          "aktion, angriff"
+        ]
+      },
       "invisible": true,
       "cardTypes": "punkte",
       "cardCost": {

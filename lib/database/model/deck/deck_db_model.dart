@@ -6,9 +6,9 @@ class DeckDBModel {
 
   DeckDBModel(this.name, this.cardIds);
 
-  DeckDBModel.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    cardIds = json['cardIds'].split(',');
+  DeckDBModel.fromDB(Map<String, dynamic> dbData) {
+    name = dbData['name'];
+    cardIds = dbData['cardIds'].split(',');
   }
 
   DeckDBModel.fromModel(DeckModel model) {

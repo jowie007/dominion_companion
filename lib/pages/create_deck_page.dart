@@ -71,6 +71,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
                       } else if (snapshot.connectionState ==
                           ConnectionState.done) {
                         if (snapshot.hasError) {
+                          throw Exception(snapshot.error);
                           return Text(snapshot.error.toString());
                         } else if (snapshot.hasData) {
                           return snapshot.data != null &&

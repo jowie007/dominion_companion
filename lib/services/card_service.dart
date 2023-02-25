@@ -12,6 +12,10 @@ class CardService {
     _cardDatabase = CardDatabase();
   }
 
+  Future<int> deleteCardTable() {
+    return _cardDatabase.deleteCardTable();
+  }
+
   void insertCardIntoDB(CardDBModel cardDBModel) {
     _cardDatabase.insertCard(cardDBModel);
   }
