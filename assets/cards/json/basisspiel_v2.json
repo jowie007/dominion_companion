@@ -8,7 +8,7 @@
       "name": "Kapelle",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 2
+        "coin": "2"
       }
     },
     {
@@ -16,7 +16,7 @@
       "name": "Keller",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 2
+        "coin": "2"
       }
     },
     {
@@ -24,7 +24,7 @@
       "name": "Dorf",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 3
+        "coin": "3"
       }
     },
     {
@@ -32,7 +32,7 @@
       "name": "Händlerin",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 3
+        "coin": "3"
       }
     },
     {
@@ -40,7 +40,7 @@
       "name": "Vasall",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 3
+        "coin": "3"
       }
     },
     {
@@ -48,7 +48,7 @@
       "name": "Werkstatt",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 3
+        "coin": "3"
       }
     },
     {
@@ -56,7 +56,7 @@
       "name": "Geldverleiher",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 4
+        "coin": "4"
       }
     },
     {
@@ -64,7 +64,7 @@
       "name": "Schmiede",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 4
+        "coin": "4"
       }
     },
     {
@@ -72,7 +72,7 @@
       "name": "Thronsaal",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 4
+        "coin": "4"
       }
     },
     {
@@ -80,7 +80,7 @@
       "name": "Umbau",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 4
+        "coin": "4"
       }
     },
     {
@@ -88,7 +88,7 @@
       "name": "Wilddiebin",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 4
+        "coin": "4"
       }
     },
     {
@@ -96,7 +96,7 @@
       "name": "Bibliothek",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 5
+        "coin": "5"
       }
     },
     {
@@ -104,7 +104,7 @@
       "name": "Jahrmarkt",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 5
+        "coin": "5"
       }
     },
     {
@@ -112,7 +112,7 @@
       "name": "Laboratorium",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 5
+        "coin": "5"
       }
     },
     {
@@ -120,7 +120,7 @@
       "name": "Markt",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 5
+        "coin": "5"
       }
     },
     {
@@ -128,7 +128,7 @@
       "name": "Mine",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 5
+        "coin": "5"
       }
     },
     {
@@ -136,7 +136,7 @@
       "name": "Ratsversammlung",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 5
+        "coin": "5"
       }
     },
     {
@@ -144,7 +144,7 @@
       "name": "Torwächterin",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 5
+        "coin": "5"
       }
     },
     {
@@ -152,7 +152,7 @@
       "name": "Töpferei",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": 5
+        "coin": "5"
       }
     },
     {
@@ -160,7 +160,7 @@
       "name": "Bürokrat",
       "cardTypes": "aktion, angriff",
       "cardCost": {
-        "coin": 4
+        "coin": "4"
       }
     },
     {
@@ -168,7 +168,7 @@
       "name": "Miliz",
       "cardTypes": "aktion, angriff",
       "cardCost": {
-        "coin": 4
+        "coin": "4"
       }
     },
     {
@@ -176,7 +176,7 @@
       "name": "Banditin",
       "cardTypes": "aktion, angriff",
       "cardCost": {
-        "coin": 5
+        "coin": "5"
       }
     },
     {
@@ -185,7 +185,7 @@
       "relatedCardIds": "basisspiel_v2-fluch",
       "cardTypes": "aktion, angriff",
       "cardCost": {
-        "coin": 5
+        "coin": "5"
       }
     },
     {
@@ -194,7 +194,7 @@
       "relatedCardIds": "basisspiel_v2-burggraben",
       "cardTypes": "aktion, reaktion",
       "cardCost": {
-        "coin": 2
+        "coin": "2"
       }
     },
     {
@@ -202,7 +202,7 @@
       "name": "Gärten",
       "cardTypes": "punkte",
       "cardCost": {
-        "coin": 2
+        "coin": "2"
       }
     },
     {
@@ -212,7 +212,7 @@
       "invisible": true,
       "cardTypes": "geld",
       "cardCost": {
-        "coin": 0
+        "coin": "0"
       },
       "count": "0,60,60,60,120,120"
     },
@@ -223,7 +223,7 @@
       "invisible": true,
       "cardTypes": "geld",
       "cardCost": {
-        "coin": 3
+        "coin": "3"
       },
       "count": "0,40,40,40,80,80"
     },
@@ -234,7 +234,7 @@
       "invisible": true,
       "cardTypes": "geld",
       "cardCost": {
-        "coin": 6
+        "coin": "6"
       },
       "count": "0,30,30,30,60,60"
     },
@@ -245,7 +245,7 @@
       "invisible": true,
       "cardTypes": "punkte",
       "cardCost": {
-        "coin": 2
+        "coin": "2"
       },
       "count": "0,8,12,12,12,12"
     },
@@ -256,7 +256,7 @@
       "invisible": true,
       "cardTypes": "punkte",
       "cardCost": {
-        "coin": 5
+        "coin": "5"
       },
       "count": "0,8,12,12,12,12"
     },
@@ -267,7 +267,7 @@
       "invisible": true,
       "cardTypes": "punkte",
       "cardCost": {
-        "coin": 8
+        "coin": "8"
       },
       "count": "0,8,12,12,15,18"
     },
@@ -278,7 +278,7 @@
       "invisible": true,
       "cardTypes": "fluch",
       "cardCost": {
-        "coin": 0
+        "coin": "0"
       },
       "count": "0,10,20,30,40,50"
     }

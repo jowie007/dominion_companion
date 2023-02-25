@@ -7,6 +7,7 @@ class CardDBModel {
   late String id;
   late String name;
   late bool always;
+  late int? whenDeckConsistsOfXCardsOfExpansion;
   late String setId;
   late String parentId;
   late List<String> relatedCardIds;
@@ -23,6 +24,8 @@ class CardDBModel {
     id = json['id'];
     name = json['name'];
     always = json['always'] != null ? json['always'] > 0 : false;
+    whenDeckConsistsOfXCardsOfExpansion =
+        json['whenDeckConsistsOfXCardsOfExpansion'];
     setId = json['setId'] ?? '';
     parentId = json['parentId'] ?? '';
     relatedCardIds = json['relatedCardIds'] != null
@@ -44,6 +47,8 @@ class CardDBModel {
     id = model.id;
     name = model.name;
     always = model.always;
+    whenDeckConsistsOfXCardsOfExpansion =
+        model.whenDeckConsistsOfXCardsOfExpansion;
     setId = model.setId;
     parentId = model.parentId;
     relatedCardIds = model.relatedCardIds;
@@ -58,6 +63,8 @@ class CardDBModel {
         'id': id,
         'name': name,
         'always': always,
+        'whenDeckConsistsOfXCardsOfExpansion':
+            whenDeckConsistsOfXCardsOfExpansion,
         'setId': setId,
         'parentId': parentId,
         'relatedCardIds': relatedCardIds.join(','),

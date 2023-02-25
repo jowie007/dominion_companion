@@ -38,9 +38,12 @@ class DeckService {
     return _deckDatabase.deleteDeckByName(name);
   }
 
+  DeckModel deckFromNameAndCards(String name, List<CardModel> cards) {
+    return DeckModel(name, cards);
+  }
+
   Future<DeckModel> deckFromNameAndCardIds(
       String name, List<String> cardIds) async {
-    cardIds.shuffle();
     return DeckModel(
         name,
         await Future.wait(cardIds

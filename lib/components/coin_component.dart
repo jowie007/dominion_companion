@@ -19,10 +19,11 @@ class CostComponent extends StatelessWidget {
         ),
         value != null
             ? Container(
-                padding: EdgeInsets.fromLTRB(width * 0.28, width * 0.14, 0, 0),
+                padding: const EdgeInsets.fromLTRB(2, 5, 0, 0),
+                width: width,
                 child: Text(value.toString(),
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: width * 0.75)),
+                    style: const TextStyle(fontSize: 30)),
               )
             : Container(),
       ],

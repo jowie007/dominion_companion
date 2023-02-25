@@ -7,6 +7,7 @@ class CardModel {
   late String id;
   late String name;
   late bool always;
+  late int? whenDeckConsistsOfXCardsOfExpansion;
   late String setId;
   late String parentId;
   late List<String> relatedCardIds;
@@ -22,6 +23,8 @@ class CardModel {
     id = json['id'];
     name = json['name'];
     always = json['always'] ?? false;
+    whenDeckConsistsOfXCardsOfExpansion =
+        json['whenDeckConsistsOfXCardsOfExpansion'];
     setId = json['setId'] ?? '';
     parentId = json['parentId'] ?? '';
     relatedCardIds = json['relatedCardIds'] != null
@@ -42,6 +45,8 @@ class CardModel {
     id = dbModel.id;
     name = dbModel.name;
     always = dbModel.always;
+    whenDeckConsistsOfXCardsOfExpansion =
+        dbModel.whenDeckConsistsOfXCardsOfExpansion;
     setId = dbModel.setId;
     parentId = dbModel.parentId;
     relatedCardIds = dbModel.relatedCardIds;
@@ -59,5 +64,9 @@ class CardModel {
             e.name.substring(1, e.name.length).toUpperCase())
         .join("-");
     return fileName;
+  }
+
+  String getCardExpansion() {
+    return id.split('-').first;
   }
 }

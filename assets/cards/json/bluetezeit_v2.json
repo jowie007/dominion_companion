@@ -1,0 +1,229 @@
+{
+  "id": "bluetezeit_v2",
+  "name": "Blütezeit",
+  "version": "V2",
+  "cards": [
+    {
+      "id": "bluetezeit_v2-handelsroute",
+      "name": "Handelsroute",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-arbeiterdorf",
+      "name": "Arbeitderdorf",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-bischof",
+      "name": "Bischof",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-denkmal",
+      "name": "Denkmal",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-gewoelbe",
+      "name": "Gewölbe",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-leihaus",
+      "name": "Leihaus",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-muenzer",
+      "name": "Münzer",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-stadt",
+      "name": "Stadt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-grosserMarkt",
+      "name": "Grosser Markt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-ausbau",
+      "name": "Ausbau",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "7"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-koenigshof",
+      "name": "Königshof",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "7"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-kunstschmiede",
+      "name": "Kunstschmiede",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "7"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-hausierer",
+      "name": "Hausierer",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "8*"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-halsabschneider",
+      "name": "Hausierer",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-quacksalber",
+      "name": "Quacksalber",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-gesindel",
+      "name": "Gesindel",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-wachturm",
+      "name": "Wachturm",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-bank",
+      "name": "Bank",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "7"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-abenteuer",
+      "name": "Abenteuer",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-hort",
+      "name": "Hort",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-lohn",
+      "name": "Lohn",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-steinbruch",
+      "name": "Steinbruch",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-koeniglichesSiegel",
+      "name": "Königliches Siegel",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-talisman",
+      "name": "Talsiman",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-schmuggelware",
+      "name": "Schmuggelware",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-platin",
+      "name": "Platin",
+      "whenDeckConsistsOfXCardsOfExpansion": 5,
+      "invisible": true,
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "9"
+      },
+      "count": "0,12,12,12,12,12"
+    },
+    {
+      "id": "bluetezeit_v2-kolonie",
+      "name": "Kolonie",
+      "whenDeckConsistsOfXCardsOfExpansion": 5,
+      "invisible": true,
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": "11"
+      },
+      "count": "0,8,12,12,12,12"
+    }
+  ]
+}
