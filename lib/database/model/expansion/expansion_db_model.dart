@@ -13,8 +13,9 @@ class ExpansionDBModel {
     id = dbData['id'].toString();
     name = dbData['name'].toString();
     version = dbData['version'].toString();
-    cardIds = dbData['cardIds'].split(',');
-    contentIds = dbData['contentIds'].split(',');
+    cardIds = dbData['cardIds'] != '' ? dbData['cardIds'].split(',') : [];
+    contentIds =
+        dbData['contentIds'] != '' ? dbData['contentIds'].split(',') : [];
   }
 
   ExpansionDBModel.fromModel(ExpansionModel model) {

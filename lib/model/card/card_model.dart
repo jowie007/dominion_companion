@@ -87,7 +87,7 @@ class CardModel {
     // TODO Type ist bei
     // Holen aus JSON -> _InternalLinkedHashMap<String, dynamic>
     // Holen aus DB -> String
-    log(json.runtimeType.toString());
+    // log(json.runtimeType.toString());
     Map<int, List<List<CardTypeEnum>>> retMap = {};
     var jsonMap = Map<String, List<dynamic>>.from(json);
     for (var stringMapKey in jsonMap.keys) {
