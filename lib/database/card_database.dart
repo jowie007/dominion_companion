@@ -15,7 +15,7 @@ class CardDatabase {
         "CREATE TABLE card("
         "id STRING PRIMARY KEY, "
         "always TRUE, "
-        "whenDeckConsistsOfXCardsOfExpansion STRING, "
+        "whenDeckConsistsOfXCardTypesOfExpansion STRING, "
         "name STRING, "
         "setId STRING, "
         "parentId STRING, "
@@ -60,10 +60,10 @@ class CardDatabase {
   }
 
   Future<List<CardDBModel>>
-      getWhenDeckConsistsOfXCardsOfExpansionCards() async {
+      getWhenDeckConsistsOfXCardTypesOfExpansionCards() async {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.rawQuery(
-        'SELECT * FROM card WHERE length(whenDeckConsistsOfXCardsOfExpansion) > 0');
+        'SELECT * FROM card WHERE length(whenDeckConsistsOfXCardTypesOfExpansion) > 0');
     return List.generate(maps.length, (i) {
       return CardDBModel.fromDB(maps[i]);
     });

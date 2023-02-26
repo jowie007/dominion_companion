@@ -206,7 +206,7 @@
     {
       "id": "bluetezeit_v2-platin",
       "name": "Platin",
-      "whenDeckConsistsOfXCardsOfExpansion": {
+      "whenDeckConsistsOfXCardTypesOfExpansion": {
         "4": [
           "aktion",
           "aktion, reaktion",
@@ -223,7 +223,7 @@
     {
       "id": "bluetezeit_v2-kolonie",
       "name": "Kolonie",
-      "whenDeckConsistsOfXCardsOfExpansion": {
+      "whenDeckConsistsOfXCardTypesOfExpansion": {
         "4": [
           "aktion",
           "aktion, reaktion",
@@ -237,5 +237,76 @@
       },
       "count": "0,8,12,12,12,12"
     }
-  ]
+  ],
+  "content": [
+    {
+      "id": "bluetezeit_v2-handelsroutenTableau",
+      "name": "Handelsrouten Tableau",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "bluetezeit_v2-handelsroute"
+        ]
+      }
+    },
+    {
+      "id": "bluetezeit_v2-spielerTableau",
+      "name": "Player Tableaus",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "bluetezeit_v2-bischof",
+          "bluetezeit_v2-denkmal",
+          "bluetezeit_v2-halsabschneider"
+        ]
+      },
+      "count": "0,2,3,4,5,6"
+    },
+    {
+      "id": "bluetezeit_v2-geldmarker",
+      "name": "Geldmarker",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "bluetezeit_v2-handelsroute"
+        ]
+      },
+      "count": "0,2,3,4,5,6"
+    },
+    {
+      "id": "bluetezeit_v2-siegpunktemarker5",
+      "name": "Siegpunktemarker im Wert 5",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "bluetezeit_v2-bischof",
+          "bluetezeit_v2-denkmal",
+          "bluetezeit_v2-halsabschneider"
+        ]
+      },
+      "count": "0,15,15,15,15,15"
+    },
+    {
+      "id": "bluetezeit_v2-siegpunktemarker1",
+      "name": "Siegpunktemarker im Wert 1",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "bluetezeit_v2-bischof",
+          "bluetezeit_v2-denkmal",
+          "bluetezeit_v2-halsabschneider"
+        ]
+      },
+      "count": "0,16,16,16,16,16"
+    }
+  ],
+  "hand": {
+    "always": true,
+    "additionalContent": {
+      "bluetezeit_v2-spielerTableau": 1
+    }
+  },
+  "end": {
+    "always": true,
+    "additionalConditions": {
+      "emptyCards": [
+        "basisspiel_v2-kolonie"
+      ]
+    }
+  }
 }

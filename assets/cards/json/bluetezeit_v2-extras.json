@@ -1,8 +1,0 @@
-{
-  "id": "bluetezeit_v2",
-  "name": "Blütezeit",
-  "version": "V2",
-  "extras": {
-    "whenDeckConsistsOfXCardsOfExpansion": 5,
-  }
-}

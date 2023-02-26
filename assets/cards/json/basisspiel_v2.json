@@ -280,5 +280,21 @@
       },
       "count": "0,10,20,30,40,50"
     }
-  ]
+  ],
+  "hand": {
+    "always": true,
+    "cards": {
+      "basisspiel_v2-kupfer": 7,
+      "basisspiel_v2-anwesen": 3
+    }
+  },
+  "end": {
+    "always": true,
+    "conditions": {
+      "emptyCards": [
+        "basisspiel_v2-provinz"
+      ],
+      "emptyCount": 3
+    }
+  }
 }

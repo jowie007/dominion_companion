@@ -41,7 +41,7 @@ class TemporaryDeckService {
         (await _cardService.getAlwaysCards())
             .map((card) async => CardModel.fromDBModel(card)));
     List<CardModel> whenDeckConsistsOfXCardsCards = await Future.wait(
-        (await _cardService.getWhenDeckConsistsOfXCardsOfExpansionCards())
+        (await _cardService.getWhenDeckConsistsOfXCardTypesOfExpansionCards())
             .map((card) async => CardModel.fromDBModel(card)));
 
     for (var whenDeckConsistsOfXCardsCard in whenDeckConsistsOfXCardsCards) {
@@ -50,14 +50,14 @@ class TemporaryDeckService {
         if (whenDeckConsistsOfXCardsCard.getCardExpansion() ==
             selectedCard.getCardExpansion()) {
           whenDeckConsistsOfXCardsCard
-              .whenDeckConsistsOfXCardsOfExpansion!.values.first
+              .whenDeckConsistsOfXCardTypesOfExpansion!.values.first
               .contains(selectedCard.cardTypes);
           expansionCardCount++;
         }
       }
       if (expansionCardCount >=
           whenDeckConsistsOfXCardsCard
-              .whenDeckConsistsOfXCardsOfExpansion!.keys.first) {
+              .whenDeckConsistsOfXCardTypesOfExpansion!.keys.first) {
         selectedCards.add(whenDeckConsistsOfXCardsCard);
       }
     }

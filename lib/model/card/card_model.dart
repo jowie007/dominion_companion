@@ -11,7 +11,7 @@ class CardModel {
   late String id;
   late String name;
   late bool always;
-  late Map<int, List<List<CardTypeEnum>>>? whenDeckConsistsOfXCardsOfExpansion;
+  late Map<int, List<List<CardTypeEnum>>>? whenDeckConsistsOfXCardTypesOfExpansion;
   late String setId;
   late String parentId;
   late List<String> relatedCardIds;
@@ -27,10 +27,10 @@ class CardModel {
     id = json['id'];
     name = json['name'];
     always = json['always'] ?? false;
-    whenDeckConsistsOfXCardsOfExpansion =
-        json['whenDeckConsistsOfXCardsOfExpansion'] != null
-            ? whenDeckConsistsOfXCardsOfExpansionFromJSON(
-                json['whenDeckConsistsOfXCardsOfExpansion'])
+    whenDeckConsistsOfXCardTypesOfExpansion =
+        json['whenDeckConsistsOfXCardTypesOfExpansion'] != null
+            ? whenDeckConsistsOfXCardTypesOfExpansionFromJSON(
+                json['whenDeckConsistsOfXCardTypesOfExpansion'])
             : null;
     setId = json['setId'] ?? '';
     parentId = json['parentId'] ?? '';
@@ -50,8 +50,8 @@ class CardModel {
     id = dbModel.id;
     name = dbModel.name;
     always = dbModel.always;
-    whenDeckConsistsOfXCardsOfExpansion =
-        dbModel.whenDeckConsistsOfXCardsOfExpansion;
+    whenDeckConsistsOfXCardTypesOfExpansion =
+        dbModel.whenDeckConsistsOfXCardTypesOfExpansion;
     setId = dbModel.setId;
     parentId = dbModel.parentId;
     relatedCardIds = dbModel.relatedCardIds;
@@ -82,7 +82,7 @@ class CardModel {
   }
 
   static Map<int, List<List<CardTypeEnum>>>
-      whenDeckConsistsOfXCardsOfExpansionFromJSON(dynamic json) {
+      whenDeckConsistsOfXCardTypesOfExpansionFromJSON(dynamic json) {
     // Müsste erledigt sein
     // TODO Type ist bei
     // Holen aus JSON -> _InternalLinkedHashMap<String, dynamic>

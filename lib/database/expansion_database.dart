@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -13,7 +14,7 @@ class ExpansionDatabase {
         join(await getDatabasesPath(), "expansion.db"),
         version: 1, onCreate: (Database db, int version) async {
       await db.execute(
-        "CREATE TABLE expansion(id STRING PRIMARY KEY, name STRING, version STRING, cardIds STRING)",
+        "CREATE TABLE expansion(id STRING PRIMARY KEY, name STRING, version STRING, cardIds STRING, contentIds STRING)",
       );
     });
     return _database;

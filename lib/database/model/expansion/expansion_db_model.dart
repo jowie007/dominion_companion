@@ -5,6 +5,7 @@ class ExpansionDBModel {
   late String name;
   late String version;
   late List<String> cardIds;
+  late List<String> contentIds;
 
   ExpansionDBModel(this.id, this.name, this.version, this.cardIds);
 
@@ -13,6 +14,7 @@ class ExpansionDBModel {
     name = dbData['name'].toString();
     version = dbData['version'].toString();
     cardIds = dbData['cardIds'].split(',');
+    contentIds = dbData['contentIds'].split(',');
   }
 
   ExpansionDBModel.fromModel(ExpansionModel model) {
@@ -20,6 +22,7 @@ class ExpansionDBModel {
     name = model.name;
     version = model.version;
     cardIds = model.cards.map((data) => data.id).toList();
+    contentIds = model.content.map((data) => data.id).toList();
   }
 
   Map<String, dynamic> toJson() => {
@@ -27,5 +30,6 @@ class ExpansionDBModel {
         'name': name,
         'version': version,
         'cardIds': cardIds.join(","),
+        'contentIds': contentIds.join(","),
       };
 }

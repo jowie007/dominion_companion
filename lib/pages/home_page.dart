@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:dominion_comanion/components/menu_button.dart';
 import 'package:dominion_comanion/services/card_service.dart';
+import 'package:dominion_comanion/services/content_service.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:dominion_comanion/services/expansion_service.dart';
 import 'package:dominion_comanion/services/music_service.dart';
@@ -23,9 +24,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     /* TODO Auslagern in main.dart und anpassen, dass nur neu intialisiert wird, wenn sich die DB Version geändert hat*/
-    ExpansionService().deleteExpansionTable().then((value) => CardService()
-        .deleteCardTable()
-        .then((value) => ExpansionService().loadJsonExpansionsIntoDB()));
+    ExpansionService()
+        .deleteExpansionTable()
+        .then((value) => CardService().deleteCardTable())
+        .then((value) => ContentService().deleteContentTable())
+        .then((value) => ExpansionService().loadJsonExpansionsIntoDB());
 
     final boxartList = [
       "adventures.webp",
