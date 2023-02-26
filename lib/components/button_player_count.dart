@@ -15,7 +15,7 @@ class _ButtonPlayerCountState extends State<ButtonPlayerCount> {
   @override
   Widget build(BuildContext context) {
     return ButtonPlusMinus(
-      text: "${playerService.players} Spielende",
+      text: "${playerService.players} Players",
       onMinus: () => setState(() {
         playerService.subtractPlayer();
       }),

@@ -4,7 +4,7 @@
   "version": "V2",
   "cards": [
     {
-      "id": "basisspiel_v2-kapelle",
+      "id": "basisspiel_v2-card-kapelle",
       "name": "Kapelle",
       "cardTypes": "aktion",
       "cardCost": {
@@ -12,7 +12,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-keller",
+      "id": "basisspiel_v2-card-keller",
       "name": "Keller",
       "cardTypes": "aktion",
       "cardCost": {
@@ -20,7 +20,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-dorf",
+      "id": "basisspiel_v2-card-dorf",
       "name": "Dorf",
       "cardTypes": "aktion",
       "cardCost": {
@@ -28,7 +28,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-händlerin",
+      "id": "basisspiel_v2-card-händlerin",
       "name": "Händlerin",
       "cardTypes": "aktion",
       "cardCost": {
@@ -36,7 +36,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-vasall",
+      "id": "basisspiel_v2-card-vasall",
       "name": "Vasall",
       "cardTypes": "aktion",
       "cardCost": {
@@ -44,7 +44,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-werkstatt",
+      "id": "basisspiel_v2-card-werkstatt",
       "name": "Werkstatt",
       "cardTypes": "aktion",
       "cardCost": {
@@ -52,7 +52,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-geldverleiher",
+      "id": "basisspiel_v2-card-geldverleiher",
       "name": "Geldverleiher",
       "cardTypes": "aktion",
       "cardCost": {
@@ -60,7 +60,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-schmiede",
+      "id": "basisspiel_v2-card-schmiede",
       "name": "Schmiede",
       "cardTypes": "aktion",
       "cardCost": {
@@ -68,7 +68,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-thronsaal",
+      "id": "basisspiel_v2-card-thronsaal",
       "name": "Thronsaal",
       "cardTypes": "aktion",
       "cardCost": {
@@ -76,7 +76,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-umbau",
+      "id": "basisspiel_v2-card-umbau",
       "name": "Umbau",
       "cardTypes": "aktion",
       "cardCost": {
@@ -84,7 +84,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-wilddiebin",
+      "id": "basisspiel_v2-card-wilddiebin",
       "name": "Wilddiebin",
       "cardTypes": "aktion",
       "cardCost": {
@@ -92,7 +92,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-bibliothek",
+      "id": "basisspiel_v2-card-bibliothek",
       "name": "Bibliothek",
       "cardTypes": "aktion",
       "cardCost": {
@@ -100,7 +100,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-jahrmarkt",
+      "id": "basisspiel_v2-card-jahrmarkt",
       "name": "Jahrmarkt",
       "cardTypes": "aktion",
       "cardCost": {
@@ -108,7 +108,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-laboratorium",
+      "id": "basisspiel_v2-card-laboratorium",
       "name": "Laboratorium",
       "cardTypes": "aktion",
       "cardCost": {
@@ -116,7 +116,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-markt",
+      "id": "basisspiel_v2-card-markt",
       "name": "Markt",
       "cardTypes": "aktion",
       "cardCost": {
@@ -124,7 +124,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-mine",
+      "id": "basisspiel_v2-card-mine",
       "name": "Mine",
       "cardTypes": "aktion",
       "cardCost": {
@@ -132,7 +132,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-ratsversammlung",
+      "id": "basisspiel_v2-card-ratsversammlung",
       "name": "Ratsversammlung",
       "cardTypes": "aktion",
       "cardCost": {
@@ -140,7 +140,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-torwächterin",
+      "id": "basisspiel_v2-card-torwächterin",
       "name": "Torwächterin",
       "cardTypes": "aktion",
       "cardCost": {
@@ -148,7 +148,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-töpferei",
+      "id": "basisspiel_v2-card-töpferei",
       "name": "Töpferei",
       "cardTypes": "aktion",
       "cardCost": {
@@ -156,7 +156,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-bürokrat",
+      "id": "basisspiel_v2-card-bürokrat",
       "name": "Bürokrat",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -164,7 +164,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-miliz",
+      "id": "basisspiel_v2-card-miliz",
       "name": "Miliz",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -172,7 +172,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-banditin",
+      "id": "basisspiel_v2-card-banditin",
       "name": "Banditin",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -180,7 +180,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-Hexe",
+      "id": "basisspiel_v2-card-Hexe",
       "name": "Hexe",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -188,7 +188,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-burggraben",
+      "id": "basisspiel_v2-card-burggraben",
       "name": "Burggraben",
       "cardTypes": "aktion, reaktion",
       "cardCost": {
@@ -196,7 +196,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-gärten",
+      "id": "basisspiel_v2-card-gärten",
       "name": "Gärten",
       "cardTypes": "punkte",
       "cardCost": {
@@ -204,7 +204,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-kupfer",
+      "id": "basisspiel_v2-card-kupfer",
       "name": "Kupfer",
       "always": true,
       "invisible": true,
@@ -215,7 +215,7 @@
       "count": "0,60,60,60,120,120"
     },
     {
-      "id": "basisspiel_v2-silber",
+      "id": "basisspiel_v2-card-silber",
       "name": "Silber",
       "always": true,
       "invisible": true,
@@ -226,7 +226,7 @@
       "count": "0,40,40,40,80,80"
     },
     {
-      "id": "basisspiel_v2-gold",
+      "id": "basisspiel_v2-card-gold",
       "name": "Gold",
       "always": true,
       "invisible": true,
@@ -237,7 +237,7 @@
       "count": "0,30,30,30,60,60"
     },
     {
-      "id": "basisspiel_v2-anwesen",
+      "id": "basisspiel_v2-card-anwesen",
       "name": "Anwesen",
       "always": true,
       "invisible": true,
@@ -248,7 +248,7 @@
       "count": "0,8,12,12,12,12"
     },
     {
-      "id": "basisspiel_v2-herzogtum",
+      "id": "basisspiel_v2-card-herzogtum",
       "name": "Herzogtum",
       "always": true,
       "invisible": true,
@@ -259,7 +259,7 @@
       "count": "0,8,12,12,12,12"
     },
     {
-      "id": "basisspiel_v2-provinz",
+      "id": "basisspiel_v2-card-provinz",
       "name": "Provinz",
       "always": true,
       "invisible": true,
@@ -270,7 +270,7 @@
       "count": "0,8,12,12,15,18"
     },
     {
-      "id": "basisspiel_v2-fluch",
+      "id": "basisspiel_v2-card-fluch",
       "name": "Fluch",
       "always": true,
       "invisible": true,
@@ -282,17 +282,19 @@
     }
   ],
   "hand": {
+    "id": "basisspiel_v2-hand",
     "always": true,
     "cards": {
-      "basisspiel_v2-kupfer": 7,
-      "basisspiel_v2-anwesen": 3
+      "basisspiel_v2-card-kupfer": 7,
+      "basisspiel_v2-card-anwesen": 3
     }
   },
   "end": {
+    "id": "basisspiel_v2-end",
     "always": true,
     "conditions": {
       "emptyCards": [
-        "basisspiel_v2-provinz"
+        "basisspiel_v2-card-provinz"
       ],
       "emptyCount": 3
     }
