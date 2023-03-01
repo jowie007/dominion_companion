@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class NameDeckDialog extends StatelessWidget {
   const NameDeckDialog({super.key, required this.onSaved});
@@ -27,6 +28,9 @@ class NameDeckDialog extends StatelessWidget {
                   border: OutlineInputBorder(),
                   hintText: 'Name des Decks',
                 ),
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z -_!?&]")),
+                ],
               ),
             ),
             Row(

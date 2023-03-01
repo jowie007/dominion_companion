@@ -90,9 +90,7 @@ class _DeckState extends State<DeckPage> {
                                             for (var deck in snapshot.data!)
                                               DeckExpandableLoader(
                                                 futureDeckModel: _deckService
-                                                    .deckFromNameAndCardIds(
-                                                        deck.name,
-                                                        deck.cardIds),
+                                                    .deckFromDBModel(deck),
                                                 onLongPress: () =>
                                                     showDialog<String>(
                                                   context: context,
@@ -126,7 +124,8 @@ class _DeckState extends State<DeckPage> {
                   ),
                 ),
               ),
-              const Positioned(bottom: 22, left: 22, child: ButtonPlayerCount()),
+              const Positioned(
+                  bottom: 22, left: 22, child: ButtonPlayerCount()),
             ],
           ),
           floatingActionButton: ValueListenableBuilder(

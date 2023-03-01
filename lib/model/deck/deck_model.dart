@@ -1,10 +1,16 @@
 import 'dart:developer';
 
 import 'package:dominion_comanion/model/card/card_model.dart';
+import 'package:dominion_comanion/model/content/content_model.dart';
+import 'package:dominion_comanion/model/end/end_model.dart';
+import 'package:dominion_comanion/model/hand/hand_model.dart';
 
 class DeckModel {
   late String name;
   late List<CardModel> cards;
+  late ContentModel? content;
+  late HandModel hand;
+  late EndModel end;
   final sortTypeOrder = [
     ["aktion", "aktion-angriff", "aktion-reaktion"],
     ["punkte"],
@@ -12,12 +18,7 @@ class DeckModel {
     ["fluch"]
   ];
 
-  DeckModel(this.name, this.cards);
-
-  DeckModel.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    cards = json['cardIds'].split(',');
-  }
+  DeckModel(this.name, this.cards, this.content, this.hand, this.end);
 
   void sortCards() {
     cards.sort((a, b) => sortCardComparison(a, b));
@@ -42,7 +43,8 @@ class DeckModel {
           }
           return compareStringNumbers(card1.cardCost.debt, card2.cardCost.debt);
         }
-        return compareStringNumbers(card1.cardCost.potion, card2.cardCost.potion);
+        return compareStringNumbers(
+            card1.cardCost.potion, card2.cardCost.potion);
       }
       return compareStringNumbers(card1.cardCost.coin, card2.cardCost.coin);
     }

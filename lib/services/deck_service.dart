@@ -1,8 +1,14 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/database/deck_database.dart';
+import 'package:dominion_comanion/database/model/content/content_db_model.dart';
 import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
+import 'package:dominion_comanion/model/content/content_model.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
+import 'package:dominion_comanion/model/end/end_model.dart';
+import 'package:dominion_comanion/model/hand/hand_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class DeckService {
@@ -38,18 +44,23 @@ class DeckService {
     return _deckDatabase.deleteDeckByName(name);
   }
 
-  DeckModel deckFromNameAndCards(String name, List<CardModel> cards) {
-    return DeckModel(name, cards);
+  DeckModel deckFromNameAndAdditional(String name, List<CardModel> cards,
+      ContentModel? content, HandModel hand, EndModel end) {
+    return DeckModel(name, cards, content, hand, end);
   }
 
-  Future<DeckModel> deckFromNameAndCardIds(
-      String name, List<String> cardIds) async {
+  Future<DeckModel> deckFromDBModel(DeckDBModel deckDBModel) async {
     return DeckModel(
-        name,
-        await Future.wait(cardIds
+        deckDBModel.name,
+        await Future.wait(deckDBModel.cardIds
             .toList()
             .map((cardId) async =>
                 CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
-            .toList()));
+            .toList()),
+        deckDBModel.content != null
+            ? ContentModel.fromDBModel(deckDBModel.content!)
+            : null,
+        HandModel.fromDBModel(deckDBModel.hand),
+        EndModel.fromDBModel(deckDBModel.end));
   }
 }
