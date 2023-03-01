@@ -292,11 +292,7 @@
   "end": {
     "id": "basisspiel_v2-end",
     "always": true,
-    "conditions": {
-      "emptyCards": [
-        "basisspiel_v2-card-provinz"
-      ],
-      "emptyCount": 3
-    }
+    "emptyCards": ["basisspiel_v2-card-provinz"],
+    "emptyCount": 3
   }
 }

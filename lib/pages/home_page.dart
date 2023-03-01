@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     /* TODO Auslagern in main.dart und anpassen, dass nur neu intialisiert wird, wenn sich die DB Version geändert hat*/
+    ExpansionService().loadJsonExpansionsIntoDB();
     /*ExpansionService()
         .deleteExpansionTable()
         .then((value) => CardService().deleteCardTable())

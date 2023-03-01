@@ -3,23 +3,33 @@ import 'dart:developer';
 import 'package:dominion_comanion/database/expansion_database.dart';
 import 'package:dominion_comanion/database/model/card/card_db_model.dart';
 import 'package:dominion_comanion/database/model/content/content_db_model.dart';
+import 'package:dominion_comanion/database/model/end/end_db_model.dart';
 import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
+import 'package:dominion_comanion/database/model/hand/hand_db_model.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/model/content/content_model.dart';
+import 'package:dominion_comanion/model/end/end_model.dart';
 import 'package:dominion_comanion/model/expansion/expansion_model.dart';
+import 'package:dominion_comanion/model/hand/hand_model.dart';
 import 'package:dominion_comanion/services/card_service.dart';
 import 'package:dominion_comanion/services/content_service.dart';
+import 'package:dominion_comanion/services/end_service.dart';
+import 'package:dominion_comanion/services/hand_service.dart';
 import 'package:dominion_comanion/services/json_service.dart';
 
 class ExpansionService {
   late ExpansionDatabase _expansionDatabase;
   late CardService _cardService;
   late ContentService _contentService;
+  late HandService _handService;
+  late EndService _endService;
 
   ExpansionService() {
     _expansionDatabase = ExpansionDatabase();
     _cardService = CardService();
     _contentService = ContentService();
+    _handService = HandService();
+    _endService = EndService();
   }
 
   Future<int> deleteExpansionTable() {
@@ -35,6 +45,8 @@ class ExpansionService {
     for (var element in expansionModel.content) {
       _contentService.insertContentIntoDB(ContentDBModel.fromModel(element));
     }
+    _handService.insertHandIntoDB(HandDBModel.fromModel(expansionModel.hand));
+    _endService.insertEndIntoDB(EndDBModel.fromModel(expansionModel.end));
   }
 
   Future<void> loadJsonExpansionsIntoDB() async {
@@ -47,15 +59,20 @@ class ExpansionService {
   }
 
   Future<List<ExpansionModel>> loadAllExpansions() async {
-    return Future.wait((await getExpansionFromDB()).map((expansion) async =>
-        ExpansionModel.fromDBModelAndCardsAndContent(
-            expansion,
-            (await _cardService.getCardsByExpansionFromDB(expansion))
-                .map((card) => CardModel.fromDBModel(card))
-                .toList(),
-            (await _contentService.getContentByExpansionFromDB(expansion))
-                .map((content) => ContentModel.fromDBModel(content))
-                .toList())));
+    return Future.wait((await getExpansionFromDB())
+        .map((expansion) async => ExpansionModel.fromDBModelAndAdditional(
+              expansion,
+              (await _cardService.getCardsByExpansionFromDB(expansion))
+                  .map((card) => CardModel.fromDBModel(card))
+                  .toList(),
+              (await _contentService.getContentByExpansionFromDB(expansion))
+                  .map((content) => ContentModel.fromDBModel(content))
+                  .toList(),
+              (HandModel.fromDBModel(
+                  await _handService.getHandByExpansionFromDB(expansion))),
+              (EndModel.fromDBModel(
+                  await _endService.getEndByExpansionFromDB(expansion))),
+            )));
   }
 
   Future<List<ExpansionDBModel>> getExpansionFromDB() {

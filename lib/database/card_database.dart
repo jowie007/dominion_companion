@@ -14,7 +14,7 @@ class CardDatabase {
       await db.execute(
         "CREATE TABLE card("
         "id STRING PRIMARY KEY, "
-        "always TRUE, "
+        "always BOOL, "
         "whenDeckConsistsOfXCardTypesOfExpansion STRING, "
         "name STRING, "
         "setId STRING, "

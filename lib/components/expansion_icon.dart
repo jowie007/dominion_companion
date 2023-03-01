@@ -19,10 +19,9 @@ class _ExpansionIconState extends State<ExpansionIcon> {
         width: 28,
         height: 28,
         decoration: BoxDecoration(
-          shape: BoxShape.circle,
           image: DecorationImage(
             image: AssetImage("assets/artwork/icon/${widget.icon}.png"),
-            fit: BoxFit.cover,
+            fit: BoxFit.scaleDown,
           ),
         ),
       ),

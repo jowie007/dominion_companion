@@ -14,7 +14,7 @@ class ExpansionDatabase {
         join(await getDatabasesPath(), "expansion.db"),
         version: 1, onCreate: (Database db, int version) async {
       await db.execute(
-        "CREATE TABLE expansion(id STRING PRIMARY KEY, name STRING, version STRING, cardIds STRING, contentIds STRING)",
+        "CREATE TABLE expansion(id STRING PRIMARY KEY, name STRING, version STRING, cardIds STRING, contentIds STRING, handId STRING, endId STRING)",
       );
     });
     return _database;

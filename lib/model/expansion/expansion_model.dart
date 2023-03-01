@@ -1,6 +1,8 @@
 import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/model/content/content_model.dart';
+import 'package:dominion_comanion/model/end/end_model.dart';
+import 'package:dominion_comanion/model/hand/hand_model.dart';
 
 class ExpansionModel {
   late String id;
@@ -8,6 +10,8 @@ class ExpansionModel {
   late String version;
   late List<CardModel> cards;
   late List<ContentModel> content;
+  late HandModel hand;
+  late EndModel end;
 
   ExpansionModel.fromJson(Map<String, dynamic> json) {
     id = json['id'].toString();
@@ -21,6 +25,8 @@ class ExpansionModel {
             .map((data) => ContentModel.fromJson(data))
             .toList()
         : [];
+    hand = HandModel.fromJson(json['hand']);
+    end = EndModel.fromJson(json['end']);
   }
 
   ExpansionModel.fromDBModelAndCards(ExpansionDBModel dbModel, this.cards) {
@@ -29,8 +35,8 @@ class ExpansionModel {
     version = dbModel.version;
   }
 
-  ExpansionModel.fromDBModelAndCardsAndContent(
-      ExpansionDBModel dbModel, this.cards, this.content) {
+  ExpansionModel.fromDBModelAndAdditional(
+      ExpansionDBModel dbModel, this.cards, this.content, this.hand, this.end) {
     id = dbModel.id;
     name = dbModel.name;
     version = dbModel.version;
