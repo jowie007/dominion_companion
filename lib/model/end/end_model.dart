@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dominion_comanion/database/model/end/end_db_model.dart';
+import 'package:dominion_comanion/model/card/card_model.dart';
 
 class EndModel {
   late String id;

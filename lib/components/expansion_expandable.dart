@@ -86,7 +86,7 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                           itemCount: widget.expansion.cards.length,
                           itemBuilder: (BuildContext context, int index) {
                             return !widget.expansion.cards[index].invisible
-                                ? CardInfoTile(
+                                ?  CardInfoTile(
                                     onChanged: (bool? newValue) => setState(() {
                                       selectedCardService
                                           .toggleSelectedCardIdDB(

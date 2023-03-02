@@ -59,7 +59,7 @@ class ExpansionService {
   }
 
   Future<List<ExpansionModel>> loadAllExpansions() async {
-    return Future.wait((await getExpansionFromDB())
+    return Future.wait((await getExpansionsFromDB())
         .map((expansion) async => ExpansionModel.fromDBModelAndAdditional(
               expansion,
               (await _cardService.getCardsByExpansionFromDB(expansion))
@@ -75,7 +75,7 @@ class ExpansionService {
             )));
   }
 
-  Future<List<ExpansionDBModel>> getExpansionFromDB() {
+  Future<List<ExpansionDBModel>> getExpansionsFromDB() {
     return _expansionDatabase.getExpansionList();
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dominion_comanion/components/card_info_tile.dart';
+import 'package:dominion_comanion/components/deck_additional_info_tile.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:flutter/material.dart';
 
@@ -85,14 +86,17 @@ class _DeckExpandableState extends State<DeckExpandable> {
                           // padding: const EdgeInsets.all(8),
                           physics: const ClampingScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: allCards.length,
+                          itemCount: allCards.length + 1,
                           itemBuilder: (BuildContext context, int index) {
-                            return CardInfoTile(
-                              onChanged: (bool? newValue) => (newValue),
-                              card: allCards[index],
-                              value: true,
-                              hasCheckbox: false,
-                            );
+                            return index < allCards.length
+                                ? CardInfoTile(
+                                    onChanged: (bool? newValue) => (newValue),
+                                    card: allCards[index],
+                                    value: true,
+                                    hasCheckbox: false,
+                                  )
+                                : DeckAdditionalInfoTile(
+                                    deckModel: widget.deckModel);
                           })
                     ],
                   ),

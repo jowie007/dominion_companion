@@ -64,13 +64,15 @@ class DeckService {
 
   Future<DeckModel> deckFromDBModel(DeckDBModel deckDBModel) async {
     var cardIds = deckDBModel.cardIds;
+    var activeExpansionIds = getActiveExpansionIdsByCardIds(cardIds);
     return DeckModel(
       deckDBModel.name,
       await getCardsByCardIds(cardIds),
       await getAdditionalCardsByCardIds(cardIds),
-      await getContentByCardIds(cardIds),
-      await getHandByCardIds(cardIds),
-      await getEndByCardIds(cardIds),
+      await getContentByCardIdsAndActiveExpansionIds(
+          cardIds, activeExpansionIds),
+      await getHandByCardIdsAndActiveExpansionIds(cardIds, activeExpansionIds),
+      await getEndByCardIdsAndActiveExpansionIds(cardIds, activeExpansionIds),
     );
   }
 
@@ -130,21 +132,24 @@ class DeckService {
     return activeExpansionIds;
   }
 
-  Future<ContentModel?> getContentByCardIds(List<String> cardIds) async {
+  Future<ContentModel?> getContentByCardIdsAndActiveExpansionIds(
+      List<String> cardIds, List<String> activeExpansionIds) async {
     var alwaysDBContent = await _contentService.getAlwaysContents();
     List<ContentModel> alwaysContent = await Future.wait((alwaysDBContent)
         .map((content) async => ContentModel.fromDBModel(content)));
     return alwaysContent.isNotEmpty ? alwaysContent.first : null;
   }
 
-  Future<HandModel> getHandByCardIds(List<String> cardIds) async {
+  Future<HandModel> getHandByCardIdsAndActiveExpansionIds(
+      List<String> cardIds, List<String> activeExpansionIds) async {
     List<HandModel> alwaysHand = await Future.wait(
         (await _handService.getAlwaysHands())
             .map((hand) async => HandModel.fromDBModel(hand)));
     return alwaysHand.first;
   }
 
-  Future<EndModel> getEndByCardIds(List<String> cardIds) async {
+  Future<EndModel> getEndByCardIdsAndActiveExpansionIds(
+      List<String> cardIds, List<String> activeExpansionIds) async {
     List<EndModel> alwaysEnd = await Future.wait(
         (await _endService.getAlwaysEnds())
             .map((end) async => EndModel.fromDBModel(end)));
