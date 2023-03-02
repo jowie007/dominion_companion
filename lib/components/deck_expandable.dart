@@ -19,6 +19,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
   // https://stackoverflow.com/questions/53908025/flutter-sortable-drag-and-drop-listview
   @override
   Widget build(BuildContext context) {
+    var allCards = widget.deckModel.getAllCards();
     return Stack(
       children: [
         Padding(
@@ -43,7 +44,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                     collapsedIconColor: Colors.white,
                     title: GestureDetector(
                       onLongPress: () {
-                        if(widget.onLongPress != null) {
+                        if (widget.onLongPress != null) {
                           widget.onLongPress!();
                         }
                       },
@@ -84,11 +85,11 @@ class _DeckExpandableState extends State<DeckExpandable> {
                           // padding: const EdgeInsets.all(8),
                           physics: const ClampingScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: widget.deckModel.cards.length,
+                          itemCount: allCards.length,
                           itemBuilder: (BuildContext context, int index) {
                             return CardInfoTile(
                               onChanged: (bool? newValue) => (newValue),
-                              card: widget.deckModel.cards[index],
+                              card: allCards[index],
                               value: true,
                               hasCheckbox: false,
                             );

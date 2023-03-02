@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/button_player_count.dart';
 import 'package:dominion_comanion/components/deck_expandable_loader.dart';
@@ -45,8 +47,7 @@ class _DeckInfoState extends State<DeckInfoPage> {
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
               child: DeckExpandableLoader(
                 futureDeckModel: _temporaryDeckService.temporaryDeck,
-                onLoaded: (deckModel) =>
-                    {deckModel.sortCards(), temporaryDeck = deckModel},
+                onLoaded: (deckModel) => temporaryDeck = deckModel,
               ),
             ),
           ),
@@ -63,6 +64,7 @@ class _DeckInfoState extends State<DeckInfoPage> {
                   onSaved: (deckName) => setState(
                     () {
                       temporaryDeck.name = deckName;
+                      for (var element in temporaryDeck.cards) {log("CARDO " + element.name);}
                       _deckService.saveDeck(temporaryDeck);
                       _temporaryDeckService.saved = true;
                     },

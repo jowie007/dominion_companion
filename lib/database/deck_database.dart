@@ -12,7 +12,7 @@ class DeckDatabase {
     _database = await openDatabase(join(await getDatabasesPath(), "deck.db"),
         version: 1, onCreate: (Database db, int version) async {
       await db.execute(
-        "CREATE TABLE deck(name STRING PRIMARY KEY, cardIds STRING, content STRING, hand STRING, end STRING)",
+        "CREATE TABLE deck(name STRING PRIMARY KEY, cardIds STRING)",
       );
     });
     return _database;

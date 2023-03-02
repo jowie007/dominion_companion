@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/components/deck_expandable.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +45,6 @@ class DeckExpandableLoader extends StatelessWidget {
             if (snapshot.data != null && onLoaded != null) {
               onLoaded!(snapshot.data!);
             }
-            snapshot.data!.sortCards();
             return snapshot.data != null
                 ? DeckExpandable(
                     deckModel: snapshot.data!,

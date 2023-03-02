@@ -9,11 +9,19 @@ import 'package:dominion_comanion/model/content/content_model.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:dominion_comanion/model/end/end_model.dart';
 import 'package:dominion_comanion/model/hand/hand_model.dart';
+import 'package:dominion_comanion/services/card_service.dart';
+import 'package:dominion_comanion/services/content_service.dart';
+import 'package:dominion_comanion/services/end_service.dart';
+import 'package:dominion_comanion/services/hand_service.dart';
 import 'package:flutter/cupertino.dart';
 
 class DeckService {
   final DeckDatabase _deckDatabase = DeckDatabase();
   final CardDatabase _cardDatabase = CardDatabase();
+  final CardService _cardService = CardService();
+  final ContentService _contentService = ContentService();
+  final HandService _handService = HandService();
+  final EndService _endService = EndService();
   late ValueNotifier<bool> changeNotify;
 
   static final DeckService _deckService = DeckService._internal();
@@ -44,23 +52,102 @@ class DeckService {
     return _deckDatabase.deleteDeckByName(name);
   }
 
-  DeckModel deckFromNameAndAdditional(String name, List<CardModel> cards,
-      ContentModel? content, HandModel hand, EndModel end) {
-    return DeckModel(name, cards, content, hand, end);
+  DeckModel deckFromNameAndAdditional(
+      String name,
+      List<CardModel> cards,
+      List<CardModel> additionalCards,
+      ContentModel? content,
+      HandModel hand,
+      EndModel end) {
+    return DeckModel(name, cards, additionalCards, content, hand, end);
   }
 
   Future<DeckModel> deckFromDBModel(DeckDBModel deckDBModel) async {
+    var cardIds = deckDBModel.cardIds;
     return DeckModel(
-        deckDBModel.name,
-        await Future.wait(deckDBModel.cardIds
-            .toList()
-            .map((cardId) async =>
-                CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
-            .toList()),
-        deckDBModel.content != null
-            ? ContentModel.fromDBModel(deckDBModel.content!)
-            : null,
-        HandModel.fromDBModel(deckDBModel.hand),
-        EndModel.fromDBModel(deckDBModel.end));
+      deckDBModel.name,
+      await getCardsByCardIds(cardIds),
+      await getAdditionalCardsByCardIds(cardIds),
+      await getContentByCardIds(cardIds),
+      await getHandByCardIds(cardIds),
+      await getEndByCardIds(cardIds),
+    );
+  }
+
+  Future<List<CardModel>> getCardsByCardIds(List<String> cardIds) {
+    return Future.wait(cardIds
+        .toList()
+        .map((cardId) async =>
+            CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
+        .toList());
+  }
+
+  Future<List<CardModel>> getAdditionalCardsByCardIds(
+      List<String> cardIds) async {
+    var selectedCards = await Future.wait(cardIds
+        .toList()
+        .map((cardId) async =>
+            CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
+        .toList());
+    List<CardModel> additionalCards = [];
+
+    List<CardModel> alwaysCards = await Future.wait(
+        (await _cardService.getAlwaysCards())
+            .map((card) async => CardModel.fromDBModel(card)));
+    List<CardModel> whenDeckConsistsOfXCardsCards = await Future.wait(
+        (await _cardService.getWhenDeckConsistsOfXCardTypesOfExpansionCards())
+            .map((card) async => CardModel.fromDBModel(card)));
+
+    for (var whenDeckConsistsOfXCardsCard in whenDeckConsistsOfXCardsCards) {
+      var expansionCardCount = 0;
+      for (var selectedCard in selectedCards) {
+        if (whenDeckConsistsOfXCardsCard.getCardExpansion() ==
+            selectedCard.getCardExpansion()) {
+          whenDeckConsistsOfXCardsCard
+              .whenDeckConsistsOfXCardTypesOfExpansion!.values.first
+              .contains(selectedCard.cardTypes);
+          expansionCardCount++;
+        }
+      }
+      if (expansionCardCount >=
+          whenDeckConsistsOfXCardsCard
+              .whenDeckConsistsOfXCardTypesOfExpansion!.keys.first) {
+        additionalCards.add(whenDeckConsistsOfXCardsCard);
+      }
+    }
+    additionalCards.addAll(alwaysCards);
+    return additionalCards;
+  }
+
+  List<String> getActiveExpansionIdsByCardIds(List<String> cardIds) {
+    List<String> activeExpansionIds = [];
+    for (var cardId in cardIds) {
+      var expansion = cardId.split("-")[0];
+      if (!activeExpansionIds.contains(expansion)) {
+        activeExpansionIds.add(expansion);
+      }
+    }
+    return activeExpansionIds;
+  }
+
+  Future<ContentModel?> getContentByCardIds(List<String> cardIds) async {
+    var alwaysDBContent = await _contentService.getAlwaysContents();
+    List<ContentModel> alwaysContent = await Future.wait((alwaysDBContent)
+        .map((content) async => ContentModel.fromDBModel(content)));
+    return alwaysContent.isNotEmpty ? alwaysContent.first : null;
+  }
+
+  Future<HandModel> getHandByCardIds(List<String> cardIds) async {
+    List<HandModel> alwaysHand = await Future.wait(
+        (await _handService.getAlwaysHands())
+            .map((hand) async => HandModel.fromDBModel(hand)));
+    return alwaysHand.first;
+  }
+
+  Future<EndModel> getEndByCardIds(List<String> cardIds) async {
+    List<EndModel> alwaysEnd = await Future.wait(
+        (await _endService.getAlwaysEnds())
+            .map((end) async => EndModel.fromDBModel(end)));
+    return alwaysEnd.first;
   }
 }

@@ -116,7 +116,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
         tooltip: "Deck erzeugen",
         onPressed: () async => {
           _temporaryDeckService.saved = false,
-          _temporaryDeckService.createTemporaryDeck(
+          _temporaryDeckService.createTemporaryDBDeck(
               "", _selectedCardService.selectedCardIds),
           Navigator.pushNamed(
             context,
