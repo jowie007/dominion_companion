@@ -1,9 +1,6 @@
-import 'package:dominion_comanion/components/coin_component.dart';
-import 'package:dominion_comanion/components/round_checkbox.dart';
-import 'package:dominion_comanion/components/expansion_icon.dart';
-import 'package:dominion_comanion/model/card/card_model.dart';
+import 'dart:developer';
+
 import 'package:dominion_comanion/model/deck/deck_model.dart';
-import 'package:dominion_comanion/services/card_service.dart';
 import 'package:dominion_comanion/services/player_service.dart';
 import 'package:flutter/material.dart';
 
@@ -20,38 +17,85 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
   @override
   Widget build(BuildContext context) {
     final PlayerService playerService = PlayerService();
-    final allEmptyCards = widget.deckModel.end.emptyCards;
+    log(widget.deckModel.end.emptyCards.toString());
 
     return Container(
       color: Colors.white.withOpacity(0.8),
       child: ListTile(
         title: Column(
           children: [
-            const Text("Extras:"),
             widget.deckModel.content != null
-                ? Text(widget.deckModel.content!.count.toString())
+                ? Column(
+                    children: [
+                      Row(
+                        children: const [
+                          Text(
+                            "Extras:",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      ),
+                      Text(widget.deckModel.content!.count.toString())
+                    ],
+                  )
                 : Container(),
-            const Text("Austeilen:"),
             widget.deckModel.hand.cardIdCountMap != null
-                ? Column(children: [
-                    for (var card
-                        in widget.deckModel.hand.cardIdCountMap!.entries)
-                      Row(children: [
-                        Text(card.key),
-                        Text(card.value.toString())
-                      ])
-                  ])
+                ? Column(
+                    children: [
+                      Row(
+                        children: const [
+                          Text(
+                            "Austeilen:",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          for (var card
+                              in widget.deckModel.hand.cardIdCountMap!.entries)
+                            Row(
+                              children: [
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Text(card.value.toString()),
+                                const Text("x "),
+                                Text(card.key),
+                              ],
+                            ),
+                        ],
+                      ),
+                    ],
+                  )
                 : Container(),
-            const Text("Ende:"),
-            Text(
-                "Wenn ${widget.deckModel.end.emptyCards} Stapel leer sind oder wenn einer der "
-                "${widget.deckModel.end.emptyCards}folgenden Stapel leer ist: "
-                "${widget.deckModel.end.emptyCards.join(", ")}"
-                "${widget.deckModel.end.additionalEmptyCards.join(", ")}"),
+            Row(
+              children: const [
+                Text(
+                  "Ende:",
+                  style: TextStyle(decoration: TextDecoration.underline),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                const SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                  child: Text(
+                      "Wenn ${widget.deckModel.end.emptyCards} Stapel leer sind oder wenn einer der "
+                      "${widget.deckModel.end.emptyCards}folgenden Stapel leer ist: "
+                      "${widget.deckModel.end.emptyCards.join(", ")}"
+                      "${widget.deckModel.end.additionalEmptyCards.join(", ")}"),
+                ),
+              ],
+            ),
           ],
         ),
-      ),
-      // subtitle: const Text('This is tile number 2'),
+      ), // subtitle: const Text('This is tile number 2'),
     );
   }
 }

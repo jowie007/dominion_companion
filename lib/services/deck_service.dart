@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/database/deck_database.dart';
-import 'package:dominion_comanion/database/model/content/content_db_model.dart';
 import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/model/content/content_model.dart';
@@ -38,8 +35,10 @@ class DeckService {
     changeNotify = ValueNotifier(false);
   }
 
-  Future<List<DeckDBModel>> getDeckList() {
-    return _deckDatabase.getDeckList();
+  Future<List<DeckModel>> getDeckList() async {
+    var deckList = await _deckDatabase.getDeckList();
+    return Future.wait(
+        deckList.map((deckDBModel) => deckFromDBModel(deckDBModel)));
   }
 
   Future<int> saveDeck(DeckModel deckModel) {

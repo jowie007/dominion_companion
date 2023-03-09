@@ -1,11 +1,8 @@
 import 'package:dominion_comanion/components/basic_appbar.dart';
-import 'package:dominion_comanion/components/basic_infobar_bottom.dart';
 import 'package:dominion_comanion/components/button_player_count.dart';
-import 'package:dominion_comanion/components/button_plus_minus.dart';
-import 'package:dominion_comanion/components/deck_expandable_loader.dart';
+import 'package:dominion_comanion/components/deck_expandable.dart';
 import 'package:dominion_comanion/components/delete_deck_dialog.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
-import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
 import 'package:flutter/material.dart';
@@ -77,7 +74,6 @@ class _DeckState extends State<DeckPage> {
                               ConnectionState.done) {
                             if (snapshot.hasError) {
                               throw Exception(snapshot.error);
-                              return Text(snapshot.error.toString());
                             } else if (snapshot.hasData) {
                               return snapshot.data != null &&
                                       snapshot.data!.isNotEmpty
@@ -108,17 +104,21 @@ class _DeckState extends State<DeckPage> {
                                                       key: Key(item.name),
                                                       background: Container(
                                                           color: Colors.red),
-                                                      secondaryBackground: Container(
-                                                          color: Colors.green),
+                                                      secondaryBackground:
+                                                          Container(
+                                                              color:
+                                                                  Colors.green),
                                                       direction:
                                                           DismissDirection
                                                               .horizontal,
                                                       onDismissed: (direction) {
                                                         setState(() {
-                                                          if(direction == DismissDirection.startToEnd) {
+                                                          if (direction ==
+                                                              DismissDirection
+                                                                  .startToEnd) {
                                                             _deckService
                                                                 .deleteDeckByName(
-                                                                item.name);
+                                                                    item.name);
                                                           }
                                                         });
                                                         // Then show a snackbar.
@@ -128,12 +128,8 @@ class _DeckState extends State<DeckPage> {
                                                             content: Text(
                                                                 '$item dismissed')));*/
                                                       },
-                                                      child:
-                                                          DeckExpandableLoader(
-                                                        futureDeckModel:
-                                                            _deckService
-                                                                .deckFromDBModel(
-                                                                    item),
+                                                      child: DeckExpandable(
+                                                        deckModel: item,
                                                         onLongPress: () =>
                                                             showDialog<String>(
                                                           context: context,

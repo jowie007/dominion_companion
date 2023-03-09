@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dominion_comanion/components/card_info_tile.dart';
 import 'package:dominion_comanion/components/deck_additional_info_tile.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
@@ -20,7 +18,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
   // https://stackoverflow.com/questions/53908025/flutter-sortable-drag-and-drop-listview
   @override
   Widget build(BuildContext context) {
-    var allCards = widget.deckModel.getAllCards();
+    final allCards = widget.deckModel.getAllCards();
     return ClipRRect(
       child: Stack(
         children: [
@@ -76,7 +74,6 @@ class _DeckExpandableState extends State<DeckExpandable> {
               ),
               children: <Widget>[
                 ListView.builder(
-                    // padding: const EdgeInsets.all(8),
                     physics: const ClampingScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: allCards.length + 1,
