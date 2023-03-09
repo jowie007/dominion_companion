@@ -108,14 +108,18 @@ class _DeckState extends State<DeckPage> {
                                                       key: Key(item.name),
                                                       background: Container(
                                                           color: Colors.red),
+                                                      secondaryBackground: Container(
+                                                          color: Colors.green),
                                                       direction:
                                                           DismissDirection
-                                                              .startToEnd,
+                                                              .horizontal,
                                                       onDismissed: (direction) {
                                                         setState(() {
-                                                          _deckService
-                                                              .deleteDeckByName(
-                                                                  item.name);
+                                                          if(direction == DismissDirection.startToEnd) {
+                                                            _deckService
+                                                                .deleteDeckByName(
+                                                                item.name);
+                                                          }
                                                         });
                                                         // Then show a snackbar.
                                                         /*ScaffoldMessenger.of(
