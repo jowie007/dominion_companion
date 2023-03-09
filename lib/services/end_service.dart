@@ -28,4 +28,9 @@ class EndService {
       ExpansionDBModel expansion) async {
     return await _endDatabase.getEndById(expansion.endId);
   }
+
+  Future<EndDBModel> getEndByExpansionIdFromDB(
+      String expansionId) async {
+    return await _endDatabase.getEndById(expansionId);
+  }
 }

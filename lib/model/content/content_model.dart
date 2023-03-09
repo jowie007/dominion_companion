@@ -1,4 +1,3 @@
-import 'package:dominion_comanion/database/model/card/card_db_model.dart';
 import 'package:dominion_comanion/database/model/content/content_db_model.dart';
 
 class ContentModel {

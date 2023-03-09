@@ -86,8 +86,8 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                 ),
                 Expanded(
                   child: Text(
-                      "Wenn ${widget.deckModel.end.emptyCards} Stapel leer sind oder wenn einer der "
-                      "${widget.deckModel.end.emptyCards}folgenden Stapel leer ist: "
+                      "Wenn ${widget.deckModel.end.emptyCount} Stapel leer sind oder wenn einer der "
+                      "folgenden Stapel leer ist: "
                       "${widget.deckModel.end.emptyCards.join(", ")}"
                       "${widget.deckModel.end.additionalEmptyCards.join(", ")}"),
                 ),

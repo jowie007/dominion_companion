@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/database/deck_database.dart';
 import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
@@ -152,6 +154,20 @@ class DeckService {
     List<EndModel> alwaysEnd = await Future.wait(
         (await _endService.getAlwaysEnds())
             .map((end) async => EndModel.fromDBModel(end)));
-    return alwaysEnd.first;
+    var end = alwaysEnd.first;
+    for (var expansionId in activeExpansionIds) {
+      log("ACTIVE" + expansionId.toString());
+      var expansionEnd = await _endService.getEndByExpansionIdFromDB(expansionId);
+      if(expansionEnd.emptyCount != null) {
+        end.emptyCount = expansionEnd.emptyCount;
+      }
+      if(expansionEnd.emptyCards.isNotEmpty) {
+        end.emptyCards = expansionEnd.emptyCards;
+      }
+      if(expansionEnd.additionalEmptyCards.isNotEmpty) {
+        end.emptyCards.addAll(expansionEnd.additionalEmptyCards);
+      }
+    }
+    return end;
   }
 }

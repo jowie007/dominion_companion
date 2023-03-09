@@ -47,7 +47,7 @@ class _DeckState extends State<DeckPage> {
               Align(
                 alignment: Alignment.topCenter,
                 child: Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 60),
                   child: Column(
                     children: [
                       FutureBuilder(
