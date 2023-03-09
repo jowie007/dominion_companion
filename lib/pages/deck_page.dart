@@ -84,30 +84,75 @@ class _DeckState extends State<DeckPage> {
                                   ? Expanded(
                                       child: SingleChildScrollView(
                                         child: Container(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              0, 0, 0, 64),
-                                          child: Column(children: [
-                                            for (var deck in snapshot.data!)
-                                              DeckExpandableLoader(
-                                                futureDeckModel: _deckService
-                                                    .deckFromDBModel(deck),
-                                                onLongPress: () =>
-                                                    showDialog<String>(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          DeleteDeckDialog(
-                                                    onDelete: () => setState(
-                                                      () {
-                                                        _deckService
-                                                            .deleteDeckByName(
-                                                                deck.name);
+                                          padding: const EdgeInsets.all(20),
+                                          child: Column(
+                                            children: <Widget>[
+                                              ListView.builder(
+                                                // padding: const EdgeInsets.all(8),
+                                                physics:
+                                                    const ClampingScrollPhysics(),
+                                                shrinkWrap: true,
+                                                itemCount:
+                                                    snapshot.data!.length,
+                                                itemBuilder:
+                                                    (BuildContext context,
+                                                        int index) {
+                                                  final item =
+                                                      snapshot.data![index];
+                                                  // https://stackoverflow.com/questions/57542470/how-to-fix-this-dismissible-widget-border
+                                                  return ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.0),
+                                                    child: Dismissible(
+                                                      key: Key(item.name),
+                                                      background: Container(
+                                                          color: Colors.red),
+                                                      direction:
+                                                          DismissDirection
+                                                              .startToEnd,
+                                                      onDismissed: (direction) {
+                                                        setState(() {
+                                                          _deckService
+                                                              .deleteDeckByName(
+                                                                  item.name);
+                                                        });
+                                                        // Then show a snackbar.
+                                                        /*ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                            content: Text(
+                                                                '$item dismissed')));*/
                                                       },
+                                                      child:
+                                                          DeckExpandableLoader(
+                                                        futureDeckModel:
+                                                            _deckService
+                                                                .deckFromDBModel(
+                                                                    item),
+                                                        onLongPress: () =>
+                                                            showDialog<String>(
+                                                          context: context,
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              DeleteDeckDialog(
+                                                            onDelete: () =>
+                                                                setState(
+                                                              () {
+                                                                _deckService
+                                                                    .deleteDeckByName(
+                                                                        item.name);
+                                                              },
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
-                                                ),
-                                              ),
-                                          ]),
+                                                  );
+                                                },
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     )
