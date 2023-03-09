@@ -1,3 +1,4 @@
+import 'package:dominion_comanion/components/card_popup.dart';
 import 'package:dominion_comanion/components/coin_component.dart';
 import 'package:dominion_comanion/components/round_checkbox.dart';
 import 'package:dominion_comanion/components/expansion_icon.dart';
@@ -42,6 +43,13 @@ class _CardInfoTileState extends State<CardInfoTile> {
         data: theme.copyWith(checkboxTheme: newCheckBoxTheme),
         child: ListTile(
           onTap: () => widget.onChanged(false),
+          onLongPress: () => {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return const CardPopup();
+                }),
+          },
           title: Stack(
             children: [
               Row(
