@@ -33,23 +33,45 @@ class _CardPopupState extends State<CardPopup> {
       heightFactor: 0.9,
       child: Stack(
         children: [
-          Center(
-            child: Transform(
-              transform: Matrix4.identity()
-                ..setEntry(3, 2, 0.001) // perspective
-                ..rotateX(0.01 * _offset.dy) // changed
-                ..rotateY(-0.01 * _offset.dx),
-              alignment: FractionalOffset.center,
-              child: GestureDetector(
-                onPanUpdate: (details) => setState(() => updatePan(details)),
-                onDoubleTap: () => setState(() => _offset = Offset.zero),
-                child: const Image(
-                    image: AssetImage('assets/cards/full/torw.png')),
+          Column(
+            children: [
+              const SizedBox(
+                height: 40,
               ),
-            ),
+              Center(
+                child: Transform(
+                  transform: Matrix4.identity()
+                    ..setEntry(3, 2, 0.001) // perspective
+                    ..rotateX(0.01 * _offset.dy) // changed
+                    ..rotateY(-0.01 * _offset.dx),
+                  alignment: FractionalOffset.center,
+                  child: GestureDetector(
+                    onPanUpdate: (details) =>
+                        setState(() => updatePan(details)),
+                    onDoubleTap: () => setState(() => _offset = Offset.zero),
+                    child: const Image(
+                        image: AssetImage('assets/cards/full/torw.png')),
+                  ),
+                ),
+              ),
+            ],
           ),
           Align(
-            alignment: FractionalOffset.bottomCenter,
+              alignment: FractionalOffset.bottomLeft,
+              child: BorderButtonComponent(
+                  icon: Icons.arrow_back_ios_new,
+                  color: 'blue',
+                  onClick: () =>
+                      Navigator.of(context, rootNavigator: true).pop())),
+          Align(
+              alignment: FractionalOffset.bottomRight,
+              child: BorderButtonComponent(
+                  icon: Icons.arrow_forward_ios,
+                  color: 'blue',
+                  onClick: () =>
+                      Navigator.of(context, rootNavigator: true).pop())),
+          Align(
+              alignment: FractionalOffset.bottomCenter,
               child: BorderButtonComponent(
                   icon: Icons.close,
                   onClick: () =>

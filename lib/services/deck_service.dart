@@ -69,7 +69,7 @@ class DeckService {
     var cards = await getCardsByCardIds(cardIds);
     var additionalCards = await getAdditionalCardsByCardIds(cardIds);
     var allCardIds = [...cards, ...additionalCards].map((e) => e.id).toList();
-    return DeckModel(
+    var ret = DeckModel(
       deckDBModel.name,
       cards,
       additionalCards,
@@ -79,6 +79,7 @@ class DeckService {
       await getEndByCardIdsAndActiveExpansionIds(
           allCardIds, activeExpansionIds),
     );
+    return ret;
   }
 
   Future<List<CardModel>> getCardsByCardIds(List<String> cardIds) {
