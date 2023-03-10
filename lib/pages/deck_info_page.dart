@@ -43,11 +43,15 @@ class _DeckInfoState extends State<DeckInfoPage> {
             ),
           ),
           SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
             child: Container(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
-              child: DeckExpandableLoader(
-                futureDeckModel: _temporaryDeckService.temporaryDeck,
-                onLoaded: (deckModel) => temporaryDeck = deckModel,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15.0),
+                child: DeckExpandableLoader(
+                  futureDeckModel: _temporaryDeckService.temporaryDeck,
+                  onLoaded: (deckModel) => temporaryDeck = deckModel,
+                ),
               ),
             ),
           ),
@@ -64,7 +68,9 @@ class _DeckInfoState extends State<DeckInfoPage> {
                   onSaved: (deckName) => setState(
                     () {
                       temporaryDeck.name = deckName;
-                      for (var element in temporaryDeck.cards) {log("CARDO " + element.name);}
+                      for (var element in temporaryDeck.cards) {
+                        log("CARDO " + element.name);
+                      }
                       _deckService.saveDeck(temporaryDeck);
                       _temporaryDeckService.saved = true;
                     },

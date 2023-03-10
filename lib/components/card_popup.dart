@@ -1,11 +1,4 @@
-import 'dart:developer';
-
-import 'package:dominion_comanion/components/coin_component.dart';
-import 'package:dominion_comanion/components/round_checkbox.dart';
-import 'package:dominion_comanion/components/expansion_icon.dart';
-import 'package:dominion_comanion/model/card/card_model.dart';
-import 'package:dominion_comanion/services/card_service.dart';
-import 'package:dominion_comanion/services/player_service.dart';
+import 'package:dominion_comanion/components/border_button_component.dart';
 import 'package:flutter/material.dart';
 
 class CardPopup extends StatefulWidget {
@@ -35,22 +28,33 @@ class _CardPopupState extends State<CardPopup> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Transform(
-        transform: Matrix4.identity()
-          ..setEntry(3, 2, 0.001) // perspective
-          ..rotateX(0.01 * _offset.dy) // changed
-          ..rotateY(-0.01 * _offset.dx),
-        alignment: FractionalOffset.center,
-        child: GestureDetector(
-          onPanUpdate: (details) => setState(() => updatePan(details)),
-          onDoubleTap: () => setState(() => _offset = Offset.zero),
-          child: const FractionallySizedBox(
-            widthFactor: 0.7,
-            heightFactor: 0.9,
-            child: Image(image: AssetImage('assets/cards/full/torw.png')),
+    return FractionallySizedBox(
+      widthFactor: 0.7,
+      heightFactor: 0.9,
+      child: Stack(
+        children: [
+          Center(
+            child: Transform(
+              transform: Matrix4.identity()
+                ..setEntry(3, 2, 0.001) // perspective
+                ..rotateX(0.01 * _offset.dy) // changed
+                ..rotateY(-0.01 * _offset.dx),
+              alignment: FractionalOffset.center,
+              child: GestureDetector(
+                onPanUpdate: (details) => setState(() => updatePan(details)),
+                onDoubleTap: () => setState(() => _offset = Offset.zero),
+                child: const Image(
+                    image: AssetImage('assets/cards/full/torw.png')),
+              ),
+            ),
           ),
-        ),
+          Align(
+            alignment: FractionalOffset.bottomCenter,
+              child: BorderButtonComponent(
+                  icon: Icons.close,
+                  onClick: () =>
+                      Navigator.of(context, rootNavigator: true).pop())),
+        ],
       ),
     );
   }
