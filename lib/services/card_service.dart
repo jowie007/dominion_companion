@@ -25,10 +25,18 @@ class CardService {
     return await _cardDatabase.getAlwaysCardList();
   }
 
+  Future<List<CardDBModel>> getWhenDeckContainsPotionsCards() async {
+    return await _cardDatabase.getWhenDeckContainsPotionsCardList();
+  }
+
   Future<List<CardDBModel>>
       getWhenDeckConsistsOfXCardTypesOfExpansionCards() async {
     return await _cardDatabase
         .getWhenDeckConsistsOfXCardTypesOfExpansionCards();
+  }
+
+  Future<List<CardDBModel>> getWhenDeckConsistsOfXCards() async {
+    return await _cardDatabase.getWhenDeckConsistsOfXCards();
   }
 
   Future<List<CardDBModel>> getCardsByExpansionFromDB(

@@ -19,7 +19,7 @@ class TemporaryDeckService {
   bool saved = false;
 
   static final TemporaryDeckService _temporaryDeckService =
-      TemporaryDeckService._internal();
+  TemporaryDeckService._internal();
 
   factory TemporaryDeckService() {
     return _temporaryDeckService;
@@ -32,9 +32,10 @@ class TemporaryDeckService {
     temporaryDeck = createTemporaryDeck(name, cardIds);
   }
 
-  Future<DeckModel> createTemporaryDeck(
-      String name, List<String> cardIds) async {
+  Future<DeckModel> createTemporaryDeck(String name,
+      List<String> cardIds) async {
     cardIds.shuffle();
-    return _deckService.deckFromDBModel(DeckDBModel(name, cardIds.take(DeckService.deckSize).toList()));
+    return _deckService.deckFromDBModel(
+        DeckDBModel(name, cardIds.take(DeckService.deckSize).toList()));
   }
 }

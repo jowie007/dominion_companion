@@ -1,0 +1,105 @@
+{
+  "id": "alchemisten_v1",
+  "name": "Alchemisten",
+  "version": "V1",
+  "cards": [
+    {
+      "id": "alchemisten_v1-card-verwandlung",
+      "name": "Verwandlung",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "potion": "1"
+      }
+    },
+    {
+      "id": "alchemisten_v1-card-kraeuterkundiger",
+      "name": "Kräuterkundiger",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "1"
+      }
+    },
+    {
+      "id": "alchemisten_v1-card-apotheker",
+      "name": "Apotheker",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2",
+        "potion": "1"
+      }
+    },
+    {
+      "id": "alchemisten_v1-card-universität",
+      "name": "Universität",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2",
+        "potion": "1"
+      }
+    },
+    {
+      "id": "alchemisten_v1-card-alchemist",
+      "name": "Alchemist",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3",
+        "potion": "1"
+      }
+    },
+    {
+      "id": "alchemisten_v1-card-lehrling",
+      "name": "Lehrling",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "alchemisten_v1-card-besessenheit",
+      "name": "Besessenheit",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "6",
+        "potion": "1"
+      }
+    },
+    {
+      "id": "alchemisten_v1-card-vision",
+      "name": "Vision",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "2",
+        "potion": "1"
+      }
+    },
+    {
+      "id": "alchemisten_v1-card-vertrauter",
+      "name": "Vertrauter",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "3",
+        "potion": "1"
+      }
+    },
+    {
+      "id": "alchemisten_v1-card-trank",
+      "name": "Trank",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "4"
+      },
+      "invisible": true,
+      "whenDeckContainsPotions": true,
+      "count": "0,16,16,16,16,16"
+    },
+    {
+      "id": "alchemisten_v1-card-stein_der_weisen",
+      "name": "Stein der Weisen",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "3",
+        "potion": "1"
+      }
+    }
+  ]
+}

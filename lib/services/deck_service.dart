@@ -101,26 +101,58 @@ class DeckService {
     List<CardModel> alwaysCards = await Future.wait(
         (await _cardService.getAlwaysCards())
             .map((card) async => CardModel.fromDBModel(card)));
-    List<CardModel> whenDeckConsistsOfXCardsCards = await Future.wait(
+    List<CardModel> whenDeckConsistsOfXCardTypesCards = await Future.wait(
         (await _cardService.getWhenDeckConsistsOfXCardTypesOfExpansionCards())
             .map((card) async => CardModel.fromDBModel(card)));
+    List<CardModel> whenDeckConsistsOfXCardsCards = await Future.wait(
+        (await _cardService.getWhenDeckConsistsOfXCards())
+            .map((card) async => CardModel.fromDBModel(card)));
 
-    for (var whenDeckConsistsOfXCardsCard in whenDeckConsistsOfXCardsCards) {
+    for (var whenDeckConsistsOfXCardTypesCard
+        in whenDeckConsistsOfXCardTypesCards) {
       var expansionCardCount = 0;
       for (var selectedCard in selectedCards) {
-        if (whenDeckConsistsOfXCardsCard.getCardExpansion() ==
+        if (whenDeckConsistsOfXCardTypesCard.getCardExpansion() ==
             selectedCard.getCardExpansion()) {
-          whenDeckConsistsOfXCardsCard
+          if (whenDeckConsistsOfXCardTypesCard
               .whenDeckConsistsOfXCardTypesOfExpansion!.values.first
-              .contains(selectedCard.cardTypes);
-          expansionCardCount++;
+              .contains(selectedCard.cardTypes)) {
+            expansionCardCount++;
+          }
         }
       }
       if (expansionCardCount >=
-          whenDeckConsistsOfXCardsCard
+          whenDeckConsistsOfXCardTypesCard
               .whenDeckConsistsOfXCardTypesOfExpansion!.keys.first) {
+        additionalCards.add(whenDeckConsistsOfXCardTypesCard);
+      }
+    }
+
+    for (var whenDeckConsistsOfXCardsCard in whenDeckConsistsOfXCardsCards) {
+      var cardCount = 0;
+      for (var selectedCard in selectedCards) {
+        whenDeckConsistsOfXCardsCard.whenDeckConsistsOfXCards!.values.first
+            .contains(selectedCard.id);
+        cardCount++;
+      }
+      if (cardCount >=
+          whenDeckConsistsOfXCardsCard.whenDeckConsistsOfXCards!.keys.first) {
         additionalCards.add(whenDeckConsistsOfXCardsCard);
       }
+    }
+
+    var containsPotions = false;
+
+    for (var selectedCard in selectedCards) {
+      if (!containsPotions && selectedCard.cardCost.potion != "") {
+        containsPotions = true;
+      }
+    }
+
+    if (containsPotions) {
+      additionalCards.addAll(await Future.wait(
+          (await _cardService.getWhenDeckContainsPotionsCards())
+              .map((card) async => CardModel.fromDBModel(card))));
     }
     additionalCards.addAll(alwaysCards);
     return additionalCards;
@@ -151,8 +183,6 @@ class DeckService {
           for (var entry in contentModel.whenDeckConsistsOfXCards!.entries) {
             var count = 0;
             for (var cardId in entry.value) {
-              log(cardId);
-              log(cardIds.join(","));
               if (cardIds.contains(cardId)) {
                 count++;
               }
@@ -170,6 +200,7 @@ class DeckService {
     return ret;
   }
 
+  // TODO Anpassen
   Future<HandModel> getHandByCardIdsAndActiveExpansionIds(
       List<String> cardIds, List<String> activeExpansionIds) async {
     List<HandModel> alwaysHand = await Future.wait(
@@ -187,15 +218,17 @@ class DeckService {
     for (var expansionId in activeExpansionIds) {
       var expansionEnd =
           await _endService.getEndByExpansionIdFromDB(expansionId);
-      if (expansionEnd.emptyCount != null) {
-        end.emptyCount = expansionEnd.emptyCount;
-      }
-      if (expansionEnd.emptyCards.isNotEmpty) {
-        end.emptyCards = expansionEnd.emptyCards;
-      }
-      if (expansionEnd.additionalEmptyCards.isNotEmpty) {
-        end.additionalEmptyCards.addAll(expansionEnd.additionalEmptyCards
-            .where((cardId) => cardIds.contains(cardId)));
+      if (expansionEnd != null) {
+        if (expansionEnd.emptyCount != null) {
+          end.emptyCount = expansionEnd.emptyCount;
+        }
+        if (expansionEnd.emptyCards.isNotEmpty) {
+          end.emptyCards = expansionEnd.emptyCards;
+        }
+        if (expansionEnd.additionalEmptyCards.isNotEmpty) {
+          end.additionalEmptyCards.addAll(expansionEnd.additionalEmptyCards
+              .where((cardId) => cardIds.contains(cardId)));
+        }
       }
     }
     return end;

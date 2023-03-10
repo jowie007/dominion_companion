@@ -77,16 +77,27 @@ class _CardInfoTileState extends State<CardInfoTile> {
               ),
               Row(
                 children: <Widget>[
-                  CostComponent(
-                      width: 40,
-                      type: widget.card.cardCost.coin != "" ? 'coin' : 'debt',
-                      value: widget.card.cardCost.coin != ""
-                          ? widget.card.cardCost.coin
-                          : widget.card.cardCost.debt),
-                  const SizedBox(width: 2),
+                  (widget.card.cardCost.coin != "" ||
+                          widget.card.cardCost.debt != "")
+                      ? CostComponent(
+                          width: 40,
+                          type:
+                              widget.card.cardCost.coin != "" ? 'coin' : 'debt',
+                          value: widget.card.cardCost.coin != ""
+                              ? widget.card.cardCost.coin
+                              : widget.card.cardCost.debt)
+                      : Container(),
+                  (widget.card.cardCost.coin != "" ||
+                          widget.card.cardCost.debt != "")
+                      ? const SizedBox(width: 2)
+                      : Container(),
                   widget.card.cardCost.potion != ''
                       ? const CostComponent(width: 26, type: 'potion')
                       : const SizedBox(width: 26),
+                  (widget.card.cardCost.coin != "" ||
+                          widget.card.cardCost.debt != "")
+                      ? Container()
+                      : const SizedBox(width: 40),
                   const SizedBox(width: 10),
                   Column(
                     mainAxisSize: MainAxisSize.min,

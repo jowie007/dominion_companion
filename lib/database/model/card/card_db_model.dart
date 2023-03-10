@@ -13,6 +13,8 @@ class CardDBModel {
   late bool always;
   late Map<int, List<List<CardTypeEnum>>>?
       whenDeckConsistsOfXCardTypesOfExpansion;
+  late Map<int, List<String>>? whenDeckConsistsOfXCards;
+  late bool whenDeckContainsPotions;
   late String setId;
   late String parentId;
   late List<String> relatedCardIds;
@@ -21,9 +23,6 @@ class CardDBModel {
   late CardCostDBModel cardCost;
   late String text;
   late List<String> count;
-
-  CardDBModel(this.id, this.name, this.always, this.setId, this.parentId,
-      this.cardTypes, this.cardCost, this.text, this.count);
 
   CardDBModel.fromDB(Map<String, dynamic> dbData) {
     id = dbData['id'];
@@ -34,6 +33,13 @@ class CardDBModel {
             ? CardModel.whenDeckConsistsOfXCardTypesOfExpansionFromJSON(
                 jsonDecode(dbData['whenDeckConsistsOfXCardTypesOfExpansion']))
             : null;
+    whenDeckConsistsOfXCards = dbData['whenDeckConsistsOfXCards'] != ''
+        ? CardModel.whenDeckConsistsOfXCardsFromJSON(
+            jsonDecode(dbData['whenDeckConsistsOfXCards']))
+        : null;
+    whenDeckContainsPotions = dbData['whenDeckContainsPotions'] != null
+        ? dbData['whenDeckContainsPotions'] > 0
+        : false;
     setId = dbData['setId'] ?? '';
     parentId = dbData['parentId'] ?? '';
     relatedCardIds = dbData['relatedCardIds'] != null
@@ -55,6 +61,8 @@ class CardDBModel {
     always = model.always;
     whenDeckConsistsOfXCardTypesOfExpansion =
         model.whenDeckConsistsOfXCardTypesOfExpansion;
+    whenDeckConsistsOfXCards = model.whenDeckConsistsOfXCards;
+    whenDeckContainsPotions = model.whenDeckContainsPotions;
     setId = model.setId;
     parentId = model.parentId;
     relatedCardIds = model.relatedCardIds;
@@ -74,6 +82,12 @@ class CardDBModel {
                 ? whenDeckConsistsOfXCardTypesOfExpansionToDB(
                     whenDeckConsistsOfXCardTypesOfExpansion!)
                 : '',
+        'whenDeckConsistsOfXCards':
+            whenDeckConsistsOfXCardTypesOfExpansion != null
+                ? whenDeckConsistsOfXCardTypesOfExpansionToDB(
+                    whenDeckConsistsOfXCardTypesOfExpansion!)
+                : '',
+        'whenDeckContainsPotions': whenDeckContainsPotions ? 1 : 0,
         'setId': setId,
         'parentId': parentId,
         'relatedCardIds': relatedCardIds.join(','),

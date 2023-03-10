@@ -24,13 +24,13 @@ class EndService {
     return await _endDatabase.getAlwaysEndList();
   }
 
-  Future<EndDBModel> getEndByExpansionFromDB(
-      ExpansionDBModel expansion) async {
-    return await _endDatabase.getEndById(expansion.endId);
+  Future<EndDBModel> getEndByEndIdFromDB(
+      String endId) async {
+    return await _endDatabase.getEndByEndId(endId);
   }
 
-  Future<EndDBModel> getEndByExpansionIdFromDB(
+  Future<EndDBModel?> getEndByExpansionIdFromDB(
       String expansionId) async {
-    return await _endDatabase.getEndById(expansionId);
+    return await _endDatabase.getEndByExpansionId(expansionId);
   }
 }

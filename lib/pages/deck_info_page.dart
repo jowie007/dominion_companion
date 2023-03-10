@@ -69,7 +69,6 @@ class _DeckInfoState extends State<DeckInfoPage> {
                     () {
                       temporaryDeck.name = deckName;
                       for (var element in temporaryDeck.cards) {
-                        log("CARDO " + element.name);
                       }
                       _deckService.saveDeck(temporaryDeck);
                       _temporaryDeckService.saved = true;

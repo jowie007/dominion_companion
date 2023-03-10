@@ -52,11 +52,18 @@ class EndDatabase {
   }
 
   // https://www.sqlitetutorial.net/sqlite-like/
-  Future<EndDBModel> getEndById(String id) async {
+  Future<EndDBModel> getEndByEndId(String id) async {
     await openDb();
     final List<Map<String, dynamic>> maps =
     await _database.rawQuery('SELECT * FROM end WHERE id LIKE ?', ["$id%"]);
     return EndDBModel.fromDB(maps.first);
+  }
+
+  Future<EndDBModel?> getEndByExpansionId(String id) async {
+    await openDb();
+    final List<Map<String, dynamic>> maps =
+    await _database.rawQuery('SELECT * FROM end WHERE id LIKE ?', ["$id%"]);
+    return maps.isNotEmpty ? EndDBModel.fromDB(maps.first) : null;
   }
 
   Future<int> updateEnd(EndDBModel end) async {

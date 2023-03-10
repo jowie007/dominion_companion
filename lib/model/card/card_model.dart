@@ -11,7 +11,10 @@ class CardModel {
   late String id;
   late String name;
   late bool always;
-  late Map<int, List<List<CardTypeEnum>>>? whenDeckConsistsOfXCardTypesOfExpansion;
+  late Map<int, List<List<CardTypeEnum>>>?
+      whenDeckConsistsOfXCardTypesOfExpansion;
+  late Map<int, List<String>>? whenDeckConsistsOfXCards;
+  late bool whenDeckContainsPotions;
   late String setId;
   late String parentId;
   late List<String> relatedCardIds;
@@ -27,8 +30,6 @@ class CardModel {
     ["fluch"]
   ];
 
-  CardModel(this.id, this.name, this.cardTypes, this.cardCost, this.text);
-
   CardModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
@@ -38,6 +39,10 @@ class CardModel {
             ? whenDeckConsistsOfXCardTypesOfExpansionFromJSON(
                 json['whenDeckConsistsOfXCardTypesOfExpansion'])
             : null;
+    whenDeckConsistsOfXCards = json['whenDeckConsistsOfXCards'] != null
+        ? whenDeckConsistsOfXCardsFromJSON(json['whenDeckConsistsOfXCards'])
+        : null;
+    whenDeckContainsPotions = json['whenDeckContainsPotions'] ?? false;
     setId = json['setId'] ?? '';
     parentId = json['parentId'] ?? '';
     relatedCardIds = json['relatedCardIds'] != null
@@ -58,6 +63,8 @@ class CardModel {
     always = dbModel.always;
     whenDeckConsistsOfXCardTypesOfExpansion =
         dbModel.whenDeckConsistsOfXCardTypesOfExpansion;
+    whenDeckConsistsOfXCards = dbModel.whenDeckConsistsOfXCards;
+    whenDeckContainsPotions = dbModel.whenDeckContainsPotions;
     setId = dbModel.setId;
     parentId = dbModel.parentId;
     relatedCardIds = dbModel.relatedCardIds;
@@ -89,11 +96,6 @@ class CardModel {
 
   static Map<int, List<List<CardTypeEnum>>>
       whenDeckConsistsOfXCardTypesOfExpansionFromJSON(dynamic json) {
-    // Müsste erledigt sein
-    // TODO Type ist bei
-    // Holen aus JSON -> _InternalLinkedHashMap<String, dynamic>
-    // Holen aus DB -> String
-    // log(json.runtimeType.toString());
     Map<int, List<List<CardTypeEnum>>> retMap = {};
     var jsonMap = Map<String, List<dynamic>>.from(json);
     for (var stringMapKey in jsonMap.keys) {
@@ -104,18 +106,27 @@ class CardModel {
     return retMap;
   }
 
+  static Map<int, List<String>> whenDeckConsistsOfXCardsFromJSON(dynamic json) {
+    Map<int, List<String>> retMap = {};
+    var jsonMap = Map<String, List<dynamic>>.from(json);
+    for (var stringMapKey in jsonMap.keys) {
+      retMap[int.parse(stringMapKey)] =
+          List<String>.from(json[stringMapKey]).toList();
+    }
+    return retMap;
+  }
+
   static int sortCardComparison(CardModel card1, CardModel card2) {
     final cardTypes1 =
-    CardModel.getCardTypesString(card1.cardTypes).toLowerCase();
+        CardModel.getCardTypesString(card1.cardTypes).toLowerCase();
     final cardTypes2 =
-    CardModel.getCardTypesString(card2.cardTypes).toLowerCase();
+        CardModel.getCardTypesString(card2.cardTypes).toLowerCase();
     var cardPosition1 = 0;
     var cardPosition2 = 0;
-    sortTypeOrder.asMap().forEach((index, value) =>
-    {
-      if (value.contains(cardTypes1)) {cardPosition1 = index},
-      if (value.contains(cardTypes2)) {cardPosition2 = index}
-    });
+    sortTypeOrder.asMap().forEach((index, value) => {
+          if (value.contains(cardTypes1)) {cardPosition1 = index},
+          if (value.contains(cardTypes2)) {cardPosition2 = index}
+        });
     if (cardPosition1 == cardPosition2) {
       if (card1.cardCost.coin == card2.cardCost.coin) {
         if (card1.cardCost.potion == card2.cardCost.potion) {
@@ -133,12 +144,8 @@ class CardModel {
   }
 
   static int compareStringNumbers(String stringNumber1, String stringNumber2) {
-    var number1 = int.parse(stringNumber1
-        .split(RegExp(r'\D'))
-        .first);
-    var number2 = int.parse(stringNumber2
-        .split(RegExp(r'\D'))
-        .first);
+    var number1 = int.parse(stringNumber1.split(RegExp(r'\D')).first);
+    var number2 = int.parse(stringNumber2.split(RegExp(r'\D')).first);
     var ret = 0;
     if (number1 < number2) {
       ret = -1;
