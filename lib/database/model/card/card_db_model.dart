@@ -82,11 +82,9 @@ class CardDBModel {
                 ? whenDeckConsistsOfXCardTypesOfExpansionToDB(
                     whenDeckConsistsOfXCardTypesOfExpansion!)
                 : '',
-        'whenDeckConsistsOfXCards':
-            whenDeckConsistsOfXCardTypesOfExpansion != null
-                ? whenDeckConsistsOfXCardTypesOfExpansionToDB(
-                    whenDeckConsistsOfXCardTypesOfExpansion!)
-                : '',
+        'whenDeckConsistsOfXCards': whenDeckConsistsOfXCards != null
+            ? whenDeckConsistsOfXCardsToDB(whenDeckConsistsOfXCards!)
+            : '',
         'whenDeckContainsPotions': whenDeckContainsPotions ? 1 : 0,
         'setId': setId,
         'parentId': parentId,
@@ -110,6 +108,16 @@ class CardDBModel {
       retMap['"$valueKey"'] = value[valueKey]!
           .map((e) => '"${e.map((e) => e.name).join(", ")}"')
           .toList();
+    }
+    var ret = retMap.toString();
+    ret.replaceAll("=", "-");
+    return ret;
+  }
+
+  String whenDeckConsistsOfXCardsToDB(Map<int, List<String>> value) {
+    Map<String, List<String>> retMap = {};
+    for (var valueKey in value.keys) {
+      retMap['"$valueKey"'] = value[valueKey]!;
     }
     var ret = retMap.toString();
     ret.replaceAll("=", "-");

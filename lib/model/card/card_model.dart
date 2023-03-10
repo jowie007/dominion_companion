@@ -153,7 +153,6 @@ class CardModel {
     var number1 = int.parse(stringNumber1.split(RegExp(r'\D')).first);
     var number2 = int.parse(stringNumber2.split(RegExp(r'\D')).first);
     var ret = 0;
-    log("TEY2");
     if (number1 < number2) {
       ret = -1;
     } else if (number1 > number2) {

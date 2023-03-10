@@ -12,7 +12,7 @@ import 'package:dominion_comanion/services/card_service.dart';
 import 'package:dominion_comanion/services/content_service.dart';
 import 'package:dominion_comanion/services/end_service.dart';
 import 'package:dominion_comanion/services/hand_service.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 class DeckService {
   final DeckDatabase _deckDatabase = DeckDatabase();
@@ -115,10 +115,12 @@ class DeckService {
       for (var selectedCard in selectedCards) {
         if (whenDeckConsistsOfXCardTypesCard.getCardExpansion() ==
             selectedCard.getCardExpansion()) {
-          if (whenDeckConsistsOfXCardTypesCard
-              .whenDeckConsistsOfXCardTypesOfExpansion!.values.first
-              .contains(selectedCard.cardTypes)) {
-            expansionCardCount++;
+          var conditionTypeLists = whenDeckConsistsOfXCardTypesCard
+              .whenDeckConsistsOfXCardTypesOfExpansion!.values.first;
+          for (var conditionTypeList in conditionTypeLists) {
+            if(listEquals(conditionTypeList, selectedCard.cardTypes)) {
+              expansionCardCount++;
+            }
           }
         }
       }
@@ -132,9 +134,10 @@ class DeckService {
     for (var whenDeckConsistsOfXCardsCard in whenDeckConsistsOfXCardsCards) {
       var cardCount = 0;
       for (var selectedCard in selectedCards) {
-        whenDeckConsistsOfXCardsCard.whenDeckConsistsOfXCards!.values.first
-            .contains(selectedCard.id);
-        cardCount++;
+        if (whenDeckConsistsOfXCardsCard.whenDeckConsistsOfXCards!.values.first
+            .contains(selectedCard.id)) {
+          cardCount++;
+        }
       }
       if (cardCount >=
           whenDeckConsistsOfXCardsCard.whenDeckConsistsOfXCards!.keys.first) {
