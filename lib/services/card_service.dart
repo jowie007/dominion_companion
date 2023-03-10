@@ -1,6 +1,7 @@
 import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/database/model/card/card_db_model.dart';
 import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
+import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/model/card/card_type_colors_map.dart';
 import 'package:dominion_comanion/model/card/card_type_enum.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,10 @@ class CardService {
     return await _cardDatabase.getAlwaysCardList();
   }
 
-  Future<List<CardDBModel>> getWhenDeckConsistsOfXCardTypesOfExpansionCards() async {
-    return await _cardDatabase.getWhenDeckConsistsOfXCardTypesOfExpansionCards();
+  Future<List<CardDBModel>>
+      getWhenDeckConsistsOfXCardTypesOfExpansionCards() async {
+    return await _cardDatabase
+        .getWhenDeckConsistsOfXCardTypesOfExpansionCards();
   }
 
   Future<List<CardDBModel>> getCardsByExpansionFromDB(
@@ -39,6 +42,11 @@ class CardService {
   String getFilenameByCardTypes(List<CardTypeEnum> cardTypes) {
     String fileName = cardTypes.map((e) => e.name).join("-");
     return fileName;
+  }
+
+  String filterCardName(List<CardModel> cards, String cardId) {
+    var ret = cards.where((element) => element.id == cardId);
+    return ret.isNotEmpty ? ret.first.name : 'Karte nicht gefunden';
   }
 
   List<Color>? getColorsByCardTypeString(String cardTypeString) {

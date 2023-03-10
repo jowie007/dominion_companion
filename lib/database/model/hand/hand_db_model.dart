@@ -39,7 +39,7 @@ class HandDBModel {
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'always': always,
+        'always': always ? 1 : 0,
         'cards': mapToDB(cardIdCountMap),
         'additionalCards': mapToDB(additionalCardIdCountMap),
         'content': mapToDB(contentIdCountMap),

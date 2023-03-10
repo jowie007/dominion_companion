@@ -10,8 +10,11 @@ class EndDBModel {
   EndDBModel.fromDB(Map<String, dynamic> dbData) {
     id = dbData['id'];
     always = dbData['always'] != null ? dbData['always'] > 0 : false;
-    emptyCards = dbData['emptyCards'] != '' ? dbData['emptyCards'].split(',') : [];
-    additionalEmptyCards = dbData['additionalEmptyCards'] != '' ? dbData['additionalEmptyCards'].split(',') : [];
+    emptyCards =
+        dbData['emptyCards'] != '' ? dbData['emptyCards'].split(',') : [];
+    additionalEmptyCards = dbData['additionalEmptyCards'] != ''
+        ? dbData['additionalEmptyCards'].split(',')
+        : [];
     emptyCount = dbData['emptyCount'];
   }
 
@@ -24,10 +27,10 @@ class EndDBModel {
   }
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'always': always,
-    'emptyCards': emptyCards.join(","),
-    'additionalEmptyCards': additionalEmptyCards.join(","),
-    'emptyCount': emptyCount,
-  };
+        'id': id,
+        'always': always ? 1 : 0,
+        'emptyCards': emptyCards.join(","),
+        'additionalEmptyCards': additionalEmptyCards.join(","),
+        'emptyCount': emptyCount,
+      };
 }

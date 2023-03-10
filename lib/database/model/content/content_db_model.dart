@@ -19,7 +19,7 @@ class ContentDBModel {
         : null;
     count = dbData['count'] != null
         ? List<String>.from(dbData['count'].split(','))
-        : List.empty();
+        : ["0,2,3,4,5,6"];
   }
 
   ContentDBModel.fromModel(ContentModel model) {
@@ -33,11 +33,11 @@ class ContentDBModel {
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
-        'always': always,
+        'always': always ? 1 : 0,
         'whenDeckConsistsOfXCards': whenDeckConsistsOfXCards != null
             ? whenDeckConsistsOfXCardsToDB(whenDeckConsistsOfXCards!)
             : '',
-        'count': count.isNotEmpty ? count.join(',') : null,
+        'count': count.isNotEmpty ? count.join(',') : ["0", "2", "3", "4", "5", "6"].join(','),
       };
 
   String whenDeckConsistsOfXCardsToDB(Map<int, List<String>> value) {

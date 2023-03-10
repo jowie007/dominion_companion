@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dominion_comanion/database/model/hand/hand_db_model.dart';
 
 class HandModel {

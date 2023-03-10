@@ -60,11 +60,13 @@ class ContentDatabase {
     });
   }
 
-  Future<ContentDBModel> getContentById(String id) async {
+  Future<List<ContentDBModel>> getContentById(String id) async {
     await openDb();
     final List<Map<String, dynamic>> maps =
-        await _database.rawQuery('SELECT * FROM content WHERE id=?', [id]);
-    return ContentDBModel.fromDB(maps.first);
+        await _database.rawQuery('SELECT * FROM content WHERE id LIKE ?', ["$id%"]);
+    return List.generate(maps.length, (i) {
+      return ContentDBModel.fromDB(maps[i]);
+    });
   }
 
   Future<int> updateContent(ContentDBModel content) async {

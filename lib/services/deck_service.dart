@@ -57,7 +57,7 @@ class DeckService {
       String name,
       List<CardModel> cards,
       List<CardModel> additionalCards,
-      ContentModel? content,
+      List<ContentModel> content,
       HandModel hand,
       EndModel end) {
     return DeckModel(name, cards, additionalCards, content, hand, end);
@@ -66,14 +66,18 @@ class DeckService {
   Future<DeckModel> deckFromDBModel(DeckDBModel deckDBModel) async {
     var cardIds = deckDBModel.cardIds;
     var activeExpansionIds = getActiveExpansionIdsByCardIds(cardIds);
+    var cards = await getCardsByCardIds(cardIds);
+    var additionalCards = await getAdditionalCardsByCardIds(cardIds);
+    var allCardIds = [...cards, ...additionalCards].map((e) => e.id).toList();
     return DeckModel(
       deckDBModel.name,
-      await getCardsByCardIds(cardIds),
-      await getAdditionalCardsByCardIds(cardIds),
+      cards,
+      additionalCards,
       await getContentByCardIdsAndActiveExpansionIds(
           cardIds, activeExpansionIds),
       await getHandByCardIdsAndActiveExpansionIds(cardIds, activeExpansionIds),
-      await getEndByCardIdsAndActiveExpansionIds(cardIds, activeExpansionIds),
+      await getEndByCardIdsAndActiveExpansionIds(
+          allCardIds, activeExpansionIds),
     );
   }
 
@@ -133,12 +137,37 @@ class DeckService {
     return activeExpansionIds;
   }
 
-  Future<ContentModel?> getContentByCardIdsAndActiveExpansionIds(
+  Future<List<ContentModel>> getContentByCardIdsAndActiveExpansionIds(
       List<String> cardIds, List<String> activeExpansionIds) async {
     var alwaysDBContent = await _contentService.getAlwaysContents();
     List<ContentModel> alwaysContent = await Future.wait((alwaysDBContent)
         .map((content) async => ContentModel.fromDBModel(content)));
-    return alwaysContent.isNotEmpty ? alwaysContent.first : null;
+    var ret = alwaysContent;
+    for (var expansionId in activeExpansionIds) {
+      var contentModelList =
+          await _contentService.getContentByExpansionFromId(expansionId);
+      for (var contentModel in contentModelList) {
+        if (contentModel.whenDeckConsistsOfXCards != null) {
+          for (var entry in contentModel.whenDeckConsistsOfXCards!.entries) {
+            var count = 0;
+            for (var cardId in entry.value) {
+              log(cardId);
+              log(cardIds.join(","));
+              if (cardIds.contains(cardId)) {
+                count++;
+              }
+              if (count >= entry.key) {
+                break;
+              }
+            }
+            if (count >= entry.key) {
+              ret.add(ContentModel.fromDBModel(contentModel));
+            }
+          }
+        }
+      }
+    }
+    return ret;
   }
 
   Future<HandModel> getHandByCardIdsAndActiveExpansionIds(
@@ -156,16 +185,17 @@ class DeckService {
             .map((end) async => EndModel.fromDBModel(end)));
     var end = alwaysEnd.first;
     for (var expansionId in activeExpansionIds) {
-      log("ACTIVE" + expansionId.toString());
-      var expansionEnd = await _endService.getEndByExpansionIdFromDB(expansionId);
-      if(expansionEnd.emptyCount != null) {
+      var expansionEnd =
+          await _endService.getEndByExpansionIdFromDB(expansionId);
+      if (expansionEnd.emptyCount != null) {
         end.emptyCount = expansionEnd.emptyCount;
       }
-      if(expansionEnd.emptyCards.isNotEmpty) {
+      if (expansionEnd.emptyCards.isNotEmpty) {
         end.emptyCards = expansionEnd.emptyCards;
       }
-      if(expansionEnd.additionalEmptyCards.isNotEmpty) {
-        end.emptyCards.addAll(expansionEnd.additionalEmptyCards);
+      if (expansionEnd.additionalEmptyCards.isNotEmpty) {
+        end.additionalEmptyCards.addAll(expansionEnd.additionalEmptyCards
+            .where((cardId) => cardIds.contains(cardId)));
       }
     }
     return end;

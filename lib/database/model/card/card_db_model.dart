@@ -11,7 +11,8 @@ class CardDBModel {
   late String id;
   late String name;
   late bool always;
-  late Map<int, List<List<CardTypeEnum>>>? whenDeckConsistsOfXCardTypesOfExpansion;
+  late Map<int, List<List<CardTypeEnum>>>?
+      whenDeckConsistsOfXCardTypesOfExpansion;
   late String setId;
   late String parentId;
   late List<String> relatedCardIds;
@@ -67,7 +68,7 @@ class CardDBModel {
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
-        'always': always,
+        'always': always ? 1 : 0,
         'whenDeckConsistsOfXCardTypesOfExpansion':
             whenDeckConsistsOfXCardTypesOfExpansion != null
                 ? whenDeckConsistsOfXCardTypesOfExpansionToDB(

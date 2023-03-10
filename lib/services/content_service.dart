@@ -29,13 +29,13 @@ class ContentService {
     return await _contentDatabase.getWhenDeckConsistsOfXCards();
   }
 
-  Future<List<ContentDBModel>> getContentByExpansionFromDB(
-      ExpansionDBModel expansion) async {
-    return await Future.wait(expansion.contentIds
-        .map((contentId) async =>
-            await _contentDatabase.getContentById(contentId))
-        .toList());
+  Future<List<ContentDBModel>> getContentByExpansionFromId(
+      String contentId) async {
+    return await _contentDatabase.getContentById(contentId);
   }
 
-
+  Future<List<ContentDBModel>> getContentByExpansionFromDB(
+      ExpansionDBModel expansion) async {
+    return getContentByExpansionFromId(expansion.id);
+  }
 }

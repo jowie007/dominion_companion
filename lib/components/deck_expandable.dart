@@ -85,7 +85,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                               value: true,
                               hasCheckbox: false,
                             )
-                          : DeckAdditionalInfoTile(deckModel: widget.deckModel);
+                          : DeckAdditionalInfoTile(deckModel: widget.deckModel, cards: allCards);
                     })
               ],
             ),

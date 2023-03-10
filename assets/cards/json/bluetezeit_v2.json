@@ -257,8 +257,7 @@
           "bluetezeit_v2-card-denkmal",
           "bluetezeit_v2-card-halsabschneider"
         ]
-      },
-      "count": "0,2,3,4,5,6"
+      }
     },
     {
       "id": "bluetezeit_v2-card-geldmarker",
@@ -267,8 +266,7 @@
         "1": [
           "bluetezeit_v2-card-handelsroute"
         ]
-      },
-      "count": "0,2,3,4,5,6"
+      }
     },
     {
       "id": "bluetezeit_v2-card-siegpunktemarker5",
@@ -304,7 +302,7 @@
   "end": {
     "id": "bluetezeit_v2-end",
     "additionalEmptyCards": [
-      "basisspiel_v2-card-kolonie"
+      "bluetezeit_v2-card-kolonie"
     ]
   }
 }

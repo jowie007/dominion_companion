@@ -9,7 +9,7 @@ class DeckModel {
   late String name;
   late List<CardModel> cards;
   late List<CardModel>? additionalCards;
-  late ContentModel? content;
+  late List<ContentModel> content;
   late HandModel hand;
   late EndModel end;
 

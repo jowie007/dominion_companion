@@ -63,7 +63,7 @@ class HandDatabase {
   Future<HandDBModel> getHandById(String id) async {
     await openDb();
     final List<Map<String, dynamic>> maps =
-        await _database.rawQuery('SELECT * FROM hand WHERE id=?', [id]);
+        await _database.rawQuery('SELECT * FROM hand WHERE id LIKE ?', ["$id%"]);
     return HandDBModel.fromDB(maps.first);
   }
 
