@@ -28,7 +28,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-card-händlerin",
+      "id": "basisspiel_v2-card-haendlerin",
       "name": "Händlerin",
       "cardTypes": "aktion",
       "cardCost": {
@@ -140,7 +140,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-card-torwächterin",
+      "id": "basisspiel_v2-card-torwaechterin",
       "name": "Torwächterin",
       "cardTypes": "aktion",
       "cardCost": {
@@ -148,7 +148,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-card-töpferei",
+      "id": "basisspiel_v2-card-toepferei",
       "name": "Töpferei",
       "cardTypes": "aktion",
       "cardCost": {
@@ -156,7 +156,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-card-bürokrat",
+      "id": "basisspiel_v2-card-buerokrat",
       "name": "Bürokrat",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -196,7 +196,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-card-gärten",
+      "id": "basisspiel_v2-card-gaerten",
       "name": "Gärten",
       "cardTypes": "punkte",
       "cardCost": {

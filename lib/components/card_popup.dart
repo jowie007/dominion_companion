@@ -2,9 +2,9 @@ import 'package:dominion_comanion/components/border_button_component.dart';
 import 'package:flutter/material.dart';
 
 class CardPopup extends StatefulWidget {
-  const CardPopup({
-    super.key,
-  });
+  const CardPopup({super.key, required this.cardId});
+
+  final String cardId;
 
   @override
   State<CardPopup> createState() => _CardPopupState();
@@ -28,6 +28,8 @@ class _CardPopupState extends State<CardPopup> {
 
   @override
   Widget build(BuildContext context) {
+    final cardPath =
+        'assets/cards/full/${widget.cardId.split("-")[0]}/${widget.cardId.split("-")[2]}.png';
     return FractionallySizedBox(
       widthFactor: 0.7,
       heightFactor: 0.9,
@@ -49,8 +51,10 @@ class _CardPopupState extends State<CardPopup> {
                     onPanUpdate: (details) =>
                         setState(() => updatePan(details)),
                     onDoubleTap: () => setState(() => _offset = Offset.zero),
-                    child: const Image(
-                        image: AssetImage('assets/cards/full/torw.png')),
+                    child:ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      child: Image(image: AssetImage(cardPath)),
+                    ) ,
                   ),
                 ),
               ),

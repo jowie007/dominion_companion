@@ -69,7 +69,9 @@ flutter:
     - assets/cards/images/base/
     - assets/cards/other/
     - assets/cards/json/
-    - assets/cards/full/
+    - assets/cards/full/alchemisten_v1/
+    - assets/cards/full/basisspiel_v2/
+    - assets/cards/full/bluetezeit_v2/
     - assets/menu/
     - assets/artwork/boxart/
     - assets/artwork/background/

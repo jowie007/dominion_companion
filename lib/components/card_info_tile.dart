@@ -47,7 +47,7 @@ class _CardInfoTileState extends State<CardInfoTile> {
             showDialog(
                 context: context,
                 builder: (context) {
-                  return const CardPopup();
+                  return CardPopup(cardId: widget.card.id);
                 }),
           },
           title: Stack(
