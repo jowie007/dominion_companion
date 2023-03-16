@@ -1,9 +1,7 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/model/card/card_type_enum.dart';
-import 'package:dominion_comanion/model/deck/deck_model.dart';
 
 import 'card_cost_db_model.dart';
 
@@ -117,7 +115,7 @@ class CardDBModel {
   String whenDeckConsistsOfXCardsToDB(Map<int, List<String>> value) {
     Map<String, List<String>> retMap = {};
     for (var valueKey in value.keys) {
-      retMap['"$valueKey"'] = value[valueKey]!;
+      retMap['"$valueKey"'] = value[valueKey]!.map((e) => '"$e"').toList();
     }
     var ret = retMap.toString();
     ret.replaceAll("=", "-");

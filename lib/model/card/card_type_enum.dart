@@ -3,6 +3,7 @@ enum CardTypeEnum {
   angriff,
   geld,
   punkte,
+  preis,
   reaktion,
   fluch,
 }

@@ -1,0 +1,170 @@
+{
+  "id": "reiche_ernte_v1",
+  "name": "Reiche Ernte",
+  "version": "V1",
+  "cards": [
+    {
+      "id": "reiche_ernte_v1-set-preiskarten",
+      "name": "Preiskarten",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "reiche_ernte_v1-card-turnier"
+        ]
+      },
+      "invisible": true,
+      "cardTypes": "aktion, preis",
+      "cardCost": {
+        "coin": "0*"
+      }
+    },
+    {
+      "id": "reiche_ernte_v1-card-ein_sack_voll_gold",
+      "name": "Ein Sack voll Gold",
+      "cardTypes": "aktion, preis",
+      "cardCost": {
+        "coin": "0*"
+      },
+      "setId": "reiche_ernte_v1-set-preiskarten"
+    },
+    {
+      "id": "reiche_ernte_v1-card-prinzessin",
+      "name": "Prinzessin",
+      "cardTypes": "aktion, preis",
+      "cardCost": {
+        "coin": "0*"
+      },
+      "setId": "reiche_ernte_v1-set-preiskarten"
+    },
+    {
+      "id": "reiche_ernte_v1-card-streitross",
+      "name": "Streitross",
+      "cardTypes": "aktion, preis",
+      "cardCost": {
+        "coin": "0*"
+      },
+      "setId": "reiche_ernte_v1-set-preiskarten"
+    },
+    {
+      "id": "reiche_ernte_v1-card-gefolge",
+      "name": "Gefolge",
+      "cardTypes": "aktion, angriff, preis",
+      "cardCost": {
+        "coin": "0*"
+      },
+      "setId": "reiche_ernte_v1-set-preiskarten"
+    },
+    {
+      "id": "reiche_ernte_v1-card-diadem",
+      "name": "Diadem",
+      "cardTypes": "geld, preis",
+      "cardCost": {
+        "coin": "0*"
+      },
+      "setId": "reiche_ernte_v1-set-preiskarten"
+    },
+    {
+      "id": "reiche_ernte_v1-card-weiler",
+      "name": "Weiler",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "reiche_ernte_v1-card-menagerie",
+      "name": "Menagerie",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "reiche_ernte_v1-card-bauerndorf",
+      "name": "Bauerndorf",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "reiche_ernte_v1-card-nachbau",
+      "name": "Nachbau",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "reiche_ernte_v1-card-turnier",
+      "name": "Turnier",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "reiche_ernte_v1-card-ernte",
+      "name": "Ernte",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "reiche_ernte_v1-card-treibjagd",
+      "name": "Treibjagd",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "reiche_ernte_v1-card-junge_hexe",
+      "name": "Junge Hexe",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "reiche_ernte_v1-card-wahrsagerin",
+      "name": "Wahrsagerin",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "reiche_ernte_v1-card-herlekin",
+      "name": "Harlekin",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "reiche_ernte_v1-card-pferdehaendler",
+      "name": "Pferdehändler",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "reiche_ernte_v1-card-fuellhorn",
+      "name": "Füllhorn",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "reiche_ernte_v1-card-festplatz",
+      "name": "Festplatz",
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": "6"
+      }
+    }
+  ]
+}

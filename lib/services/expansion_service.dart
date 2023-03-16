@@ -36,6 +36,12 @@ class ExpansionService {
     return _expansionDatabase.deleteExpansionTable();
   }
 
+  String getExpansionName(ExpansionModel expansion) {
+    return expansion.version == "V1"
+        ? expansion.name
+        : [expansion.name, expansion.version].join(" - ");
+  }
+
   void insertExpansionIntoDB(ExpansionModel expansionModel) {
     _expansionDatabase
         .insertExpansion(ExpansionDBModel.fromModel(expansionModel));

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:dominion_comanion/database/model/card/card_db_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -47,6 +48,15 @@ class CardDatabase {
   Future<List<CardDBModel>> getCardList() async {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.query('card');
+    return List.generate(maps.length, (i) {
+      return CardDBModel.fromDB(maps[i]);
+    });
+  }
+
+  Future<List<CardDBModel>> getCardsBySetId(String setId) async {
+    await openDb();
+    final List<Map<String, dynamic>> maps =
+    await _database.rawQuery('SELECT * FROM card WHERE setId=?', [setId]);
     return List.generate(maps.length, (i) {
       return CardDBModel.fromDB(maps[i]);
     });

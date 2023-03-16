@@ -45,10 +45,20 @@ class _CardInfoTileState extends State<CardInfoTile> {
           onTap: () => widget.onChanged(false),
           onLongPress: () => {
             showDialog(
-                context: context,
-                builder: (context) {
-                  return CardPopup(cardId: widget.card.id);
-                }),
+              context: context,
+              builder: (context) {
+                return FutureBuilder(
+                  future: cardService.getCardIdsForPopup(widget.card),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData && snapshot.data != null) {
+                      return CardPopup(cardIds: snapshot.data!);
+                    } else {
+                      return const Text('Karte konnte nicht geladen werden');
+                    }
+                  },
+                );
+              },
+            ),
           },
           title: Stack(
             children: [

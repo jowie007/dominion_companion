@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/database/model/card/card_db_model.dart';
 import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
@@ -21,6 +23,21 @@ class CardService {
     _cardDatabase.insertCard(cardDBModel);
   }
 
+  Future<List<String>> getCardIdsForPopup(CardModel card) async {
+    return !card.id.contains('-set-')
+        ? [card.id]
+        : await getCardIdsBySetId(card.id);
+  }
+
+  Future<List<String>> getCardIdsBySetId(String setId) async {
+    return await Future.wait(
+        (await getCardsBySetId(setId)).map((card) async => card.id));
+  }
+
+  Future<List<CardDBModel>> getCardsBySetId(String setId) async {
+    return await _cardDatabase.getCardsBySetId(setId);
+  }
+
   Future<List<CardDBModel>> getAlwaysCards() async {
     return await _cardDatabase.getAlwaysCardList();
   }
@@ -30,7 +47,7 @@ class CardService {
   }
 
   Future<List<CardDBModel>>
-      getWhenDeckConsistsOfXCardTypesOfExpansionCards() async {
+  getWhenDeckConsistsOfXCardTypesOfExpansionCards() async {
     return await _cardDatabase
         .getWhenDeckConsistsOfXCardTypesOfExpansionCards();
   }

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:dominion_comanion/database/hand_database.dart';
-import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
 import 'package:dominion_comanion/database/model/hand/hand_db_model.dart';
 
 class HandService {

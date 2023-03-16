@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/components/border_button_component.dart';
 import 'package:flutter/material.dart';
 
 class CardPopup extends StatefulWidget {
-  const CardPopup({super.key, required this.cardId});
+  const CardPopup({super.key, required this.cardIds});
 
-  final String cardId;
+  final List<String> cardIds;
 
   @override
   State<CardPopup> createState() => _CardPopupState();
@@ -15,6 +17,8 @@ class _CardPopupState extends State<CardPopup> {
   // https://daily-dev-tips.com/posts/flutter-3d-pan-effect/
 
   Offset _offset = Offset.zero;
+  int _selectedCardPosition = 0;
+  late String _cardPath;
 
   updatePan(DragUpdateDetails details) {
     var tempOffset = _offset + details.delta;
@@ -26,10 +30,28 @@ class _CardPopupState extends State<CardPopup> {
     }
   }
 
+  updateCardPath() {
+    _cardPath =
+        'assets/cards/full/${widget.cardIds[_selectedCardPosition].split("-")[0]}/${widget.cardIds[_selectedCardPosition].split("-")[2]}.png';
+  }
+
+  previousCard() {
+    _selectedCardPosition = _selectedCardPosition > 0
+        ? _selectedCardPosition - 1
+        : widget.cardIds.length - 1;
+    updateCardPath();
+  }
+
+  nextCard() {
+    _selectedCardPosition = _selectedCardPosition == widget.cardIds.length - 1
+        ? 0
+        : _selectedCardPosition + 1;
+    updateCardPath();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final cardPath =
-        'assets/cards/full/${widget.cardId.split("-")[0]}/${widget.cardId.split("-")[2]}.png';
+    updateCardPath();
     return FractionallySizedBox(
       widthFactor: 0.7,
       heightFactor: 0.9,
@@ -51,29 +73,41 @@ class _CardPopupState extends State<CardPopup> {
                     onPanUpdate: (details) =>
                         setState(() => updatePan(details)),
                     onDoubleTap: () => setState(() => _offset = Offset.zero),
-                    child:ClipRRect(
+                    child: ClipRRect(
                       borderRadius: BorderRadius.circular(16.0),
-                      child: Image(image: AssetImage(cardPath)),
-                    ) ,
+                      child: Image(
+                        image: AssetImage(_cardPath),
+                      ),
+                    ),
                   ),
                 ),
               ),
             ],
           ),
-          Align(
-              alignment: FractionalOffset.bottomLeft,
-              child: BorderButtonComponent(
-                  icon: Icons.arrow_back_ios_new,
-                  color: 'blue',
-                  onClick: () =>
-                      Navigator.of(context, rootNavigator: true).pop())),
-          Align(
-              alignment: FractionalOffset.bottomRight,
-              child: BorderButtonComponent(
-                  icon: Icons.arrow_forward_ios,
-                  color: 'blue',
-                  onClick: () =>
-                      Navigator.of(context, rootNavigator: true).pop())),
+          widget.cardIds.length > 1
+              ? Align(
+                  alignment: FractionalOffset.bottomLeft,
+                  child: BorderButtonComponent(
+                    icon: Icons.arrow_back_ios_new,
+                    color: 'blue',
+                    onClick: () => setState(
+                      () => previousCard(),
+                    ),
+                  ),
+                )
+              : Container(),
+          widget.cardIds.length > 1
+              ? Align(
+                  alignment: FractionalOffset.bottomRight,
+                  child: BorderButtonComponent(
+                    icon: Icons.arrow_forward_ios,
+                    color: 'blue',
+                    onClick: () => setState(
+                      () => nextCard(),
+                    ),
+                  ),
+                )
+              : Container(),
           Align(
               alignment: FractionalOffset.bottomCenter,
               child: BorderButtonComponent(

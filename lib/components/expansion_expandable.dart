@@ -1,6 +1,7 @@
 import 'package:dominion_comanion/components/card_info_tile.dart';
 import 'package:dominion_comanion/components/round_checkbox.dart';
 import 'package:dominion_comanion/model/expansion/expansion_model.dart';
+import 'package:dominion_comanion/services/expansion_service.dart';
 import 'package:dominion_comanion/services/selected_card_service.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,7 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
   // https://stackoverflow.com/questions/53908025/flutter-sortable-drag-and-drop-listview
   @override
   Widget build(BuildContext context) {
+    final expansionService = ExpansionService();
     final selectedCardService = SelectedCardService();
     final expansionCardIds = widget.expansion.cards
         .where((card) => !card.invisible)
@@ -65,8 +67,8 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                             fit: BoxFit.scaleDown,
                             alignment: Alignment.center,
                             child: Text(
-                              [widget.expansion.name, widget.expansion.version]
-                                  .join(" - "),
+                              expansionService
+                                  .getExpansionName(widget.expansion),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -85,8 +87,9 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                           shrinkWrap: true,
                           itemCount: widget.expansion.cards.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return !widget.expansion.cards[index].invisible
-                                ?  CardInfoTile(
+                            var card = widget.expansion.cards[index];
+                            return !card.invisible && card.setId == ''
+                                ? CardInfoTile(
                                     onChanged: (bool? newValue) => setState(() {
                                       selectedCardService
                                           .toggleSelectedCardIdDB(
