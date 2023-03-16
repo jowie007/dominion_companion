@@ -25,9 +25,17 @@ class CardModel {
   late List<String> count;
   static final sortTypeOrder = [
     ['aktion-preis', 'aktion-angriff-preis', 'geld-preis'],
-    ["aktion", "aktion-angriff", "aktion-reaktion", "aktion-punkte"],
+    [
+      "aktion",
+      "aktion-angriff",
+      "aktion-reaktion",
+      "aktion-punkte",
+      "aktion-dauer",
+      "aktion-dauer-angriff",
+      "aktion-dauer-reaktion",
+    ],
     ["punkte"],
-    ["geld", "geld-punkte"],
+    ["geld", "geld-punkte", "geld-dauer"],
     ["fluch"]
   ];
 

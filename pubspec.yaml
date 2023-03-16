@@ -73,6 +73,8 @@ flutter:
     - assets/cards/full/basisspiel_v2/
     - assets/cards/full/bluetezeit_v2/
     - assets/cards/full/reiche_ernte_v1/
+    - assets/cards/full/seaside_v2/
+    - assets/cards/full/intrige_v2/
     - assets/menu/
     - assets/artwork/boxart/
     - assets/artwork/background/

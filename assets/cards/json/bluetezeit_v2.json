@@ -240,7 +240,7 @@
   ],
   "content": [
     {
-      "id": "bluetezeit_v2-card-handelsroutenTableau",
+      "id": "bluetezeit_v2-content-handelsrouten_tableau",
       "name": "Handelsrouten Tableau",
       "whenDeckConsistsOfXCards": {
         "1": [
@@ -249,7 +249,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-spielerTableau",
+      "id": "bluetezeit_v2-content-spieler_tableau",
       "name": "Player Tableaus",
       "whenDeckConsistsOfXCards": {
         "1": [
@@ -260,7 +260,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-geldmarker",
+      "id": "bluetezeit_v2-content-geldmarker",
       "name": "Geldmarker",
       "whenDeckConsistsOfXCards": {
         "1": [
@@ -269,7 +269,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-siegpunktemarker5",
+      "id": "bluetezeit_v2-content-siegpunktemarker_5",
       "name": "Siegpunktemarker im Wert 5",
       "whenDeckConsistsOfXCards": {
         "1": [
@@ -281,7 +281,7 @@
       "count": "0,15,15,15,15,15"
     },
     {
-      "id": "bluetezeit_v2-card-siegpunktemarker1",
+      "id": "bluetezeit_v2-content-siegpunktemarker_1",
       "name": "Siegpunktemarker im Wert 1",
       "whenDeckConsistsOfXCards": {
         "1": [

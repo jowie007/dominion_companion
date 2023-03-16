@@ -1,0 +1,235 @@
+{
+  "id": "seaside_v2",
+  "name": "Seaside",
+  "version": "V2",
+  "cards": [
+    {
+      "id": "seaside_v2-card-eingeborenendorf",
+      "name": "Eingeborenendorf",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "seaside_v2-card-ausguck",
+      "name": "Ausguck",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "seaside_v2-card-lagerhaus",
+      "name": "Lagerhaus",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "seaside_v2-card-seekarte",
+      "name": "Seekarte",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "seaside_v2-card-schmuggler",
+      "name": "Schmuggler",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "seaside_v2-card-beutelschneider",
+      "name": "Beutelschneider",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "seaside_v2-card-muellverwerter",
+      "name": "Müllverwerter",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "seaside_v2-card-schatzkarte",
+      "name": "Schatzkarte",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "seaside_v2-card-bazar",
+      "name": "Bazar",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "seaside_v2-card-schatzkammer",
+      "name": "Schatzkammer",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "seaside_v2-card-hafen",
+      "name": "Hafen",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "seaside_v2-card-leuchtturm",
+      "name": "Leuchtturm",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "seaside_v2-card-affe",
+      "name": "Affe",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "seaside_v2-card-fischerdorf",
+      "name": "Fischerdorf",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "seaside_v2-card-blockade",
+      "name": "Blockade",
+      "cardTypes": "aktion, dauer, angriff",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "seaside_v2-card-gezeitenbecken",
+      "name": "Gezeitenbecken",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "seaside_v2-card-karawane",
+      "name": "Karawane",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "seaside_v2-card-seefahrerin",
+      "name": "Seefahrerin",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "seaside_v2-card-aussenposten",
+      "name": "Aussenposten",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "seaside_v2-card-handelsschiff",
+      "name": "Handelsschiff",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "seaside_v2-card-korsarenschiff",
+      "name": "Korsarenschiff",
+      "cardTypes": "aktion, dauer, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "seaside_v2-card-meerhexe",
+      "name": "Meerhexe",
+      "cardTypes": "aktion, dauer, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "seaside_v2-card-taktiker",
+      "name": "Taktiker",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "seaside_v2-card-insel",
+      "name": "Insel",
+      "cardTypes": "aktion, punkte",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "seaside_v2-card-astrolabium",
+      "name": "Astrolabium",
+      "cardTypes": "geld, dauer",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "seaside_v2-card-piratin",
+      "name": "Piratin",
+      "cardTypes": "aktion, dauer, reaktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    }
+  ],
+  "content": [
+    {
+      "id": "seaside_v2-content-insel_tableau",
+      "name": "Insel Tableau",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "seaside_v2-card-insel"
+        ]
+      }
+    },
+    {
+      "id": "seaside_v2-content-eingeborenendorf_tableau",
+      "name": "Eingeborenendorf Tableau",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "seaside_v2-card-eingeborenendorf"
+        ]
+      }
+    }
+  ]
+}
