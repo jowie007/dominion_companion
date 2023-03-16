@@ -193,7 +193,8 @@
       "cardTypes": "aktion, punkte",
       "cardCost": {
         "coin": "5"
-      }
+      },
+      "count": "0,8,12,12,12,12"
     },
     {
       "id": "seaside_v2-card-astrolabium",

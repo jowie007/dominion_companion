@@ -14,12 +14,14 @@ class CardInfoTile extends StatefulWidget {
     required this.onChanged,
     required this.value,
     this.hasCheckbox = true,
+    this.showCardCount = false,
   });
 
   final void Function(bool? value) onChanged;
   final CardModel card;
   final bool value;
   final bool hasCheckbox;
+  final bool showCardCount;
 
   @override
   State<CardInfoTile> createState() => _CardInfoTileState();
@@ -117,7 +119,7 @@ class _CardInfoTileState extends State<CardInfoTile> {
                       Text(
                         widget.card.name,
                         style:
-                            const TextStyle(fontSize: 18, color: Colors.black),
+                            const TextStyle(fontSize: 16, color: Colors.black),
                       ),
                       Text(
                         cardTypeString,
@@ -135,7 +137,7 @@ class _CardInfoTileState extends State<CardInfoTile> {
                       : ExpansionIcon(icon: widget.card.id.split('-')[0])
                 ],
               ),
-              widget.card.count.isNotEmpty
+              widget.card.count.isNotEmpty && widget.showCardCount
                   ? Row(
                       children: [
                         const SizedBox(width: 36),

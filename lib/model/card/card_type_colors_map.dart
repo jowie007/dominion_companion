@@ -10,9 +10,12 @@ final Map<String, List<Color>> cardTypeColorsMap = {
   "aktion-punkte": [Colors.white, Colors.green],
   "aktion-reaktion": [Colors.blueAccent],
   "punkte": [Colors.green],
+  "punkte-reaktion": [Colors.green, Colors.blueAccent],
   "geld": [Colors.orangeAccent],
+  "geld-angriff": [Colors.orangeAccent],
   "geld-dauer": [Colors.orangeAccent, Colors.deepOrangeAccent],
   "geld-preis": [Colors.white],
   "geld-punkte": [Colors.orangeAccent, Colors.green],
+  "geld-reaktion": [Colors.orangeAccent, Colors.blueAccent],
   "fluch": [Colors.deepPurple],
 };

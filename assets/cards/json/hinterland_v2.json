@@ -1,0 +1,217 @@
+{
+  "id": "hinterland_v2",
+  "name": "Hinterland",
+  "version": "V2",
+  "cards": [
+    {
+      "id": "hinterland_v2-card-wegkreuzung",
+      "name": "Wegkreuzung",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-aufbau",
+      "name": "Aufbau",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-komplott",
+      "name": "Komplott",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-oase",
+      "name": "Oase",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-gewuerzhaendler",
+      "name": "Gewürzhändler",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-lebenskuenstler",
+      "name": "Lebenskünstler",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-nomaden",
+      "name": "Nomaden",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-feilscher",
+      "name": "Feilscher",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-fernstrasse",
+      "name": "Fernstrasse",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-gasthaus",
+      "name": "Gasthaus",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-kartograph",
+      "name": "Kartograph",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-radmacherin",
+      "name": "Radmacherin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-souk",
+      "name": "Souk",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-stallungen",
+      "name": "Aktion",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-grenzdorf",
+      "name": "Grenzdorf",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-berserker",
+      "name": "Berserker",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-hexenhuette",
+      "name": "Hexenhütte",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-markgraf",
+      "name": "Markgraf",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-wachhund",
+      "name": "Wachhund",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-fahrende_haendlerin",
+      "name": "Fahrende Händlerin",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-pfad",
+      "name": "Pfad",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-weberin",
+      "name": "Weberin",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-katzengold",
+      "name": "Katzengold",
+      "cardTypes": "geld, reaktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-tunnel",
+      "name": "Tunnel",
+      "cardTypes": "punkte, reaktion",
+      "cardCost": {
+        "coin": "3"
+      },
+      "count": "0,8,12,12,12,12"
+    },
+    {
+      "id": "hinterland_v2-card-hexenkessel",
+      "name": "Hexenkessel",
+      "cardTypes": "geld, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "hinterland_v2-card-fruchtbares_land",
+      "name": "Fruchtbares Land",
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": "6"
+      },
+      "count": "0,8,12,12,12,12"
+    }
+  ]
+}

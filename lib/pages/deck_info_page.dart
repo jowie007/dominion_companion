@@ -50,6 +50,7 @@ class _DeckInfoState extends State<DeckInfoPage> {
                 borderRadius: BorderRadius.circular(15.0),
                 child: DeckExpandableLoader(
                   futureDeckModel: _temporaryDeckService.temporaryDeck,
+                  initiallyExpanded: true,
                   onLoaded: (deckModel) => temporaryDeck = deckModel,
                 ),
               ),

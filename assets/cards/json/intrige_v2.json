@@ -193,7 +193,8 @@
       "cardTypes": "aktion, punkte",
       "cardCost": {
         "coin": "4"
-      }
+      },
+      "count": "0,8,12,12,12,12"
     },
     {
       "id": "intrige_v2-card-adlige",
@@ -201,7 +202,8 @@
       "cardTypes": "aktion, punkte",
       "cardCost": {
         "coin": "6"
-      }
+      },
+      "count": "0,8,12,12,12,12"
     },
     {
       "id": "intrige_v2-card-harem",
@@ -209,7 +211,8 @@
       "cardTypes": "geld, punkte",
       "cardCost": {
         "coin": "6"
-      }
+      },
+      "count": "0,8,12,12,12,12"
     }
   ]
 }

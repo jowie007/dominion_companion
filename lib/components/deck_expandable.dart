@@ -4,10 +4,15 @@ import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:flutter/material.dart';
 
 class DeckExpandable extends StatefulWidget {
-  const DeckExpandable({super.key, required this.deckModel, this.onLongPress});
+  const DeckExpandable({
+    super.key,
+    required this.deckModel,
+    this.initiallyExpanded = false,
+    this.onLongPress,
+  });
 
   final DeckModel deckModel;
-
+  final bool initiallyExpanded;
   final void Function()? onLongPress;
 
   @override
@@ -30,6 +35,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
           Container(
             alignment: Alignment.center,
             child: ExpansionTile(
+              initiallyExpanded: widget.initiallyExpanded,
               trailing: const SizedBox(
                 width: 0,
                 height: 0,
@@ -84,8 +90,10 @@ class _DeckExpandableState extends State<DeckExpandable> {
                               card: allCards[index],
                               value: true,
                               hasCheckbox: false,
+                              showCardCount: true,
                             )
-                          : DeckAdditionalInfoTile(deckModel: widget.deckModel, cards: allCards);
+                          : DeckAdditionalInfoTile(
+                              deckModel: widget.deckModel, cards: allCards);
                     })
               ],
             ),
