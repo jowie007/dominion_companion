@@ -25,9 +25,9 @@ class CardModel {
   late List<String> count;
   static final sortTypeOrder = [
     ['aktion-preis', 'aktion-angriff-preis', 'geld-preis'],
-    ["aktion", "aktion-angriff", "aktion-reaktion"],
+    ["aktion", "aktion-angriff", "aktion-reaktion", "aktion-punkte"],
     ["punkte"],
-    ["geld"],
+    ["geld", "geld-punkte"],
     ["fluch"]
   ];
 
@@ -145,10 +145,10 @@ class CardModel {
   }
 
   static int compareStringNumbers(String stringNumber1, String stringNumber2) {
-    if(stringNumber1 == "") {
+    if (stringNumber1 == "") {
       stringNumber1 = "0";
     }
-    if(stringNumber2 == "") {
+    if (stringNumber2 == "") {
       stringNumber2 = "0";
     }
     var number1 = int.parse(stringNumber1.split(RegExp(r'\D')).first);
