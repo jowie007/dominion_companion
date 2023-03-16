@@ -1,0 +1,530 @@
+{
+  "id": "dark_ages_v1",
+  "name": "Dark Ages",
+  "version": "V2",
+  "cards": [
+    {
+      "id": "dark_ages_v1-set-ritter",
+      "name": "Ritter",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "dark_ages_v1-card-ritter"
+        ]
+      },
+      "cardTypes": "aktion, angriff, ritter",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "dark_ages_v1-set-ruinen",
+      "name": "Ruinen",
+      "whenDeckConsistsOfXCardTypesOfExpansion": {
+        "1": [
+          "aktion, pluendern",
+          "aktion, angriff, pluendern"
+        ]
+      },
+      "invisible": true,
+      "cardTypes": "aktion, ruine",
+      "cardCost": {
+        "coin": "5"
+      },
+      "count": "0,10,20,30,40,50"
+    },
+    {
+      "id": "dark_ages_v1-set-unterschlupf",
+      "name": "Unterschlupf",
+      "invisible": true,
+      "cardTypes": "unterschlupf",
+      "cardCost": {
+        "coin": "1"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-armenhaus",
+      "name": "Armenhaus",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "1"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-knappe",
+      "name": "Knappe",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-landstreicher",
+      "name": "Landstreicher",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-eremit",
+      "name": "Eremit",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-lagerraum",
+      "name": "Lagerraum",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-mundraub",
+      "name": "Mundraub",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-weiser",
+      "name": "Weiser",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-barde",
+      "name": "Barde",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-eisenhaendler",
+      "name": "Eisenhändler",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-festung",
+      "name": "Festung",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-lumpensammler",
+      "name": "Lumpensammler",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-prozession",
+      "name": "Prozession",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-ratten",
+      "name": "Ratten",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-waffenkammer",
+      "name": "Waffenkammer",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-banditenlager",
+      "name": "Banditenlager",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-grabraeuber",
+      "name": "Grabräuber",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-graf",
+      "name": "Graf",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-katakomben",
+      "name": "Katakomben",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-medium",
+      "name": "Medium",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-neubau",
+      "name": "Neubau",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-schrotthaendler",
+      "name": "Schrotthändler",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-vogelfreie",
+      "name": "Vogelfreie",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-altar",
+      "name": "Altar",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-jagdgruende",
+      "name": "Jagdgründe",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-leichenkarren",
+      "name": "Leichenkarren",
+      "cardTypes": "aktion, pluendern",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-marodeur",
+      "name": "Marodeur",
+      "cardTypes": "aktion, angriff, pluendern",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-kultist",
+      "name": "Kultist",
+      "cardTypes": "aktion, angriff, pluendern",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-gassenjunge",
+      "name": "Gassenjunge",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-raubzug",
+      "name": "Raubzug",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-schurke",
+      "name": "Schurke",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-bettler",
+      "name": "Bettler",
+      "cardTypes": "aktion, rekation",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-marktplatz",
+      "name": "Marktplatz",
+      "cardTypes": "aktion, rekation",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-lehen",
+      "name": "Lehen",
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": "4"
+      },
+      "count": "0,8,12,12,12,12"
+    },
+    {
+      "id": "dark_ages_v1-card-falschgeld",
+      "name": "Falschgeld",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-ritter",
+      "name": "Ritter",
+      "cardTypes": "aktion, angriff, ritter",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "dark_ages_v1-set-ritter"
+    },
+    {
+      "id": "dark_ages_v1-card-dame_anna",
+      "name": "Dame Anna",
+      "cardTypes": "aktion, angriff, ritter",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "dark_ages_v1-set-ritter"
+    },
+    {
+      "id": "dark_ages_v1-card-dame_josephine",
+      "name": "Dame Josephine",
+      "cardTypes": "aktion, angriff, ritter, punkte",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "dark_ages_v1-set-ritter"
+    },
+    {
+      "id": "dark_ages_v1-card-dame_molly",
+      "name": "Dame Molly",
+      "cardTypes": "aktion, angriff, ritter",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "dark_ages_v1-set-ritter"
+    },
+    {
+      "id": "dark_ages_v1-card-dame_natalie",
+      "name": "Dame Natalie",
+      "cardTypes": "aktion, angriff, ritter",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "dark_ages_v1-set-ritter"
+    },
+    {
+      "id": "dark_ages_v1-card-dame_sylvia",
+      "name": "Dame Sylvia",
+      "cardTypes": "aktion, angriff, ritter",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "dark_ages_v1-set-ritter"
+    },
+    {
+      "id": "dark_ages_v1-card-sir_bailey",
+      "name": "Sir Bailey",
+      "cardTypes": "aktion, angriff, ritter",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "dark_ages_v1-set-ritter"
+    },
+    {
+      "id": "dark_ages_v1-card-sir_destry",
+      "name": "Sir Destry",
+      "cardTypes": "aktion, angriff, ritter",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "dark_ages_v1-set-ritter"
+    },
+    {
+      "id": "dark_ages_v1-card-sir_martin",
+      "name": "Sir Martin",
+      "cardTypes": "aktion, angriff, ritter",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "dark_ages_v1-set-ritter"
+    },
+    {
+      "id": "dark_ages_v1-card-sir_michael",
+      "name": "Sir Michael",
+      "cardTypes": "aktion, angriff, ritter",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "dark_ages_v1-set-ritter"
+    },
+    {
+      "id": "dark_ages_v1-card-sir_vander",
+      "name": "Sir Vander",
+      "cardTypes": "aktion, angriff, ritter",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "dark_ages_v1-set-ritter"
+    },
+    {
+      "id": "dark_ages_v1-card-verlassene_mine",
+      "name": "Verlassene Mine",
+      "cardTypes": "aktion, ruine",
+      "cardCost": {
+        "coin": "0"
+      },
+      "setId": "dark_ages_v1-set-ruinen"
+    },
+    {
+      "id": "dark_ages_v1-card-zerstoerte_bibliothek",
+      "name": "Zerstörte Bibliothek",
+      "cardTypes": "aktion, ruine",
+      "cardCost": {
+        "coin": "0"
+      },
+      "setId": "dark_ages_v1-set-ruinen"
+    },
+    {
+      "id": "dark_ages_v1-card-zerstoerter_markt",
+      "name": "Zerstörter Markt",
+      "cardTypes": "aktion, ruine",
+      "cardCost": {
+        "coin": "0"
+      },
+      "setId": "dark_ages_v1-set-ruinen"
+    },
+    {
+      "id": "dark_ages_v1-card-zerstoertes_dorf",
+      "name": "Zerstörtes Dorf",
+      "cardTypes": "aktion, ruine",
+      "cardCost": {
+        "coin": "0"
+      },
+      "setId": "dark_ages_v1-set-ruinen"
+    },
+    {
+      "id": "dark_ages_v1-card-ueberlebende",
+      "name": "Überlebende",
+      "cardTypes": "aktion, ruine",
+      "cardCost": {
+        "coin": "0"
+      },
+      "setId": "dark_ages_v1-set-ruinen"
+    },
+    {
+      "id": "dark_ages_v1-card-huette",
+      "name": "Hütte",
+      "cardTypes": "reaktion, unterschlupf",
+      "cardCost": {
+        "coin": "1"
+      },
+      "setId": "dark_ages_v1-set-unterschlupf"
+    },
+    {
+      "id": "dark_ages_v1-card-totenstadt",
+      "name": "Totenstadt",
+      "cardTypes": "aktion, unterschlupf",
+      "cardCost": {
+        "coin": "1"
+      },
+      "setId": "dark_ages_v1-set-totenstadt"
+    },
+    {
+      "id": "dark_ages_v1-card-verlassenes_anwesen",
+      "name": "Verlassenes Anwesen",
+      "cardTypes": "punkte, unterschlupf",
+      "cardCost": {
+        "coin": "1"
+      },
+      "setId": "dark_ages_v1-set-unterschlupf"
+    },
+    {
+      "id": "dark_ages_v1-card-beute",
+      "name": "Beute",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "0*"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "dark_ages_v1-card-banditenlager",
+          "dark_ages_v1-card-marodeur",
+          "dark_ages_v1-card-raubzug"
+        ]
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-verrueckter",
+      "name": "Verrückter",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "0*"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "dark_ages_v1-card-eremit"
+        ]
+      }
+    },
+    {
+      "id": "dark_ages_v1-card-soeldner",
+      "name": "Söldner",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "0*"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "dark_ages_v1-card-gassenjunge"
+        ]
+      }
+    }
+  ]
+}
