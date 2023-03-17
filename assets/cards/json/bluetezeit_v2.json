@@ -250,7 +250,7 @@
     },
     {
       "id": "bluetezeit_v2-content-spieler_tableau",
-      "name": "Player Tableaus",
+      "name": "Player Tableau",
       "whenDeckConsistsOfXCards": {
         "1": [
           "bluetezeit_v2-card-bischof",
@@ -293,12 +293,6 @@
       "count": "0,16,16,16,16,16"
     }
   ],
-  "hand": {
-    "id": "bluetezeit_v2-hand",
-    "additionalContent": {
-      "bluetezeit_v2-card-spielerTableau": 1
-    }
-  },
   "end": {
     "id": "bluetezeit_v2-end",
     "additionalEmptyCards": [

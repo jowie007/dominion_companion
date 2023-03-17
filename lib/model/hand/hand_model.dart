@@ -45,21 +45,25 @@ class HandModel {
         .first;
   }
 
-  getAllItems() {
+  getAllCards() {
     var items = [];
     if (cardIdCountMap != null) {
       items.addAll(cardIdCountMap!.entries);
     }
-    if (contentIdCountMap != null) {
-      items.addAll(contentIdCountMap!.entries);
-    }
     if (additionalCardIdCountMap != null) {
       items.addAll(additionalCardIdCountMap!.entries);
     }
-    if (additionalContentIdsCountMap != null) {
-      items.addAll(additionalContentIdsCountMap!.entries);
+    return items;
+  }
+
+  Map<String, int> getAllContent() {
+    Map<String, int> items = {};
+    if (contentIdCountMap != null) {
+      items.addAll(contentIdCountMap!);
     }
-    log("ITEMSSS" + items.toString());
+    if (additionalContentIdsCountMap != null) {
+      items.addAll(additionalContentIdsCountMap!);
+    }
     return items;
   }
 }

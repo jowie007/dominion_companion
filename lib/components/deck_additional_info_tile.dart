@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:dominion_comanion/services/card_service.dart';
+import 'package:dominion_comanion/services/content_service.dart';
 import 'package:dominion_comanion/services/player_service.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,7 @@ class DeckAdditionalInfoTile extends StatefulWidget {
 class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
   final PlayerService _playerService = PlayerService();
   final CardService _cardService = CardService();
+  final ContentService _contentService = ContentService();
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +72,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                           Row(
                             children: const [
                               Text(
-                                "Austeilen:",
+                                "Handkarten:",
                                 style: TextStyle(
                                     decoration: TextDecoration.underline),
                               ),
@@ -78,8 +80,8 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                           ),
                           Column(
                             children: [
-                              for (var card in widget
-                                  .deckModel.hand.getAllItems())
+                              for (var card
+                                  in widget.deckModel.hand.getAllCards())
                                 Row(
                                   children: [
                                     const SizedBox(
@@ -94,6 +96,26 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                                         return Text(snapshot.data != null
                                             ? snapshot.data!
                                             : '');
+                                      },
+                                    ),
+                                  ],
+                                ),
+                               for (var content
+                                  in widget.deckModel.hand.getAllContent().entries)
+                                Row(
+                                  children: [
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text(content.value.toString()),
+                                    const Text("x "),
+                                    FutureBuilder(
+                                      future: _contentService
+                                          .getContentById(content.key.toString()),
+                                      builder: (context, snapshot) {
+                                        return Text(snapshot.data != null
+                                            ? snapshot.data!.name
+                                            : 'Test');
                                       },
                                     ),
                                   ],

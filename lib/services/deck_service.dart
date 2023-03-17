@@ -203,7 +203,7 @@ class DeckService {
     var ret = alwaysContent;
     for (var expansionId in activeExpansionIds) {
       var contentModelList =
-          await _contentService.getContentByExpansionFromId(expansionId);
+          await _contentService.getContentByExpansionId(expansionId);
       for (var contentModel in contentModelList) {
         if (contentModel.whenDeckConsistsOfXCards != null) {
           for (var entry in contentModel.whenDeckConsistsOfXCards!.entries) {
@@ -239,7 +239,9 @@ class DeckService {
           ? HandModel.fromDBModel(expansionHandDBModel)
           : null;
       if (expansionHand != null) {
+        var addToHand = true;
         if (expansionHand.whenDeckConsistsOfXCardsOfExpansionCount != null) {
+          addToHand = false;
           var count = 0;
           for (var card in cards) {
             if (card.getExpansionId() == expansionHand.getExpansionId()) {
@@ -247,28 +249,33 @@ class DeckService {
             }
             if (count >=
                 expansionHand.whenDeckConsistsOfXCardsOfExpansionCount!) {
-              if (expansionHand.cardIdCountMap != null) {
-                hand.cardIdCountMap = expansionHand.cardIdCountMap;
-              }
-              if (expansionHand.contentIdCountMap != null) {
-                hand.contentIdCountMap = expansionHand.contentIdCountMap;
-              }
-              if (expansionHand.additionalCardIdCountMap != null) {
-                hand.additionalCardIdCountMap!
-                    .addAll(expansionHand.additionalCardIdCountMap!);
-              }
-              if (expansionHand.additionalContentIdsCountMap != null) {
-                hand.additionalContentIdsCountMap!
-                    .addAll(expansionHand.additionalContentIdsCountMap!);
-              }
+              addToHand = true;
               break;
             }
           }
         }
+        if (addToHand) {
+          if (expansionHand.cardIdCountMap != null) {
+            hand.cardIdCountMap ??= {};
+            hand.cardIdCountMap = expansionHand.cardIdCountMap;
+          }
+          if (expansionHand.contentIdCountMap != null) {
+            hand.contentIdCountMap ??= {};
+            hand.contentIdCountMap = expansionHand.contentIdCountMap;
+          }
+          if (expansionHand.additionalCardIdCountMap != null) {
+            hand.additionalCardIdCountMap ??= {};
+            hand.additionalCardIdCountMap!
+                .addAll(expansionHand.additionalCardIdCountMap!);
+          }
+          if (expansionHand.additionalContentIdsCountMap != null) {
+            hand.additionalContentIdsCountMap ??= {};
+            hand.additionalContentIdsCountMap!
+                .addAll(expansionHand.additionalContentIdsCountMap!);
+          }
+        }
       }
     }
-    // TODO Wird noch nicht richtig hinzugefügt
-    log("ITEMSSSSSSS " + hand.additionalContentIdsCountMap.toString());
     return hand;
   }
 

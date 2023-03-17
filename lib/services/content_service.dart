@@ -20,6 +20,10 @@ class ContentService {
     _contentDatabase.insertContent(contentDBModel);
   }
 
+  Future<ContentDBModel> getContentById(String contentId) async {
+    return await _contentDatabase.getContentById(contentId);
+  }
+
   Future<List<ContentDBModel>> getAlwaysContents() async {
     return await _contentDatabase.getAlwaysContentList();
   }
@@ -29,13 +33,13 @@ class ContentService {
     return await _contentDatabase.getWhenDeckConsistsOfXCards();
   }
 
-  Future<List<ContentDBModel>> getContentByExpansionFromId(
-      String contentId) async {
-    return await _contentDatabase.getContentById(contentId);
+  Future<List<ContentDBModel>> getContentByExpansionId(
+      String expansionId) async {
+    return await _contentDatabase.getContentByExpansionId(expansionId);
   }
 
   Future<List<ContentDBModel>> getContentByExpansionFromDB(
       ExpansionDBModel expansion) async {
-    return getContentByExpansionFromId(expansion.id);
+    return getContentByExpansionId(expansion.id);
   }
 }
