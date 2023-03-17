@@ -28,7 +28,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
       child: Stack(
         children: [
           Container(
-            width: 400,
+            width: MediaQuery.of(context).size.width,
             height: 56,
             decoration: BoxDecoration(color: Colors.white.withOpacity(1)),
           ),

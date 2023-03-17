@@ -32,7 +32,8 @@ class _CardPopupState extends State<CardPopup> {
 
   updateCardPath() {
     _cardPath =
-        'assets/cards/full/${widget.cardIds[_selectedCardPosition].split("-")[0]}/${widget.cardIds[_selectedCardPosition].split("-")[2]}.png';
+    'assets/cards/full/${widget.cardIds[_selectedCardPosition].split(
+        "-")[0]}/${widget.cardIds[_selectedCardPosition].split("-")[2]}.png';
   }
 
   previousCard() {
@@ -57,56 +58,51 @@ class _CardPopupState extends State<CardPopup> {
       heightFactor: 0.9,
       child: Stack(
         children: [
-          Column(
-            children: [
-              const SizedBox(
-                height: 40,
-              ),
-              Center(
-                child: Transform(
-                  transform: Matrix4.identity()
-                    ..setEntry(3, 2, 0.001) // perspective
-                    ..rotateX(0.01 * _offset.dy) // changed
-                    ..rotateY(-0.01 * _offset.dx),
-                  alignment: FractionalOffset.center,
-                  child: GestureDetector(
-                    onPanUpdate: (details) =>
-                        setState(() => updatePan(details)),
-                    onDoubleTap: () => setState(() => _offset = Offset.zero),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16.0),
-                      child: Image(
-                        image: AssetImage(_cardPath),
-                      ),
-                    ),
+          Center(
+            child: Transform(
+              transform: Matrix4.identity()
+                ..setEntry(3, 2, 0.001) // perspective
+                ..rotateX(0.01 * _offset.dy) // changed
+                ..rotateY(-0.01 * _offset.dx),
+              alignment: FractionalOffset.center,
+              child: GestureDetector(
+                onPanUpdate: (details) =>
+                    setState(() => updatePan(details)),
+                onDoubleTap: () => setState(() => _offset = Offset.zero),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16.0),
+                  child: Image(
+                    image: AssetImage(_cardPath),
                   ),
                 ),
               ),
-            ],
+            ),
           ),
           widget.cardIds.length > 1
               ? Align(
-                  alignment: FractionalOffset.bottomLeft,
-                  child: BorderButtonComponent(
-                    icon: Icons.arrow_back_ios_new,
-                    color: 'blue',
-                    onClick: () => setState(
-                      () => previousCard(),
-                    ),
+            alignment: FractionalOffset.bottomLeft,
+            child: BorderButtonComponent(
+              icon: Icons.arrow_back_ios_new,
+              color: 'blue',
+              onClick: () =>
+                  setState(
+                        () => previousCard(),
                   ),
-                )
+            ),
+          )
               : Container(),
           widget.cardIds.length > 1
               ? Align(
-                  alignment: FractionalOffset.bottomRight,
-                  child: BorderButtonComponent(
-                    icon: Icons.arrow_forward_ios,
-                    color: 'blue',
-                    onClick: () => setState(
-                      () => nextCard(),
-                    ),
+            alignment: FractionalOffset.bottomRight,
+            child: BorderButtonComponent(
+              icon: Icons.arrow_forward_ios,
+              color: 'blue',
+              onClick: () =>
+                  setState(
+                        () => nextCard(),
                   ),
-                )
+            ),
+          )
               : Container(),
           Align(
               alignment: FractionalOffset.bottomCenter,

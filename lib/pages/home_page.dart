@@ -64,18 +64,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(0, 28, 0, 0),
-              child: const SizedBox(
-                height: 140,
-                child: Image(
-                  image: AssetImage('assets/menu/jdc.png'),
-                ),
-              ),
-            ),
-          ),
           const Align(
             alignment: Alignment.centerLeft,
             child: FractionallySizedBox(
@@ -92,29 +80,40 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(0, 200, 0, 0),
-              child: Column(children: [
-                MenuButton(
-                    text: "Decks",
-                    callback: () {
-                      Navigator.pushNamed(context, route.deckPage);
-                    }),
-                const SizedBox(height: 10),
-                MenuButton(
-                    text: "Cards",
-                    callback: () {
-                      Navigator.pushNamed(context, route.deckPage);
-                    }),
-                const SizedBox(height: 10),
-                MenuButton(
-                    text: "Settings",
-                    callback: () {
-                      Navigator.pushNamed(context, route.deckPage);
-                    }),
-              ]),
+          SingleChildScrollView(
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
+                child: Column(children: [
+                  const SizedBox(
+                    height: 140,
+                    child: Image(
+                      image: AssetImage('assets/menu/jdc.png'),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  MenuButton(
+                      text: "Decks",
+                      callback: () {
+                        Navigator.pushNamed(context, route.deckPage);
+                      }),
+                  const SizedBox(height: 10),
+                  MenuButton(
+                      text: "Cards",
+                      callback: () {
+                        Navigator.pushNamed(context, route.deckPage);
+                      }),
+                  const SizedBox(height: 10),
+                  MenuButton(
+                      text: "Settings",
+                      callback: () {
+                        Navigator.pushNamed(context, route.deckPage);
+                      }),
+                ]),
+              ),
             ),
           ),
         ],

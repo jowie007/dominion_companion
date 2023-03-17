@@ -34,7 +34,7 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
             child: Stack(
               children: [
                 SizedBox(
-                  width: 400,
+                  width: MediaQuery.of(context).size.width,
                   height: 56,
                   child: Image.asset(
                     "assets/artwork/boxart/${widget.expansion.id}.jpg",
