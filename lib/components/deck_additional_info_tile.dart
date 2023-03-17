@@ -79,7 +79,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                           Column(
                             children: [
                               for (var card in widget
-                                  .deckModel.hand.cardIdCountMap!.entries)
+                                  .deckModel.hand.getAllItems())
                                 Row(
                                   children: [
                                     const SizedBox(
@@ -87,8 +87,15 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                                     ),
                                     Text(card.value.toString()),
                                     const Text("x "),
-                                    Text(_cardService.filterCardName(
-                                        widget.cards, card.key)),
+                                    FutureBuilder(
+                                      future: _cardService.filterCardName(
+                                          widget.cards, card.key),
+                                      builder: (context, snapshot) {
+                                        return Text(snapshot.data != null
+                                            ? snapshot.data!
+                                            : '');
+                                      },
+                                    ),
                                   ],
                                 ),
                             ],
@@ -110,11 +117,17 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                       width: 20,
                     ),
                     Expanded(
-                      child: Text(
-                          "Wenn ${widget.deckModel.end.emptyCount} Stapel leer sind oder wenn "
-                          "${allEmptyCards.length > 1 ? 'einer' : ''} der "
-                          "folgende${allEmptyCards.length > 1 ? 'n' : ''} Stapel leer ist: "
-                          "${allEmptyCards.map((cardId) => _cardService.filterCardName(widget.cards, cardId)).join(", ")}"),
+                      child: FutureBuilder(
+                        future: Future.wait(allEmptyCards.map((cardId) =>
+                            _cardService.filterCardName(widget.cards, cardId))),
+                        builder: (context, snapshot) {
+                          return Text(
+                              "Wenn ${widget.deckModel.end.emptyCount} Stapel leer sind ${snapshot.data != null ? "oder wenn "
+                                  "${allEmptyCards.length > 1 ? 'einer' : ''} der "
+                                  "folgende${allEmptyCards.length > 1 ? 'n' : ''} Stapel leer ist: "
+                                  "${snapshot.data!.join(", ")}" : ''}");
+                        },
+                      ),
                     ),
                   ],
                 ),

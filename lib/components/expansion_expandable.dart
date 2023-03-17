@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/components/card_info_tile.dart';
 import 'package:dominion_comanion/components/round_checkbox.dart';
 import 'package:dominion_comanion/model/expansion/expansion_model.dart';
@@ -22,10 +24,7 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
   Widget build(BuildContext context) {
     final expansionService = ExpansionService();
     final selectedCardService = SelectedCardService();
-    final expansionCardIds = widget.expansion.cards
-        .where((card) => !card.invisible)
-        .map((card) => card.id)
-        .toList();
+    final expansionCardIds = widget.expansion.getCardIdsToShuffle();
     return Stack(
       children: [
         Padding(

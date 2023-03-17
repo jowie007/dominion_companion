@@ -18,7 +18,9 @@ class CardDatabase {
         "always BOOL, "
         "whenDeckConsistsOfXCardTypesOfExpansion STRING, "
         "whenDeckConsistsOfXCards STRING, "
+        "whenDeckConsistsOfXCardsOfExpansionCount NUMBER, "
         "whenDeckContainsPotions BOOL, "
+        "supply BOOL, "
         "name STRING, "
         "setId STRING, "
         "parentId STRING, "
@@ -56,7 +58,7 @@ class CardDatabase {
   Future<List<CardDBModel>> getCardsBySetId(String setId) async {
     await openDb();
     final List<Map<String, dynamic>> maps =
-    await _database.rawQuery('SELECT * FROM card WHERE setId=?', [setId]);
+        await _database.rawQuery('SELECT * FROM card WHERE setId=?', [setId]);
     return List.generate(maps.length, (i) {
       return CardDBModel.fromDB(maps[i]);
     });
@@ -94,6 +96,15 @@ class CardDatabase {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.rawQuery(
         'SELECT * FROM card WHERE length(whenDeckConsistsOfXCards) > 0');
+    return List.generate(maps.length, (i) {
+      return CardDBModel.fromDB(maps[i]);
+    });
+  }
+
+  Future<List<CardDBModel>> getWhenDeckConsistsOfXCardsOfExpansionCount() async {
+    await openDb();
+    final List<Map<String, dynamic>> maps = await _database.rawQuery(
+        'SELECT * FROM card WHERE whenDeckConsistsOfXCardsOfExpansionCount NOT NULL');
     return List.generate(maps.length, (i) {
       return CardDBModel.fromDB(maps[i]);
     });

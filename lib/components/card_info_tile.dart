@@ -111,22 +111,25 @@ class _CardInfoTileState extends State<CardInfoTile> {
                       ? Container()
                       : const SizedBox(width: 40),
                   const SizedBox(width: 10),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.card.name,
-                        style:
-                            const TextStyle(fontSize: 16, color: Colors.black),
-                      ),
-                      Text(
-                        cardTypeString,
-                        style:
-                            const TextStyle(fontSize: 14, color: Colors.black),
-                      ),
-                    ],
+                  Expanded(
+                    flex: 8,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.card.name,
+                          style: const TextStyle(
+                              fontSize: 16, color: Colors.black),
+                        ),
+                        Text(
+                          cardTypeString,
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
+                        ),
+                      ],
+                    ),
                   ),
                   const Spacer(),
                   widget.hasCheckbox

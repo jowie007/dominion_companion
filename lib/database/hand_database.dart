@@ -18,7 +18,8 @@ class HandDatabase {
         "cards STRING, "
         "additionalCards STRING, "
         "content STRING, "
-        "additionalContent STRING)",
+        "additionalContent STRING, "
+        "whenDeckConsistsOfXCardsOfExpansionCount NUMBER)",
       );
     });
     return _database;
@@ -62,9 +63,16 @@ class HandDatabase {
 
   Future<HandDBModel> getHandById(String id) async {
     await openDb();
-    final List<Map<String, dynamic>> maps =
-        await _database.rawQuery('SELECT * FROM hand WHERE id LIKE ?', ["$id%"]);
+    final List<Map<String, dynamic>> maps = await _database
+        .rawQuery('SELECT * FROM hand WHERE id LIKE ?', ["$id%"]);
     return HandDBModel.fromDB(maps.first);
+  }
+
+  Future<HandDBModel?> getHandByExpansionId(String id) async {
+    await openDb();
+    final List<Map<String, dynamic>> maps = await _database
+        .rawQuery('SELECT * FROM hand WHERE id LIKE ?', ["$id%"]);
+    return maps.isNotEmpty ? HandDBModel.fromDB(maps.first) : null;
   }
 
   Future<int> updateHand(HandDBModel hand) async {

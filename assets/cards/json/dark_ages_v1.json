@@ -1,7 +1,7 @@
 {
   "id": "dark_ages_v1",
   "name": "Dark Ages",
-  "version": "V2",
+  "version": "V1",
   "cards": [
     {
       "id": "dark_ages_v1-set-ritter",
@@ -39,7 +39,9 @@
       "cardTypes": "unterschlupf",
       "cardCost": {
         "coin": "1"
-      }
+      },
+      "whenDeckConsistsOfXCardsOfExpansionCount": 3,
+      "supply": false
     },
     {
       "id": "dark_ages_v1-card-armenhaus",
@@ -284,7 +286,7 @@
     {
       "id": "dark_ages_v1-card-bettler",
       "name": "Bettler",
-      "cardTypes": "aktion, rekation",
+      "cardTypes": "aktion, reaktion",
       "cardCost": {
         "coin": "2"
       }
@@ -292,7 +294,7 @@
     {
       "id": "dark_ages_v1-card-marktplatz",
       "name": "Marktplatz",
-      "cardTypes": "aktion, rekation",
+      "cardTypes": "aktion, reaktion",
       "cardCost": {
         "coin": "3"
       }
@@ -477,8 +479,8 @@
       "setId": "dark_ages_v1-set-totenstadt"
     },
     {
-      "id": "dark_ages_v1-card-verlassenes_anwesen",
-      "name": "Verlassenes Anwesen",
+      "id": "dark_ages_v1-card-verfallenes_anwesen",
+      "name": "Verfallenes Anwesen",
       "cardTypes": "punkte, unterschlupf",
       "cardCost": {
         "coin": "1"
@@ -498,7 +500,8 @@
           "dark_ages_v1-card-marodeur",
           "dark_ages_v1-card-raubzug"
         ]
-      }
+      },
+      "supply": false
     },
     {
       "id": "dark_ages_v1-card-verrueckter",
@@ -511,7 +514,8 @@
         "1": [
           "dark_ages_v1-card-eremit"
         ]
-      }
+      },
+      "supply": false
     },
     {
       "id": "dark_ages_v1-card-soeldner",
@@ -524,7 +528,18 @@
         "1": [
           "dark_ages_v1-card-gassenjunge"
         ]
-      }
+      },
+      "supply": false
     }
-  ]
+  ],
+  "hand": {
+    "id": "dark_ages_v1-hand",
+    "cards": {
+      "basisspiel_v2-card-kupfer": 7,
+      "dark_ages_v1-card-huette": 1,
+      "dark_ages_v1-card-totenstadt": 1,
+      "dark_ages_v1-card-verfallenes_anwesen": 1
+    },
+    "whenDeckConsistsOfXCardsOfExpansionCount": 3
+  }
 }

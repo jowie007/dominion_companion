@@ -14,7 +14,9 @@ class CardModel {
   late Map<int, List<List<CardTypeEnum>>>?
       whenDeckConsistsOfXCardTypesOfExpansion;
   late Map<int, List<String>>? whenDeckConsistsOfXCards;
+  late int? whenDeckConsistsOfXCardsOfExpansionCount;
   late bool whenDeckContainsPotions;
+  late bool supply;
   late String setId;
   late String parentId;
   late List<String> relatedCardIds;
@@ -24,23 +26,6 @@ class CardModel {
   late String text;
   late List<String> count;
   static final sortTypeOrder = [
-    [
-      "aktion",
-      "aktion-angriff",
-      'aktion-angriff-preis',
-      "aktion-reaktion",
-      "aktion-punkte",
-      "aktion-dauer",
-      "aktion-dauer-angriff",
-      "aktion-dauer-reaktion",
-      'aktion-preis',
-      "geld-angriff",
-      "geld-dauer",
-      'geld-preis',
-      "geld-punkte",
-      "geld-reaktion",
-      "punkte-reaktion"
-    ],
     ["punkte"],
     ["geld"],
     ["fluch"]
@@ -58,7 +43,10 @@ class CardModel {
     whenDeckConsistsOfXCards = json['whenDeckConsistsOfXCards'] != null
         ? whenDeckConsistsOfXCardsFromJSON(json['whenDeckConsistsOfXCards'])
         : null;
+    whenDeckConsistsOfXCardsOfExpansionCount =
+        json['whenDeckConsistsOfXCardsOfExpansionCount'];
     whenDeckContainsPotions = json['whenDeckContainsPotions'] ?? false;
+    supply = json['supply'] ?? true;
     setId = json['setId'] ?? '';
     parentId = json['parentId'] ?? '';
     relatedCardIds = json['relatedCardIds'] != null
@@ -80,7 +68,10 @@ class CardModel {
     whenDeckConsistsOfXCardTypesOfExpansion =
         dbModel.whenDeckConsistsOfXCardTypesOfExpansion;
     whenDeckConsistsOfXCards = dbModel.whenDeckConsistsOfXCards;
+    whenDeckConsistsOfXCardsOfExpansionCount =
+        dbModel.whenDeckConsistsOfXCardsOfExpansionCount;
     whenDeckContainsPotions = dbModel.whenDeckContainsPotions;
+    supply = dbModel.supply;
     setId = dbModel.setId;
     parentId = dbModel.parentId;
     relatedCardIds = dbModel.relatedCardIds;
@@ -100,7 +91,7 @@ class CardModel {
     return fileName;
   }
 
-  String getCardExpansion() {
+  String getExpansionId() {
     return id.split('-').first;
   }
 
@@ -143,6 +134,12 @@ class CardModel {
           if (value.contains(cardTypes1)) {cardPosition1 = index},
           if (value.contains(cardTypes2)) {cardPosition2 = index}
         });
+    if (!card1.supply) {
+      cardPosition1 = cardPosition1 + 1000;
+    }
+    if (!card2.supply) {
+      cardPosition2 = cardPosition2 + 1000;
+    }
     if (cardPosition1 == cardPosition2) {
       if (card1.cardCost.coin == card2.cardCost.coin) {
         if (card1.cardCost.potion == card2.cardCost.potion) {

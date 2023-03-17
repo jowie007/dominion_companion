@@ -41,4 +41,11 @@ class ExpansionModel {
     name = dbModel.name;
     version = dbModel.version;
   }
+
+  getCardIdsToShuffle() {
+    return cards
+        .where((card) => !card.invisible && card.setId == '')
+        .map((card) => card.id)
+        .toList();
+  }
 }

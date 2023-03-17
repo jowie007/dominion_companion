@@ -10,6 +10,7 @@ class HandDBModel {
   late Map<String, int>? additionalCardIdCountMap;
   late Map<String, int>? contentIdCountMap;
   late Map<String, int>? additionalContentIdsCountMap;
+  late int? whenDeckConsistsOfXCardsOfExpansionCount;
 
   HandDBModel.fromDB(Map<String, dynamic> dbData) {
     id = dbData['id'];
@@ -26,6 +27,8 @@ class HandDBModel {
     additionalContentIdsCountMap = dbData['additionalContent'] != null
         ? mapFromDBData(jsonDecode(dbData['additionalContent']))
         : null;
+    whenDeckConsistsOfXCardsOfExpansionCount =
+        dbData['whenDeckConsistsOfXCardsOfExpansionCount'];
   }
 
   HandDBModel.fromModel(HandModel model) {
@@ -35,6 +38,8 @@ class HandDBModel {
     additionalCardIdCountMap = model.additionalCardIdCountMap;
     contentIdCountMap = model.contentIdCountMap;
     additionalContentIdsCountMap = model.additionalContentIdsCountMap;
+    whenDeckConsistsOfXCardsOfExpansionCount =
+        model.whenDeckConsistsOfXCardsOfExpansionCount;
   }
 
   Map<String, dynamic> toJson() => {
@@ -43,7 +48,9 @@ class HandDBModel {
         'cards': mapToDB(cardIdCountMap),
         'additionalCards': mapToDB(additionalCardIdCountMap),
         'content': mapToDB(contentIdCountMap),
-        'additionalContent': mapToDB(additionalContentIdsCountMap)
+        'additionalContent': mapToDB(additionalContentIdsCountMap),
+        'whenDeckConsistsOfXCardsOfExpansionCount':
+            whenDeckConsistsOfXCardsOfExpansionCount,
       };
 
   String? mapToDB(Map<String, int>? value) {

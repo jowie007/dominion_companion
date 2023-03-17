@@ -12,7 +12,9 @@ class CardDBModel {
   late Map<int, List<List<CardTypeEnum>>>?
       whenDeckConsistsOfXCardTypesOfExpansion;
   late Map<int, List<String>>? whenDeckConsistsOfXCards;
+  late int? whenDeckConsistsOfXCardsOfExpansionCount;
   late bool whenDeckContainsPotions;
+  late bool supply;
   late String setId;
   late String parentId;
   late List<String> relatedCardIds;
@@ -35,9 +37,12 @@ class CardDBModel {
         ? CardModel.whenDeckConsistsOfXCardsFromJSON(
             jsonDecode(dbData['whenDeckConsistsOfXCards']))
         : null;
+    whenDeckConsistsOfXCardsOfExpansionCount =
+        dbData['whenDeckConsistsOfXCardsOfExpansionCount'];
     whenDeckContainsPotions = dbData['whenDeckContainsPotions'] != null
         ? dbData['whenDeckContainsPotions'] > 0
         : false;
+    supply = dbData['supply'] != null ? dbData['supply'] > 0 : true;
     setId = dbData['setId'] ?? '';
     parentId = dbData['parentId'] ?? '';
     relatedCardIds = dbData['relatedCardIds'] != null
@@ -60,7 +65,10 @@ class CardDBModel {
     whenDeckConsistsOfXCardTypesOfExpansion =
         model.whenDeckConsistsOfXCardTypesOfExpansion;
     whenDeckConsistsOfXCards = model.whenDeckConsistsOfXCards;
+    whenDeckConsistsOfXCardsOfExpansionCount =
+        model.whenDeckConsistsOfXCardsOfExpansionCount;
     whenDeckContainsPotions = model.whenDeckContainsPotions;
+    supply = model.supply;
     setId = model.setId;
     parentId = model.parentId;
     relatedCardIds = model.relatedCardIds;
@@ -83,7 +91,10 @@ class CardDBModel {
         'whenDeckConsistsOfXCards': whenDeckConsistsOfXCards != null
             ? whenDeckConsistsOfXCardsToDB(whenDeckConsistsOfXCards!)
             : '',
+        'whenDeckConsistsOfXCardsOfExpansionCount':
+            whenDeckConsistsOfXCardsOfExpansionCount,
         'whenDeckContainsPotions': whenDeckContainsPotions ? 1 : 0,
+        'supply': supply ? 1 : 0,
         'setId': setId,
         'parentId': parentId,
         'relatedCardIds': relatedCardIds.join(','),

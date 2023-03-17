@@ -56,6 +56,10 @@ class CardService {
     return await _cardDatabase.getWhenDeckConsistsOfXCards();
   }
 
+  Future<List<CardDBModel>> getWhenDeckConsistsOfXCardsOfExpansionCount() async {
+    return await _cardDatabase.getWhenDeckConsistsOfXCardsOfExpansionCount();
+  }
+
   Future<List<CardDBModel>> getCardsByExpansionFromDB(
       ExpansionDBModel expansion) async {
     final cards = expansion.cardIds
@@ -69,9 +73,9 @@ class CardService {
     return fileName;
   }
 
-  String filterCardName(List<CardModel> cards, String cardId) {
-    var ret = cards.where((element) => element.id == cardId);
-    return ret.isNotEmpty ? ret.first.name : 'Karte nicht gefunden';
+  Future<String> filterCardName(List<CardModel> cards, String cardId) async {
+    var card = await _cardDatabase.getCardById(cardId);
+    return card.name;
   }
 
   List<Color>? getColorsByCardTypeString(String cardTypeString) {

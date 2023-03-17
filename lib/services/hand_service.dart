@@ -25,4 +25,8 @@ class HandService {
   Future<HandDBModel> getHandByHandIdFromDB(String handId) async {
     return await _handDatabase.getHandById(handId);
   }
+
+  Future<HandDBModel?> getHandByExpansionIdFromDB(String expansionId) async {
+    return await _handDatabase.getHandByExpansionId(expansionId);
+  }
 }

@@ -21,7 +21,7 @@ class DeckModel {
     allCards.sort((a, b) => CardModel.sortCardComparison(a, b));
     if (additionalCards != null) {
       var sortedAdditionalCards = [...additionalCards!];
-      sortedAdditionalCards!.sort((a, b) => CardModel.sortCardComparison(a, b));
+      sortedAdditionalCards.sort((a, b) => CardModel.sortCardComparison(a, b));
       allCards.addAll(sortedAdditionalCards);
     }
     return allCards;
