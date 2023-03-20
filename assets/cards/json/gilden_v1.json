@@ -123,21 +123,17 @@
       }
     }
   ],
-  "hand": {
-    "id": "gilden_v1-hand",
-    "additionalContent": [
-      {
-        "id": "gilden_v1-content-muenze",
-        "whenDeckConsistsOfXCards": {
-          "1": [
-            "gilden_v1-card-leuchtenmacher",
-            "gilden_v1-card-platz",
-            "gilden_v1-card-baecker",
-            "gilden_v1-card-metzger",
-            "gilden_v1-card-kaufmannsgilde"
-          ]
-        }
+  "hand": [
+    {
+      "id": "gilden_v1-hand",
+      "additionalContent": {
+        "gilden_v1-content-muenze": 1
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "gilden_v1-card-baecker"
+        ]
       }
-    ]
-  }
+    }
+  ]
 }

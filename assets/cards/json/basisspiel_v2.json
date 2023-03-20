@@ -281,18 +281,22 @@
       "count": "0,10,20,30,40,50"
     }
   ],
-  "hand": {
-    "id": "basisspiel_v2-hand",
-    "always": true,
-    "cards": {
-      "basisspiel_v2-card-kupfer": 7,
-      "basisspiel_v2-card-anwesen": 3
+  "hand": [
+    {
+      "id": "basisspiel_v2-hand",
+      "always": true,
+      "cards": {
+        "basisspiel_v2-card-kupfer": 7,
+        "basisspiel_v2-card-anwesen": 3
+      }
     }
-  },
+  ],
   "end": {
     "id": "basisspiel_v2-end",
     "always": true,
-    "emptyCards": ["basisspiel_v2-card-provinz"],
+    "emptyCards": [
+      "basisspiel_v2-card-provinz"
+    ],
     "emptyCount": 3
   }
 }

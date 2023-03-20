@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:dominion_comanion/database/model/hand/hand_db_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -19,6 +20,7 @@ class HandDatabase {
         "additionalCards STRING, "
         "content STRING, "
         "additionalContent STRING, "
+        "whenDeckConsistsOfXCards STRING, "
         "whenDeckConsistsOfXCardsOfExpansionCount NUMBER)",
       );
     });
@@ -68,11 +70,13 @@ class HandDatabase {
     return HandDBModel.fromDB(maps.first);
   }
 
-  Future<HandDBModel?> getHandByExpansionId(String id) async {
+  Future<List<HandDBModel>> getHandsByExpansionId(String id) async {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database
         .rawQuery('SELECT * FROM hand WHERE id LIKE ?', ["$id%"]);
-    return maps.isNotEmpty ? HandDBModel.fromDB(maps.first) : null;
+    return List.generate(maps.length, (i) {
+      return HandDBModel.fromDB(maps[i]);
+    });
   }
 
   Future<int> updateHand(HandDBModel hand) async {

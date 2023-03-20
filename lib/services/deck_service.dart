@@ -234,44 +234,54 @@ class DeckService {
     var hand = alwaysHand.first;
     for (var expansionId in activeExpansionIds) {
       var expansionHandDBModel =
-          await _handService.getHandByExpansionIdFromDB(expansionId);
-      var expansionHand = expansionHandDBModel != null
-          ? HandModel.fromDBModel(expansionHandDBModel)
-          : null;
-      if (expansionHand != null) {
-        var addToHand = true;
-        if (expansionHand.whenDeckConsistsOfXCardsOfExpansionCount != null) {
-          addToHand = false;
+          await _handService.getHandsByExpansionId(expansionId);
+      for (var handDBModel in expansionHandDBModel) {
+        var handModel = HandModel.fromDBModel(handDBModel);
+        var addToHand = false;
+        if (handModel.whenDeckConsistsOfXCardsOfExpansionCount != null) {
           var count = 0;
           for (var card in cards) {
-            if (card.getExpansionId() == expansionHand.getExpansionId()) {
+            if (card.getExpansionId() == handModel.getExpansionId()) {
               count++;
             }
-            if (count >=
-                expansionHand.whenDeckConsistsOfXCardsOfExpansionCount!) {
+            if (count >= handModel.whenDeckConsistsOfXCardsOfExpansionCount!) {
               addToHand = true;
               break;
             }
           }
         }
+        if (handModel.whenDeckConsistsOfXCards != null) {
+          for (var entry in handModel.whenDeckConsistsOfXCards!.entries) {
+            var count = 0;
+            for (var cardId in entry.value) {
+              if (cards.where((element) => element.id == cardId).isNotEmpty) {
+                count++;
+              }
+              if (count >= entry.key) {
+                addToHand = true;
+                break;
+              }
+            }
+          }
+        }
         if (addToHand) {
-          if (expansionHand.cardIdCountMap != null) {
+          if (handModel.cardIdCountMap != null) {
             hand.cardIdCountMap ??= {};
-            hand.cardIdCountMap = expansionHand.cardIdCountMap;
+            hand.cardIdCountMap = handModel.cardIdCountMap;
           }
-          if (expansionHand.contentIdCountMap != null) {
+          if (handModel.contentIdCountMap != null) {
             hand.contentIdCountMap ??= {};
-            hand.contentIdCountMap = expansionHand.contentIdCountMap;
+            hand.contentIdCountMap = handModel.contentIdCountMap;
           }
-          if (expansionHand.additionalCardIdCountMap != null) {
+          if (handModel.additionalCardIdCountMap != null) {
             hand.additionalCardIdCountMap ??= {};
             hand.additionalCardIdCountMap!
-                .addAll(expansionHand.additionalCardIdCountMap!);
+                .addAll(handModel.additionalCardIdCountMap!);
           }
-          if (expansionHand.additionalContentIdsCountMap != null) {
+          if (handModel.additionalContentIdsCountMap != null) {
             hand.additionalContentIdsCountMap ??= {};
             hand.additionalContentIdsCountMap!
-                .addAll(expansionHand.additionalContentIdsCountMap!);
+                .addAll(handModel.additionalContentIdsCountMap!);
           }
         }
       }

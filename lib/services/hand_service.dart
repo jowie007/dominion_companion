@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:dominion_comanion/database/hand_database.dart';
 import 'package:dominion_comanion/database/model/hand/hand_db_model.dart';
@@ -26,7 +27,7 @@ class HandService {
     return await _handDatabase.getHandById(handId);
   }
 
-  Future<HandDBModel?> getHandByExpansionIdFromDB(String expansionId) async {
-    return await _handDatabase.getHandByExpansionId(expansionId);
+  Future<List<HandDBModel>> getHandsByExpansionId(String expansionId) async {
+    return await _handDatabase.getHandsByExpansionId(expansionId);
   }
 }

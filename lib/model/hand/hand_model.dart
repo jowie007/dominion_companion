@@ -9,23 +9,27 @@ class HandModel {
   late Map<String, int>? additionalCardIdCountMap;
   late Map<String, int>? contentIdCountMap;
   late Map<String, int>? additionalContentIdsCountMap;
+  late Map<int, List<String>>? whenDeckConsistsOfXCards;
   late int? whenDeckConsistsOfXCardsOfExpansionCount;
 
   HandModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     always = json['always'] ?? false;
     cardIdCountMap =
-    json['cards'] != null ? Map<String, int>.from(json['cards']) : null;
+        json['cards'] != null ? Map<String, int>.from(json['cards']) : null;
     additionalCardIdCountMap = json['additionalCards'] != null
         ? Map<String, int>.from(json['additionalCards'])
         : null;
     contentIdCountMap =
-    json['content'] != null ? Map<String, int>.from(json['content']) : null;
+        json['content'] != null ? Map<String, int>.from(json['content']) : null;
     additionalContentIdsCountMap = json['additionalContent'] != null
         ? Map<String, int>.from(json['additionalContent'])
         : null;
+    whenDeckConsistsOfXCards = json['whenDeckConsistsOfXCards'] != null
+        ? whenDeckConsistsOfXCardsFromJSON(json['whenDeckConsistsOfXCards'])
+        : null;
     whenDeckConsistsOfXCardsOfExpansionCount =
-    json['whenDeckConsistsOfXCardsOfExpansionCount'];
+        json['whenDeckConsistsOfXCardsOfExpansionCount'];
   }
 
   HandModel.fromDBModel(HandDBModel dbModel) {
@@ -35,14 +39,13 @@ class HandModel {
     additionalCardIdCountMap = dbModel.additionalCardIdCountMap;
     contentIdCountMap = dbModel.contentIdCountMap;
     additionalContentIdsCountMap = dbModel.additionalContentIdsCountMap;
+    whenDeckConsistsOfXCards = dbModel.whenDeckConsistsOfXCards;
     whenDeckConsistsOfXCardsOfExpansionCount =
         dbModel.whenDeckConsistsOfXCardsOfExpansionCount;
   }
 
   String getExpansionId() {
-    return id
-        .split('-')
-        .first;
+    return id.split('-').first;
   }
 
   getAllCards() {
@@ -56,14 +59,24 @@ class HandModel {
     return items;
   }
 
-  Map<String, int> getAllContent() {
-    Map<String, int> items = {};
+  getAllContents() {
+    var items = [];
     if (contentIdCountMap != null) {
-      items.addAll(contentIdCountMap!);
+      items.addAll(contentIdCountMap!.entries);
     }
     if (additionalContentIdsCountMap != null) {
-      items.addAll(additionalContentIdsCountMap!);
+      items.addAll(additionalContentIdsCountMap!.entries);
     }
     return items;
+  }
+
+  static Map<int, List<String>> whenDeckConsistsOfXCardsFromJSON(dynamic json) {
+    Map<int, List<String>> retMap = {};
+    var jsonMap = Map<String, List<dynamic>>.from(json);
+    for (var stringMapKey in jsonMap.keys) {
+      retMap[int.parse(stringMapKey)] =
+          List<String>.from(json[stringMapKey]).toList();
+    }
+    return retMap;
   }
 }

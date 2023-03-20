@@ -51,9 +51,8 @@ class ExpansionService {
     for (var element in expansionModel.content) {
       _contentService.insertContentIntoDB(ContentDBModel.fromModel(element));
     }
-    if (expansionModel.hand != null) {
-      _handService
-          .insertHandIntoDB(HandDBModel.fromModel(expansionModel.hand!));
+    for (var element in expansionModel.hand) {
+      _handService.insertHandIntoDB(HandDBModel.fromModel(element));
     }
     if (expansionModel.end != null) {
       _endService.insertEndIntoDB(EndDBModel.fromModel(expansionModel.end!));
@@ -76,13 +75,12 @@ class ExpansionService {
           (await _cardService.getCardsByExpansionFromDB(expansion))
               .map((card) => CardModel.fromDBModel(card))
               .toList(),
-          (await _contentService.getContentByExpansionFromDB(expansion))
+          (await _contentService.getContentByExpansionId(expansion.id))
               .map((content) => ContentModel.fromDBModel(content))
               .toList(),
-          expansion.handId != null
-              ? (HandModel.fromDBModel(
-                  await _handService.getHandByHandIdFromDB(expansion.handId!)))
-              : null,
+          (await _handService.getHandsByExpansionId(expansion.id))
+              .map((hand) => HandModel.fromDBModel(hand))
+              .toList(),
           expansion.endId != null
               ? (EndModel.fromDBModel(
                   await _endService.getEndByEndIdFromDB(expansion.endId!)))

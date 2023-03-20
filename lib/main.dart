@@ -18,6 +18,8 @@ class _DominionCompanionState extends State<DominionCompanion> {
     // ExpansionService().loadJsonExpansionsIntoDB();
   }
 
+  // TODO Gilden-Münzen mit + höhergestellt anzeigen
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

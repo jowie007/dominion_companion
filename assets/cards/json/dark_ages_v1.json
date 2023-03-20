@@ -532,14 +532,16 @@
       "supply": false
     }
   ],
-  "hand": {
-    "id": "dark_ages_v1-hand",
-    "cards": {
-      "basisspiel_v2-card-kupfer": 7,
-      "dark_ages_v1-card-huette": 1,
-      "dark_ages_v1-card-totenstadt": 1,
-      "dark_ages_v1-card-verfallenes_anwesen": 1
-    },
-    "whenDeckConsistsOfXCardsOfExpansionCount": 3
-  }
+  "hand": [
+    {
+      "id": "dark_ages_v1-hand",
+      "cards": {
+        "basisspiel_v2-card-kupfer": 7,
+        "dark_ages_v1-card-huette": 1,
+        "dark_ages_v1-card-totenstadt": 1,
+        "dark_ages_v1-card-verfallenes_anwesen": 1
+      },
+      "whenDeckConsistsOfXCardsOfExpansionCount": 3
+    }
+  ]
 }

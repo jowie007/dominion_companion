@@ -233,25 +233,28 @@
       }
     }
   ],
-  "hand": {
-    "id": "seaside_v2-hand",
-    "additionalContent": [
-      {
-        "id": "seaside_v2-content-insel_tableau",
-        "whenDeckConsistsOfXCards": {
-          "1": [
-            "seaside_v2-card-insel"
-          ]
-        }
+  "hand": [
+    {
+      "id": "seaside_v2-hand-1",
+      "additionalContent": {
+        "seaside_v2-content-insel_tableau": 1
       },
-      {
-        "id": "seaside_v2-content-eingeborenendorf",
-        "whenDeckConsistsOfXCards": {
-          "1": [
-            "seaside_v2-card-eingeborenendorf"
-          ]
-        }
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "seaside_v2-card-insel"
+        ]
       }
-    ]
-  }
+    },
+    {
+      "id": "seaside_v2-hand-2",
+      "additionalContent": {
+        "seaside_v2-content-eingeborenendorf_tableau": 1
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "seaside_v2-card-eingeborenendorf"
+        ]
+      }
+    }
+  ]
 }

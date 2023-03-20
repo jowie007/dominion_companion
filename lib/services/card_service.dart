@@ -47,7 +47,7 @@ class CardService {
   }
 
   Future<List<CardDBModel>>
-  getWhenDeckConsistsOfXCardTypesOfExpansionCards() async {
+      getWhenDeckConsistsOfXCardTypesOfExpansionCards() async {
     return await _cardDatabase
         .getWhenDeckConsistsOfXCardTypesOfExpansionCards();
   }
@@ -56,7 +56,8 @@ class CardService {
     return await _cardDatabase.getWhenDeckConsistsOfXCards();
   }
 
-  Future<List<CardDBModel>> getWhenDeckConsistsOfXCardsOfExpansionCount() async {
+  Future<List<CardDBModel>>
+      getWhenDeckConsistsOfXCardsOfExpansionCount() async {
     return await _cardDatabase.getWhenDeckConsistsOfXCardsOfExpansionCount();
   }
 

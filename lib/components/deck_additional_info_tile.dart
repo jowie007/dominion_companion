@@ -72,7 +72,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                           Row(
                             children: const [
                               Text(
-                                "Handkarten:",
+                                "Austeilen:",
                                 style: TextStyle(
                                     decoration: TextDecoration.underline),
                               ),
@@ -101,7 +101,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                                   ],
                                 ),
                                for (var content
-                                  in widget.deckModel.hand.getAllContent().entries)
+                                  in widget.deckModel.hand.getAllContents())
                                 Row(
                                   children: [
                                     const SizedBox(

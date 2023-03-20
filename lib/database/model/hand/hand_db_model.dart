@@ -9,10 +9,8 @@ class HandDBModel {
   late Map<String, int>? additionalCardIdCountMap;
   late Map<String, int>? contentIdCountMap;
   late Map<String, int>? additionalContentIdsCountMap;
+  late Map<int, List<String>>? whenDeckConsistsOfXCards;
   late int? whenDeckConsistsOfXCardsOfExpansionCount;
-  // TODO
-  // AdditionalContent und Content anpassen
-  // Eventuell auch noch Cards anpassen, sodass eine Hand aus mehreren Elementen bestehen kann
 
   HandDBModel.fromDB(Map<String, dynamic> dbData) {
     id = dbData['id'];
@@ -29,6 +27,10 @@ class HandDBModel {
     additionalContentIdsCountMap = dbData['additionalContent'] != null
         ? mapFromDBData(jsonDecode(dbData['additionalContent']))
         : null;
+    whenDeckConsistsOfXCards = dbData['whenDeckConsistsOfXCards'] != ''
+        ? HandModel.whenDeckConsistsOfXCardsFromJSON(
+            jsonDecode(dbData['whenDeckConsistsOfXCards']))
+        : null;
     whenDeckConsistsOfXCardsOfExpansionCount =
         dbData['whenDeckConsistsOfXCardsOfExpansionCount'];
   }
@@ -40,6 +42,7 @@ class HandDBModel {
     additionalCardIdCountMap = model.additionalCardIdCountMap;
     contentIdCountMap = model.contentIdCountMap;
     additionalContentIdsCountMap = model.additionalContentIdsCountMap;
+    whenDeckConsistsOfXCards = model.whenDeckConsistsOfXCards;
     whenDeckConsistsOfXCardsOfExpansionCount =
         model.whenDeckConsistsOfXCardsOfExpansionCount;
   }
@@ -51,6 +54,9 @@ class HandDBModel {
         'additionalCards': mapToDB(additionalCardIdCountMap),
         'content': mapToDB(contentIdCountMap),
         'additionalContent': mapToDB(additionalContentIdsCountMap),
+        'whenDeckConsistsOfXCards': whenDeckConsistsOfXCards != null
+            ? whenDeckConsistsOfXCardsToDB(whenDeckConsistsOfXCards!)
+            : '',
         'whenDeckConsistsOfXCardsOfExpansionCount':
             whenDeckConsistsOfXCardsOfExpansionCount,
       };
@@ -74,5 +80,15 @@ class HandDBModel {
       retMap[stringMapKey] = int.parse(json[stringMapKey]);
     }
     return retMap;
+  }
+
+  String whenDeckConsistsOfXCardsToDB(Map<int, List<String>> value) {
+    Map<String, List<String>> retMap = {};
+    for (var valueKey in value.keys) {
+      retMap['"$valueKey"'] = value[valueKey]!.map((e) => '"$e"').toList();
+    }
+    var ret = retMap.toString();
+    ret.replaceAll("=", "-");
+    return ret;
   }
 }
