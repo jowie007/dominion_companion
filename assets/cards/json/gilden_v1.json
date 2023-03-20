@@ -1,0 +1,143 @@
+{
+  "id": "gilden_v1",
+  "name": "Gilden",
+  "version": "V1",
+  "cards": [
+    {
+      "id": "gilden_v1-card-steinmetz",
+      "name": "Steinmetz",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2+"
+      }
+    },
+    {
+      "id": "gilden_v1-card-leuchtenmacher",
+      "name": "Leuchtenmacher",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "gilden_v1-card-arzt",
+      "name": "Arzt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3+"
+      }
+    },
+    {
+      "id": "gilden_v1-card-berater",
+      "name": "Berater",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "gilden_v1-card-herold",
+      "name": "Herold",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4+"
+      }
+    },
+    {
+      "id": "gilden_v1-card-platz",
+      "name": "Platz",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "gilden_v1-card-baecker",
+      "name": "Bäcker",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "gilden_v1-card-metzger",
+      "name": "Metzger",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "gilden_v1-card-wandergeselle",
+      "name": "Wandergeselle",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "gilden_v1-card-kaufmannsgilde",
+      "name": "Kaufmannsgilde",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "gilden_v1-card-steuereintreiber",
+      "name": "Steuereintreiber",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "gilden_v1-card-hellseherin",
+      "name": "Hellseherin",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "gilden_v1-card-meisterstueck",
+      "name": "Geld",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "3+"
+      }
+    }
+  ],
+  "content": [
+    {
+      "id": "gilden_v1-content-muenze",
+      "name": "Geldmarker",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "gilden_v1-card-leuchtenmacher",
+          "gilden_v1-card-platz",
+          "gilden_v1-card-baecker",
+          "gilden_v1-card-metzger",
+          "gilden_v1-card-kaufmannsgilde"
+        ]
+      }
+    }
+  ],
+  "hand": {
+    "id": "gilden_v1-hand",
+    "additionalContent": [
+      {
+        "id": "gilden_v1-content-muenze",
+        "whenDeckConsistsOfXCards": {
+          "1": [
+            "gilden_v1-card-leuchtenmacher",
+            "gilden_v1-card-platz",
+            "gilden_v1-card-baecker",
+            "gilden_v1-card-metzger",
+            "gilden_v1-card-kaufmannsgilde"
+          ]
+        }
+      }
+    ]
+  }
+}

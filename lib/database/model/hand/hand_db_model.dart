@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:dominion_comanion/model/hand/hand_model.dart';
 
@@ -11,6 +10,9 @@ class HandDBModel {
   late Map<String, int>? contentIdCountMap;
   late Map<String, int>? additionalContentIdsCountMap;
   late int? whenDeckConsistsOfXCardsOfExpansionCount;
+  // TODO
+  // AdditionalContent und Content anpassen
+  // Eventuell auch noch Cards anpassen, sodass eine Hand aus mehreren Elementen bestehen kann
 
   HandDBModel.fromDB(Map<String, dynamic> dbData) {
     id = dbData['id'];

@@ -232,5 +232,26 @@
         ]
       }
     }
-  ]
+  ],
+  "hand": {
+    "id": "seaside_v2-hand",
+    "additionalContent": [
+      {
+        "id": "seaside_v2-content-insel_tableau",
+        "whenDeckConsistsOfXCards": {
+          "1": [
+            "seaside_v2-card-insel"
+          ]
+        }
+      },
+      {
+        "id": "seaside_v2-content-eingeborenendorf",
+        "whenDeckConsistsOfXCards": {
+          "1": [
+            "seaside_v2-card-eingeborenendorf"
+          ]
+        }
+      }
+    ]
+  }
 }

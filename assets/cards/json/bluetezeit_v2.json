@@ -293,6 +293,29 @@
       "count": "0,16,16,16,16,16"
     }
   ],
+  "hand": {
+    "id": "bluetezeit_v2-hand",
+    "additionalContent": [
+      {
+        "id": "bluetezeit_v2-content-handelsrouten_tableau",
+        "whenDeckConsistsOfXCards": {
+          "1": [
+            "bluetezeit_v2-card-handelsroute"
+          ]
+        }
+      },
+      {
+        "id": "bluetezeit_v2-content-spieler_tableau",
+        "whenDeckConsistsOfXCards": {
+          "1": [
+            "bluetezeit_v2-card-bischof",
+            "bluetezeit_v2-card-denkmal",
+            "bluetezeit_v2-card-halsabschneider"
+          ]
+        }
+      }
+    ]
+  },
   "end": {
     "id": "bluetezeit_v2-end",
     "additionalEmptyCards": [
