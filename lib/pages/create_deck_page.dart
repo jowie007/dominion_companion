@@ -73,19 +73,18 @@ class _CreateDeckState extends State<CreateDeckPage> {
                         if (snapshot.hasError) {
                           throw Exception(snapshot.error);
                           return Text(snapshot.error.toString());
-                        } else if (snapshot.hasData) {
-                          return snapshot.data != null &&
-                                  snapshot.data!.isNotEmpty
-                              ? Column(
-                                  children: [
-                                    for (var expansion in snapshot.data!)
-                                      ExpansionExpandable(
-                                          expansion: expansion,
-                                          onChanged: () =>
-                                              notifier.value = !notifier.value),
-                                  ],
-                                )
-                              : const Text('Keine Erweiterungen gefunden');
+                        } else if (snapshot.hasData &&
+                            snapshot.data != null &&
+                            snapshot.data!.isNotEmpty) {
+                          return Column(
+                            children: [
+                              for (var expansion in snapshot.data!)
+                                ExpansionExpandable(
+                                    expansion: expansion,
+                                    onChanged: () =>
+                                        notifier.value = !notifier.value),
+                            ],
+                          );
                         } else {
                           return const Text('Keine Erweiterungen gefunden');
                         }

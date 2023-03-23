@@ -71,13 +71,19 @@ class ExpansionService {
     });
   }
 
+  Future<List<CardModel>> getSortedCardsByExpansionDBModel(ExpansionDBModel expansionDBModel) async {
+    var cards = (await _cardService.getCardsByExpansionFromDB(expansionDBModel))
+        .map((card) => CardModel.fromDBModel(card))
+        .toList();
+    cards.sort((a, b) => CardModel.sortCardComparisonExpansion(a, b));
+    return cards;
+  }
+
   Future<List<ExpansionModel>> loadAllExpansions() async {
     return Future.wait((await getExpansionsFromDB()).map(
       (expansion) async => ExpansionModel.fromDBModelAndAdditional(
           expansion,
-          (await _cardService.getCardsByExpansionFromDB(expansion))
-              .map((card) => CardModel.fromDBModel(card))
-              .toList(),
+          await getSortedCardsByExpansionDBModel(expansion),
           (await _contentService.getContentByExpansionId(expansion.id))
               .map((content) => ContentModel.fromDBModel(content))
               .toList(),

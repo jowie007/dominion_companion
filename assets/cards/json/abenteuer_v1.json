@@ -1,0 +1,639 @@
+{
+  "id": "abenteuer_v1",
+  "name": "Abenteuer",
+  "version": "V1",
+  "cards": [
+    {
+      "id": "abenteuer_v1-set-page",
+      "name": "Page",
+      "cardTypes": "aktion, reisender",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "abenteuer_v1-set-kleinbauer",
+      "name": "Kleinbauer",
+      "cardTypes": "aktion, reisender",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-zerstoerung",
+      "name": "Zerstörung",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-elster",
+      "name": "Elster",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-geizhals",
+      "name": "Geizhals",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-hafenstadt",
+      "name": "Hafenstadt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-kurier",
+      "name": "Kurier",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-wildhueter",
+      "name": "Wildhüter",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-geschichtenerzaehler",
+      "name": "Geschichtenerzähler",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-kunsthandwerker",
+      "name": "Kunsthandwerker",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-verlorene_stadt",
+      "name": "Verlorene Stadt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-rattenfaenger",
+      "name": "Rattenfänger",
+      "cardTypes": "aktion, reserve",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-kundschafter",
+      "name": "Kundschafter",
+      "cardTypes": "aktion, reserve",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-duplikat",
+      "name": "Duplikat",
+      "cardTypes": "aktion, reserve",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-transformation",
+      "name": "Transformation",
+      "cardTypes": "aktion, reserve",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-koenigliche_kutsche",
+      "name": "Königliche Kutsche",
+      "cardTypes": "aktion, reserve",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-weinhaendler",
+      "name": "Weinhändler",
+      "cardTypes": "aktion, reserve",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-brueckentroll",
+      "name": "Brückentroll",
+      "cardTypes": "aktion, angriff, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-geisterwald",
+      "name": "Geisterwald",
+      "cardTypes": "aktion, angriff, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-sumpfhexe",
+      "name": "Sumpfhexe",
+      "cardTypes": "aktion, angriff, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-amulett",
+      "name": "Amulett",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-ausruestung",
+      "name": "Ausrüstung",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-verlies",
+      "name": "Verlies",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-gefolgsmann",
+      "name": "Gefolgsmann",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-riese",
+      "name": "Riese",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-karawanenwaechter",
+      "name": "Karawanenwächter",
+      "cardTypes": "aktion, dauer, reaktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-ferne_lande",
+      "name": "Ferne Lande",
+      "cardTypes": "aktion, reserve, punkte",
+      "cardCost": {
+        "coin": "5"
+      },
+      "count": "0,8,12,12,12,12"
+    },
+    {
+      "id": "abenteuer_v1-card-koenigliche_muenzen",
+      "name": "Königliche Münzen",
+      "cardTypes": "geld, reserve",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-relikt",
+      "name": "Relikt",
+      "cardTypes": "geld, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-schatz",
+      "name": "Schatz",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-page",
+      "name": "Page",
+      "cardTypes": "aktion, reisender",
+      "cardCost": {
+        "coin": "2"
+      },
+      "setId": "abenteuer_v1-set-page"
+    },
+    {
+      "id": "abenteuer_v1-card-schatzsucher",
+      "name": "Schatzsucher",
+      "cardTypes": "aktion, reisender",
+      "cardCost": {
+        "coin": "3*"
+      },
+      "setId": "abenteuer_v1-set-page"
+    },
+    {
+      "id": "abenteuer_v1-card-krieger",
+      "name": "Krieger",
+      "cardTypes": "aktion, angriff, reisender",
+      "cardCost": {
+        "coin": "4*"
+      },
+      "setId": "abenteuer_v1-set-page"
+    },
+    {
+      "id": "abenteuer_v1-card-held",
+      "name": "Held",
+      "cardTypes": "aktion, reisender",
+      "cardCost": {
+        "coin": "5*"
+      },
+      "setId": "abenteuer_v1-set-page"
+    },
+    {
+      "id": "abenteuer_v1-card-champion",
+      "name": "Champion",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "6*"
+      },
+      "setId": "abenteuer_v1-set-page"
+    },
+    {
+      "id": "abenteuer_v1-card-kleinbauer",
+      "name": "Kleinbauer",
+      "cardTypes": "aktion, reisender",
+      "cardCost": {
+        "coin": "2"
+      },
+      "setId": "abenteuer_v1-set-kleinbauer"
+    },
+    {
+      "id": "abenteuer_v1-card-soldat",
+      "name": "Soldat",
+      "cardTypes": "aktion, angriff, reisender",
+      "cardCost": {
+        "coin": "3*"
+      },
+      "setId": "abenteuer_v1-set-kleinbauer"
+    },
+    {
+      "id": "abenteuer_v1-card-fluechtling",
+      "name": "Flüchtling",
+      "cardTypes": "aktion, reisender",
+      "cardCost": {
+        "coin": "4*"
+      },
+      "setId": "abenteuer_v1-set-kleinbauer"
+    },
+    {
+      "id": "abenteuer_v1-card-schueler",
+      "name": "Schüler",
+      "cardTypes": "aktion, reisender",
+      "cardCost": {
+        "coin": "5*"
+      },
+      "setId": "abenteuer_v1-set-kleinbauer"
+    },
+    {
+      "id": "abenteuer_v1-card-lehrer",
+      "name": "Lehrer",
+      "cardTypes": "aktion, reserve",
+      "cardCost": {
+        "coin": "6*"
+      },
+      "setId": "abenteuer_v1-set-kleinbauer"
+    },
+    {
+      "id": "abenteuer_v1-card-almosen",
+      "name": "Almosen",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "0"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-leihgabe",
+      "name": "Leihgabe",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "0"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-quest",
+      "name": "Quest",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "0"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-zuflucht",
+      "name": "Zuflucht",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "1"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-spaehtrupp",
+      "name": "Spähtrupp",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-wanderzirkus",
+      "name": "Wanderzirkus",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-expedition",
+      "name": "Expedition",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-freudenfeuer",
+      "name": "Freudenfeuer",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-planung",
+      "name": "Planung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-ueberfahrt",
+      "name": "Überfahrt",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-mission",
+      "name": "Mission",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-pilgerfahrt",
+      "name": "Pilgerfahrt",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-ball",
+      "name": "Ball",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-handel",
+      "name": "Handel",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-seeweg",
+      "name": "Seeweg",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-ueberfall",
+      "name": "Überfall",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-training",
+      "name": "Training",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-verlorene_kunst",
+      "name": "Verlorene Kunst",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-erbschaft",
+      "name": "Erbschaft",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "7"
+      }
+    },
+    {
+      "id": "abenteuer_v1-card-wegsuche",
+      "name": "Wegsuche",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "8"
+      }
+    }
+  ],
+  "content": [
+    {
+      "id": "abenteuer_v1-plus_eins_karte_marker",
+      "name": "+1 Karte Marker",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-lehrer",
+          "abenteuer_v1-card-leihgabe",
+          "abenteuer_v1-card-wegsuche"
+        ]
+      }
+    },
+    {
+      "id": "abenteuer_v1-plus_eins_aktion_marker",
+      "name": "+1 Aktion Marker",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-lehrer",
+          "abenteuer_v1-card-verlorene_kunst"
+        ]
+      }
+    },
+    {
+      "id": "abenteuer_v1-plus_eins_kauf_marker",
+      "name": "+1 Kauf Marker",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-lehrer",
+          "abenteuer_v1-card-seeweg"
+        ]
+      }
+    },
+    {
+      "id": "abenteuer_v1-plus_eins_geld_marker",
+      "name": "+1 Geld",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-lehrer",
+          "abenteuer_v1-card-training"
+        ]
+      }
+    },
+    {
+      "id": "abenteuer_v1-minus_zwei_kosten_marker",
+      "name": "-2 Kosten",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-ueberfahrt"
+        ]
+      }
+    },
+    {
+      "id": "abenteuer_v1-reise_marker",
+      "name": "Reise Marker",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-pilgerfahrt",
+          "abenteuer_v1-card-riese",
+          "abenteuer_v1-card-wildhueter"
+        ]
+      }
+    },
+    {
+      "id": "abenteuer_v1-entsorgungs_marker",
+      "name": "Entsorgungs Marker",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-planung"
+        ]
+      }
+    },
+    {
+      "id": "abenteuer_v1-anwesen_marker",
+      "name": "Anwesen Marker",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-erbschaft"
+        ]
+      }
+    },
+    {
+      "id": "abenteuer_v1-minus_eins_karte_marker",
+      "name": "-1 Karte Marker",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-relikt",
+          "abenteuer_v1-card-ueberfall"
+        ]
+      }
+    },
+    {
+      "id": "abenteuer_v1-minus_eins_kosten_marker",
+      "name": "-1 Kosten Marker",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-ball",
+          "abenteuer_v1-card-brueckentroll"
+        ]
+      }
+    },
+    {
+      "id": "abenteuer_v1-wirtshaus_tableau",
+      "name": "Wirtshaus Tableau",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-rattenfaenger",
+          "abenteuer_v1-card-kundschafter",
+          "abenteuer_v1-card-duplikat",
+          "abenteuer_v1-card-transformation",
+          "abenteuer_v1-card-koenigliche_kutsche",
+          "abenteuer_v1-card-weinhaendler",
+          "abenteuer_v1-card-ferne_lande",
+          "abenteuer_v1-card-koenigliche_muenzen",
+          "abenteuer_v1-card-lehrer",
+          "abenteuer_v1-card-geizhals"
+        ]
+      }
+    }
+  ],
+  "handContents": [
+    {
+      "id": "abenteuer_v1-hand_contents",
+      "additionalElements": {
+        "abenteuer_v1-wirtshaus_tableau": 1
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-rattenfaenger",
+          "abenteuer_v1-card-kundschafter",
+          "abenteuer_v1-card-duplikat",
+          "abenteuer_v1-card-transformation",
+          "abenteuer_v1-card-koenigliche_kutsche",
+          "abenteuer_v1-card-weinhaendler",
+          "abenteuer_v1-card-ferne_lande",
+          "abenteuer_v1-card-koenigliche_muenzen",
+          "abenteuer_v1-card-lehrer",
+          "abenteuer_v1-card-geizhals"
+        ]
+      }
+    }
+  ]
+}

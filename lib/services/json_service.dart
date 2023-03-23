@@ -13,7 +13,8 @@ class JsonService {
     'seaside_v2',
     'hinterland_v2',
     'dark_ages_v1',
-    'gilden_v1'
+    'gilden_v1',
+    'abenteuer_v1'
   ];
 
   List<Future<ExpansionModel>> getExpansions() {

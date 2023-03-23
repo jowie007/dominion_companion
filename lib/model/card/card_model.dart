@@ -25,11 +25,12 @@ class CardModel {
   late CardCostModel cardCost;
   late String text;
   late List<String> count;
-  static final sortTypeOrder = [
+  static final List<List<String>> sortTypeOrderDeck = [
     ["punkte"],
     ["geld"],
     ["fluch"]
   ];
+  static final List<List<String>> sortTypeOrderExpansion = [[]];
 
   CardModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -95,10 +96,20 @@ class CardModel {
     return id.split('-').first;
   }
 
+  static CardTypeEnum findCardTypeEnumByString(String value) {
+    var ret = CardTypeEnum.aktion;
+    try {
+      ret = CardTypeEnum.values.firstWhere(
+          (e) => e.toString() == 'CardTypeEnum.${value.toString().trim()}');
+    } catch (e) {
+      log("No enum found for $value");
+    }
+    return ret;
+  }
+
   static List<CardTypeEnum> cardTypesFromString(String cardTypes) {
-    return List<CardTypeEnum>.from(cardTypes.split(',').map((value) =>
-        (CardTypeEnum.values.firstWhere((e) =>
-            e.toString() == 'CardTypeEnum.${value.toString().trim()}'))));
+    return List<CardTypeEnum>.from(
+        cardTypes.split(',').map((value) => findCardTypeEnumByString(value)));
   }
 
   static Map<int, List<List<CardTypeEnum>>>
@@ -123,7 +134,16 @@ class CardModel {
     return retMap;
   }
 
-  static int sortCardComparison(CardModel card1, CardModel card2) {
+  static int sortCardComparisonDeck(CardModel card1, CardModel card2) {
+    return sortCardComparison(card1, card2, sortTypeOrderDeck);
+  }
+
+  static int sortCardComparisonExpansion(CardModel card1, CardModel card2) {
+    return sortCardComparison(card1, card2, sortTypeOrderExpansion);
+  }
+
+  static int sortCardComparison(
+      CardModel card1, CardModel card2, List<List<String>> sortTypeOrder) {
     final cardTypes1 =
         CardModel.getCardTypesString(card1.cardTypes).toLowerCase();
     final cardTypes2 =
