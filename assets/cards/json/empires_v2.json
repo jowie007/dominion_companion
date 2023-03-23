@@ -1,0 +1,581 @@
+{
+  "id": "empires_v2",
+  "name": "Empires",
+  "version": "V2",
+  "cards": [
+    {
+      "id": "empires_v2-set-schloesser",
+      "name": "Schlösser",
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "empires_v2-set-katapult_felsen",
+      "name": "Katapult/Felsen",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "?"
+      }
+    },
+    {
+      "id": "empires_v2-set-feldlager_diebesgut",
+      "name": "Feldlager/Diebesgut",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "?"
+      }
+    },
+    {
+      "id": "empires_v2-set-gladiator_reichtum",
+      "name": "Gladiator/Reichtum",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "?"
+      }
+    },
+    {
+      "id": "empires_v2-set-patrizier_handelsplatz",
+      "name": "Patrizier/Handelsplatz",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "?"
+      }
+    },
+    {
+      "id": "empires_v2-set-siedler_emsiges_dorf",
+      "name": "Siedler/Emsiges Dorf",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "?"
+      }
+    },
+    {
+      "id": "empires_v2-card-feldlager",
+      "name": "Feldlager",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      },
+      "setId": "empires_v2-set-feldlager_diebesgut"
+    },
+    {
+      "id": "empires_v2-card-patrizier",
+      "name": "Patrizier",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      },
+      "setId": "empires_v2-set-patrizier_handelsplatz"
+    },
+    {
+      "id": "empires_v2-card-siedler",
+      "name": "Siedler",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      },
+      "setId": "empires_v2-set-siedler_emsiges_dorf"
+    },
+    {
+      "id": "empires_v2-card-gladiator",
+      "name": "Gladiator",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "empires_v2-set-gladiator_reichtum"
+    },
+    {
+      "id": "empires_v2-card-wagenrennen",
+      "name": "Wagenrennen",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "empires_v2-card-opfer",
+      "name": "Opfer",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "empires_v2-card-villa",
+      "name": "Villa",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "empires_v2-card-emsiges_dorf",
+      "name": "Emsiges Dorf",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "empires_v2-set-siedler_emsiges_dorf"
+    },
+    {
+      "id": "empires_v2-card-forum",
+      "name": "Forum",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "empires_v2-card-gaertnerin",
+      "name": "Gärtnerin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "empires_v2-card-handelsplatz",
+      "name": "Handelsplatz",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "empires_v2-set-patrizier_handelsplatz"
+    },
+    {
+      "id": "empires_v2-card-lehnsherr",
+      "name": "Lehnsherr",
+      "cardTypes": "aktion, befehl, aktion",
+      "cardCost": {
+        "debt": "8"
+      }
+    },
+    {
+      "id": "empires_v2-card-ingenieurin",
+      "name": "Ingenieurin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "debt": "4"
+      }
+    },
+    {
+      "id": "empires_v2-card-koeniglicher_schmied",
+      "name": "Königlicher Schmied",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "debt": "8"
+      }
+    },
+    {
+      "id": "empires_v2-card-stadtviertel",
+      "name": "Stadtviertel",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "debt": "8"
+      }
+    },
+    {
+      "id": "empires_v2-card-katapult",
+      "name": "Katapult",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "empires_v2-set-katapult_felsen"
+    },
+    {
+      "id": "empires_v2-card-legionaer",
+      "name": "Legionär",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "empires_v2-card-archiv",
+      "name": "Archiv",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "empires_v2-card-zauberin",
+      "name": "Zauberin",
+      "cardTypes": "aktion, angriff, dauer",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "empires_v2-card-bauernmarkt",
+      "name": "Bauernmarkt",
+      "cardTypes": "aktion, sammlung",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "empires_v2-card-tempel",
+      "name": "Tempel",
+      "cardTypes": "aktion, sammlung",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "empires_v2-card-wilde_jagd",
+      "name": "Wilde Jagd",
+      "cardTypes": "aktion, sammlung",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "empires_v2-card-felsen",
+      "name": "Felsen",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "4"
+      },
+      "setId": "empires_v2-set-katapult_felsen"
+    },
+    {
+      "id": "empires_v2-card-diebesgut",
+      "name": "Diebesgut",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "empires_v2-set-feldlager_diebesgut"
+    },
+    {
+      "id": "empires_v2-card-vermoegen",
+      "name": "Vermögen",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "empires_v2-card-zauber",
+      "name": "Zauber",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "empires_v2-card-reichtum",
+      "name": "Reichtum",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "8",
+        "debt": "8"
+      },
+      "setId": "empires_v2-set-gladiator_reichtum"
+    },
+    {
+      "id": "empires_v2-card-krone",
+      "name": "Krone",
+      "cardTypes": "aktion, geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "empires_v2-card-schloesser",
+      "name": "Schlösser",
+      "cardTypes": "punkte, schloss",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "empires_v2-set-schloesser"
+    },
+    {
+      "id": "empires_v2-card-bescheidenes_schloss",
+      "name": "Bescheidenes Schloss",
+      "cardTypes": "geld, punkte, schloss",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "empires_v2-set-schloesser"
+    },
+    {
+      "id": "empires_v2-card-verfallenes_schloss",
+      "name": "Verfallenes Schloss",
+      "cardTypes": "punkte, schloss",
+      "cardCost": {
+        "coin": "4"
+      },
+      "setId": "empires_v2-set-schloesser"
+    },
+    {
+      "id": "empires_v2-card-kleines_schloss",
+      "name": "Kleines Schloss",
+      "cardTypes": "aktion, punkte, schloss",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "empires_v2-set-schloesser"
+    },
+    {
+      "id": "empires_v2-card-spukschloss",
+      "name": "Spukschloss",
+      "cardTypes": "punkte, schloss",
+      "cardCost": {
+        "coin": "6"
+      },
+      "setId": "empires_v2-set-schloesser"
+    },
+    {
+      "id": "empires_v2-card-reiches_schloss",
+      "name": "Reiches Schloss",
+      "cardTypes": "aktion, punkte, schloss",
+      "cardCost": {
+        "coin": "7"
+      },
+      "setId": "empires_v2-set-schloesser"
+    },
+    {
+      "id": "empires_v2-card-ausgedehntes_schloss",
+      "name": "Ausgedehntes Schloss",
+      "cardTypes": "punkte, schloss",
+      "cardCost": {
+        "coin": "8"
+      },
+      "setId": "empires_v2-set-schloesser"
+    },
+    {
+      "id": "empires_v2-card-prunkschloss",
+      "name": "Prunkschloss",
+      "cardTypes": "punkte, schloss",
+      "cardCost": {
+        "coin": "9"
+      },
+      "setId": "empires_v2-set-schloesser"
+    },
+    {
+      "id": "empires_v2-card-koenigsschloss",
+      "name": "Königsschloss",
+      "cardTypes": "punkte, schloss",
+      "cardCost": {
+        "coin": "10"
+      },
+      "setId": "empires_v2-set-schloesser"
+    },
+    {
+      "id": "empires_v2-card-aufstieg",
+      "name": "Aufstieg",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "0"
+      }
+    },
+    {
+      "id": "empires_v2-card-erforscherin",
+      "name": "Erforscherin",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "empires_v2-card-steuer",
+      "name": "Steuer",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "empires_v2-card-bankett",
+      "name": "Bankett",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "empires_v2-card-versalztes_land",
+      "name": "Versalztes Land",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "empires_v2-card-ritual",
+      "name": "Ritual",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "empires_v2-card-hochzeit",
+      "name": "Hochzeit",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "4",
+        "debt": "3"
+      }
+    },
+    {
+      "id": "empires_v2-card-gluecksfall",
+      "name": "Glücksfall",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "empires_v2-card-schlacht",
+      "name": "Schlacht",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "debt": "8"
+      }
+    },
+    {
+      "id": "empires_v2-card-siegeszug",
+      "name": "Siegeszug",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "debt": "5"
+      }
+    },
+    {
+      "id": "empires_v2-card-eroberung",
+      "name": "Eroberung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "empires_v2-card-spende",
+      "name": "Spende",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "debt": "8"
+      }
+    },
+    {
+      "id": "empires_v2-card-beherrschen",
+      "name": "Beherrschen",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "14"
+      }
+    },
+    {
+      "id": "empires_v2-card-aquaedukt",
+      "name": "Aquädukt",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-arena",
+      "name": "Arena",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-badehaus",
+      "name": "Badehaus",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-basilika",
+      "name": "Basilika",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-bollwerk",
+      "name": "Bollwerk",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-brunnen",
+      "name": "Brunnen",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-entweihter_schrein",
+      "name": "Entweihter Schrein",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-gebirgspass",
+      "name": "Gebirgspass",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-grabmal",
+      "name": "Grabmal",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-kolonnaden",
+      "name": "Kolonnaden",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-labyrinth",
+      "name": "Labyrinth",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-mauer",
+      "name": "Mauer",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-museum",
+      "name": "Museum",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-obelisk",
+      "name": "Obelisk",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-palast",
+      "name": "Palast",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-obstgarten",
+      "name": "Obstgarten",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-raeuberfestung",
+      "name": "Räuberfestung",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-schlachtfeld",
+      "name": "Schlachtfeld",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-triumphbogen",
+      "name": "Triumphbogen",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-turm",
+      "name": "Turm",
+      "cardTypes": "landmarke"
+    },
+    {
+      "id": "empires_v2-card-wolfsbau",
+      "name": "Wolfsbau",
+      "cardTypes": "landmarke"
+    }
+  ]
+}

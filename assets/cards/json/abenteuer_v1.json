@@ -616,7 +616,7 @@
   ],
   "handContents": [
     {
-      "id": "abenteuer_v1-hand_contents",
+      "id": "abenteuer_v1-hand_contents-1",
       "additionalElements": {
         "abenteuer_v1-wirtshaus_tableau": 1
       },
@@ -632,6 +632,41 @@
           "abenteuer_v1-card-koenigliche_muenzen",
           "abenteuer_v1-card-lehrer",
           "abenteuer_v1-card-geizhals"
+        ]
+      }
+    },
+    {
+      "id": "abenteuer_v1-hand_contents-2",
+      "additionalElements": {
+        "abenteuer_v1-reise_marker": 1
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-pilgerfahrt",
+          "abenteuer_v1-card-riese",
+          "abenteuer_v1-card-wildhueter"
+        ]
+      }
+    },
+    {
+      "id": "abenteuer_v1-hand_contents-3",
+      "additionalElements": {
+        "abenteuer_v1-entsorgungs_marker": 1
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-planung"
+        ]
+      }
+    },
+    {
+      "id": "abenteuer_v1-hand_contents-4",
+      "additionalElements": {
+        "abenteuer_v1-anwesen_marker": 1
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "abenteuer_v1-card-erbschaft"
         ]
       }
     }
