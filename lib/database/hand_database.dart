@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:dominion_comanion/database/model/hand/hand_db_model.dart';
+import 'package:dominion_comanion/model/hand/hand_type_enum.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -16,10 +16,8 @@ class HandDatabase {
         "CREATE TABLE hand("
         "id STRING PRIMARY KEY, "
         "always BOOL, "
-        "cards STRING, "
-        "additionalCards STRING, "
-        "content STRING, "
-        "additionalContent STRING, "
+        "elements STRING, "
+        "additionalElements STRING, "
         "whenDeckConsistsOfXCards STRING, "
         "whenDeckConsistsOfXCardsOfExpansionCount NUMBER)",
       );
@@ -45,10 +43,11 @@ class HandDatabase {
     });
   }
 
-  Future<List<HandDBModel>> getAlwaysHandList() async {
+  Future<List<HandDBModel>> getAlwaysHandListByType(HandTypeEnum type) async {
     await openDb();
-    final List<Map<String, dynamic>> maps =
-        await _database.rawQuery('SELECT * FROM hand WHERE always=?', [1]);
+    final List<Map<String, dynamic>> maps = await _database.rawQuery(
+        'SELECT * FROM hand WHERE always=? AND id LIKE ?',
+        [1, "%${type.dbString}%"]);
     return List.generate(maps.length, (i) {
       return HandDBModel.fromDB(maps[i]);
     });
@@ -70,10 +69,12 @@ class HandDatabase {
     return HandDBModel.fromDB(maps.first);
   }
 
-  Future<List<HandDBModel>> getHandsByExpansionId(String id) async {
+  Future<List<HandDBModel>> getHandsByExpansionIdAndType(
+      String expansionId, HandTypeEnum handTypeEnum) async {
     await openDb();
-    final List<Map<String, dynamic>> maps = await _database
-        .rawQuery('SELECT * FROM hand WHERE id LIKE ?', ["$id%"]);
+    final List<Map<String, dynamic>> maps = await _database.rawQuery(
+        'SELECT * FROM hand WHERE id LIKE ?',
+        ["$expansionId-${handTypeEnum.dbString}%"]);
     return List.generate(maps.length, (i) {
       return HandDBModel.fromDB(maps[i]);
     });

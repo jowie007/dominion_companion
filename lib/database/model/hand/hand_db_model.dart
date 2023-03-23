@@ -5,27 +5,19 @@ import 'package:dominion_comanion/model/hand/hand_model.dart';
 class HandDBModel {
   late String id;
   late bool always;
-  late Map<String, int>? cardIdCountMap;
-  late Map<String, int>? additionalCardIdCountMap;
-  late Map<String, int>? contentIdCountMap;
-  late Map<String, int>? additionalContentIdsCountMap;
+  late Map<String, int>? elementIdCountMap;
+  late Map<String, int>? additionalElementIdCountMap;
   late Map<int, List<String>>? whenDeckConsistsOfXCards;
   late int? whenDeckConsistsOfXCardsOfExpansionCount;
 
   HandDBModel.fromDB(Map<String, dynamic> dbData) {
     id = dbData['id'];
     always = dbData['always'] != null ? dbData['always'] > 0 : false;
-    cardIdCountMap = dbData['cards'] != null
-        ? mapFromDBData(jsonDecode(dbData['cards']))
+    elementIdCountMap = dbData['elements'] != null
+        ? mapFromDBData(jsonDecode(dbData['elements']))
         : null;
-    additionalCardIdCountMap = dbData['additionalCards'] != null
-        ? mapFromDBData(jsonDecode(dbData['additionalCards']))
-        : null;
-    contentIdCountMap = dbData['content'] != null
-        ? mapFromDBData(jsonDecode(dbData['content']))
-        : null;
-    additionalContentIdsCountMap = dbData['additionalContent'] != null
-        ? mapFromDBData(jsonDecode(dbData['additionalContent']))
+    additionalElementIdCountMap = dbData['additionalElements'] != null
+        ? mapFromDBData(jsonDecode(dbData['additionalElements']))
         : null;
     whenDeckConsistsOfXCards = dbData['whenDeckConsistsOfXCards'] != ''
         ? HandModel.whenDeckConsistsOfXCardsFromJSON(
@@ -38,10 +30,8 @@ class HandDBModel {
   HandDBModel.fromModel(HandModel model) {
     id = model.id;
     always = model.always;
-    cardIdCountMap = model.cardIdCountMap;
-    additionalCardIdCountMap = model.additionalCardIdCountMap;
-    contentIdCountMap = model.contentIdCountMap;
-    additionalContentIdsCountMap = model.additionalContentIdsCountMap;
+    elementIdCountMap = model.elementIdCountMap;
+    additionalElementIdCountMap = model.additionalElementIdCountMap;
     whenDeckConsistsOfXCards = model.whenDeckConsistsOfXCards;
     whenDeckConsistsOfXCardsOfExpansionCount =
         model.whenDeckConsistsOfXCardsOfExpansionCount;
@@ -50,10 +40,8 @@ class HandDBModel {
   Map<String, dynamic> toJson() => {
         'id': id,
         'always': always ? 1 : 0,
-        'cards': mapToDB(cardIdCountMap),
-        'additionalCards': mapToDB(additionalCardIdCountMap),
-        'content': mapToDB(contentIdCountMap),
-        'additionalContent': mapToDB(additionalContentIdsCountMap),
+        'elements': mapToDB(elementIdCountMap),
+        'additionalElements': mapToDB(additionalElementIdCountMap),
         'whenDeckConsistsOfXCards': whenDeckConsistsOfXCards != null
             ? whenDeckConsistsOfXCardsToDB(whenDeckConsistsOfXCards!)
             : '',

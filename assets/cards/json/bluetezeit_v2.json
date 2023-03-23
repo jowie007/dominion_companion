@@ -293,10 +293,10 @@
       "count": "0,16,16,16,16,16"
     }
   ],
-  "hand": [
+  "handContents": [
     {
-      "id": "bluetezeit_v2-hand-1",
-      "additionalContent": {
+      "id": "bluetezeit_v2-hand_contents-1",
+      "additionalElements": {
         "bluetezeit_v2-content-handelsrouten_tableau": 1
       },
       "whenDeckConsistsOfXCards": {
@@ -306,8 +306,8 @@
       }
     },
     {
-      "id": "bluetezeit_v2-hand-2",
-      "additionalContent": {
+      "id": "bluetezeit_v2-hand_contents-2",
+      "additionalElements": {
         "bluetezeit_v2-content-spieler_tableau": 1
       },
       "whenDeckConsistsOfXCards": {

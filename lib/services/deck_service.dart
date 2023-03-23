@@ -9,6 +9,7 @@ import 'package:dominion_comanion/model/content/content_model.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:dominion_comanion/model/end/end_model.dart';
 import 'package:dominion_comanion/model/hand/hand_model.dart';
+import 'package:dominion_comanion/model/hand/hand_type_enum.dart';
 import 'package:dominion_comanion/services/card_service.dart';
 import 'package:dominion_comanion/services/content_service.dart';
 import 'package:dominion_comanion/services/end_service.dart';
@@ -59,9 +60,12 @@ class DeckService {
       List<CardModel> cards,
       List<CardModel> additionalCards,
       List<ContentModel> content,
-      HandModel hand,
+      HandModel handMoneyCards,
+      HandModel handOtherCards,
+      HandModel handContents,
       EndModel end) {
-    return DeckModel(name, cards, additionalCards, content, hand, end);
+    return DeckModel(name, cards, additionalCards, content, handMoneyCards,
+        handOtherCards, handContents, end);
   }
 
   Future<DeckModel> deckFromDBModel(DeckDBModel deckDBModel) async {
@@ -76,7 +80,12 @@ class DeckService {
       additionalCards,
       await getContentByCardIdsAndActiveExpansionIds(
           cardIds, activeExpansionIds),
-      await getHandByCardsAndActiveExpansionIds(cards, activeExpansionIds),
+      await getHandByCardsAndActiveExpansionIdsAndType(
+          cards, activeExpansionIds, HandTypeEnum.moneyCards),
+      await getHandByCardsAndActiveExpansionIdsAndType(
+          cards, activeExpansionIds, HandTypeEnum.otherCards),
+      await getHandByCardsAndActiveExpansionIdsAndType(
+          cards, activeExpansionIds, HandTypeEnum.contents),
       await getEndByCardIdsAndActiveExpansionIds(
           allCardIds, activeExpansionIds),
     );
@@ -226,15 +235,21 @@ class DeckService {
     return ret;
   }
 
-  Future<HandModel> getHandByCardsAndActiveExpansionIds(
-      List<CardModel> cards, List<String> activeExpansionIds) async {
+  Future<HandModel> getHandByCardsAndActiveExpansionIdsAndType(
+      List<CardModel> cards,
+      List<String> activeExpansionIds,
+      HandTypeEnum type) async {
     List<HandModel> alwaysHand = await Future.wait(
-        (await _handService.getAlwaysHands())
+        (await _handService.getAlwaysHandsByType(type))
             .map((end) async => HandModel.fromDBModel(end)));
-    var hand = alwaysHand.first;
+    HandModel hand = HandModel.empty("new_hand_model");
+    if (alwaysHand.isNotEmpty) {
+      hand = alwaysHand.first;
+      hand.id = "new_hand_model";
+    }
     for (var expansionId in activeExpansionIds) {
       var expansionHandDBModel =
-          await _handService.getHandsByExpansionId(expansionId);
+          await _handService.getHandsByExpansionIdAndType(expansionId, type);
       for (var handDBModel in expansionHandDBModel) {
         var handModel = HandModel.fromDBModel(handDBModel);
         var addToHand = false;
@@ -265,23 +280,13 @@ class DeckService {
           }
         }
         if (addToHand) {
-          if (handModel.cardIdCountMap != null) {
-            hand.cardIdCountMap ??= {};
-            hand.cardIdCountMap = handModel.cardIdCountMap;
+          if (handModel.elementIdCountMap != null) {
+            hand.elementIdCountMap = handModel.elementIdCountMap;
           }
-          if (handModel.contentIdCountMap != null) {
-            hand.contentIdCountMap ??= {};
-            hand.contentIdCountMap = handModel.contentIdCountMap;
-          }
-          if (handModel.additionalCardIdCountMap != null) {
-            hand.additionalCardIdCountMap ??= {};
-            hand.additionalCardIdCountMap!
-                .addAll(handModel.additionalCardIdCountMap!);
-          }
-          if (handModel.additionalContentIdsCountMap != null) {
-            hand.additionalContentIdsCountMap ??= {};
-            hand.additionalContentIdsCountMap!
-                .addAll(handModel.additionalContentIdsCountMap!);
+          if (handModel.additionalElementIdCountMap != null) {
+            hand.additionalElementIdCountMap ??= {};
+            hand.additionalElementIdCountMap!
+                .addAll(handModel.additionalElementIdCountMap!);
           }
         }
       }

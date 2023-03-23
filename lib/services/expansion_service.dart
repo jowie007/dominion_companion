@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dominion_comanion/database/expansion_database.dart';
 import 'package:dominion_comanion/database/model/card/card_db_model.dart';
 import 'package:dominion_comanion/database/model/content/content_db_model.dart';
@@ -11,6 +9,7 @@ import 'package:dominion_comanion/model/content/content_model.dart';
 import 'package:dominion_comanion/model/end/end_model.dart';
 import 'package:dominion_comanion/model/expansion/expansion_model.dart';
 import 'package:dominion_comanion/model/hand/hand_model.dart';
+import 'package:dominion_comanion/model/hand/hand_type_enum.dart';
 import 'package:dominion_comanion/services/card_service.dart';
 import 'package:dominion_comanion/services/content_service.dart';
 import 'package:dominion_comanion/services/end_service.dart';
@@ -51,7 +50,11 @@ class ExpansionService {
     for (var element in expansionModel.content) {
       _contentService.insertContentIntoDB(ContentDBModel.fromModel(element));
     }
-    for (var element in expansionModel.hand) {
+    for (var element in [
+      ...expansionModel.handMoneyCards,
+      ...expansionModel.handOtherCards,
+      ...expansionModel.handContents
+    ]) {
       _handService.insertHandIntoDB(HandDBModel.fromModel(element));
     }
     if (expansionModel.end != null) {
@@ -78,7 +81,16 @@ class ExpansionService {
           (await _contentService.getContentByExpansionId(expansion.id))
               .map((content) => ContentModel.fromDBModel(content))
               .toList(),
-          (await _handService.getHandsByExpansionId(expansion.id))
+          (await _handService.getHandsByExpansionIdAndType(
+                  expansion.id, HandTypeEnum.moneyCards))
+              .map((hand) => HandModel.fromDBModel(hand))
+              .toList(),
+          (await _handService.getHandsByExpansionIdAndType(
+                  expansion.id, HandTypeEnum.otherCards))
+              .map((hand) => HandModel.fromDBModel(hand))
+              .toList(),
+          (await _handService.getHandsByExpansionIdAndType(
+                  expansion.id, HandTypeEnum.contents))
               .map((hand) => HandModel.fromDBModel(hand))
               .toList(),
           expansion.endId != null

@@ -66,65 +66,83 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                         ],
                       )
                     : Container(),
-                widget.deckModel.hand.cardIdCountMap != null
-                    ? Column(
-                        children: [
+                Column(
+                  children: [
+                    Row(
+                      children: const [
+                        Text(
+                          "Austeilen:",
+                          style:
+                              TextStyle(decoration: TextDecoration.underline),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        for (var card
+                            in widget.deckModel.handMoneyCards.getAllElements())
                           Row(
-                            children: const [
-                              Text(
-                                "Austeilen:",
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline),
+                            children: [
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Text(card.value.toString()),
+                              const Text("x "),
+                              FutureBuilder(
+                                future: _cardService.filterCardName(
+                                    widget.cards, card.key),
+                                builder: (context, snapshot) {
+                                  return Text(snapshot.data != null
+                                      ? snapshot.data!
+                                      : '');
+                                },
                               ),
                             ],
                           ),
-                          Column(
+                        for (var card
+                            in widget.deckModel.handOtherCards.getAllElements())
+                          Row(
                             children: [
-                              for (var card
-                                  in widget.deckModel.hand.getAllCards())
-                                Row(
-                                  children: [
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text(card.value.toString()),
-                                    const Text("x "),
-                                    FutureBuilder(
-                                      future: _cardService.filterCardName(
-                                          widget.cards, card.key),
-                                      builder: (context, snapshot) {
-                                        return Text(snapshot.data != null
-                                            ? snapshot.data!
-                                            : '');
-                                      },
-                                    ),
-                                  ],
-                                ),
-                               for (var content
-                                  in widget.deckModel.hand.getAllContents())
-                                Row(
-                                  children: [
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text(content.value.toString()),
-                                    const Text("x "),
-                                    FutureBuilder(
-                                      future: _contentService
-                                          .getContentById(content.key.toString()),
-                                      builder: (context, snapshot) {
-                                        return Text(snapshot.data != null
-                                            ? snapshot.data!.name
-                                            : 'Test');
-                                      },
-                                    ),
-                                  ],
-                                ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Text(card.value.toString()),
+                              const Text("x "),
+                              FutureBuilder(
+                                future: _cardService.filterCardName(
+                                    widget.cards, card.key),
+                                builder: (context, snapshot) {
+                                  return Text(snapshot.data != null
+                                      ? snapshot.data!
+                                      : '');
+                                },
+                              ),
                             ],
                           ),
-                        ],
-                      )
-                    : Container(),
+                        for (var content
+                            in widget.deckModel.handContents.getAllElements())
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Text(content.value.toString()),
+                              const Text("x "),
+                              FutureBuilder(
+                                future: _contentService
+                                    .getContentById(content.key.toString()),
+                                builder: (context, snapshot) {
+                                  return Text(snapshot.data != null
+                                      ? snapshot.data!.name
+                                      : 'Test');
+                                },
+                              ),
+                            ],
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
                 Row(
                   children: const [
                     Text(

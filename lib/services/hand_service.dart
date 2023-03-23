@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:dominion_comanion/database/hand_database.dart';
 import 'package:dominion_comanion/database/model/hand/hand_db_model.dart';
+import 'package:dominion_comanion/model/hand/hand_type_enum.dart';
 
 class HandService {
   late HandDatabase _handDatabase;
@@ -19,15 +20,12 @@ class HandService {
     _handDatabase.insertHand(handDBModel);
   }
 
-  Future<List<HandDBModel>> getAlwaysHands() async {
-    return await _handDatabase.getAlwaysHandList();
+  Future<List<HandDBModel>> getAlwaysHandsByType(HandTypeEnum type) async {
+    return await _handDatabase.getAlwaysHandListByType(type);
   }
 
-  Future<HandDBModel> getHandByHandIdFromDB(String handId) async {
-    return await _handDatabase.getHandById(handId);
-  }
-
-  Future<List<HandDBModel>> getHandsByExpansionId(String expansionId) async {
-    return await _handDatabase.getHandsByExpansionId(expansionId);
+  Future<List<HandDBModel>> getHandsByExpansionIdAndType(
+      String expansionId, HandTypeEnum type) async {
+    return await _handDatabase.getHandsByExpansionIdAndType(expansionId, type);
   }
 }

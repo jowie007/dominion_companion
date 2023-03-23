@@ -10,7 +10,9 @@ class ExpansionModel {
   late String version;
   late List<CardModel> cards;
   late List<ContentModel> content;
-  late List<HandModel> hand;
+  late List<HandModel> handMoneyCards;
+  late List<HandModel> handOtherCards;
+  late List<HandModel> handContents;
   late EndModel? end;
 
   ExpansionModel.fromJson(Map<String, dynamic> json) {
@@ -25,8 +27,18 @@ class ExpansionModel {
             .map((data) => ContentModel.fromJson(data))
             .toList()
         : [];
-    hand = json['hand'] != null
-        ? (json['hand'] as List)
+    handMoneyCards = json['handMoneyCards'] != null
+        ? (json['handMoneyCards'] as List)
+            .map((data) => HandModel.fromJson(data))
+            .toList()
+        : [];
+    handOtherCards = json['handOtherCards'] != null
+        ? (json['handOtherCards'] as List)
+            .map((data) => HandModel.fromJson(data))
+            .toList()
+        : [];
+    handContents = json['handContents'] != null
+        ? (json['handContents'] as List)
             .map((data) => HandModel.fromJson(data))
             .toList()
         : [];
@@ -40,7 +52,13 @@ class ExpansionModel {
   }
 
   ExpansionModel.fromDBModelAndAdditional(
-      ExpansionDBModel dbModel, this.cards, this.content, this.hand, this.end) {
+      ExpansionDBModel dbModel,
+      this.cards,
+      this.content,
+      this.handMoneyCards,
+      this.handOtherCards,
+      this.handContents,
+      this.end) {
     id = dbModel.id;
     name = dbModel.name;
     version = dbModel.version;

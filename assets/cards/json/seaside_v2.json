@@ -233,10 +233,10 @@
       }
     }
   ],
-  "hand": [
+  "handContents": [
     {
-      "id": "seaside_v2-hand-1",
-      "additionalContent": {
+      "id": "seaside_v2-hand_contents-1",
+      "additionalElements": {
         "seaside_v2-content-insel_tableau": 1
       },
       "whenDeckConsistsOfXCards": {
@@ -246,8 +246,8 @@
       }
     },
     {
-      "id": "seaside_v2-hand-2",
-      "additionalContent": {
+      "id": "seaside_v2-hand_contents-2",
+      "additionalElements": {
         "seaside_v2-content-eingeborenendorf_tableau": 1
       },
       "whenDeckConsistsOfXCards": {

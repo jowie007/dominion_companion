@@ -123,10 +123,10 @@
       }
     }
   ],
-  "hand": [
+  "handContents": [
     {
-      "id": "gilden_v1-hand",
-      "additionalContent": {
+      "id": "gilden_v1-hand_contents",
+      "additionalElements": {
         "gilden_v1-content-muenze": 1
       },
       "whenDeckConsistsOfXCards": {

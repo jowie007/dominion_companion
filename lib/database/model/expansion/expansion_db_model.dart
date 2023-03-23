@@ -6,7 +6,9 @@ class ExpansionDBModel {
   late String version;
   late List<String> cardIds;
   late List<String> contentIds;
-  late List<String> handIds;
+  late List<String> handMoneyCardIds;
+  late List<String> handOtherCardIds;
+  late List<String> handContentIds;
   late String? endId;
 
   ExpansionDBModel.fromDB(Map<String, dynamic> dbData) {
@@ -16,7 +18,15 @@ class ExpansionDBModel {
     cardIds = dbData['cardIds'] != '' ? dbData['cardIds'].split(',') : [];
     contentIds =
         dbData['contentIds'] != '' ? dbData['contentIds'].split(',') : [];
-    handIds = dbData['handIds'] != '' ? dbData['handIds'].split(',') : [];
+    handMoneyCardIds = dbData['handMoneyCardIds'] != ''
+        ? dbData['handMoneyCardIds'].split(',')
+        : [];
+    handOtherCardIds = dbData['handOtherCardIds'] != ''
+        ? dbData['handOtherCardIds'].split(',')
+        : [];
+    handContentIds = dbData['handContentIds'] != ''
+        ? dbData['handContentIds'].split(',')
+        : [];
     endId = dbData['endId'];
   }
 
@@ -26,7 +36,9 @@ class ExpansionDBModel {
     version = model.version;
     cardIds = model.cards.map((data) => data.id).toList();
     contentIds = model.content.map((data) => data.id).toList();
-    handIds = model.content.map((data) => data.id).toList();
+    handMoneyCardIds = model.handMoneyCards.map((data) => data.id).toList();
+    handOtherCardIds = model.handOtherCards.map((data) => data.id).toList();
+    handContentIds = model.handContents.map((data) => data.id).toList();
     endId = model.end != null ? model.end!.id : null;
   }
 
@@ -36,7 +48,9 @@ class ExpansionDBModel {
         'version': version,
         'cardIds': cardIds.join(","),
         'contentIds': contentIds.join(","),
-        'handIds': handIds.join(","),
+        'handMoneyCardIds': handMoneyCardIds.join(","),
+        'handOtherCardIds': handOtherCardIds.join(","),
+        'handContentIds': handContentIds.join(","),
         'endId': endId,
       };
 }

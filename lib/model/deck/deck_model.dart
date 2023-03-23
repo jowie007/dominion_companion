@@ -10,11 +10,13 @@ class DeckModel {
   late List<CardModel> cards;
   late List<CardModel>? additionalCards;
   late List<ContentModel> content;
-  late HandModel hand;
+  late HandModel handMoneyCards;
+  late HandModel handOtherCards;
+  late HandModel handContents;
   late EndModel end;
 
   DeckModel(this.name, this.cards, this.additionalCards, this.content,
-      this.hand, this.end);
+      this.handMoneyCards, this.handOtherCards, this.handContents, this.end);
 
   List<CardModel> getAllCards() {
     var allCards = [...cards];

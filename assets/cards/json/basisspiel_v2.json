@@ -281,12 +281,20 @@
       "count": "0,10,20,30,40,50"
     }
   ],
-  "hand": [
+  "handMoneyCards": [
     {
-      "id": "basisspiel_v2-hand",
+      "id": "basisspiel_v2-hand_money_cards",
       "always": true,
-      "cards": {
-        "basisspiel_v2-card-kupfer": 7,
+      "elements": {
+        "basisspiel_v2-card-kupfer": 7
+      }
+    }
+  ],
+  "handOtherCards": [
+    {
+      "id": "basisspiel_v2-hand_other_cards",
+      "always": true,
+      "elements": {
         "basisspiel_v2-card-anwesen": 3
       }
     }
