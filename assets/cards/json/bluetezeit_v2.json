@@ -270,7 +270,7 @@
     },
     {
       "id": "bluetezeit_v2-content-siegpunktemarker_5",
-      "name": "Siegpunktemarker im Wert 5",
+      "name": "Siegpunktemarker mit Wert 5",
       "whenDeckConsistsOfXCards": {
         "1": [
           "bluetezeit_v2-card-bischof",
@@ -282,7 +282,7 @@
     },
     {
       "id": "bluetezeit_v2-content-siegpunktemarker_1",
-      "name": "Siegpunktemarker im Wert 1",
+      "name": "Siegpunktemarker mit Wert 1",
       "whenDeckConsistsOfXCards": {
         "1": [
           "bluetezeit_v2-card-bischof",

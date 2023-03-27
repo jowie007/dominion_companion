@@ -293,7 +293,8 @@
       "cardCost": {
         "coin": "3"
       },
-      "setId": "empires_v2-set-schloesser"
+      "setId": "empires_v2-set-schloesser",
+      "count": "0,8,12,12,12,12"
     },
     {
       "id": "empires_v2-card-bescheidenes_schloss",
@@ -576,6 +577,228 @@
       "id": "empires_v2-card-wolfsbau",
       "name": "Wolfsbau",
       "cardTypes": "landmarke"
+    }
+  ],
+  "content": [
+    {
+      "id": "empires_v2-content-siegpunktemarker_1",
+      "name": "Siegpunktemarker mit Wert 1",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "empires_v2-card-wagenrennen",
+          "empires_v2-card-opfer",
+          "empires_v2-card-gaertnerin",
+          "empires_v2-card-handelsplatz",
+          "empires_v2-card-bauernmarkt",
+          "empires_v2-card-tempel",
+          "empires_v2-card-wilde_jagd",
+          "empires_v2-card-diebesgut",
+          "empires_v2-card-versalztes_land",
+          "empires_v2-card-ritual",
+          "empires_v2-card-hochzeit",
+          "empires_v2-card-siegeszug",
+          "empires_v2-card-eroberung",
+          "empires_v2-card-beherrscherin",
+          "empires_v2-card-aquaedukt",
+          "empires_v2-card-arena",
+          "empires_v2-card-badehaus",
+          "empires_v2-card-basilika",
+          "empires_v2-card-bollwerk",
+          "empires_v2-card-brunnen",
+          "empires_v2-card-entweihter_schrein",
+          "empires_v2-card-gebirgspass",
+          "empires_v2-card-grabmal",
+          "empires_v2-card-kolonnaden",
+          "empires_v2-card-labyrinth",
+          "empires_v2-card-mauer",
+          "empires_v2-card-museum",
+          "empires_v2-card-obelisk",
+          "empires_v2-card-palast",
+          "empires_v2-card-obstgarten",
+          "empires_v2-card-raeuberfestung",
+          "empires_v2-card-schlachtfeld",
+          "empires_v2-card-triumphbogen",
+          "empires_v2-card-turm",
+          "empires_v2-card-wolfsbau"
+        ]
+      },
+      "count": "0,24,24,24,24,24"
+    },
+    {
+      "id": "empires_v2-content-siegpunktemarker_2",
+      "name": "Siegpunktemarker mit Wert 2",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "empires_v2-card-wagenrennen",
+          "empires_v2-card-opfer",
+          "empires_v2-card-gaertnerin",
+          "empires_v2-card-handelsplatz",
+          "empires_v2-card-bauernmarkt",
+          "empires_v2-card-tempel",
+          "empires_v2-card-wilde_jagd",
+          "empires_v2-card-diebesgut",
+          "empires_v2-card-versalztes_land",
+          "empires_v2-card-ritual",
+          "empires_v2-card-hochzeit",
+          "empires_v2-card-siegeszug",
+          "empires_v2-card-eroberung",
+          "empires_v2-card-beherrscherin",
+          "empires_v2-card-aquaedukt",
+          "empires_v2-card-arena",
+          "empires_v2-card-badehaus",
+          "empires_v2-card-basilika",
+          "empires_v2-card-bollwerk",
+          "empires_v2-card-brunnen",
+          "empires_v2-card-entweihter_schrein",
+          "empires_v2-card-gebirgspass",
+          "empires_v2-card-grabmal",
+          "empires_v2-card-kolonnaden",
+          "empires_v2-card-labyrinth",
+          "empires_v2-card-mauer",
+          "empires_v2-card-museum",
+          "empires_v2-card-obelisk",
+          "empires_v2-card-palast",
+          "empires_v2-card-obstgarten",
+          "empires_v2-card-raeuberfestung",
+          "empires_v2-card-schlachtfeld",
+          "empires_v2-card-triumphbogen",
+          "empires_v2-card-turm",
+          "empires_v2-card-wolfsbau"
+        ]
+      },
+      "count": "0,12,12,12,12,12"
+    },
+    {
+      "id": "empires_v2-content-siegpunktemarker_5",
+      "name": "Siegpunktemarker mit Wert 5",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "empires_v2-card-wagenrennen",
+          "empires_v2-card-opfer",
+          "empires_v2-card-gaertnerin",
+          "empires_v2-card-handelsplatz",
+          "empires_v2-card-bauernmarkt",
+          "empires_v2-card-tempel",
+          "empires_v2-card-wilde_jagd",
+          "empires_v2-card-diebesgut",
+          "empires_v2-card-versalztes_land",
+          "empires_v2-card-ritual",
+          "empires_v2-card-hochzeit",
+          "empires_v2-card-siegeszug",
+          "empires_v2-card-eroberung",
+          "empires_v2-card-beherrscherin",
+          "empires_v2-card-aquaedukt",
+          "empires_v2-card-arena",
+          "empires_v2-card-badehaus",
+          "empires_v2-card-basilika",
+          "empires_v2-card-bollwerk",
+          "empires_v2-card-brunnen",
+          "empires_v2-card-entweihter_schrein",
+          "empires_v2-card-gebirgspass",
+          "empires_v2-card-grabmal",
+          "empires_v2-card-kolonnaden",
+          "empires_v2-card-labyrinth",
+          "empires_v2-card-mauer",
+          "empires_v2-card-museum",
+          "empires_v2-card-obelisk",
+          "empires_v2-card-palast",
+          "empires_v2-card-obstgarten",
+          "empires_v2-card-raeuberfestung",
+          "empires_v2-card-schlachtfeld",
+          "empires_v2-card-triumphbogen",
+          "empires_v2-card-turm",
+          "empires_v2-card-wolfsbau"
+        ]
+      },
+      "count": "0,14,14,14,14,14"
+    },
+    {
+      "id": "empires_v2-content-siegpunktemarker_25",
+      "name": "Siegpunktemarker mit Wert 25",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "empires_v2-card-wagenrennen",
+          "empires_v2-card-opfer",
+          "empires_v2-card-gaertnerin",
+          "empires_v2-card-handelsplatz",
+          "empires_v2-card-bauernmarkt",
+          "empires_v2-card-tempel",
+          "empires_v2-card-wilde_jagd",
+          "empires_v2-card-diebesgut",
+          "empires_v2-card-versalztes_land",
+          "empires_v2-card-ritual",
+          "empires_v2-card-hochzeit",
+          "empires_v2-card-siegeszug",
+          "empires_v2-card-eroberung",
+          "empires_v2-card-beherrscherin",
+          "empires_v2-card-aquaedukt",
+          "empires_v2-card-arena",
+          "empires_v2-card-badehaus",
+          "empires_v2-card-basilika",
+          "empires_v2-card-bollwerk",
+          "empires_v2-card-brunnen",
+          "empires_v2-card-entweihter_schrein",
+          "empires_v2-card-gebirgspass",
+          "empires_v2-card-grabmal",
+          "empires_v2-card-kolonnaden",
+          "empires_v2-card-labyrinth",
+          "empires_v2-card-mauer",
+          "empires_v2-card-museum",
+          "empires_v2-card-obelisk",
+          "empires_v2-card-palast",
+          "empires_v2-card-obstgarten",
+          "empires_v2-card-raeuberfestung",
+          "empires_v2-card-schlachtfeld",
+          "empires_v2-card-triumphbogen",
+          "empires_v2-card-turm",
+          "empires_v2-card-wolfsbau"
+        ]
+      },
+      "count": "0,25,25,25,25,25"
+    },
+    {
+      "id": "empires_v2-content-schuldenmarker_1",
+      "name": "Schuldenmarker mit Wert 1",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "empires_v2-card-lehnsherr",
+          "empires_v2-card-ingenieurin",
+          "empires_v2-card-koeniglicher_schmied",
+          "empires_v2-card-stadtviertel",
+          "empires_v2-card-vermoegen",
+          "empires_v2-card-reichtum",
+          "empires_v2-card-steuer",
+          "empires_v2-card-hochzeit",
+          "empires_v2-card-schlacht",
+          "empires_v2-card-siegeszug",
+          "empires_v2-card-spende",
+          "empires_v2-card-gebirgspass"
+
+        ]
+      },
+      "count": "0,34,34,34,34,34"
+    },
+    {
+      "id": "empires_v2-content-schuldenmarker_5",
+      "name": "Schuldenmarker im Wert 5",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "empires_v2-card-lehnsherr",
+          "empires_v2-card-ingenieurin",
+          "empires_v2-card-koeniglicher_schmied",
+          "empires_v2-card-stadtviertel",
+          "empires_v2-card-vermoegen",
+          "empires_v2-card-reichtum",
+          "empires_v2-card-steuer",
+          "empires_v2-card-hochzeit",
+          "empires_v2-card-schlacht",
+          "empires_v2-card-siegeszug",
+          "empires_v2-card-spende",
+          "empires_v2-card-gebirgspass"
+
+        ]
+      },
+      "count": "0,6,6,6,6,6"
     }
   ]
 }
