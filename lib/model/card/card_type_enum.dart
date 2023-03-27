@@ -1,10 +1,12 @@
 enum CardTypeEnum {
   aktion,
   angriff,
+  befehl,
   dauer,
   ereignis,
   fluch,
   geld,
+  landmarke,
   pluendern,
   punkte,
   preis,
@@ -13,5 +15,7 @@ enum CardTypeEnum {
   reserve,
   ritter,
   ruine,
+  sammlung,
+  schloss,
   unterschlupf,
 }
