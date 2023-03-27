@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/database/expansion_database.dart';
 import 'package:dominion_comanion/database/model/card/card_db_model.dart';
 import 'package:dominion_comanion/database/model/content/content_db_model.dart';
@@ -80,6 +82,7 @@ class ExpansionService {
   }
 
   Future<List<ExpansionModel>> loadAllExpansions() async {
+    log("ALL FINE 1");
     return Future.wait((await getExpansionsFromDB()).map(
       (expansion) async => ExpansionModel.fromDBModelAndAdditional(
           expansion,

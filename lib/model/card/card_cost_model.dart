@@ -7,10 +7,11 @@ class CardCostModel {
 
   CardCostModel(this.coin, this.debt, this.potion);
 
-  CardCostModel.fromJson(Map<String, dynamic> json) {
-    coin = json['coin'] != null ? json['coin'].toString() : '';
-    debt = json['debt'] != null ? json['debt'].toString() : '';
-    potion = json['potion'] != null ? json['potion'].toString() : '';
+  CardCostModel.fromJson(Map<String, dynamic>? json) {
+    coin = json != null && json['coin'] != null ? json['coin'].toString() : '';
+    debt = json != null && json['debt'] != null ? json['debt'].toString() : '';
+    potion =
+        json != null && json['potion'] != null ? json['potion'].toString() : '';
   }
 
   CardCostModel.fromDBModel(CardCostDBModel dbModel) {

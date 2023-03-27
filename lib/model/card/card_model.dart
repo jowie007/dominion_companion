@@ -177,14 +177,16 @@ class CardModel {
   }
 
   static int compareStringNumbers(String stringNumber1, String stringNumber2) {
-    if (stringNumber1 == "") {
-      stringNumber1 = "0";
+    var numbers1 = stringNumber1.split(RegExp(r'\D'));
+    var numbers2 = stringNumber2.split(RegExp(r'\D'));
+    var number1 = 0;
+    var number2 = 0;
+    if (numbers1.isNotEmpty) {
+      number1 = int.tryParse(numbers1.first) ?? 0;
     }
-    if (stringNumber2 == "") {
-      stringNumber2 = "0";
+    if (numbers2.isNotEmpty) {
+      number2 = int.tryParse(numbers2.first) ?? 0;
     }
-    var number1 = int.parse(stringNumber1.split(RegExp(r'\D')).first);
-    var number2 = int.parse(stringNumber2.split(RegExp(r'\D')).first);
     var ret = 0;
     if (number1 < number2) {
       ret = -1;
