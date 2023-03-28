@@ -148,7 +148,7 @@
     {
       "id": "empires_v2-card-lehnsherr",
       "name": "Lehnsherr",
-      "cardTypes": "aktion, befehl, aktion",
+      "cardTypes": "befehl, aktion",
       "cardCost": {
         "debt": "8"
       }

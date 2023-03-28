@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const lightGrey = Color(0xff969696);
 const lightBrown = Color(0xffa98e5f);
+const lowGreen = Color(0xff437026);
 
 final Map<String, List<Color>> cardTypeColorsMap = {
   "aktion": [Colors.white],
@@ -14,15 +15,19 @@ final Map<String, List<Color>> cardTypeColorsMap = {
   "aktion-dauer": [Colors.deepOrangeAccent],
   "aktion-dauer-angriff": [Colors.deepOrangeAccent],
   "aktion-dauer-reaktion": [Colors.blueAccent, Colors.deepOrangeAccent],
+  "aktion-geld": [Colors.white, Colors.orangeAccent],
   "aktion-pluendern": [Colors.white],
   "aktion-preis": [Colors.white],
   "aktion-punkte": [Colors.white, Colors.green],
+  "punkte-schloss-schloss": [Colors.white, Colors.green],
   "aktion-reaktion": [Colors.blueAccent],
   "aktion-reisender": [Colors.white],
   "aktion-reserve": [lightBrown],
   "aktion-reserve-punkte": [lightBrown, Colors.green],
   "aktion-ruine": [Colors.brown],
+  "aktion-sammlung": [Colors.white],
   "aktion-unterschlupf": [Colors.white, Colors.deepOrange],
+  "befehl-aktion": [Colors.white],
   "ereignis": [lightGrey],
   "fluch": [Colors.deepPurple],
   "geld": [Colors.orangeAccent],
@@ -30,10 +35,13 @@ final Map<String, List<Color>> cardTypeColorsMap = {
   "geld-dauer": [Colors.orangeAccent, Colors.deepOrangeAccent],
   "geld-preis": [Colors.white],
   "geld-punkte": [Colors.orangeAccent, Colors.green],
+  "geld-punkte-schloss": [Colors.orangeAccent, Colors.green],
   "geld-reaktion": [Colors.orangeAccent, Colors.blueAccent],
   "geld-reserve": [Colors.orangeAccent],
+  "landmarke": [lowGreen],
   "punkte": [Colors.green],
   "punkte-reaktion": [Colors.green, Colors.blueAccent],
+  "punkte-schloss": [Colors.green],
   "punkte-unterschlupf": [Colors.green, Colors.deepOrange],
   "reaktion-unterschlupf": [Colors.blueAccent, Colors.deepOrange],
   "unterschlupf": [Colors.white],

@@ -19,30 +19,51 @@ class CostComponent extends StatelessWidget {
     }
     return Stack(
       children: [
-        Image(
-          width: width,
-          image: AssetImage('assets/cards/other/$type.png'),
-        ),
-        value != null && splitValuePlus.isNotEmpty
-            ? Container(
-                padding: const EdgeInsets.fromLTRB(2, 5, 0, 0),
+        type == 'potion'
+            ? Image(
                 width: width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(splitValuePlus[0].toString(),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 30)),
-                    splitValuePlus.length > 1
-                        ? const Text("+",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(fontSize: 20))
-                        : Container()
-                  ],
-                ),
+                image: const AssetImage('assets/cards/other/potion.png'),
               )
-            : Container(),
+            : Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/cards/other/$type.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                width: width,
+                padding: const EdgeInsets.fromLTRB(2, 5, 0, 0),
+                child: value != null && splitValuePlus.isNotEmpty
+                    ? FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              splitValuePlus[0].toString(),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  letterSpacing: 0,
+                                  color: type == 'coin'
+                                      ? Colors.black
+                                      : Colors.white),
+                            ),
+                            splitValuePlus.length > 1
+                                ? Text("+",
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: type == 'coin'
+                                            ? Colors.black
+                                            : Colors.white))
+                                : Container()
+                          ],
+                        ),
+                      )
+                    : Container(),
+              )
       ],
     );
   }

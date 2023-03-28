@@ -89,27 +89,47 @@ class _CardInfoTileState extends State<CardInfoTile> {
               ),
               Row(
                 children: <Widget>[
-                  (widget.card.cardCost.coin != "" ||
-                          widget.card.cardCost.debt != "")
-                      ? CostComponent(
-                          width: 40,
-                          type:
-                              widget.card.cardCost.coin != "" ? 'coin' : 'debt',
-                          value: widget.card.cardCost.coin != ""
-                              ? widget.card.cardCost.coin
-                              : widget.card.cardCost.debt)
-                      : Container(),
-                  (widget.card.cardCost.coin != "" ||
-                          widget.card.cardCost.debt != "")
-                      ? const SizedBox(width: 2)
-                      : Container(),
-                  widget.card.cardCost.potion != ''
-                      ? const CostComponent(width: 26, type: 'potion')
-                      : const SizedBox(width: 26),
-                  (widget.card.cardCost.coin != "" ||
-                          widget.card.cardCost.debt != "")
-                      ? Container()
-                      : const SizedBox(width: 40),
+                  SizedBox(
+                    width: 74,
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: <Widget>[
+                        widget.card.cardCost.debt != ''
+                            ? widget.card.cardCost.coin != ''
+                                ? Positioned(
+                                    left: 24,
+                                    child: CostComponent(
+                                        width: 40,
+                                        type: 'debt',
+                                        value: widget.card.cardCost.debt),
+                                  )
+                                : CostComponent(
+                                    width: 40,
+                                    type: 'debt',
+                                    value: widget.card.cardCost.debt)
+                            : Container(),
+                        widget.card.cardCost.potion != ''
+                            ? widget.card.cardCost.coin != ''
+                                ? const Positioned(
+                                    left: 24,
+                                    child: CostComponent(
+                                        width: 26, type: 'potion'),
+                                  )
+                                : const Padding(
+                                    padding: EdgeInsets.fromLTRB(6, 0, 0, 0),
+                                    child: CostComponent(
+                                        width: 26, type: 'potion'),
+                                  )
+                            : Container(),
+                        widget.card.cardCost.coin != ''
+                            ? CostComponent(
+                                width: 40,
+                                type: 'coin',
+                                value: widget.card.cardCost.coin)
+                            : const SizedBox(width: 26),
+                      ],
+                    ),
+                  ),
                   const SizedBox(width: 10),
                   Expanded(
                     flex: 8,
