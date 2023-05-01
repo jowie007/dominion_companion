@@ -1,0 +1,687 @@
+{
+  "id": "nocturne_v1",
+  "name": "Nocturne",
+  "version": "V1",
+  "cards": [
+    {
+      "id": "nocturne_v1-card-kloster",
+      "name": "Kloster",
+      "cardTypes": "nacht",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-nachtwache",
+      "name": "Nachtwache",
+      "cardTypes": "nacht",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-wechselbalg",
+      "name": "Wechselbalg",
+      "cardTypes": "nacht",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-exorzistin",
+      "name": "Exorzistin",
+      "cardTypes": "nacht",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-teufelswerkstatt",
+      "name": "Teufelswerkstatt",
+      "cardTypes": "nacht",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-waechterin",
+      "name": "Wächterin",
+      "cardTypes": "nacht, dauer",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-geisterstadt",
+      "name": "Geisterstadt",
+      "cardTypes": "nacht, dauer",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-krypta",
+      "name": "Krypta",
+      "cardTypes": "nacht, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-schuster",
+      "name": "Schuster",
+      "cardTypes": "nacht, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-suendenpfuhl",
+      "name": "Sündenpfuhl",
+      "cardTypes": "nacht, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-pluenderer",
+      "name": "Plünderer",
+      "cardTypes": "nacht, dauer, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-vampirin",
+      "name": "Vampirin",
+      "cardTypes": "nacht, angriff, unheil",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-werwolf",
+      "name": "Werwolf",
+      "cardTypes": "aktion, nacht, angriff, unheil",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-kobold",
+      "name": "Kobold",
+      "cardTypes": "aktion, unheil",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-attentaeter",
+      "name": "Attentäter",
+      "cardTypes": "aktion, angriff, unheil",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-folterknecht",
+      "name": "Folterknecht",
+      "cardTypes": "aktion, angriff, unheil",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-verfluchtes_dorf",
+      "name": "Verfluchtes Dorf",
+      "cardTypes": "aktion, unheil",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-goetze",
+      "name": "Götze",
+      "cardTypes": "geld, angriff, segen",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-friedhof",
+      "name": "Friedhof",
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-druidin",
+      "name": "Druidin",
+      "cardTypes": "aktion, segen",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-faehrtensucher",
+      "name": "Fährtensucher",
+      "cardTypes": "aktion, segen",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-fee",
+      "name": "Fee",
+      "cardTypes": "aktion, segen",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-narr",
+      "name": "Narr",
+      "cardTypes": "aktion, segen",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-minnesaengerin",
+      "name": "Minnesängerin",
+      "cardTypes": "aktion, segen",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-seliges_dorf",
+      "name": "Seliges Dorf",
+      "cardTypes": "aktion, segen",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-heiliger_hain",
+      "name": "Heiliger Hain",
+      "cardTypes": "aktion, segen",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-getreuer_hund",
+      "name": "Getreuer Hund",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-geheime_hoehle",
+      "name": "Geheime Höhle",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-totenbeschwoerer",
+      "name": "Totenbeschwörer",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-konklave",
+      "name": "Konklave",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-schaeferin",
+      "name": "Schäferin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-puka",
+      "name": "Puka",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-tragischer_held",
+      "name": "Tragischer Held",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "nocturne_v1-set-gaben",
+      "name": "Gaben",
+      "cardTypes": "gabe",
+      "whenDeckConsistsOfXCardTypesOfExpansion": {
+        "1": [
+          "aktion, angriff, segen",
+          "aktion, segen"
+        ]
+      }
+    },
+    {
+      "id": "nocturne_v1-card-geschenk_der_erde",
+      "name": "Geschenk der Erde",
+      "cardTypes": "gabe",
+      "setId": "nocturne_v1-set-gaben"
+    },
+    {
+      "id": "nocturne_v1-card-geschenk_des_feldes",
+      "name": "Geschenk des Feldes",
+      "cardTypes": "gabe",
+      "setId": "nocturne_v1-set-gaben"
+    },
+    {
+      "id": "nocturne_v1-card-geschenk_des_feuers",
+      "name": "Geschenk des Feuers",
+      "cardTypes": "gabe",
+      "setId": "nocturne_v1-set-gaben"
+    },
+    {
+      "id": "nocturne_v1-card-geschenk_des_waldes",
+      "name": "Geschenk des Waldes",
+      "cardTypes": "gabe",
+      "setId": "nocturne_v1-set-gaben"
+    },
+    {
+      "id": "nocturne_v1-card-geschenk_des_mondes",
+      "name": "Geschenk des Mondes",
+      "cardTypes": "gabe",
+      "setId": "nocturne_v1-set-gaben"
+    },
+    {
+      "id": "nocturne_v1-card-geschenk_des_berges",
+      "name": "Geschenk des Berges",
+      "cardTypes": "gabe",
+      "setId": "nocturne_v1-set-gaben"
+    },
+    {
+      "id": "nocturne_v1-card-geschenk_des_flusses",
+      "name": "Geschenk des Flusses",
+      "cardTypes": "gabe",
+      "setId": "nocturne_v1-set-gaben"
+    },
+    {
+      "id": "nocturne_v1-card-geschenk_des_meeres",
+      "name": "Geschenk des Meeres",
+      "cardTypes": "gabe",
+      "setId": "nocturne_v1-set-gaben"
+    },
+    {
+      "id": "nocturne_v1-card-geschenk_des_himmels",
+      "name": "Geschenk des Himmels",
+      "cardTypes": "gabe",
+      "setId": "nocturne_v1-set-gaben"
+    },
+    {
+      "id": "nocturne_v1-card-geschenk_der_sonne",
+      "name": "Geschenk der Sonne",
+      "cardTypes": "gabe",
+      "setId": "nocturne_v1-set-gaben"
+    },
+    {
+      "id": "nocturne_v1-card-geschenk_des_sumpfes",
+      "name": "Geschenk des Sumpfes",
+      "cardTypes": "gabe",
+      "setId": "nocturne_v1-set-gaben"
+    },
+    {
+      "id": "nocturne_v1-card-geschenk_des_windes",
+      "name": "Geschenk des Windes",
+      "cardTypes": "gabe",
+      "setId": "nocturne_v1-set-gaben"
+    },
+    {
+      "id": "nocturne_v1-set-plagen",
+      "name": "Plagen",
+      "cardTypes": "plage",
+      "whenDeckConsistsOfXCardTypesOfExpansion": {
+        "1": [
+          "nacht, angriff, unheil",
+          "aktion, nacht, angriff, unheil",
+          "aktion, unheil",
+          "aktion, angriff, unheil"
+        ]
+      }
+    },
+    {
+      "id": "nocturne_v1-card-schlechtes_omen",
+      "name": "Schlechtes Omen",
+      "cardTypes": "plage",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-taueschung",
+      "name": "Täuschung",
+      "cardTypes": "plage",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-neid",
+      "name": "Neid",
+      "cardTypes": "plage",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-hungersnot",
+      "name": "Hungersnot",
+      "cardTypes": "plage",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-furcht",
+      "name": "Furcht",
+      "cardTypes": "plage",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-gier",
+      "name": "Gier",
+      "cardTypes": "plage",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-spuk",
+      "name": "Spuk",
+      "cardTypes": "plage",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-heuschrecken",
+      "name": "Heuschrecken",
+      "cardTypes": "plage",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-elend",
+      "name": "Elend",
+      "cardTypes": "plage",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-seuche",
+      "name": "Seuche",
+      "cardTypes": "plage",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-armut",
+      "name": "Armut",
+      "cardTypes": "plage",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-krieg",
+      "name": "Krieg",
+      "cardTypes": "plage",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-set-getaeuscht/neidisch",
+      "name": "Getäuscht/Neidisch",
+      "cardTypes": "zustand",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-getauescht",
+      "name": "Getäuscht",
+      "cardTypes": "zustand",
+      "setId": "nocturne_v1-set-getaeuscht_neidisch"
+    },
+    {
+      "id": "nocturne_v1-card-neidisch",
+      "name": "Neidisch",
+      "cardTypes": "zustand",
+      "setId": "nocturne_v1-set-getaeuscht_neidisch"
+    },
+    {
+      "id": "nocturne_v1-card-elendig/doppelt_elendig",
+      "name": "Elendig/Doppelt Elendig",
+      "cardTypes": "zustand",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-elendig/doppelt_elendig",
+      "name": "Elendig/Doppelt Elendig",
+      "cardTypes": "zustand",
+      "setId": "nocturne_v1-set-elendig"
+    },
+    {
+      "id": "nocturne_v1-card-elendig/doppelt_elendig",
+      "name": "Elendig/Doppelt Elendig",
+      "cardTypes": "zustand",
+      "setId": "nocturne_v1-set-elendig"
+    },
+    {
+      "id": "nocturne_v1-card-im_wald_verrirt",
+      "name": "Im Wald verirrt",
+      "cardTypes": "zustand",
+      "setId": "nocturne_v1-set-plagen"
+    },
+    {
+      "id": "nocturne_v1-card-fledermaus",
+      "name": "Fledermaus",
+      "cardTypes": "nacht",
+      "cardCost": {
+        "coin": "2*"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-vampirin"
+        ]
+      }
+    },
+    {
+      "id": "nocturne_v1-card-wunsch",
+      "name": "Wunsch",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "0*"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-kobold",
+          "nocturne_v1-card-wunderlampe"
+        ]
+      }
+    },
+    {
+      "id": "nocturne_v1-card-wunderlampe",
+      "name": "Wunderlampe",
+      "cardTypes": "geld, erbstueck",
+      "cardCost": {
+        "coin": "0"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-geheime_hoehle"
+        ]
+      }
+    },
+    {
+      "id": "nocturne_v1-card-zauberspiegel",
+      "name": "Zauberspiegel",
+      "cardTypes": "geld, erbstueck",
+      "cardCost": {
+        "coin": "0"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-fiedhof"
+        ]
+      }
+    },
+    {
+      "id": "nocturne_v1-card-beutel",
+      "name": "Beutel",
+      "cardTypes": "geld, erbstueck",
+      "cardCost": {
+        "coin": "0"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-faehrtensucher"
+        ]
+      }
+    },
+    {
+      "id": "nocturne_v1-card-weideland",
+      "name": "Weideland",
+      "cardTypes": "geld, erbstueck",
+      "cardCost": {
+        "coin": "0"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-schaeferin"
+        ]
+      }
+    },
+    {
+      "id": "nocturne_v1-card-ziege",
+      "name": "Ziege",
+      "cardTypes": "geld, erbstueck",
+      "cardCost": {
+        "coin": "0"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-fee"
+        ]
+      }
+    },
+    {
+      "id": "nocturne_v1-card-glueckstaler",
+      "name": "Glückstaler",
+      "cardTypes": "geld, erbstueck",
+      "cardCost": {
+        "coin": "0"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-narr"
+        ]
+      }
+    },
+    {
+      "id": "nocturne_v1-card-verfluchtes_gold",
+      "name": "Verfluchtes Gold",
+      "cardTypes": "geld, erbstueck",
+      "cardCost": {
+        "coin": "0"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-puka"
+        ]
+      }
+    },
+    {
+      "id": "nocturne_v1-set-zombies",
+      "name": "Zombies",
+      "cardTypes": "aktion, zombie",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "nocturne_v1-card-zombie_lehrling",
+      "name": "Zombie-Lehrling",
+      "cardTypes": "aktion, zombie",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "nocturne_v1-set-zombies"
+    },
+    {
+      "id": "nocturne_v1-card-zombie_maurer",
+      "name": "Zombie-Maurer",
+      "cardTypes": "aktion, zombie",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "nocturne_v1-set-zombies"
+    },
+    {
+      "id": "nocturne_v1-card-zombie_spion",
+      "name": "Zombie-Spion",
+      "cardTypes": "aktion, zombie",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "nocturne_v1-set-zombies"
+    },
+    {
+      "id": "nocturne_v1-card-geist",
+      "name": "Geist",
+      "cardTypes": "nacht, dauer, erscheinung",
+      "cardCost": {
+        "coin": "4*"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-exorzistin",
+          "nocturne_v1-card-friedhof"
+        ]
+      }
+    },
+    {
+      "id": "nocturne_v1-card-teufelchen",
+      "name": "Geist",
+      "cardTypes": "nacht, dau",
+      "cardCost": {
+        "coin": "4*"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-exorzistin",
+          "nocturne_v1-card-teufelswerkstatt",
+          "nocturne_v1-card-folterknecht"
+        ]
+      }
+    },
+    {
+      "id": "nocturne_v1-card-irrlicht",
+      "name": "Geist",
+      "cardTypes": "nacht, dau",
+      "cardCost": {
+        "coin": "4*"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-exorzistin",
+          "nocturne_v1-card-goetze",
+          "nocturne_v1-card-druidin",
+          "nocturne_v1-card-faehrtensucher",
+          "nocturne_v1-card-fee",
+          "nocturne_v1-card-narr",
+          "nocturne_v1-card-minnesaengerin",
+          "nocturne_v1-card-seliges_dorf",
+          "nocturne_v1-card-heiliger_hain"
+        ]
+      }
+    }
+  ]
+  /*
+  TODO ADD HAND CARDS
+  */
+}
