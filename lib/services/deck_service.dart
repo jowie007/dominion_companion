@@ -5,6 +5,7 @@ import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/database/deck_database.dart';
 import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
+import 'package:dominion_comanion/model/card/card_type_infos.dart';
 import 'package:dominion_comanion/model/content/content_model.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:dominion_comanion/model/end/end_model.dart';
@@ -18,7 +19,6 @@ import 'package:flutter/foundation.dart';
 
 class DeckService {
   final DeckDatabase _deckDatabase = DeckDatabase();
-  final CardDatabase _cardDatabase = CardDatabase();
   final CardService _cardService = CardService();
   final ContentService _contentService = ContentService();
   final HandService _handService = HandService();
@@ -55,8 +55,7 @@ class DeckService {
     return _deckDatabase.deleteDeckByName(name);
   }
 
-  DeckModel deckFromNameAndAdditional(
-      String name,
+  DeckModel deckFromNameAndAdditional(String name,
       List<CardModel> cards,
       List<CardModel> additionalCards,
       List<ContentModel> content,
@@ -64,14 +63,21 @@ class DeckService {
       HandModel handOtherCards,
       HandModel handContents,
       EndModel end) {
-    return DeckModel(name, cards, additionalCards, content, handMoneyCards,
-        handOtherCards, handContents, end);
+    return DeckModel(
+        name,
+        cards,
+        additionalCards,
+        content,
+        handMoneyCards,
+        handOtherCards,
+        handContents,
+        end);
   }
 
   Future<DeckModel> deckFromDBModel(DeckDBModel deckDBModel) async {
     var cardIds = deckDBModel.cardIds;
     var activeExpansionIds = getActiveExpansionIdsByCardIds(cardIds);
-    var cards = await getCardsByCardIds(cardIds);
+    var cards = await _cardService.getCardsByCardIds(cardIds);
     var additionalCards = await getAdditionalCardsByCards(cards);
     var allCardIds = [...cards, ...additionalCards].map((e) => e.id).toList();
     var ret = DeckModel(
@@ -92,14 +98,6 @@ class DeckService {
     return ret;
   }
 
-  Future<List<CardModel>> getCardsByCardIds(List<String> cardIds) {
-    return Future.wait(cardIds
-        .toList()
-        .map((cardId) async =>
-            CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
-        .toList());
-  }
-
   Future<List<CardModel>> getAdditionalCardsByCards(
       List<CardModel> cards) async {
     List<CardModel> additionalCards = [];
@@ -114,12 +112,12 @@ class DeckService {
         (await _cardService.getWhenDeckConsistsOfXCards())
             .map((card) async => CardModel.fromDBModel(card)));
     List<CardModel> whenDeckConsistsOfXCardsOfExpansionCountCards =
-        await Future.wait(
-            (await _cardService.getWhenDeckConsistsOfXCardsOfExpansionCount())
-                .map((card) async => CardModel.fromDBModel(card)));
+    await Future.wait(
+        (await _cardService.getWhenDeckConsistsOfXCardsOfExpansionCount())
+            .map((card) async => CardModel.fromDBModel(card)));
 
     for (var whenDeckConsistsOfXCardTypesCard
-        in whenDeckConsistsOfXCardTypesCards) {
+    in whenDeckConsistsOfXCardTypesCards) {
       var expansionCardCount = 0;
       for (var card in cards) {
         if (whenDeckConsistsOfXCardTypesCard.getExpansionId() ==
@@ -165,9 +163,9 @@ class DeckService {
       }
     }
     for (var whenDeckConsistsOfXCardsOfExpansionCountCard
-        in whenDeckConsistsOfXCardsOfExpansionCountCards) {
+    in whenDeckConsistsOfXCardsOfExpansionCountCards) {
       var expansionCardCount = expansionCardCountMap[
-          whenDeckConsistsOfXCardsOfExpansionCountCard.getExpansionId()];
+      whenDeckConsistsOfXCardsOfExpansionCountCard.getExpansionId()];
       if (expansionCardCount != null &&
           expansionCardCount >=
               whenDeckConsistsOfXCardsOfExpansionCountCard
@@ -212,7 +210,7 @@ class DeckService {
     var ret = alwaysContent;
     for (var expansionId in activeExpansionIds) {
       var contentModelList =
-          await _contentService.getContentByExpansionId(expansionId);
+      await _contentService.getContentByExpansionId(expansionId);
       for (var contentModel in contentModelList) {
         if (contentModel.whenDeckConsistsOfXCards != null) {
           for (var entry in contentModel.whenDeckConsistsOfXCards!.entries) {
@@ -249,7 +247,7 @@ class DeckService {
     }
     for (var expansionId in activeExpansionIds) {
       var expansionHandDBModel =
-          await _handService.getHandsByExpansionIdAndType(expansionId, type);
+      await _handService.getHandsByExpansionIdAndType(expansionId, type);
       for (var handDBModel in expansionHandDBModel) {
         var handModel = HandModel.fromDBModel(handDBModel);
         var addToHand = false;
@@ -269,7 +267,9 @@ class DeckService {
           for (var entry in handModel.whenDeckConsistsOfXCards!.entries) {
             var count = 0;
             for (var cardId in entry.value) {
-              if (cards.where((element) => element.id == cardId).isNotEmpty) {
+              if (cards
+                  .where((element) => element.id == cardId)
+                  .isNotEmpty) {
                 count++;
               }
               if (count >= entry.key) {
@@ -294,15 +294,15 @@ class DeckService {
     return hand;
   }
 
-  Future<EndModel> getEndByCardIdsAndActiveExpansionIds(
-      List<String> cardIds, List<String> activeExpansionIds) async {
+  Future<EndModel> getEndByCardIdsAndActiveExpansionIds(List<String> cardIds,
+      List<String> activeExpansionIds) async {
     List<EndModel> alwaysEnd = await Future.wait(
         (await _endService.getAlwaysEnds())
             .map((end) async => EndModel.fromDBModel(end)));
     var end = alwaysEnd.first;
     for (var expansionId in activeExpansionIds) {
       var expansionEnd =
-          await _endService.getEndByExpansionIdFromDB(expansionId);
+      await _endService.getEndByExpansionIdFromDB(expansionId);
       if (expansionEnd != null) {
         if (expansionEnd.emptyCount != null) {
           end.emptyCount = expansionEnd.emptyCount;

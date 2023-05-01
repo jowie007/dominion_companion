@@ -1,4 +1,4 @@
-import 'package:dominion_comanion/database/selectedCardsDatabase.dart';
+import 'package:dominion_comanion/database/selected_cards_database.dart';
 
 class SelectedCardService {
   final SelectedCardDatabase _selectedCardDatabase = SelectedCardDatabase();

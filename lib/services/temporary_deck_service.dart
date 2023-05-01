@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
+import 'package:dominion_comanion/model/card/card_type_infos.dart';
 import 'package:dominion_comanion/model/content/content_model.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:dominion_comanion/model/end/end_model.dart';
@@ -15,6 +16,7 @@ import 'package:dominion_comanion/services/hand_service.dart';
 
 class TemporaryDeckService {
   final DeckService _deckService = DeckService();
+  final CardService _cardService = CardService();
   late Future<DeckModel> temporaryDeck;
   bool saved = false;
 
@@ -28,14 +30,35 @@ class TemporaryDeckService {
   TemporaryDeckService._internal();
 
   Future<void> createTemporaryDBDeck(String name, List<String> cardIds) async {
-    cardIds.shuffle();
     temporaryDeck = createTemporaryDeck(name, cardIds);
   }
 
   Future<DeckModel> createTemporaryDeck(
       String name, List<String> cardIds) async {
+    return _deckService
+        .deckFromDBModel(DeckDBModel(name, await filterCards(cardIds)));
+  }
+
+  Future<List<String>> filterCards(List<String> cardIds) async {
+    const max = 2;
     cardIds.shuffle();
-    return _deckService.deckFromDBModel(
-        DeckDBModel(name, cardIds.take(DeckService.deckSize).toList()));
+    List<CardModel> cards = await _cardService.getCardsByCardIds(cardIds);
+    List<CardModel> vCards = [...cards];
+    List<CardModel> hCards = [];
+    for (var element in horizontalCards) {
+      var count = 0;
+      for (var card in cards) {
+        if (card.cardTypes.contains(element)) {
+          vCards.remove(card);
+          if (count < max) {
+            hCards.add(card);
+            count++;
+          }
+        }
+      }
+    }
+    return [...hCards, ...vCards.take(DeckService.deckSize).toList()]
+        .map((card) => card.id)
+        .toList();
   }
 }

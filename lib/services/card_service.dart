@@ -23,6 +23,14 @@ class CardService {
     _cardDatabase.insertCard(cardDBModel);
   }
 
+  Future<List<CardModel>> getCardsByCardIds(List<String> cardIds) {
+    return Future.wait(cardIds
+        .toList()
+        .map((cardId) async =>
+        CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
+        .toList());
+  }
+
   Future<List<String>> getCardIdsForPopup(CardModel card) async {
     return !card.id.contains('-set-')
         ? [card.id]
