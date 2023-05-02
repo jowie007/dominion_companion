@@ -68,7 +68,7 @@ class ExpansionService {
     /* await Future.wait(JsonService().getExpansions().map((element) async => {
       _expansionDatabase.deleteExpansionById((await element).id)
     }).toList()); */
-    JsonService().getExpansions().forEach((expansionModel) async {
+    JsonService().getExpansionsFromJSON().forEach((expansionModel) async {
       insertExpansionIntoDB(await expansionModel);
     });
   }

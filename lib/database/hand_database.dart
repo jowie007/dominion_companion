@@ -17,6 +17,7 @@ class HandDatabase {
         "id STRING PRIMARY KEY, "
         "always BOOL, "
         "elements STRING, "
+        "elementsReplace STRING, "
         "additionalElements STRING, "
         "whenDeckConsistsOfXCards STRING, "
         "whenDeckConsistsOfXCardsOfExpansionCount NUMBER)",

@@ -271,6 +271,7 @@
       "id": "nocturne_v1-set-gaben",
       "name": "Gaben",
       "cardTypes": "gabe",
+      "invisible": true,
       "whenDeckConsistsOfXCardTypesOfExpansion": {
         "1": [
           "aktion, angriff, segen",
@@ -354,6 +355,7 @@
       "id": "nocturne_v1-set-plagen",
       "name": "Plagen",
       "cardTypes": "plage",
+      "invisible": true,
       "whenDeckConsistsOfXCardTypesOfExpansion": {
         "1": [
           "nacht, angriff, unheil",
@@ -439,7 +441,7 @@
       "id": "nocturne_v1-set-getaeuscht/neidisch",
       "name": "Getäuscht/Neidisch",
       "cardTypes": "zustand",
-      "setId": "nocturne_v1-set-plagen"
+      "invisible": true
     },
     {
       "id": "nocturne_v1-card-getauescht",
@@ -454,28 +456,28 @@
       "setId": "nocturne_v1-set-getaeuscht_neidisch"
     },
     {
-      "id": "nocturne_v1-card-elendig/doppelt_elendig",
+      "id": "nocturne_v1-set-elendig/doppelt_elendig",
       "name": "Elendig/Doppelt Elendig",
       "cardTypes": "zustand",
-      "setId": "nocturne_v1-set-plagen"
+      "invisible": true
     },
     {
-      "id": "nocturne_v1-card-elendig/doppelt_elendig",
-      "name": "Elendig/Doppelt Elendig",
+      "id": "nocturne_v1-card-elendig",
+      "name": "Elendig",
       "cardTypes": "zustand",
-      "setId": "nocturne_v1-set-elendig"
+      "setId": "nocturne_v1-set-elendig/doppelt_elendig"
     },
     {
-      "id": "nocturne_v1-card-elendig/doppelt_elendig",
-      "name": "Elendig/Doppelt Elendig",
+      "id": "nocturne_v1-card-doppelt_elendig",
+      "name": "Doppelt Elendig",
       "cardTypes": "zustand",
-      "setId": "nocturne_v1-set-elendig"
+      "setId": "nocturne_v1-set-elendig/doppelt_elendig"
     },
     {
       "id": "nocturne_v1-card-im_wald_verrirt",
       "name": "Im Wald verirrt",
       "cardTypes": "zustand",
-      "setId": "nocturne_v1-set-plagen"
+      "invisible": true
     },
     {
       "id": "nocturne_v1-card-fledermaus",
@@ -647,7 +649,7 @@
     {
       "id": "nocturne_v1-card-teufelchen",
       "name": "Geist",
-      "cardTypes": "nacht, dau",
+      "cardTypes": "nacht, dauer",
       "cardCost": {
         "coin": "4*"
       },
@@ -662,7 +664,7 @@
     {
       "id": "nocturne_v1-card-irrlicht",
       "name": "Geist",
-      "cardTypes": "nacht, dau",
+      "cardTypes": "nacht, dauer",
       "cardCost": {
         "coin": "4*"
       },
@@ -680,8 +682,34 @@
         ]
       }
     }
+  ],
+  "handMoneyCards": [
+    {
+      "id": "nocturne_v1-hand_money_cards",
+      "elementsReplace": {
+        "nocturne_v1-card-wunderlampe": [
+          "basisspiel_v2-card-kupfer"
+        ],
+        "nocturne_v1-card-zauberspiegel": [
+          "basisspiel_v2-card-kupfer"
+        ],
+        "nocturne_v1-card-beutel": [
+          "basisspiel_v2-card-kupfer"
+        ],
+        "nocturne_v1-card-weideland": [
+          "basisspiel_v2-card-kupfer"
+        ],
+        "nocturne_v1-card-ziege": [
+          "basisspiel_v2-card-kupfer"
+        ],
+        "nocturne_v1-card-glueckstaler": [
+          "basisspiel_v2-card-kupfer"
+        ],
+        "nocturne_v1-card-verfluchtes_gold": [
+          "basisspiel_v2-card-kupfer"
+        ]
+      },
+      "whenDeckConsistsOfXCardsOfExpansionCount": 1
+    }
   ]
-  /*
-  TODO ADD HAND CARDS
-  */
 }

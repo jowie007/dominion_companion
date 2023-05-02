@@ -1,11 +1,11 @@
-import 'dart:developer';
-
+import 'package:dominion_comanion/database/helpers/converters.dart';
 import 'package:dominion_comanion/database/model/hand/hand_db_model.dart';
 
 class HandModel {
   late String id;
   late bool always;
   late Map<String, int>? elementIdCountMap;
+  late Map<String, List<String>>? elementsReplaceMap;
   late Map<String, int>? additionalElementIdCountMap;
   late Map<int, List<String>>? whenDeckConsistsOfXCards;
   late int? whenDeckConsistsOfXCardsOfExpansionCount;
@@ -13,6 +13,7 @@ class HandModel {
   HandModel.empty(this.id) {
     always = false;
     elementIdCountMap = null;
+    elementsReplaceMap = null;
     additionalElementIdCountMap = null;
     whenDeckConsistsOfXCards = null;
     whenDeckConsistsOfXCardsOfExpansionCount = null;
@@ -24,11 +25,14 @@ class HandModel {
     elementIdCountMap = json['elements'] != null
         ? Map<String, int>.from(json['elements'])
         : null;
+    elementsReplaceMap = json['elementsReplace'] != null
+        ? Converters.stringStringListMapFromJSON(json['elementsReplace'])
+        : null;
     additionalElementIdCountMap = json['additionalElements'] != null
         ? Map<String, int>.from(json['additionalElements'])
         : null;
     whenDeckConsistsOfXCards = json['whenDeckConsistsOfXCards'] != null
-        ? whenDeckConsistsOfXCardsFromJSON(json['whenDeckConsistsOfXCards'])
+        ? Converters.intStringListMapFromJSON(json['whenDeckConsistsOfXCards'])
         : null;
     whenDeckConsistsOfXCardsOfExpansionCount =
         json['whenDeckConsistsOfXCardsOfExpansionCount'];
@@ -38,6 +42,7 @@ class HandModel {
     id = dbModel.id;
     always = dbModel.always;
     elementIdCountMap = dbModel.elementIdCountMap;
+    elementsReplaceMap = dbModel.elementsReplaceMap;
     additionalElementIdCountMap = dbModel.additionalElementIdCountMap;
     whenDeckConsistsOfXCards = dbModel.whenDeckConsistsOfXCards;
     whenDeckConsistsOfXCardsOfExpansionCount =
@@ -57,15 +62,5 @@ class HandModel {
       items.addAll(additionalElementIdCountMap!.entries);
     }
     return items;
-  }
-
-  static Map<int, List<String>> whenDeckConsistsOfXCardsFromJSON(dynamic json) {
-    Map<int, List<String>> retMap = {};
-    var jsonMap = Map<String, List<dynamic>>.from(json);
-    for (var stringMapKey in jsonMap.keys) {
-      retMap[int.parse(stringMapKey)] =
-          List<String>.from(json[stringMapKey]).toList();
-    }
-    return retMap;
   }
 }

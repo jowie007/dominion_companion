@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dominion_comanion/database/helpers/converters.dart';
 import 'package:dominion_comanion/model/content/content_model.dart';
 
 class ContentDBModel {
@@ -35,18 +36,10 @@ class ContentDBModel {
         'name': name,
         'always': always ? 1 : 0,
         'whenDeckConsistsOfXCards': whenDeckConsistsOfXCards != null
-            ? whenDeckConsistsOfXCardsToDB(whenDeckConsistsOfXCards!)
+            ? Converters.intStringListMapToDB(whenDeckConsistsOfXCards!)
             : '',
-        'count': count.isNotEmpty ? count.join(',') : ["0", "2", "3", "4", "5", "6"].join(','),
+        'count': count.isNotEmpty
+            ? count.join(',')
+            : ["0", "2", "3", "4", "5", "6"].join(','),
       };
-
-  String whenDeckConsistsOfXCardsToDB(Map<int, List<String>> value) {
-    Map<String, List<String>> retMap = {};
-    for (var valueKey in value.keys) {
-      retMap['"$valueKey"'] = value[valueKey]!.map((e) => '"$e"').toList();
-    }
-    var ret = retMap.toString();
-    ret.replaceAll("=", "-");
-    return ret;
-  }
 }

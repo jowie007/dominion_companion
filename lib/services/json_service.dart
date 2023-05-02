@@ -19,7 +19,7 @@ class JsonService {
     'nocturne_v1'
   ];
 
-  List<Future<ExpansionModel>> getExpansions() {
+  List<Future<ExpansionModel>> getExpansionsFromJSON() {
     return files
         .map((fileName) async => ExpansionModel.fromJson(jsonDecode(
             await rootBundle.loadString('assets/cards/json/$fileName.json'))))

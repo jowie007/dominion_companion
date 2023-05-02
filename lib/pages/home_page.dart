@@ -2,7 +2,11 @@ import 'dart:developer' as dev;
 import 'dart:math';
 
 import 'package:dominion_comanion/components/menu_button.dart';
+import 'package:dominion_comanion/services/card_service.dart';
+import 'package:dominion_comanion/services/content_service.dart';
+import 'package:dominion_comanion/services/end_service.dart';
 import 'package:dominion_comanion/services/expansion_service.dart';
+import 'package:dominion_comanion/services/hand_service.dart';
 import 'package:dominion_comanion/services/music_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
@@ -22,15 +26,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     /* TODO Auslagern in main.dart und anpassen, dass nur neu intialisiert wird, wenn sich die DB Version geändert hat*/
-    ExpansionService().loadJsonExpansionsIntoDB();
-    /*ExpansionService()
+    // ExpansionService().loadJsonExpansionsIntoDB();
+    dev.log("INIT DB");
+    ExpansionService()
         .deleteExpansionTable()
         .then((value) => CardService().deleteCardTable())
         .then((value) => ContentService().deleteContentTable())
+        .then((value) => HandService().deleteHandTable())
+        .then((value) => EndService().deleteEndTable())
         .then((value) => ExpansionService().loadJsonExpansionsIntoDB())
         .then((value) => ExpansionService()
             .loadAllExpansions()
-            .then((value) => dev.log(value.first.name)));*/
+            .then((value) => dev.log(value.first.name)));
 
     final boxartList = [
       "adventures.webp",

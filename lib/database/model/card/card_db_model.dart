@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dominion_comanion/database/helpers/converters.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/model/card/card_type_enum.dart';
 
@@ -85,11 +86,11 @@ class CardDBModel {
         'always': always ? 1 : 0,
         'whenDeckConsistsOfXCardTypesOfExpansion':
             whenDeckConsistsOfXCardTypesOfExpansion != null
-                ? whenDeckConsistsOfXCardTypesOfExpansionToDB(
+                ? Converters.intCardTypeEnumListListMapToDB(
                     whenDeckConsistsOfXCardTypesOfExpansion!)
                 : '',
         'whenDeckConsistsOfXCards': whenDeckConsistsOfXCards != null
-            ? whenDeckConsistsOfXCardsToDB(whenDeckConsistsOfXCards!)
+            ? Converters.intStringListMapToDB(whenDeckConsistsOfXCards!)
             : '',
         'whenDeckConsistsOfXCardsOfExpansionCount':
             whenDeckConsistsOfXCardsOfExpansionCount,
@@ -109,27 +110,4 @@ class CardDBModel {
         'text': text,
         'count': count.isNotEmpty ? count.join(',') : null,
       };
-
-  String whenDeckConsistsOfXCardTypesOfExpansionToDB(
-      Map<int, List<List<CardTypeEnum>>> value) {
-    Map<String, List<String>> retMap = {};
-    for (var valueKey in value.keys) {
-      retMap['"$valueKey"'] = value[valueKey]!
-          .map((e) => '"${e.map((e) => e.name).join(", ")}"')
-          .toList();
-    }
-    var ret = retMap.toString();
-    ret.replaceAll("=", "-");
-    return ret;
-  }
-
-  String whenDeckConsistsOfXCardsToDB(Map<int, List<String>> value) {
-    Map<String, List<String>> retMap = {};
-    for (var valueKey in value.keys) {
-      retMap['"$valueKey"'] = value[valueKey]!.map((e) => '"$e"').toList();
-    }
-    var ret = retMap.toString();
-    ret.replaceAll("=", "-");
-    return ret;
-  }
 }
