@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:dominion_comanion/database/helpers/converters.dart';
+import 'package:dominion_comanion/helpers/converters.dart';
 import 'package:dominion_comanion/model/hand/hand_model.dart';
 
 class HandDBModel {

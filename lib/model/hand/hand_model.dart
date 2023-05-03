@@ -1,5 +1,5 @@
-import 'package:dominion_comanion/database/helpers/converters.dart';
 import 'package:dominion_comanion/database/model/hand/hand_db_model.dart';
+import 'package:dominion_comanion/helpers/converters.dart';
 
 class HandModel {
   late String id;

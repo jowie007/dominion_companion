@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:dominion_comanion/database/helpers/converters.dart';
+import 'package:dominion_comanion/helpers/converters.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/model/card/card_type_enum.dart';
 

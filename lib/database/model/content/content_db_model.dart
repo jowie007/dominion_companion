@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:dominion_comanion/database/helpers/converters.dart';
+import 'package:dominion_comanion/helpers/converters.dart';
 import 'package:dominion_comanion/model/content/content_model.dart';
 
 class ContentDBModel {

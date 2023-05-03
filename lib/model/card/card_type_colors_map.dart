@@ -19,7 +19,7 @@ final Map<String, List<Color>> cardTypeColorsMap = {
   "aktion-dauer-reaktion": [Colors.blueAccent, Colors.deepOrangeAccent],
   "aktion-erscheinung": [Colors.white],
   "aktion-geld": [Colors.white, Colors.orangeAccent],
-  "aktion-nacht-angriff-unheil": [Colors.black12, Colors.white],
+  "aktion-nacht-angriff-unheil": [Colors.white, Colors.black12],
   "aktion-pluendern": [Colors.white],
   "aktion-preis": [Colors.white],
   "aktion-punkte": [Colors.white, Colors.green],

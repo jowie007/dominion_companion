@@ -1,9 +1,11 @@
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/database/deck_database.dart';
 import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
+import 'package:dominion_comanion/helpers/shuffle.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
 import 'package:dominion_comanion/model/card/card_type_infos.dart';
 import 'package:dominion_comanion/model/content/content_model.dart';
@@ -55,7 +57,8 @@ class DeckService {
     return _deckDatabase.deleteDeckByName(name);
   }
 
-  DeckModel deckFromNameAndAdditional(String name,
+  DeckModel deckFromNameAndAdditional(
+      String name,
       List<CardModel> cards,
       List<CardModel> additionalCards,
       List<ContentModel> content,
@@ -63,15 +66,8 @@ class DeckService {
       HandModel handOtherCards,
       HandModel handContents,
       EndModel end) {
-    return DeckModel(
-        name,
-        cards,
-        additionalCards,
-        content,
-        handMoneyCards,
-        handOtherCards,
-        handContents,
-        end);
+    return DeckModel(name, cards, additionalCards, content, handMoneyCards,
+        handOtherCards, handContents, end);
   }
 
   Future<DeckModel> deckFromDBModel(DeckDBModel deckDBModel) async {
@@ -112,12 +108,12 @@ class DeckService {
         (await _cardService.getWhenDeckConsistsOfXCards())
             .map((card) async => CardModel.fromDBModel(card)));
     List<CardModel> whenDeckConsistsOfXCardsOfExpansionCountCards =
-    await Future.wait(
-        (await _cardService.getWhenDeckConsistsOfXCardsOfExpansionCount())
-            .map((card) async => CardModel.fromDBModel(card)));
+        await Future.wait(
+            (await _cardService.getWhenDeckConsistsOfXCardsOfExpansionCount())
+                .map((card) async => CardModel.fromDBModel(card)));
 
     for (var whenDeckConsistsOfXCardTypesCard
-    in whenDeckConsistsOfXCardTypesCards) {
+        in whenDeckConsistsOfXCardTypesCards) {
       var expansionCardCount = 0;
       for (var card in cards) {
         if (whenDeckConsistsOfXCardTypesCard.getExpansionId() ==
@@ -163,9 +159,9 @@ class DeckService {
       }
     }
     for (var whenDeckConsistsOfXCardsOfExpansionCountCard
-    in whenDeckConsistsOfXCardsOfExpansionCountCards) {
+        in whenDeckConsistsOfXCardsOfExpansionCountCards) {
       var expansionCardCount = expansionCardCountMap[
-      whenDeckConsistsOfXCardsOfExpansionCountCard.getExpansionId()];
+          whenDeckConsistsOfXCardsOfExpansionCountCard.getExpansionId()];
       if (expansionCardCount != null &&
           expansionCardCount >=
               whenDeckConsistsOfXCardsOfExpansionCountCard
@@ -210,7 +206,7 @@ class DeckService {
     var ret = alwaysContent;
     for (var expansionId in activeExpansionIds) {
       var contentModelList =
-      await _contentService.getContentByExpansionId(expansionId);
+          await _contentService.getContentByExpansionId(expansionId);
       for (var contentModel in contentModelList) {
         if (contentModel.whenDeckConsistsOfXCards != null) {
           for (var entry in contentModel.whenDeckConsistsOfXCards!.entries) {
@@ -247,7 +243,7 @@ class DeckService {
     }
     for (var expansionId in activeExpansionIds) {
       var expansionHandDBModel =
-      await _handService.getHandsByExpansionIdAndType(expansionId, type);
+          await _handService.getHandsByExpansionIdAndType(expansionId, type);
       for (var handDBModel in expansionHandDBModel) {
         var handModel = HandModel.fromDBModel(handDBModel);
         var addToHand = false;
@@ -267,9 +263,7 @@ class DeckService {
           for (var entry in handModel.whenDeckConsistsOfXCards!.entries) {
             var count = 0;
             for (var cardId in entry.value) {
-              if (cards
-                  .where((element) => element.id == cardId)
-                  .isNotEmpty) {
+              if (cards.where((element) => element.id == cardId).isNotEmpty) {
                 count++;
               }
               if (count >= entry.key) {
@@ -288,21 +282,36 @@ class DeckService {
             hand.additionalElementIdCountMap!
                 .addAll(handModel.additionalElementIdCountMap!);
           }
+          // TODO Als letztes machen, vors return packen
+          if (handModel.elementsReplaceMap != null) {
+            Map shuffledElementsReplaceMap =
+                Shuffle.shuffleMap(handModel.elementsReplaceMap!);
+            shuffledElementsReplaceMap.forEach((key, values) {
+              if (cards.map((card) => card.id).contains(key)) {
+                for (var value in List<String>.from(values)) {
+                  // Das funktioniert sonst nicht
+                  if(handModel.elementIdCountMap![value] != null) {
+                    log("CONTAINS" + " " + key);
+                  }
+                }
+              }
+            });
+          }
         }
       }
     }
     return hand;
   }
 
-  Future<EndModel> getEndByCardIdsAndActiveExpansionIds(List<String> cardIds,
-      List<String> activeExpansionIds) async {
+  Future<EndModel> getEndByCardIdsAndActiveExpansionIds(
+      List<String> cardIds, List<String> activeExpansionIds) async {
     List<EndModel> alwaysEnd = await Future.wait(
         (await _endService.getAlwaysEnds())
             .map((end) async => EndModel.fromDBModel(end)));
     var end = alwaysEnd.first;
     for (var expansionId in activeExpansionIds) {
       var expansionEnd =
-      await _endService.getEndByExpansionIdFromDB(expansionId);
+          await _endService.getEndByExpansionIdFromDB(expansionId);
       if (expansionEnd != null) {
         if (expansionEnd.emptyCount != null) {
           end.emptyCount = expansionEnd.emptyCount;
