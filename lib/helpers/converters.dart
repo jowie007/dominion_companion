@@ -70,7 +70,6 @@ class Converters {
 
   // TODO Plagen & Gaben unsichtbar machen
   // TODO Horizontale Karten drehen && Symbol eckiger gestalten
-  // TODO Handkarten Bedingungen anpassen (Karte ersetzt andere)
   static Map<String, List<String>> stringStringListMapFromJSON(dynamic json) {
     Map<String, List<String>> retMap = {};
     var jsonMap = Map<String, List<dynamic>>.from(json);

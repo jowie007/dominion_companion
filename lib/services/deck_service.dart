@@ -282,21 +282,35 @@ class DeckService {
             hand.additionalElementIdCountMap!
                 .addAll(handModel.additionalElementIdCountMap!);
           }
-          // TODO Als letztes machen, vors return packen
-          if (handModel.elementsReplaceMap != null) {
-            Map shuffledElementsReplaceMap =
-                Shuffle.shuffleMap(handModel.elementsReplaceMap!);
-            shuffledElementsReplaceMap.forEach((key, values) {
-              if (cards.map((card) => card.id).contains(key)) {
-                for (var value in List<String>.from(values)) {
-                  // Das funktioniert sonst nicht
-                  if(handModel.elementIdCountMap![value] != null) {
-                    log("CONTAINS" + " " + key);
+        }
+      }
+    }
+    for (var expansionId in activeExpansionIds) {
+      var expansionHandDBModel =
+          await _handService.getHandsByExpansionIdAndType(expansionId, type);
+      for (var handDBModel in expansionHandDBModel) {
+        var handModel = HandModel.fromDBModel(handDBModel);
+        if (handModel.elementsReplaceMap != null) {
+          Map shuffledElementsReplaceMap =
+              Shuffle.shuffleMap(handModel.elementsReplaceMap!);
+          shuffledElementsReplaceMap.forEach((key, values) {
+            if (cards.map((card) => card.id).contains(key)) {
+              for (var value in List<String>.from(values)) {
+                if (hand.elementIdCountMap != null &&
+                    hand.elementIdCountMap![value] != null &&
+                    hand.elementIdCountMap![value]! > 0) {
+                  hand.elementIdCountMap![value] =
+                      hand.elementIdCountMap![value]! - 1;
+                  if (hand.elementIdCountMap![key] != null) {
+                    hand.elementIdCountMap![key] =
+                        hand.elementIdCountMap![key]! + 1;
+                  } else {
+                    hand.elementIdCountMap![key] = 1;
                   }
                 }
               }
-            });
-          }
+            }
+          });
         }
       }
     }
