@@ -2,11 +2,13 @@ import 'dart:developer';
 
 import 'package:dominion_comanion/components/border_button_component.dart';
 import 'package:flutter/material.dart';
+import 'package:pdfx/pdfx.dart';
 
 class CardPopup extends StatefulWidget {
-  const CardPopup({super.key, required this.cardIds});
+  const CardPopup({super.key, required this.cardIds, this.expansionId = ""});
 
   final List<String> cardIds;
+  final String expansionId;
 
   @override
   State<CardPopup> createState() => _CardPopupState();
@@ -32,8 +34,7 @@ class _CardPopupState extends State<CardPopup> {
 
   updateCardPath() {
     _cardPath =
-    'assets/cards/full/${widget.cardIds[_selectedCardPosition].split(
-        "-")[0]}/${widget.cardIds[_selectedCardPosition].split("-")[2]}.png';
+        'assets/cards/full/${widget.cardIds[_selectedCardPosition].split("-")[0]}/${widget.cardIds[_selectedCardPosition].split("-")[2]}.png';
   }
 
   previousCard() {
@@ -53,6 +54,11 @@ class _CardPopupState extends State<CardPopup> {
   @override
   Widget build(BuildContext context) {
     updateCardPath();
+    final pdfPinchController = PdfControllerPinch(
+      document: PdfDocument.openAsset(
+          'assets/instructions/${widget.expansionId}.pdf'),
+    );
+    // TODO Buttons aus der Sizedbox holen
     return FractionallySizedBox(
       widthFactor: 0.7,
       heightFactor: 0.9,
@@ -66,8 +72,7 @@ class _CardPopupState extends State<CardPopup> {
                 ..rotateY(-0.01 * _offset.dx),
               alignment: FractionalOffset.center,
               child: GestureDetector(
-                onPanUpdate: (details) =>
-                    setState(() => updatePan(details)),
+                onPanUpdate: (details) => setState(() => updatePan(details)),
                 onDoubleTap: () => setState(() => _offset = Offset.zero),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16.0),
@@ -80,29 +85,27 @@ class _CardPopupState extends State<CardPopup> {
           ),
           widget.cardIds.length > 1
               ? Align(
-            alignment: FractionalOffset.bottomLeft,
-            child: BorderButtonComponent(
-              icon: Icons.arrow_back_ios_new,
-              color: 'blue',
-              onClick: () =>
-                  setState(
-                        () => previousCard(),
+                  alignment: FractionalOffset.bottomLeft,
+                  child: BorderButtonComponent(
+                    icon: Icons.arrow_back_ios_new,
+                    color: 'blue',
+                    onClick: () => setState(
+                      () => previousCard(),
+                    ),
                   ),
-            ),
-          )
+                )
               : Container(),
           widget.cardIds.length > 1
               ? Align(
-            alignment: FractionalOffset.bottomRight,
-            child: BorderButtonComponent(
-              icon: Icons.arrow_forward_ios,
-              color: 'blue',
-              onClick: () =>
-                  setState(
-                        () => nextCard(),
+                  alignment: FractionalOffset.bottomRight,
+                  child: BorderButtonComponent(
+                    icon: Icons.arrow_forward_ios,
+                    color: 'blue',
+                    onClick: () => setState(
+                      () => nextCard(),
+                    ),
                   ),
-            ),
-          )
+                )
               : Container(),
           Align(
               alignment: FractionalOffset.bottomCenter,
@@ -110,6 +113,18 @@ class _CardPopupState extends State<CardPopup> {
                   icon: Icons.close,
                   onClick: () =>
                       Navigator.of(context, rootNavigator: true).pop())),
+          widget.expansionId != ""
+              ? Align(
+                  alignment: FractionalOffset.topRight,
+                  child: BorderButtonComponent(
+                      icon: Icons.description_outlined,
+                      color: 'green',
+                      width: 60,
+                      // TODO Make as new Popup
+                      onClick: () => PdfViewPinch(
+                            controller: pdfPinchController,
+                          )))
+              : Container(),
         ],
       ),
     );

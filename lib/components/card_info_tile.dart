@@ -53,7 +53,9 @@ class _CardInfoTileState extends State<CardInfoTile> {
                   future: cardService.getCardIdsForPopup(widget.card),
                   builder: (context, snapshot) {
                     if (snapshot.hasData && snapshot.data != null) {
-                      return CardPopup(cardIds: snapshot.data!);
+                      return CardPopup(
+                          cardIds: snapshot.data!,
+                          expansionId: widget.card.getExpansionId());
                     } else {
                       return const Text('Karte konnte nicht geladen werden');
                     }
