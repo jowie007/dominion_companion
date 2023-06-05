@@ -68,7 +68,7 @@ class Converters {
     return retMap;
   }
 
-  // TODO Plagen & Gaben unsichtbar machen
+  // TODO Plagen & Gaben unsichtbar machen ??? DONE?
   // TODO Horizontale Karten drehen && Symbol eckiger gestalten
   static Map<String, List<String>> stringStringListMapFromJSON(dynamic json) {
     Map<String, List<String>> retMap = {};
