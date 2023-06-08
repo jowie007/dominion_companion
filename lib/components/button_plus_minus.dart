@@ -22,7 +22,7 @@ class _ButtonPlusMinusState extends State<ButtonPlusMinus> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(120),
         image: const DecorationImage(
-            image: AssetImage('assets/menu/copper_button.png'),
+            image: AssetImage('assets/menu/simple_long_button.png'),
             fit: BoxFit.none),
         boxShadow: [
           BoxShadow(
@@ -43,11 +43,11 @@ class _ButtonPlusMinusState extends State<ButtonPlusMinus> {
             child: Stack(
               alignment: Alignment.center,
               children: const [
-                Icon(Icons.remove, color: Colors.black),
+                Icon(Icons.remove, color: Colors.white),
               ],
             ),
           ),
-          Text(widget.text, style: const TextStyle(fontSize: 18)),
+          Text(widget.text, style: const TextStyle(fontSize: 18, color: Colors.white)),
           MaterialButton(
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
@@ -55,7 +55,7 @@ class _ButtonPlusMinusState extends State<ButtonPlusMinus> {
             child: Stack(
               alignment: Alignment.center,
               children: const [
-                Icon(Icons.add, color: Colors.black),
+                Icon(Icons.add, color: Colors.white),
               ],
             ),
           ),

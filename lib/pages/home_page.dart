@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          const Align(
+          /*const Align(
             alignment: Alignment.centerLeft,
             child: FractionallySizedBox(
               child: Image(
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                 image: AssetImage('assets/menu/spear-right.png'),
               ),
             ),
-          ),
+          ),*/
           SingleChildScrollView(
             child: Align(
               alignment: Alignment.topCenter,
@@ -128,13 +128,13 @@ class _HomePageState extends State<HomePage> {
                       }),
                   const SizedBox(height: 10),
                   MenuButton(
-                      text: "Cards",
+                      text: "Sammlung",
                       callback: () {
                         Navigator.pushNamed(context, route.deckPage);
                       }),
                   const SizedBox(height: 10),
                   MenuButton(
-                      text: "Settings",
+                      text: "Einstellungen",
                       callback: () {
                         Navigator.pushNamed(context, route.deckPage);
                       }),

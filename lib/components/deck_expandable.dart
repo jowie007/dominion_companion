@@ -24,81 +24,86 @@ class _DeckExpandableState extends State<DeckExpandable> {
   @override
   Widget build(BuildContext context) {
     final allCards = widget.deckModel.getAllCards();
-    return ClipRRect(
-      child: Stack(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 56,
-            decoration: BoxDecoration(color: Colors.white.withOpacity(1)),
-          ),
-          Container(
-            alignment: Alignment.center,
-            child: ExpansionTile(
-              initiallyExpanded: widget.initiallyExpanded,
-              trailing: const SizedBox(
-                width: 0,
-                height: 0,
-              ),
-              collapsedIconColor: Colors.white,
-              title: GestureDetector(
-                onLongPress: () {
-                  if (widget.onLongPress != null) {
-                    widget.onLongPress!();
-                  }
-                },
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.0),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/menu/main_scroll_crop.png"),
-                          fit: BoxFit.cover,
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16.0),
+        child: Stack(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 56,
+              decoration: BoxDecoration(color: Colors.white.withOpacity(1)),
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: ExpansionTile(
+                initiallyExpanded: widget.initiallyExpanded,
+                trailing: const SizedBox(
+                  width: 0,
+                  height: 0,
+                ),
+                collapsedIconColor: Colors.white,
+                title: GestureDetector(
+                  onLongPress: () {
+                    if (widget.onLongPress != null) {
+                      widget.onLongPress!();
+                    }
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image:
+                                AssetImage("assets/menu/main_scroll_crop.png"),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        alignment: Alignment.center,
-                        child: Text(
-                          widget.deckModel.name != ""
-                              ? widget.deckModel.name
-                              : "Temporäres Deck",
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black,
+                        padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          alignment: Alignment.center,
+                          child: Text(
+                            widget.deckModel.name != ""
+                                ? widget.deckModel.name
+                                : "Temporäres Deck",
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
+                children: <Widget>[
+                  ListView.builder(
+                      physics: const ClampingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: allCards.length + 1,
+                      itemBuilder: (BuildContext context, int index) {
+                        return index < allCards.length
+                            ? CardInfoTile(
+                                onChanged: (bool? newValue) => (newValue),
+                                card: allCards[index],
+                                value: true,
+                                hasCheckbox: false,
+                                showCardCount: true,
+                              )
+                            : DeckAdditionalInfoTile(
+                                deckModel: widget.deckModel, cards: allCards);
+                      })
+                ],
               ),
-              children: <Widget>[
-                ListView.builder(
-                    physics: const ClampingScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: allCards.length + 1,
-                    itemBuilder: (BuildContext context, int index) {
-                      return index < allCards.length
-                          ? CardInfoTile(
-                              onChanged: (bool? newValue) => (newValue),
-                              card: allCards[index],
-                              value: true,
-                              hasCheckbox: false,
-                              showCardCount: true,
-                            )
-                          : DeckAdditionalInfoTile(
-                              deckModel: widget.deckModel, cards: allCards);
-                    })
-              ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

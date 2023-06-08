@@ -43,7 +43,6 @@ class _DeckInfoState extends State<DeckInfoPage> {
             ),
           ),
           SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
             child: Container(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
               child: ClipRRect(

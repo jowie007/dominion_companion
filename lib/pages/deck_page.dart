@@ -59,16 +59,8 @@ class _DeckState extends State<DeckPage> {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const CircularProgressIndicator(),
-                                Visibility(
-                                  visible: snapshot.hasData,
-                                  child: const Text(
-                                    "Warte auf Decks",
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 24),
-                                  ),
-                                )
+                              children: const [
+                                CircularProgressIndicator(),
                               ],
                             );
                           } else if (snapshot.connectionState ==
@@ -80,85 +72,78 @@ class _DeckState extends State<DeckPage> {
                                       snapshot.data!.isNotEmpty
                                   ? Expanded(
                                       child: SingleChildScrollView(
-                                        child: Container(
-                                          padding: const EdgeInsets.all(20),
-                                          child: Column(
-                                            children: <Widget>[
-                                              ListView.builder(
-                                                // padding: const EdgeInsets.all(8),
-                                                physics:
-                                                    const ClampingScrollPhysics(),
-                                                shrinkWrap: true,
-                                                itemCount:
-                                                    snapshot.data!.length,
-                                                itemBuilder:
-                                                    (BuildContext context,
-                                                        int index) {
-                                                  final item =
-                                                      snapshot.data![index];
-                                                  // https://stackoverflow.com/questions/57542470/how-to-fix-this-dismissible-widget-border
-                                                  return ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15.0),
-                                                    child: Dismissible(
-                                                      key: Key(item.name),
-                                                      background: Container(
-                                                          color: Colors.red),
-                                                      secondaryBackground:
-                                                          Container(
-                                                              color:
-                                                                  Colors.green),
-                                                      direction:
-                                                          DismissDirection
-                                                              .horizontal,
-                                                      onDismissed: (direction) {
-                                                        setState(() {
-                                                          if (direction ==
-                                                              DismissDirection
-                                                                  .startToEnd) {
-                                                            _deckService
-                                                                .deleteDeckByName(
-                                                                    item.name);
-                                                          }
-                                                        });
-                                                        // Then show a snackbar.
-                                                        /*ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(SnackBar(
-                                                            content: Text(
-                                                                '$item dismissed')));*/
-                                                      },
-                                                      child: DeckExpandable(
-                                                        deckModel: item,
-                                                        onLongPress: () =>
-                                                            showDialog<String>(
-                                                          context: context,
-                                                          useRootNavigator:
-                                                              false,
-                                                          builder: (BuildContext
-                                                                  innerContext) =>
-                                                              NameDeckDialog(
-                                                            oldName: item.name,
-                                                            onSaved:
-                                                                (deckName) =>
-                                                                    setState(
-                                                              () {
-                                                                _deckService
-                                                                    .renameDeck(
-                                                                        item.name,
-                                                                        deckName);
-                                                              },
-                                                            ),
+                                        child: Column(
+                                          children: <Widget>[
+                                            ListView.builder(
+                                              // padding: const EdgeInsets.all(8),
+                                              physics:
+                                                  const ClampingScrollPhysics(),
+                                              shrinkWrap: true,
+                                              itemCount: snapshot.data!.length,
+                                              itemBuilder:
+                                                  (BuildContext context,
+                                                      int index) {
+                                                final item =
+                                                    snapshot.data![index];
+                                                // https://stackoverflow.com/questions/57542470/how-to-fix-this-dismissible-widget-border
+                                                return ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15.0),
+                                                  child: Dismissible(
+                                                    key: Key(item.name),
+                                                    background: Container(
+                                                        color: Colors.red),
+                                                    secondaryBackground:
+                                                        Container(
+                                                            color:
+                                                                Colors.green),
+                                                    direction: DismissDirection
+                                                        .horizontal,
+                                                    onDismissed: (direction) {
+                                                      setState(() {
+                                                        if (direction ==
+                                                            DismissDirection
+                                                                .startToEnd) {
+                                                          _deckService
+                                                              .deleteDeckByName(
+                                                                  item.name);
+                                                        }
+                                                      });
+                                                      // Then show a snackbar.
+                                                      /*ScaffoldMessenger.of(
+                                                          context)
+                                                      .showSnackBar(SnackBar(
+                                                          content: Text(
+                                                              '$item dismissed')));*/
+                                                    },
+                                                    child: DeckExpandable(
+                                                      deckModel: item,
+                                                      onLongPress: () =>
+                                                          showDialog<String>(
+                                                        context: context,
+                                                        useRootNavigator: false,
+                                                        builder: (BuildContext
+                                                                innerContext) =>
+                                                            NameDeckDialog(
+                                                          oldName: item.name,
+                                                          onSaved: (deckName) =>
+                                                              setState(
+                                                            () {
+                                                              _deckService
+                                                                  .renameDeck(
+                                                                      item.name,
+                                                                      deckName);
+                                                            },
                                                           ),
                                                         ),
                                                       ),
                                                     ),
-                                                  );
-                                                },
-                                              )
-                                            ],
-                                          ),
+                                                  ),
+                                                );
+                                              },
+                                            )
+                                          ],
                                         ),
                                       ),
                                     )

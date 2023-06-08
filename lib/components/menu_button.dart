@@ -20,13 +20,11 @@ class MenuButton extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             const Image(
-              image: AssetImage('assets/menu/button_filled.png'),
+              image: AssetImage('assets/menu/longer_button.png'),
             ),
             Text(text,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                    fontSize: 24,
-                    color: Colors.black)),
+                style: const TextStyle(fontSize: 20, color: Colors.white)),
           ],
         ),
       ),

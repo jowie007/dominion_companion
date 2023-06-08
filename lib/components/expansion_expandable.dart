@@ -28,7 +28,7 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16.0),
             child: Stack(
