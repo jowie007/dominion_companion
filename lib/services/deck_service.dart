@@ -1,13 +1,9 @@
-import 'dart:collection';
-import 'dart:convert';
 import 'dart:developer';
 
-import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/database/deck_database.dart';
 import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_comanion/helpers/shuffle.dart';
 import 'package:dominion_comanion/model/card/card_model.dart';
-import 'package:dominion_comanion/model/card/card_type_infos.dart';
 import 'package:dominion_comanion/model/content/content_model.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:dominion_comanion/model/end/end_model.dart';
@@ -47,9 +43,18 @@ class DeckService {
         deckList.map((deckDBModel) => deckFromDBModel(deckDBModel)));
   }
 
+  Future<List<String>> getAllDeckNames() async {
+    return await _deckDatabase.getAllDeckNames();
+  }
+
   Future<int> saveDeck(DeckModel deckModel) {
     changeNotify.value = !changeNotify.value;
     return _deckDatabase.insertDeck(DeckDBModel.fromModel(deckModel));
+  }
+
+  Future<int> renameDeck(String oldName, String newName) {
+    changeNotify.value = !changeNotify.value;
+    return _deckDatabase.renameDeck(oldName, newName);
   }
 
   Future<int> deleteDeckByName(String name) {
@@ -59,6 +64,8 @@ class DeckService {
 
   DeckModel deckFromNameAndAdditional(
       String name,
+      DateTime creationDate,
+      DateTime editDate,
       List<CardModel> cards,
       List<CardModel> additionalCards,
       List<ContentModel> content,
@@ -66,8 +73,8 @@ class DeckService {
       HandModel handOtherCards,
       HandModel handContents,
       EndModel end) {
-    return DeckModel(name, cards, additionalCards, content, handMoneyCards,
-        handOtherCards, handContents, end);
+    return DeckModel(name, creationDate, editDate, cards, additionalCards,
+        content, handMoneyCards, handOtherCards, handContents, end);
   }
 
   Future<DeckModel> deckFromDBModel(DeckDBModel deckDBModel) async {
@@ -78,6 +85,8 @@ class DeckService {
     var allCardIds = [...cards, ...additionalCards].map((e) => e.id).toList();
     var ret = DeckModel(
       deckDBModel.name,
+      deckDBModel.creationDate,
+      deckDBModel.editDate,
       cards,
       additionalCards,
       await getContentByCardIdsAndActiveExpansionIds(

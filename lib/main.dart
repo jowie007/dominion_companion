@@ -19,6 +19,7 @@ class _DominionCompanionState extends State<DominionCompanion> {
   }
 
   // TODO Gilden-Münzen mit + höhergestellt anzeigen
+  // TODO Edit splash screen
 
   @override
   Widget build(BuildContext context) {
