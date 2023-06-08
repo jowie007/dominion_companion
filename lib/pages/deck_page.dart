@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/button_player_count.dart';
 import 'package:dominion_comanion/components/deck_expandable.dart';
 import 'package:dominion_comanion/components/delete_deck_dialog.dart';
+import 'package:dominion_comanion/components/dropdown_menu.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
 import 'package:dominion_comanion/components/name_deck_dialog.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
@@ -23,6 +26,9 @@ class _DeckState extends State<DeckPage> {
     super.initState();
     _deckService = DeckService();
   }
+
+  bool sortAsc = true;
+  String sortKey = "creationDate";
 
   // https://docs.flutter.dev/cookbook/navigation/navigate-with-arguments
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
@@ -52,7 +58,8 @@ class _DeckState extends State<DeckPage> {
                   child: Column(
                     children: [
                       FutureBuilder(
-                        future: _deckService.getDeckList(),
+                        future: _deckService.getDeckList(
+                            sortAsc: sortAsc, sortKey: sortKey),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -74,6 +81,17 @@ class _DeckState extends State<DeckPage> {
                                       child: SingleChildScrollView(
                                         child: Column(
                                           children: <Widget>[
+                                            DropdownMenu(
+                                              sortAsc: sortAsc,
+                                              sortKey: sortKey,
+                                              onChanged: (asc, key) => {
+                                                // TODO Set state macht scheinbar noch nichts
+                                                setState(() {
+                                                  sortAsc = asc;
+                                                  sortKey = key;
+                                                })
+                                              },
+                                            ),
                                             ListView.builder(
                                               // padding: const EdgeInsets.all(8),
                                               physics:

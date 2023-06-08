@@ -37,9 +37,10 @@ class DeckDatabase {
     });
   }
 
-  Future<List<DeckDBModel>> getDeckList() async {
+  Future<List<DeckDBModel>> getDeckList(bool sortAsc, String sortKey) async {
     await openDb();
-    final List<Map<String, dynamic>> maps = await _database.query('deck');
+    final List<Map<String, dynamic>> maps = await _database.query('deck',
+        orderBy: "$sortKey ${sortAsc ? 'ASC' : 'DESC'}");
     return List.generate(maps.length, (i) {
       return DeckDBModel.fromDB(maps[i]);
     });

@@ -37,8 +37,9 @@ class DeckService {
     changeNotify = ValueNotifier(false);
   }
 
-  Future<List<DeckModel>> getDeckList() async {
-    var deckList = await _deckDatabase.getDeckList();
+  Future<List<DeckModel>> getDeckList(
+      {bool sortAsc = true, String sortKey = "creationDate"}) async {
+    var deckList = await _deckDatabase.getDeckList(sortAsc, sortKey);
     return Future.wait(
         deckList.map((deckDBModel) => deckFromDBModel(deckDBModel)));
   }
