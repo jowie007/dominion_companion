@@ -45,7 +45,10 @@ class CostComponent extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 30,
-                                  letterSpacing: 0,
+                                  letterSpacing:
+                                      splitValuePlus[0].toString().length > 1
+                                          ? -3
+                                          : 0,
                                   color: type == 'coin'
                                       ? Colors.black
                                       : Colors.white),

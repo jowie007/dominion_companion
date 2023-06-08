@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:dominion_comanion/components/border_button_component.dart';
+import 'package:dominion_comanion/components/instructions_popup.dart';
 import 'package:flutter/material.dart';
-import 'package:pdfx/pdfx.dart';
 
 class CardPopup extends StatefulWidget {
   const CardPopup({super.key, required this.cardIds, this.expansionId = ""});
@@ -54,17 +54,13 @@ class _CardPopupState extends State<CardPopup> {
   @override
   Widget build(BuildContext context) {
     updateCardPath();
-    final pdfPinchController = PdfControllerPinch(
-      document: PdfDocument.openAsset(
-          'assets/instructions/${widget.expansionId}.pdf'),
-    );
-    // TODO Buttons aus der Sizedbox holen
-    return FractionallySizedBox(
-      widthFactor: 0.7,
-      heightFactor: 0.9,
-      child: Stack(
-        children: [
-          Center(
+    // TODO Reihenfolge der Karten sortieren
+    return Stack(
+      children: [
+        Center(
+          child: FractionallySizedBox(
+            widthFactor: 0.7,
+            heightFactor: 0.9,
             child: Transform(
               transform: Matrix4.identity()
                 ..setEntry(3, 2, 0.001) // perspective
@@ -83,50 +79,53 @@ class _CardPopupState extends State<CardPopup> {
               ),
             ),
           ),
-          widget.cardIds.length > 1
-              ? Align(
-                  alignment: FractionalOffset.bottomLeft,
-                  child: BorderButtonComponent(
-                    icon: Icons.arrow_back_ios_new,
-                    color: 'blue',
-                    onClick: () => setState(
-                      () => previousCard(),
-                    ),
+        ),
+        widget.cardIds.length > 1
+            ? Align(
+                alignment: FractionalOffset.bottomLeft,
+                child: BorderButtonComponent(
+                  icon: Icons.arrow_back_ios_new,
+                  color: 'blue',
+                  onClick: () => setState(
+                    () => previousCard(),
                   ),
-                )
-              : Container(),
-          widget.cardIds.length > 1
-              ? Align(
-                  alignment: FractionalOffset.bottomRight,
-                  child: BorderButtonComponent(
-                    icon: Icons.arrow_forward_ios,
-                    color: 'blue',
-                    onClick: () => setState(
-                      () => nextCard(),
-                    ),
+                ),
+              )
+            : Container(),
+        widget.cardIds.length > 1
+            ? Align(
+                alignment: FractionalOffset.bottomRight,
+                child: BorderButtonComponent(
+                  icon: Icons.arrow_forward_ios,
+                  color: 'blue',
+                  onClick: () => setState(
+                    () => nextCard(),
                   ),
-                )
-              : Container(),
-          Align(
-              alignment: FractionalOffset.bottomCenter,
-              child: BorderButtonComponent(
-                  icon: Icons.close,
-                  onClick: () =>
-                      Navigator.of(context, rootNavigator: true).pop())),
-          widget.expansionId != ""
-              ? Align(
-                  alignment: FractionalOffset.topRight,
-                  child: BorderButtonComponent(
-                      icon: Icons.description_outlined,
-                      color: 'green',
-                      width: 60,
-                      // TODO Make as new Popup
-                      onClick: () => PdfViewPinch(
-                            controller: pdfPinchController,
-                          )))
-              : Container(),
-        ],
-      ),
+                ),
+              )
+            : Container(),
+        Align(
+            alignment: FractionalOffset.bottomCenter,
+            child: BorderButtonComponent(
+                icon: Icons.close,
+                onClick: () =>
+                    Navigator.of(context, rootNavigator: true).pop())),
+        widget.expansionId != ""
+            ? Align(
+                alignment: FractionalOffset.topRight,
+                child: BorderButtonComponent(
+                  icon: Icons.description_outlined,
+                  color: 'green',
+                  width: 60,
+                  onClick: () => showDialog(
+                    context: context,
+                    builder: (context) {
+                      return InstructionsPopup(expansionId: widget.expansionId);
+                    },
+                  ),
+                ))
+            : Container(),
+      ],
     );
   }
 }

@@ -68,7 +68,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-grosserMarkt",
+      "id": "bluetezeit_v2-card-grosser_markt",
       "name": "Grosser Markt",
       "cardTypes": "aktion",
       "cardCost": {
@@ -100,8 +100,8 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-hausierer",
-      "name": "Hausierer",
+      "id": "bluetezeit_v2-card-hausiererin",
+      "name": "Hausiererin",
       "cardTypes": "aktion",
       "cardCost": {
         "coin": "8*"
@@ -109,7 +109,7 @@
     },
     {
       "id": "bluetezeit_v2-card-halsabschneider",
-      "name": "Hausierer",
+      "name": "Halsabschneider",
       "cardTypes": "aktion, angriff",
       "cardCost": {
         "coin": "6"
@@ -180,7 +180,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-koeniglichesSiegel",
+      "id": "bluetezeit_v2-card-koenigliches_siegel",
       "name": "Königliches Siegel",
       "cardTypes": "geld",
       "cardCost": {

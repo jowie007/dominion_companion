@@ -69,7 +69,6 @@ class Converters {
   }
 
   // TODO Plagen & Gaben unsichtbar machen ??? DONE?
-  // TODO Horizontale Karten drehen && Symbol eckiger gestalten
   // TODO Plagen und Gaben werden auch bei anderen Decks hinzugefügt
   static Map<String, List<String>> stringStringListMapFromJSON(dynamic json) {
     Map<String, List<String>> retMap = {};

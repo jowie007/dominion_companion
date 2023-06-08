@@ -42,6 +42,10 @@ class CardService {
         (await getCardsBySetId(setId)).map((card) async => card.id));
   }
 
+  Future<List<CardDBModel>> getAllCards() async {
+    return await _cardDatabase.getCardList();
+  }
+
   Future<List<CardDBModel>> getCardsBySetId(String setId) async {
     return await _cardDatabase.getCardsBySetId(setId);
   }

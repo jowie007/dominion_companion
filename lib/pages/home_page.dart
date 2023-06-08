@@ -10,6 +10,7 @@ import 'package:dominion_comanion/services/hand_service.dart';
 import 'package:dominion_comanion/services/music_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
+import 'package:flutter/services.dart';
 
 import '../components/floating_action_button_coin.dart';
 
@@ -22,6 +23,29 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _musicService = MusicService();
+
+  testCardNames() async {
+    dev.log("TEST CARD NAMES");
+    /*List<Image> columns = [];
+      CardService().getAllCards().then((value) => value.forEach((element) {
+        columns.add(Image(
+          image: AssetImage(
+              'assets/cards/full/${element.id.split("-")[0]}/${element.id.split("-")[2]}.png'),
+        ));
+      }));
+      return Column(children: columns);*/
+    CardService().getAllCards().then((value) => value.forEach((element) async {
+          var split = element.id.split("-");
+          if (split[1] != "set") {
+            try {
+              await rootBundle
+                  .load('assets/cards/full/${split[0]}/${split[2]}.png');
+            } catch (_) {
+              dev.log("${element.id} not found");
+            }
+          }
+        }));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +61,8 @@ class _HomePageState extends State<HomePage> {
         .then((value) => ExpansionService().loadJsonExpansionsIntoDB())
         .then((value) => ExpansionService()
             .loadAllExpansions()
-            .then((value) => dev.log(value.first.name)));
+            .then((value) => dev.log("ALL EXPANSIONS LOADED")))
+        .then((_) => testCardNames());
 
     final boxartList = [
       "adventures.webp",
@@ -53,12 +78,6 @@ class _HomePageState extends State<HomePage> {
       "seaside2.jpg"
     ];
 
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       body: Stack(
         children: [

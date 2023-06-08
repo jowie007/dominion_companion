@@ -372,7 +372,7 @@
       "setId": "nocturne_v1-set-plagen"
     },
     {
-      "id": "nocturne_v1-card-taueschung",
+      "id": "nocturne_v1-card-taeuschung",
       "name": "Täuschung",
       "cardTypes": "plage",
       "setId": "nocturne_v1-set-plagen"
@@ -444,7 +444,7 @@
       "invisible": true
     },
     {
-      "id": "nocturne_v1-card-getauescht",
+      "id": "nocturne_v1-card-getaeuscht",
       "name": "Getäuscht",
       "cardTypes": "zustand",
       "setId": "nocturne_v1-set-getaeuscht_neidisch"
@@ -474,7 +474,7 @@
       "setId": "nocturne_v1-set-elendig/doppelt_elendig"
     },
     {
-      "id": "nocturne_v1-card-im_wald_verrirt",
+      "id": "nocturne_v1-card-im_wald_verirrt",
       "name": "Im Wald verirrt",
       "cardTypes": "zustand",
       "invisible": true

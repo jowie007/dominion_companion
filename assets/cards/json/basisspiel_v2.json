@@ -180,7 +180,7 @@
       }
     },
     {
-      "id": "basisspiel_v2-card-Hexe",
+      "id": "basisspiel_v2-card-hexe",
       "name": "Hexe",
       "cardTypes": "aktion, angriff",
       "cardCost": {

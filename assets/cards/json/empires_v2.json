@@ -306,8 +306,8 @@
       "setId": "empires_v2-set-schloesser"
     },
     {
-      "id": "empires_v2-card-verfallenes_schloss",
-      "name": "Verfallenes Schloss",
+      "id": "empires_v2-card-verfallendes_schloss",
+      "name": "Verfallendes Schloss",
       "cardTypes": "punkte, schloss",
       "cardCost": {
         "coin": "4"
@@ -377,8 +377,8 @@
       }
     },
     {
-      "id": "empires_v2-card-erforscherin",
-      "name": "Erforscherin",
+      "id": "empires_v2-card-erforschen",
+      "name": "Erforschen",
       "cardTypes": "ereignis",
       "cardCost": {
         "coin": "2"
