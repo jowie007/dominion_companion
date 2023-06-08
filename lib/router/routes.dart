@@ -1,4 +1,6 @@
 // https://www.section.io/engineering-education/how-to-handle-navigation-in-flutter/
+import 'dart:developer';
+
 import 'package:dominion_comanion/pages/create_deck_page.dart';
 import 'package:dominion_comanion/pages/deck_info_page.dart';
 import 'package:dominion_comanion/pages/deck_page.dart';
@@ -18,7 +20,11 @@ Route<dynamic> controller(RouteSettings settings) {
     case deckPage:
       return CupertinoPageRoute(builder: (context) => const DeckPage());
     case createDeckPage:
-      return CupertinoPageRoute(builder: (context) => const CreateDeckPage());
+      final arguments = (settings.arguments ?? <String, dynamic>{}) as Map;
+      return CupertinoPageRoute(
+          builder: (context) => CreateDeckPage(
+              random:
+                  arguments['random'] != null && arguments["random"] == "true"));
     case deckInfoPage:
       return CupertinoPageRoute(builder: (context) => const DeckInfoPage());
     default:

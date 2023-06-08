@@ -29,17 +29,21 @@ class TemporaryDeckService {
 
   TemporaryDeckService._internal();
 
-  Future<void> createTemporaryDBDeck(String name, List<String> cardIds) async {
-    temporaryDeck = createTemporaryDeck(name, cardIds);
+  Future<void> createTemporaryDBDeck(
+      String name, List<String> cardIds, bool cardLimit) async {
+    temporaryDeck = createTemporaryDeck(name, cardIds, cardLimit);
   }
 
   Future<DeckModel> createTemporaryDeck(
-      String name, List<String> cardIds) async {
-    return _deckService
-        .deckFromDBModel(DeckDBModel(name, await filterCards(cardIds)));
+      String name, List<String> cardIds, bool cardLimit) async {
+    return _deckService.deckFromDBModel(
+        DeckDBModel(name, await filterCards(cardIds, cardLimit)));
   }
 
-  Future<List<String>> filterCards(List<String> cardIds) async {
+  Future<List<String>> filterCards(List<String> cardIds, bool cardLimit) async {
+    if (!cardLimit) {
+      return cardIds;
+    }
     const max = 2;
     cardIds.shuffle();
     List<CardModel> cards = await _cardService.getCardsByCardIds(cardIds);

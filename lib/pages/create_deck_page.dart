@@ -11,7 +11,9 @@ import 'package:dominion_comanion/router/routes.dart' as route;
 import '../services/selected_card_service.dart';
 
 class CreateDeckPage extends StatefulWidget {
-  const CreateDeckPage({super.key});
+  const CreateDeckPage({super.key, this.random = false});
+
+  final bool random;
 
   @override
   State<CreateDeckPage> createState() => _CreateDeckState();
@@ -97,26 +99,28 @@ class _CreateDeckState extends State<CreateDeckPage> {
               ),
             ],
           ),
-          Positioned(
-            bottom: 0,
-            child: ValueListenableBuilder(
-              valueListenable: notifier,
-              builder: (BuildContext context, bool val, Widget? child) {
-                return BasicInfoBarBottom(
-                    text:
-                        "${_selectedCardService.selectedCardIds.length}/${DeckService.deckSize}+");
-              },
-            ),
-          ),
+          widget.random
+              ? Positioned(
+                  bottom: 0,
+                  child: ValueListenableBuilder(
+                    valueListenable: notifier,
+                    builder: (BuildContext context, bool val, Widget? child) {
+                      return BasicInfoBarBottom(
+                          text:
+                              "${_selectedCardService.selectedCardIds.length}/${DeckService.deckSize}+");
+                    },
+                  ),
+                )
+              : Container(),
         ],
       ),
       floatingActionButton: FloatingActionButtonCoin(
         icon: Icons.play_arrow,
-        tooltip: "Deck erzeugen",
+        tooltip: "Deck erstellen",
         onPressed: () async => {
           _temporaryDeckService.saved = false,
           _temporaryDeckService.createTemporaryDBDeck(
-              "", _selectedCardService.selectedCardIds),
+              "", _selectedCardService.selectedCardIds, widget.random),
           Navigator.pushNamed(
             context,
             route.deckInfoPage,

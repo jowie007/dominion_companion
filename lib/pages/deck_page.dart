@@ -187,9 +187,9 @@ class _DeckState extends State<DeckPage> {
                     child: Transform.scale(
                       scale: 0.8,
                       child: FloatingActionButtonCoin(
-                        onPressed: () =>
-                        {
-                          Navigator.pushNamed(context, route.createDeckPage),
+                        onPressed: () => {
+                          Navigator.pushNamed(context, route.createDeckPage,
+                              arguments: {"random": "true"}),
                           fabExtended.value = false
                         },
                         icon: Icons.shuffle,
@@ -206,7 +206,10 @@ class _DeckState extends State<DeckPage> {
                       scale: 0.8,
                       child: FloatingActionButtonCoin(
                         onPressed: () => {
-                          Navigator.pushNamed(context, route.createDeckPage),
+                          Navigator.pushNamed(
+                            context,
+                            route.createDeckPage,
+                          ),
                           fabExtended.value = false,
                         },
                         icon: Icons.checklist,
