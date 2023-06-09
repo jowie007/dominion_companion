@@ -67,6 +67,7 @@ class DeckService {
       String name,
       DateTime creationDate,
       DateTime editDate,
+      int? rating,
       List<CardModel> cards,
       List<CardModel> additionalCards,
       List<ContentModel> content,
@@ -74,7 +75,7 @@ class DeckService {
       HandModel handOtherCards,
       HandModel handContents,
       EndModel end) {
-    return DeckModel(name, creationDate, editDate, cards, additionalCards,
+    return DeckModel(name, creationDate, editDate, rating, cards, additionalCards,
         content, handMoneyCards, handOtherCards, handContents, end);
   }
 
@@ -88,6 +89,7 @@ class DeckService {
       deckDBModel.name,
       deckDBModel.creationDate,
       deckDBModel.editDate,
+      deckDBModel.rating,
       cards,
       additionalCards,
       await getContentByCardIdsAndActiveExpansionIds(

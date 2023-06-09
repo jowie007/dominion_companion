@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:dominion_comanion/pages/create_deck_page.dart';
 import 'package:dominion_comanion/pages/deck_info_page.dart';
-import 'package:dominion_comanion/pages/deck_page.dart';
+import 'package:dominion_comanion/pages/decks_page.dart';
 import 'package:dominion_comanion/pages/home_page.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -18,7 +18,7 @@ Route<dynamic> controller(RouteSettings settings) {
     case homePage:
       return CupertinoPageRoute(builder: (context) => const HomePage());
     case deckPage:
-      return CupertinoPageRoute(builder: (context) => const DeckPage());
+      return CupertinoPageRoute(builder: (context) => const DecksPage());
     case createDeckPage:
       final arguments = (settings.arguments ?? <String, dynamic>{}) as Map;
       return CupertinoPageRoute(

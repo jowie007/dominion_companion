@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/button_player_count.dart';
 import 'package:dominion_comanion/components/deck_expandable.dart';
-import 'package:dominion_comanion/components/delete_deck_dialog.dart';
 import 'package:dominion_comanion/components/dropdown_menu.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
 import 'package:dominion_comanion/components/name_deck_dialog.dart';
@@ -11,14 +10,14 @@ import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
 import 'package:flutter/material.dart';
 
-class DeckPage extends StatefulWidget {
-  const DeckPage({super.key});
+class DecksPage extends StatefulWidget {
+  const DecksPage({super.key});
 
   @override
-  State<DeckPage> createState() => _DeckState();
+  State<DecksPage> createState() => _DecksState();
 }
 
-class _DeckState extends State<DeckPage> {
+class _DecksState extends State<DecksPage> {
   late DeckService _deckService;
 
   @override
@@ -27,6 +26,8 @@ class _DeckState extends State<DeckPage> {
     _deckService = DeckService();
   }
 
+  // TODO In Futurebuilder auslagern
+  // SettingsModel settings = SettingsService().getSettings();
   bool sortAsc = true;
   String sortKey = "creationDate";
 
@@ -85,10 +86,10 @@ class _DeckState extends State<DeckPage> {
                                               sortAsc: sortAsc,
                                               sortKey: sortKey,
                                               onChanged: (asc, key) => {
-                                                // TODO Set state macht scheinbar noch nichts
                                                 setState(() {
                                                   sortAsc = asc;
                                                   sortKey = key;
+
                                                 })
                                               },
                                             ),

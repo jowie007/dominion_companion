@@ -37,7 +37,7 @@ class TemporaryDeckService {
   Future<DeckModel> createTemporaryDeck(
       String name, List<String> cardIds, bool cardLimit) async {
     return _deckService.deckFromDBModel(DeckDBModel(
-        name, await filterCards(cardIds, cardLimit), DateTime.now(), null));
+        name, await filterCards(cardIds, cardLimit), DateTime.now(), null, null));
   }
 
   Future<List<String>> filterCards(List<String> cardIds, bool cardLimit) async {

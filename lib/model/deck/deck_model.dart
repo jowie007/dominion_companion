@@ -9,6 +9,7 @@ class DeckModel {
   late String name;
   late DateTime creationDate;
   late DateTime? editDate;
+  late int? rating;
   late List<CardModel> cards;
   late List<CardModel>? additionalCards;
   late List<ContentModel> content;
@@ -17,7 +18,7 @@ class DeckModel {
   late HandModel handContents;
   late EndModel end;
 
-  DeckModel(this.name, this.creationDate, this.editDate, this.cards, this.additionalCards, this.content,
+  DeckModel(this.name, this.creationDate, this.editDate, this.rating, this.cards, this.additionalCards, this.content,
       this.handMoneyCards, this.handOtherCards, this.handContents, this.end);
 
   List<CardModel> getAllCards() {

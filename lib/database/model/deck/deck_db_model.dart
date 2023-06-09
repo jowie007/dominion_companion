@@ -5,8 +5,10 @@ class DeckDBModel {
   late List<String> cardIds;
   late DateTime creationDate;
   late DateTime? editDate;
+  late int? rating;
 
-  DeckDBModel(this.name, this.cardIds, this.creationDate, this.editDate);
+  DeckDBModel(
+      this.name, this.cardIds, this.creationDate, this.editDate, this.rating);
 
   DeckDBModel.fromDB(Map<String, dynamic> dbData) {
     name = dbData['name'].toString();
@@ -15,6 +17,10 @@ class DeckDBModel {
     editDate = dbData['editDate'] != null
         ? DateTime.fromMicrosecondsSinceEpoch(dbData['editDate'])
         : null;
+    editDate = dbData['editDate'] != null
+        ? DateTime.fromMicrosecondsSinceEpoch(dbData['editDate'])
+        : null;
+    rating = dbData['rating'];
   }
 
   DeckDBModel.fromModel(DeckModel model) {
@@ -22,6 +28,7 @@ class DeckDBModel {
     cardIds = model.cards.map((card) => card.id).toList();
     creationDate = model.creationDate;
     editDate = model.editDate;
+    rating = model.rating;
   }
 
   Map<String, dynamic> toJson() => {
@@ -29,5 +36,6 @@ class DeckDBModel {
         'cardIds': cardIds.join(','),
         'creationDate': creationDate.millisecondsSinceEpoch,
         'editDate': editDate != null ? editDate!.millisecondsSinceEpoch : null,
+        'rating': rating,
       };
 }
