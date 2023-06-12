@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:dominion_comanion/components/card_info_tile.dart';
 import 'package:dominion_comanion/components/deck_additional_info_tile.dart';
 import 'package:dominion_comanion/components/dropdown_rating.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 class DeckExpandable extends StatefulWidget {
   const DeckExpandable({
@@ -23,6 +27,20 @@ class DeckExpandable extends StatefulWidget {
 
 class _DeckExpandableState extends State<DeckExpandable> {
   DeckService deckService = DeckService();
+
+  File? image;
+
+  // https://medium.com/unitechie/flutter-tutorial-image-picker-from-camera-gallery-c27af5490b74
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final imageTemp = File(image.path);
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
 
   // https://stackoverflow.com/questions/53908025/flutter-sortable-drag-and-drop-listview
   @override
@@ -108,17 +126,35 @@ class _DeckExpandableState extends State<DeckExpandable> {
             ),
             Container(
               height: 56,
+              padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+              child: Align(
+                alignment: FractionalOffset.centerLeft,
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.camera,
+                    color: Colors.black,
+                  ),
+                  onPressed: () => {
+                    pickImage()
+                  },
+                ),
+              ),
+            ),
+            Container(
+              height: 56,
               padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
               child: Align(
-                  alignment: FractionalOffset.centerRight,
-                  child: DropdownSort(
-                      rating: widget.deckModel.rating,
-                      onChanged: (value) => {
-                            widget.deckModel.rating =
-                                value == null ? null : int.parse(value),
-                            deckService.updateDeck(widget.deckModel)
-                          })),
-            )
+                alignment: FractionalOffset.centerRight,
+                child: DropdownSort(
+                  rating: widget.deckModel.rating,
+                  onChanged: (value) => {
+                    widget.deckModel.rating =
+                        value == null ? null : int.parse(value),
+                    deckService.updateDeck(widget.deckModel)
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),
