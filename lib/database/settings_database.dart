@@ -11,7 +11,7 @@ class SettingsDatabase {
         join(await getDatabasesPath(), "settings.db"),
         version: 1, onCreate: (Database db, int version) async {
       await db.execute("CREATE TABLE settings("
-          "id STRING PRIMARY KEY"
+          "id STRING PRIMARY KEY, "
           "sortKey STRING, "
           "sortAsc BOOL)");
     });

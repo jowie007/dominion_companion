@@ -67,7 +67,9 @@ class _HomePageState extends State<HomePage> {
 
     SettingsService()
         .deleteSettingsTable()
-        .then((value) => SettingsService().initSettings());
+        .then((value) => SettingsService().initSettings())
+        .then((value) => SettingsService().loadSettings())
+        .then((value) => dev.log("ALL SETTINGS LOADED"));
 
     final boxartList = [
       "adventures.webp",

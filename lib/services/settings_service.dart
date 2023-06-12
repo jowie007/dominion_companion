@@ -17,10 +17,13 @@ import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:dominion_comanion/services/end_service.dart';
 import 'package:dominion_comanion/services/hand_service.dart';
 
+// TODO Einmal initial laden und erst dann weitermachen
 class SettingsService {
   static final SettingsService _settingsService = SettingsService._internal();
 
   final SettingsDatabase _settingsDatabase = SettingsDatabase();
+
+  late SettingsModel settings;
 
   factory SettingsService() {
     return _settingsService;
@@ -32,8 +35,31 @@ class SettingsService {
     await _settingsDatabase.initDatabase();
   }
 
+  Future<void> loadSettings() async {
+    settings = await getSettings();
+  }
+
   Future<SettingsModel> getSettings() async {
     return SettingsModel.fromDBModel(await _settingsDatabase.getSettings());
+  }
+
+  SettingsModel getCachedSettings() {
+    return settings;
+  }
+
+  void setCachedSettings(SettingsModel settingsModel) {
+    settings = settingsModel;
+    updateSettingsTable(settings);
+  }
+
+  void setCachedSettingsSortKey(String sortKey) {
+    settings.sortKey = sortKey;
+    updateSettingsTable(settings);
+  }
+
+  void setCachedSettingsSortAsc(bool sortAsc) {
+    settings.sortAsc = sortAsc;
+    updateSettingsTable(settings);
   }
 
   Future<int> deleteSettingsTable() {
