@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:dominion_comanion/database/model/settings/settings_db_model.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -12,6 +13,7 @@ class SettingsDatabase {
         version: 1, onCreate: (Database db, int version) async {
       await db.execute("CREATE TABLE settings("
           "id STRING PRIMARY KEY, "
+          "version STRING, "
           "sortKey STRING, "
           "sortAsc BOOL)");
     });
@@ -25,8 +27,9 @@ class SettingsDatabase {
 
   Future<int> initDatabase() async {
     await openDb();
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
     return await _database.insert('settings',
-        {"id": "settings", "sortKey": "creationDate", "sortAsc": 1});
+        {"id": "settings", "version": packageInfo.version, "sortKey": "creationDate", "sortAsc": 1});
   }
 
   Future<SettingsDBModel> getSettings() async {

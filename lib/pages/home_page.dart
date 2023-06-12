@@ -12,6 +12,7 @@ import 'package:dominion_comanion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
 import 'package:flutter/services.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../components/floating_action_button_coin.dart';
 
@@ -52,7 +53,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     /* TODO Auslagern in main.dart und anpassen, dass nur neu intialisiert wird, wenn sich die DB Version geändert hat*/
     // ExpansionService().loadJsonExpansionsIntoDB();
-    dev.log("INIT DB");
+    PackageInfo.fromPlatform()
+        .then((packageInfo) => {dev.log("INIT DB " + packageInfo.version)});
     ExpansionService()
         .deleteExpansionTable()
         .then((value) => CardService().deleteCardTable())

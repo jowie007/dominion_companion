@@ -1,9 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
-class DropdownMenu extends StatefulWidget {
-  const DropdownMenu(
+class DropdownSort extends StatefulWidget {
+  const DropdownSort(
       {super.key,
       required this.sortAsc,
       required this.sortKey,
@@ -14,7 +12,7 @@ class DropdownMenu extends StatefulWidget {
   final void Function(bool asc, String key) onChanged;
 
   @override
-  State<DropdownMenu> createState() => _DropdownMenuState();
+  State<DropdownSort> createState() => _DropdownSortState();
 }
 
 const Map<String, String> itemMap = {
@@ -23,8 +21,7 @@ const Map<String, String> itemMap = {
   "rating": "Bewertung",
 };
 
-// TODO Datenbank für Settings erstellen
-class _DropdownMenuState extends State<DropdownMenu> {
+class _DropdownSortState extends State<DropdownSort> {
   @override
   Widget build(BuildContext context) {
     String dropdownValue = itemMap[widget.sortKey]!;

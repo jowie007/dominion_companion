@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/button_player_count.dart';
 import 'package:dominion_comanion/components/deck_expandable.dart';
-import 'package:dominion_comanion/components/dropdown_menu.dart';
+import 'package:dominion_comanion/components/dropdown_sort.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
 import 'package:dominion_comanion/components/name_deck_dialog.dart';
 import 'package:dominion_comanion/model/settings/settings_model.dart';
@@ -12,6 +12,7 @@ import 'package:dominion_comanion/router/routes.dart' as route;
 import 'package:dominion_comanion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 
+// TODO Padding when swiping should not exist
 class DecksPage extends StatefulWidget {
   const DecksPage({super.key});
 
@@ -28,7 +29,6 @@ class _DecksState extends State<DecksPage> {
     _deckService = DeckService();
   }
 
-  // TODO In Futurebuilder auslagern
   SettingsModel settings = SettingsService().getCachedSettings();
 
   // https://docs.flutter.dev/cookbook/navigation/navigate-with-arguments
@@ -82,7 +82,7 @@ class _DecksState extends State<DecksPage> {
                                       child: SingleChildScrollView(
                                         child: Column(
                                           children: <Widget>[
-                                            DropdownMenu(
+                                            DropdownSort(
                                               sortAsc: settings.sortAsc,
                                               sortKey: settings.sortKey,
                                               onChanged: (asc, key) => {

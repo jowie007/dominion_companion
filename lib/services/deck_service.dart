@@ -48,6 +48,11 @@ class DeckService {
     return await _deckDatabase.getAllDeckNames();
   }
 
+  Future<int> updateDeck(DeckModel deckModel) {
+    changeNotify.value = !changeNotify.value;
+    return _deckDatabase.updateDeck(DeckDBModel.fromModel(deckModel));
+  }
+
   Future<int> saveDeck(DeckModel deckModel) {
     changeNotify.value = !changeNotify.value;
     return _deckDatabase.insertDeck(DeckDBModel.fromModel(deckModel));

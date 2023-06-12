@@ -15,6 +15,7 @@ class DeckDatabase {
       await db.execute(
         "CREATE TABLE deck("
         "name STRING PRIMARY KEY, "
+        "rating STRING, "
         "cardIds STRING, "
         "creationDate STRING, "
         "editDate STRING)",

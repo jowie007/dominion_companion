@@ -1,6 +1,8 @@
 import 'package:dominion_comanion/components/card_info_tile.dart';
 import 'package:dominion_comanion/components/deck_additional_info_tile.dart';
+import 'package:dominion_comanion/components/dropdown_rating.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
+import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:flutter/material.dart';
 
 class DeckExpandable extends StatefulWidget {
@@ -20,6 +22,8 @@ class DeckExpandable extends StatefulWidget {
 }
 
 class _DeckExpandableState extends State<DeckExpandable> {
+  DeckService deckService = DeckService();
+
   // https://stackoverflow.com/questions/53908025/flutter-sortable-drag-and-drop-listview
   @override
   Widget build(BuildContext context) {
@@ -102,6 +106,19 @@ class _DeckExpandableState extends State<DeckExpandable> {
                 ],
               ),
             ),
+            Container(
+              height: 56,
+              padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
+              child: Align(
+                  alignment: FractionalOffset.centerRight,
+                  child: DropdownSort(
+                      rating: widget.deckModel.rating,
+                      onChanged: (value) => {
+                            widget.deckModel.rating =
+                                value == null ? null : int.parse(value),
+                            deckService.updateDeck(widget.deckModel)
+                          })),
+            )
           ],
         ),
       ),
