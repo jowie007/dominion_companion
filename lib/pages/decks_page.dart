@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/button_player_count.dart';
 import 'package:dominion_comanion/components/deck_expandable.dart';
+import 'package:dominion_comanion/components/custom_alert_dialog.dart';
 import 'package:dominion_comanion/components/dropdown_sort.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
 import 'package:dominion_comanion/components/name_deck_dialog.dart';
@@ -60,7 +61,8 @@ class _DecksState extends State<DecksPage> {
                     children: [
                       FutureBuilder(
                         future: _deckService.getDeckList(
-                            sortAsc: settings.sortAsc, sortKey: settings.sortKey),
+                            sortAsc: settings.sortAsc,
+                            sortKey: settings.sortKey),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -87,8 +89,12 @@ class _DecksState extends State<DecksPage> {
                                               sortKey: settings.sortKey,
                                               onChanged: (asc, key) => {
                                                 setState(() {
-                                                  SettingsService().setCachedSettingsSortAsc(asc);
-                                                  SettingsService().setCachedSettingsSortKey(key);
+                                                  SettingsService()
+                                                      .setCachedSettingsSortAsc(
+                                                          asc);
+                                                  SettingsService()
+                                                      .setCachedSettingsSortKey(
+                                                          key);
                                                 })
                                               },
                                             ),
@@ -118,22 +124,62 @@ class _DecksState extends State<DecksPage> {
                                                                 Colors.green),
                                                     direction: DismissDirection
                                                         .horizontal,
+                                                    confirmDismiss:
+                                                        (direction) async {
+                                                      if (direction ==
+                                                          DismissDirection
+                                                              .startToEnd) {
+                                                        return await showDialog<
+                                                            bool>(
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return const CustomAlertDialog(
+                                                              title: "Löschen",
+                                                              message:
+                                                                  "Soll das Deck wirklich gelöscht werden?",
+                                                            );
+                                                          },
+                                                        );
+                                                      }
+                                                      if (direction ==
+                                                          DismissDirection
+                                                              .endToStart) {
+                                                        return await showDialog<
+                                                            bool>(
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return const CustomAlertDialog(
+                                                              title:
+                                                                  "Bearbeiten",
+                                                              message:
+                                                                  "Sollen die enthaltenen Karten angepasst werden?",
+                                                            );
+                                                          },
+                                                        );
+                                                      }
+                                                      return false;
+                                                    },
                                                     onDismissed: (direction) {
-                                                      setState(() {
-                                                        if (direction ==
-                                                            DismissDirection
-                                                                .startToEnd) {
+                                                      if (direction ==
+                                                          DismissDirection
+                                                              .startToEnd) {
+                                                        setState(() {
                                                           _deckService
                                                               .deleteDeckByName(
                                                                   item.name);
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                                  const SnackBar(
+                                                                      content: Text(
+                                                                          "Deck wurde gelöscht")));
+                                                        });
+                                                        if (direction ==
+                                                            DismissDirection
+                                                                .endToStart) {
+                                                          // TODO Karten austauschen
                                                         }
-                                                      });
-                                                      // Then show a snackbar.
-                                                      /*ScaffoldMessenger.of(
-                                                          context)
-                                                      .showSnackBar(SnackBar(
-                                                          content: Text(
-                                                              '$item dismissed')));*/
+                                                      }
                                                     },
                                                     child: DeckExpandable(
                                                       deckModel: item,

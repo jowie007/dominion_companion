@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dominion_comanion/components/card_info_tile.dart';
 import 'package:dominion_comanion/components/deck_additional_info_tile.dart';
 import 'package:dominion_comanion/components/dropdown_rating.dart';
+import 'package:dominion_comanion/components/error_dialog.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,12 @@ class _DeckExpandableState extends State<DeckExpandable> {
       final imageTemp = File(image.path);
       setState(() => this.image = imageTemp);
     } on PlatformException catch (e) {
-      print('Failed to pick image: $e');
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return const ErrorDialog(
+                title: "Fehler", message: "Bild konnte nicht geöffnet werden");
+          });
     }
   }
 
@@ -56,6 +62,12 @@ class _DeckExpandableState extends State<DeckExpandable> {
               width: MediaQuery.of(context).size.width,
               height: 56,
               decoration: BoxDecoration(color: Colors.white.withOpacity(1)),
+              child: image != null
+                  ? Image.file(
+                      image!,
+                      fit: BoxFit.cover,
+                    )
+                  : Container(),
             ),
             Container(
               alignment: Alignment.center,
@@ -134,9 +146,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                     Icons.camera,
                     color: Colors.black,
                   ),
-                  onPressed: () => {
-                    pickImage()
-                  },
+                  onPressed: () => {pickImage()},
                 ),
               ),
             ),
