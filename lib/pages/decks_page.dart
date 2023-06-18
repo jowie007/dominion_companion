@@ -13,7 +13,6 @@ import 'package:dominion_comanion/router/routes.dart' as route;
 import 'package:dominion_comanion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 
-// TODO Padding when swiping should not exist
 class DecksPage extends StatefulWidget {
   const DecksPage({super.key});
 
@@ -222,7 +221,7 @@ class _DecksState extends State<DecksPage> {
                                                             () {
                                                               _deckService
                                                                   .renameDeck(
-                                                                      item.name,
+                                                                      item.id!,
                                                                       deckName);
                                                             },
                                                           ),

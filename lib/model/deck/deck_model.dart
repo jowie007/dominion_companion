@@ -7,6 +7,7 @@ import 'package:dominion_comanion/model/end/end_model.dart';
 import 'package:dominion_comanion/model/hand/hand_model.dart';
 
 class DeckModel {
+  late int? id;
   late String name;
   late File? image;
   late DateTime creationDate;
@@ -20,7 +21,7 @@ class DeckModel {
   late HandModel handContents;
   late EndModel end;
 
-  DeckModel(this.name, this.image, this.creationDate, this.editDate, this.rating, this.cards, this.additionalCards, this.content,
+  DeckModel(this.id, this.name, this.image, this.creationDate, this.editDate, this.rating, this.cards, this.additionalCards, this.content,
       this.handMoneyCards, this.handOtherCards, this.handContents, this.end);
 
   List<CardModel> getAllCards() {

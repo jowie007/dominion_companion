@@ -15,7 +15,6 @@ import 'package:dominion_comanion/services/card_service.dart';
 import 'package:dominion_comanion/services/content_service.dart';
 import 'package:dominion_comanion/services/end_service.dart';
 import 'package:dominion_comanion/services/hand_service.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -26,7 +25,7 @@ class DeckService {
   final HandService _handService = HandService();
   final EndService _endService = EndService();
 
-  Directory? temporaryDirectory;
+  Directory? appDocumentsDir;
 
   late ValueNotifier<bool> changeNotify;
 
@@ -65,9 +64,9 @@ class DeckService {
     return _deckDatabase.insertDeck(DeckDBModel.fromModel(deckModel));
   }
 
-  Future<int> renameDeck(String oldName, String newName) {
+  Future<int> renameDeck(int id, String newName) {
     changeNotify.value = !changeNotify.value;
-    return _deckDatabase.renameDeck(oldName, newName);
+    return _deckDatabase.renameDeck(id, newName);
   }
 
   Future<int> deleteDeckByName(String name) {
@@ -76,6 +75,7 @@ class DeckService {
   }
 
   DeckModel deckFromNameAndAdditional(
+      int id,
       String name,
       File image,
       DateTime creationDate,
@@ -89,6 +89,7 @@ class DeckService {
       HandModel handContents,
       EndModel end) {
     return DeckModel(
+        id,
         name,
         image,
         creationDate,
@@ -103,11 +104,29 @@ class DeckService {
         end);
   }
 
-  Future<File> fileFromBase64String(String deckName, String base64String) async {
-    temporaryDirectory ??= await getTemporaryDirectory();
-    final file = await File('${temporaryDirectory!.path}/$deckName.jpg').create();
-    file.writeAsBytesSync(base64Decode(base64String));
-    return file;
+  Future<File?> getImage(String deckName, String? base64String) async {
+    appDocumentsDir ??= await getApplicationDocumentsDirectory();
+    final path =
+        '${appDocumentsDir!.path}/decks/images/${deckName.toLowerCase()}.jpg';
+    if (base64String == null) {
+      try {
+        await File(path).exists();
+      } catch (_) {
+        File(path).delete();
+      }
+      return null;
+    }
+    try {
+      if(await File(path).exists()) {
+        return File(path);
+      } else {
+        final file = await File(path).create(recursive: true);
+        file.writeAsBytesSync(base64Decode(base64String));
+        return file;
+      }
+    } catch (_) {
+      return null;
+    }
   }
 
   Future<DeckModel> deckFromDBModel(DeckDBModel deckDBModel) async {
@@ -117,10 +136,9 @@ class DeckService {
     var additionalCards = await getAdditionalCardsByCards(cards);
     var allCardIds = [...cards, ...additionalCards].map((e) => e.id).toList();
     var ret = DeckModel(
+      deckDBModel.id,
       deckDBModel.name,
-      deckDBModel.image != null
-          ? await fileFromBase64String(deckDBModel.name, deckDBModel.image!)
-          : null,
+      await getImage(deckDBModel.name, deckDBModel.image),
       deckDBModel.creationDate,
       deckDBModel.editDate,
       deckDBModel.rating,

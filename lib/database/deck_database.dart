@@ -14,7 +14,8 @@ class DeckDatabase {
         version: 1, onCreate: (Database db, int version) async {
       await db.execute(
         "CREATE TABLE deck("
-        "name STRING PRIMARY KEY, "
+        "id INTEGER PRIMARY KEY, "
+        "name STRING, "
         "image STRING, "
         "rating STRING, "
         "cardIds STRING, "
@@ -59,10 +60,10 @@ class DeckDatabase {
     return await _database.delete('deck', where: "name = ?", whereArgs: [name]);
   }
 
-  Future<int> renameDeck(String oldName, String newName) async {
+  Future<int> renameDeck(int id, String newName) async {
     await openDb();
     return await _database.update('deck',
         {"name": newName, "editDate": DateTime.now().millisecondsSinceEpoch},
-        where: "name = ?", whereArgs: [oldName]);
+        where: "id = ?", whereArgs: [id]);
   }
 }

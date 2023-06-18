@@ -4,6 +4,7 @@ import 'dart:developer';
 import '../../../model/deck/deck_model.dart';
 
 class DeckDBModel {
+  late int? id;
   late String name;
   late List<String> cardIds;
   late String? image;
@@ -11,10 +12,11 @@ class DeckDBModel {
   late DateTime? editDate;
   late int? rating;
 
-  DeckDBModel(
-      this.name, this.image, this.cardIds, this.creationDate, this.editDate, this.rating);
+  DeckDBModel(this.id, this.name, this.image, this.cardIds, this.creationDate,
+      this.editDate, this.rating);
 
   DeckDBModel.fromDB(Map<String, dynamic> dbData) {
+    id = dbData['id'];
     name = dbData['name'].toString();
     cardIds = dbData['cardIds'].split(',');
     image = dbData['image'];
@@ -29,6 +31,7 @@ class DeckDBModel {
   }
 
   DeckDBModel.fromModel(DeckModel model) {
+    id = model.id;
     name = model.name;
     cardIds = model.cards.map((card) => card.id).toList();
     image = model.image != null
@@ -40,6 +43,7 @@ class DeckDBModel {
   }
 
   Map<String, dynamic> toJson() => {
+        'id': id,
         'name': name,
         'cardIds': cardIds.join(','),
         'image': image,
