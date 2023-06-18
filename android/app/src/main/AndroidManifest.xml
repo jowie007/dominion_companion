@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.myxes.dominion_comanion">
    <application
-        android:label="dominion_comanion"
+        android:label="Julias' Dominion Companion"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

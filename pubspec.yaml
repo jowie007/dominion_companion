@@ -37,6 +37,7 @@ dependencies:
   package_info_plus: 3.1.2
   image_picker: ^0.8.8
   path_provider: ^2.0.15
+  assets_audio_player: ^3.0.6
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -68,6 +69,7 @@ flutter:
   # https://docs.flutter.dev/development/ui/assets-and-images
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/audio/
     - assets/cards/types/
     - assets/cards/types/small/
     - assets/cards/images/base/
