@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dominion_comanion/components/card_info_tile.dart';
@@ -29,15 +30,15 @@ class DeckExpandable extends StatefulWidget {
 class _DeckExpandableState extends State<DeckExpandable> {
   DeckService deckService = DeckService();
 
-  File? image;
-
   // https://medium.com/unitechie/flutter-tutorial-image-picker-from-camera-gallery-c27af5490b74
   Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image == null) return;
-      final imageTemp = File(image.path);
-      setState(() => this.image = imageTemp);
+      setState(() {
+        widget.deckModel.image = File(image.path);
+        deckService.updateDeck(widget.deckModel);
+      });
     } on PlatformException catch (e) {
       return showDialog(
           context: context,
@@ -62,9 +63,9 @@ class _DeckExpandableState extends State<DeckExpandable> {
               width: MediaQuery.of(context).size.width,
               height: 56,
               decoration: BoxDecoration(color: Colors.white.withOpacity(1)),
-              child: image != null
+              child: widget.deckModel.image != null
                   ? Image.file(
-                      image!,
+                      widget.deckModel.image!,
                       fit: BoxFit.cover,
                     )
                   : Container(),

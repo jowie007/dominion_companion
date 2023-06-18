@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dominion_comanion/database/deck_database.dart';
 import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
@@ -13,6 +15,7 @@ import 'package:dominion_comanion/services/card_service.dart';
 import 'package:dominion_comanion/services/content_service.dart';
 import 'package:dominion_comanion/services/end_service.dart';
 import 'package:dominion_comanion/services/hand_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 class DeckService {
@@ -70,6 +73,7 @@ class DeckService {
 
   DeckModel deckFromNameAndAdditional(
       String name,
+      File image,
       DateTime creationDate,
       DateTime editDate,
       int? rating,
@@ -80,8 +84,25 @@ class DeckService {
       HandModel handOtherCards,
       HandModel handContents,
       EndModel end) {
-    return DeckModel(name, creationDate, editDate, rating, cards, additionalCards,
-        content, handMoneyCards, handOtherCards, handContents, end);
+    return DeckModel(
+        name,
+        image,
+        creationDate,
+        editDate,
+        rating,
+        cards,
+        additionalCards,
+        content,
+        handMoneyCards,
+        handOtherCards,
+        handContents,
+        end);
+  }
+
+  Future<File> fileFromBase64String(String base64String) async {
+    // TODO Funktioniert noch nicht, andere Möglichkeit zur Umwandlung von Base64 zu File finden
+    // TODO Möglichkeit zum Löschen von Bildern hinzufügen
+    return File.fromRawPath(base64Decode(base64String));
   }
 
   Future<DeckModel> deckFromDBModel(DeckDBModel deckDBModel) async {
@@ -92,6 +113,9 @@ class DeckService {
     var allCardIds = [...cards, ...additionalCards].map((e) => e.id).toList();
     var ret = DeckModel(
       deckDBModel.name,
+      deckDBModel.image != null
+          ? await fileFromBase64String(deckDBModel.image!)
+          : null,
       deckDBModel.creationDate,
       deckDBModel.editDate,
       deckDBModel.rating,
