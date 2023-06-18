@@ -17,6 +17,7 @@ import 'package:dominion_comanion/services/end_service.dart';
 import 'package:dominion_comanion/services/hand_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
 
 class DeckService {
   final DeckDatabase _deckDatabase = DeckDatabase();
@@ -24,6 +25,9 @@ class DeckService {
   final ContentService _contentService = ContentService();
   final HandService _handService = HandService();
   final EndService _endService = EndService();
+
+  Directory? temporaryDirectory;
+
   late ValueNotifier<bool> changeNotify;
 
   static final DeckService _deckService = DeckService._internal();
@@ -99,10 +103,11 @@ class DeckService {
         end);
   }
 
-  Future<File> fileFromBase64String(String base64String) async {
-    // TODO Funktioniert noch nicht, andere Möglichkeit zur Umwandlung von Base64 zu File finden
-    // TODO Möglichkeit zum Löschen von Bildern hinzufügen
-    return File.fromRawPath(base64Decode(base64String));
+  Future<File> fileFromBase64String(String deckName, String base64String) async {
+    temporaryDirectory ??= await getTemporaryDirectory();
+    final file = await File('${temporaryDirectory!.path}/$deckName.jpg').create();
+    file.writeAsBytesSync(base64Decode(base64String));
+    return file;
   }
 
   Future<DeckModel> deckFromDBModel(DeckDBModel deckDBModel) async {
@@ -114,7 +119,7 @@ class DeckService {
     var ret = DeckModel(
       deckDBModel.name,
       deckDBModel.image != null
-          ? await fileFromBase64String(deckDBModel.image!)
+          ? await fileFromBase64String(deckDBModel.name, deckDBModel.image!)
           : null,
       deckDBModel.creationDate,
       deckDBModel.editDate,

@@ -116,12 +116,38 @@ class _DecksState extends State<DecksPage> {
                                                           15.0),
                                                   child: Dismissible(
                                                     key: Key(item.name),
-                                                    background: Container(
-                                                        color: Colors.red),
-                                                    secondaryBackground:
-                                                        Container(
-                                                            color:
-                                                                Colors.green),
+                                                    background: Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: const [
+                                                        Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(20,
+                                                                    35, 0, 0),
+                                                            child: Icon(
+                                                                Icons.delete)),
+                                                      ],
+                                                    ),
+                                                    secondaryBackground: Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .end,
+                                                      children: const [
+                                                        Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(0,
+                                                                    35, 20, 0),
+                                                            child: Icon(
+                                                                Icons.edit)),
+                                                      ],
+                                                    ),
                                                     direction: DismissDirection
                                                         .horizontal,
                                                     confirmDismiss:

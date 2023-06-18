@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class DropdownSort extends StatefulWidget {
   const DropdownSort(
-      {super.key, required this.rating, required this.onChanged});
+      {super.key, required this.rating, this.width, required this.onChanged});
 
   final int? rating;
+  final double? width;
   final void Function(String? value) onChanged;
 
   @override
@@ -45,13 +46,16 @@ class _DropdownSortState extends State<DropdownSort> {
           return DropdownMenuItem<String>(
             value: value,
             child: SizedBox(
-                width: 20,
+              width: widget.width,
+              child: Center(
                 child: value == "-"
-                    ? const Icon(Icons.star_border)
+                    ? const Icon(Icons.star)
                     : Text(
                         value,
                         textAlign: TextAlign.center,
-                      )),
+                      ),
+              ),
+            ),
           );
         }).toList(),
       ),
