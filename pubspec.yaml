@@ -89,6 +89,7 @@ flutter:
     - assets/cards/full/nocturne_v1/
     - assets/menu/
     - assets/instructions/
+    - assets/artwork/cover/
     - assets/artwork/boxart/
     - assets/artwork/background/
     - assets/artwork/icon/

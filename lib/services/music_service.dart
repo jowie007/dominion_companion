@@ -1,16 +1,19 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 
-// TODO Enable looping
-// TODO Enable notification
 // https://pub.dev/packages/assets_audio_player
 class MusicService {
   static final MusicService _musicService = MusicService._internal();
 
-  final assetsAudioPlayer = AssetsAudioPlayer();
-  final Audio audio = Audio("assets/audio/dominion.wav");
+  AssetsAudioPlayer? assetsAudioPlayer;
 
-  bool initialized = false;
+  final Audio audio = Audio(
+    "assets/audio/dominion.wav",
+    metas: Metas(
+      title: "Julias' Dominion Companion",
+      image: const MetasImage.asset("assets/artwork/cover/cover.png"),
+    ),
+  );
 
   factory MusicService() {
     return _musicService;
@@ -23,15 +26,31 @@ class MusicService {
   ValueNotifier<bool> notifier = ValueNotifier(false);
 
   void init() {
-    assetsAudioPlayer.open(audio);
-    initialized = true;
+    assetsAudioPlayer = AssetsAudioPlayer();
+    assetsAudioPlayer!.open(
+      audio,
+      showNotification: true,
+      loopMode: LoopMode.single,
+      headPhoneStrategy: HeadPhoneStrategy.pauseOnUnplug,
+      notificationSettings: NotificationSettings(
+        nextEnabled: false,
+        prevEnabled: false,
+        customStopAction: (_) {
+          assetsAudioPlayer!.stop();
+          assetsAudioPlayer = null;
+        },
+        customPlayPauseAction: (_) {
+          togglePlaying();
+        }
+      ),
+    );
   }
 
   void togglePlaying() {
-    if (!initialized) {
+    if (assetsAudioPlayer == null) {
       init();
     }
-    assetsAudioPlayer.playOrPause();
+    assetsAudioPlayer!.playOrPause();
     isPlaying = !isPlaying;
     notifier.value = !notifier.value;
   }
