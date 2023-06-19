@@ -50,6 +50,7 @@ class _DeckInfoState extends State<DeckInfoPage> {
                 child: DeckExpandableLoader(
                   futureDeckModel: _temporaryDeckService.temporaryDeck,
                   initiallyExpanded: true,
+                  isNewlyCreated: true,
                   onLoaded: (deckModel) => temporaryDeck = deckModel,
                 ),
               ),

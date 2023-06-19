@@ -16,11 +16,13 @@ class DeckExpandable extends StatefulWidget {
     super.key,
     required this.deckModel,
     this.initiallyExpanded = false,
+    this.isNewlyCreated = false,
     this.onLongPress,
   });
 
   final DeckModel deckModel;
   final bool initiallyExpanded;
+  final bool isNewlyCreated;
   final void Function()? onLongPress;
 
   @override
@@ -137,7 +139,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                 ],
               ),
             ),
-            Container(
+            !widget.isNewlyCreated ? Container(
               height: 56,
               padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
               child: Align(
@@ -183,8 +185,8 @@ class _DeckExpandableState extends State<DeckExpandable> {
                   ),
                 ),
               ),
-            ),
-            Container(
+            ) : Container(),
+           !widget.isNewlyCreated ? Container(
               height: 56,
               padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
               child: Align(
@@ -214,7 +216,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                   ),
                 ),
               ),
-            ),
+            ) : Container(),
           ],
         ),
       ),

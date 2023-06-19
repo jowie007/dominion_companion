@@ -10,12 +10,14 @@ class DeckExpandableLoader extends StatelessWidget {
       required this.futureDeckModel,
       this.onLoaded,
       this.initiallyExpanded = false,
+      this.isNewlyCreated = false,
       this.onLongPress});
 
   final Future<DeckModel> futureDeckModel;
 
   final void Function(DeckModel deckModel)? onLoaded;
   final bool initiallyExpanded;
+  final bool isNewlyCreated;
   final void Function()? onLongPress;
 
   @override
@@ -50,6 +52,7 @@ class DeckExpandableLoader extends StatelessWidget {
                 ? DeckExpandable(
                     deckModel: snapshot.data!,
                     initiallyExpanded: initiallyExpanded,
+                    isNewlyCreated: isNewlyCreated,
                     onLongPress: onLongPress,
                   )
                 : const Text('Deck konnte nicht geladen werden');
