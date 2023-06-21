@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/button_player_count.dart';
 import 'package:dominion_comanion/components/deck_expandable.dart';
@@ -206,6 +204,8 @@ class _DecksState extends State<DecksPage> {
                                                         }
                                                       }
                                                     },
+                                                    // TODO LazyList einfügen
+                                                    // TODO Wrapper in DeckExpandable auslagern
                                                     child: DeckExpandable(
                                                       deckModel: item,
                                                       onLongPress: () =>

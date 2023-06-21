@@ -28,6 +28,13 @@ class ExpansionDatabase {
     return _database;
   }
 
+  Future<ExpansionDBModel?> getExpansionByPosition(int position) async {
+    await openDb();
+    final List<Map<String, dynamic>> maps =
+    await _database.rawQuery('SELECT * FROM expansion LIMIT 1 OFFSET $position;');
+    return maps.isNotEmpty ? ExpansionDBModel.fromDB(maps.first) : null;
+  }
+
   Future<int> deleteExpansionTable() async {
     await openDb();
     return await _database.delete('expansion');

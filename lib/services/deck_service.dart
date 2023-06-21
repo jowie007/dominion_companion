@@ -50,6 +50,13 @@ class DeckService {
         deckList.map((deckDBModel) => deckFromDBModel(deckDBModel)));
   }
 
+  Future<DeckModel?> getDeckByPosition(int position,
+      {bool sortAsc = true, String sortKey = "creationDate"}) async {
+    DeckDBModel? deckDBModel =
+        await _deckDatabase.getDeckByPosition(position, sortAsc, sortKey);
+    return deckDBModel != null ? deckFromDBModel(deckDBModel) : null;
+  }
+
   Future<List<String>> getAllDeckNames() async {
     return await _deckDatabase.getAllDeckNames();
   }
@@ -117,7 +124,7 @@ class DeckService {
       return null;
     }
     try {
-      if(await File(path).exists()) {
+      if (await File(path).exists()) {
         return File(path);
       } else {
         final file = await File(path).create(recursive: true);

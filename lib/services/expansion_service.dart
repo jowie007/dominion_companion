@@ -73,7 +73,8 @@ class ExpansionService {
     });
   }
 
-  Future<List<CardModel>> getSortedCardsByExpansionDBModel(ExpansionDBModel expansionDBModel) async {
+  Future<List<CardModel>> getSortedCardsByExpansionDBModel(
+      ExpansionDBModel expansionDBModel) async {
     var cards = (await _cardService.getCardsByExpansionFromDB(expansionDBModel))
         .map((card) => CardModel.fromDBModel(card))
         .toList();
@@ -81,35 +82,45 @@ class ExpansionService {
     return cards;
   }
 
+  Future<ExpansionModel> expansionModelFromExpansionDB(
+      ExpansionDBModel expansionDBModel) async {
+    return ExpansionModel.fromDBModelAndAdditional(
+        expansionDBModel,
+        await getSortedCardsByExpansionDBModel(expansionDBModel),
+        (await _contentService.getContentByExpansionId(expansionDBModel.id))
+            .map((content) => ContentModel.fromDBModel(content))
+            .toList(),
+        (await _handService.getHandsByExpansionIdAndType(
+                expansionDBModel.id, HandTypeEnum.moneyCards))
+            .map((hand) => HandModel.fromDBModel(hand))
+            .toList(),
+        (await _handService.getHandsByExpansionIdAndType(
+                expansionDBModel.id, HandTypeEnum.otherCards))
+            .map((hand) => HandModel.fromDBModel(hand))
+            .toList(),
+        (await _handService.getHandsByExpansionIdAndType(
+                expansionDBModel.id, HandTypeEnum.contents))
+            .map((hand) => HandModel.fromDBModel(hand))
+            .toList(),
+        expansionDBModel.endId != null
+            ? (EndModel.fromDBModel(
+                await _endService.getEndByEndIdFromDB(expansionDBModel.endId!)))
+            : null);
+  }
+
   Future<List<ExpansionModel>> loadAllExpansions() async {
-    log("ALL FINE 1");
     return Future.wait((await getExpansionsFromDB()).map(
-      (expansion) async => ExpansionModel.fromDBModelAndAdditional(
-          expansion,
-          await getSortedCardsByExpansionDBModel(expansion),
-          (await _contentService.getContentByExpansionId(expansion.id))
-              .map((content) => ContentModel.fromDBModel(content))
-              .toList(),
-          (await _handService.getHandsByExpansionIdAndType(
-                  expansion.id, HandTypeEnum.moneyCards))
-              .map((hand) => HandModel.fromDBModel(hand))
-              .toList(),
-          (await _handService.getHandsByExpansionIdAndType(
-                  expansion.id, HandTypeEnum.otherCards))
-              .map((hand) => HandModel.fromDBModel(hand))
-              .toList(),
-          (await _handService.getHandsByExpansionIdAndType(
-                  expansion.id, HandTypeEnum.contents))
-              .map((hand) => HandModel.fromDBModel(hand))
-              .toList(),
-          expansion.endId != null
-              ? (EndModel.fromDBModel(
-                  await _endService.getEndByEndIdFromDB(expansion.endId!)))
-              : null),
-    ));
+        (expansionDBModel) async =>
+            expansionModelFromExpansionDB(expansionDBModel)));
   }
 
   Future<List<ExpansionDBModel>> getExpansionsFromDB() {
     return _expansionDatabase.getExpansionList();
+  }
+
+  Future<ExpansionModel?> getExpansionByPosition(int position) async {
+    ExpansionDBModel? expansion =
+        await _expansionDatabase.getExpansionByPosition(position);
+    return expansion != null ? expansionModelFromExpansionDB(expansion) : null;
   }
 }

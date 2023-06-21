@@ -2,6 +2,7 @@ import 'package:dominion_comanion/components/basic_appbar.dart';
 import 'package:dominion_comanion/components/basic_infobar_bottom.dart';
 import 'package:dominion_comanion/components/expansion_expandable.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
+import 'package:dominion_comanion/components/lazy_scroll_view_expansion.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:dominion_comanion/services/expansion_service.dart';
 import 'package:dominion_comanion/services/temporary_deck_service.dart';
@@ -45,60 +46,8 @@ class _CreateDeckState extends State<CreateDeckPage> {
               ),
             ),
           ),
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              SingleChildScrollView(
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
-                  child: FutureBuilder(
-                    future: ExpansionService().loadAllExpansions(),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const CircularProgressIndicator(),
-                            Visibility(
-                              visible: snapshot.hasData,
-                              child: const Text(
-                                "Warte auf Erweiterungen",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 24),
-                              ),
-                            )
-                          ],
-                        );
-                      } else if (snapshot.connectionState ==
-                          ConnectionState.done) {
-                        if (snapshot.hasError) {
-                          throw Exception(snapshot.error);
-                          return Text(snapshot.error.toString());
-                        } else if (snapshot.hasData &&
-                            snapshot.data != null &&
-                            snapshot.data!.isNotEmpty) {
-                          return Column(
-                            children: [
-                              for (var expansion in snapshot.data!)
-                                ExpansionExpandable(
-                                    expansion: expansion,
-                                    onChanged: () =>
-                                        notifier.value = !notifier.value),
-                            ],
-                          );
-                        } else {
-                          return const Text('Keine Erweiterungen gefunden');
-                        }
-                      } else {
-                        return Text('State: ${snapshot.connectionState}');
-                      }
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
+          LazyScrollViewExpansions(
+              onChanged: () => notifier.value = !notifier.value),
           widget.random
               ? Positioned(
                   bottom: 0,
