@@ -36,6 +36,7 @@ class _DominionCompanionState extends State<DominionCompanion> {
           selectionColor: Colors.white.withOpacity(0.2),
           selectionHandleColor: Colors.white,
         ),
+        useMaterial3: true,
       ),
       onGenerateRoute: route.controller,
       initialRoute: route.homePage,
