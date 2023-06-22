@@ -29,53 +29,108 @@ class _CreateDeckState extends State<CreateDeckPage> {
   final _selectedCardService = SelectedCardService();
   final _temporaryDeckService = TemporaryDeckService();
 
+  void onPressed(bool random) {
+    _temporaryDeckService.saved = false;
+    _temporaryDeckService.createTemporaryDBDeck(
+        "", _selectedCardService.selectedCardIds, random);
+    Navigator.pushNamed(
+      context,
+      route.deckInfoPage,
+    );
+  }
+
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
     _selectedCardService.initializeSelectedCardIds();
     ValueNotifier<bool> notifier = ValueNotifier(false);
-    return Scaffold(
-      appBar: const BasicAppBar(title: 'Deck erstellen'),
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/menu/main_scroll_crop.png"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          LazyScrollViewExpansions(
-              onChanged: () => notifier.value = !notifier.value),
-          widget.random
-              ? Positioned(
-                  bottom: 0,
-                  child: ValueListenableBuilder(
-                    valueListenable: notifier,
-                    builder: (BuildContext context, bool val, Widget? child) {
-                      return BasicInfoBarBottom(
-                          text:
-                              "${_selectedCardService.selectedCardIds.length}/${DeckService.deckSize}+");
-                    },
+    ValueNotifier<bool> fabExtended = ValueNotifier(false);
+    DeckService().initializeChangeNotify();
+    return ValueListenableBuilder(
+      valueListenable: DeckService().changeNotify,
+      builder: (BuildContext context, bool val, Widget? child) {
+        return Scaffold(
+          appBar: const BasicAppBar(title: 'Deck erstellen'),
+          body: Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/menu/main_scroll_crop.png"),
+                    fit: BoxFit.cover,
                   ),
-                )
-              : Container(),
-        ],
-      ),
-      floatingActionButton: FloatingActionButtonCoin(
-        icon: Icons.play_arrow,
-        tooltip: "Deck erstellen",
-        onPressed: () async => {
-          _temporaryDeckService.saved = false,
-          _temporaryDeckService.createTemporaryDBDeck(
-              "", _selectedCardService.selectedCardIds, widget.random),
-          Navigator.pushNamed(
-            context,
-            route.deckInfoPage,
+                ),
+              ),
+              LazyScrollViewExpansions(
+                  onChanged: () => notifier.value = !notifier.value),
+              widget.random
+                  ? Positioned(
+                      bottom: 0,
+                      child: ValueListenableBuilder(
+                        valueListenable: notifier,
+                        builder:
+                            (BuildContext context, bool val, Widget? child) {
+                          return BasicInfoBarBottom(
+                              text:
+                                  "${_selectedCardService.selectedCardIds.length}/${DeckService.deckSize}+");
+                        },
+                      ),
+                    )
+                  : Container(),
+            ],
           ),
-        },
-      ),
+          floatingActionButton: ValueListenableBuilder(
+            valueListenable: fabExtended,
+            builder: (BuildContext context, bool val, Widget? child) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Visibility(
+                    maintainSize: true,
+                    maintainAnimation: true,
+                    maintainState: true,
+                    visible: fabExtended.value,
+                    child: Transform.scale(
+                      scale: 0.8,
+                      child: FloatingActionButtonCoin(
+                        onPressed: () async =>
+                            {onPressed(true), fabExtended.value = false},
+                        icon: Icons.shuffle,
+                        tooltip: 'Deck mit zufälligen Karten erstellen',
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    maintainSize: true,
+                    maintainAnimation: true,
+                    maintainState: true,
+                    visible: fabExtended.value,
+                    child: Transform.scale(
+                      scale: 0.8,
+                      child: FloatingActionButtonCoin(
+                        onPressed: () async => {
+                          onPressed(false),
+                          fabExtended.value = false,
+                        },
+                        icon: Icons.checklist,
+                        tooltip: 'Deck mit ausgewählten Karten erstellen',
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  FloatingActionButtonCoin(
+                    onPressed: () => fabExtended.value = !fabExtended.value,
+                    icon: Icons.play_arrow,
+                    tooltip: 'Neues Deck erstellen',
+                  ),
+                ],
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

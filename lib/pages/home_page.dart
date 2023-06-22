@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                   MenuButton(
                       text: "Neu",
                       callback: () {
-                        Navigator.pushNamed(context, route.deckPage);
+                        Navigator.pushNamed(context, route.createDeckPage);
                       }),
                   const SizedBox(height: 10),
                   MenuButton(
