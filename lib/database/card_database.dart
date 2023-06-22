@@ -47,6 +47,19 @@ class CardDatabase {
     return await _database.insert('card', card.toJson());
   }
 
+  Future<int?> getCardsLength() async {
+    await openDb();
+    return Sqflite.firstIntValue(
+        await _database.rawQuery('SELECT COUNT(*) FROM card'));
+  }
+
+  Future<CardDBModel> getCardAtPosition(int position) async {
+    await openDb();
+    final List<Map<String, dynamic>> maps =
+        await _database.rawQuery('SELECT * FROM card LIMIT 1 OFFSET $position');
+    return CardDBModel.fromDB(maps.first);
+  }
+
   Future<List<CardDBModel>> getCardList() async {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.query('card');
@@ -101,7 +114,8 @@ class CardDatabase {
     });
   }
 
-  Future<List<CardDBModel>> getWhenDeckConsistsOfXCardsOfExpansionCount() async {
+  Future<List<CardDBModel>>
+      getWhenDeckConsistsOfXCardsOfExpansionCount() async {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.rawQuery(
         'SELECT * FROM card WHERE whenDeckConsistsOfXCardsOfExpansionCount NOT NULL');

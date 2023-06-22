@@ -1,6 +1,8 @@
 import 'dart:developer' as dev;
 import 'dart:math';
 
+import 'package:dominion_comanion/components/card_popup.dart';
+import 'package:dominion_comanion/components/custom_alert_dialog.dart';
 import 'package:dominion_comanion/components/menu_button.dart';
 import 'package:dominion_comanion/services/card_service.dart';
 import 'package:dominion_comanion/services/content_service.dart';
@@ -25,6 +27,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _musicService = MusicService();
+  CardService cardService = CardService();
 
   testCardNames() async {
     dev.log("TEST CARD NAMES");
@@ -145,7 +148,28 @@ class _HomePageState extends State<HomePage> {
                   MenuButton(
                       text: "Tageskarte",
                       callback: () {
-                        Navigator.pushNamed(context, route.deckPage);
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return FutureBuilder(
+                              future: cardService.getCardOfTheDay(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData && snapshot.data != null) {
+                                  return CardPopup(
+                                      cardIds: snapshot.data!.values.first,
+                                      expansionId: snapshot.data!.keys.first
+                                          .getExpansionId());
+                                } else {
+                                  return const CustomAlertDialog(
+                                    title: "Fehler",
+                                    message: "Karte konnte nicht geladen werden",
+                                    onlyCancelButton: true,
+                                  );
+                                }
+                              },
+                            );
+                          },
+                        );
                       }),
                   const SizedBox(height: 10),
                   MenuButton(

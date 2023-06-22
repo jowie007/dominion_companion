@@ -1,4 +1,5 @@
-import 'dart:developer';
+import 'dart:developer' as dev;
+import 'dart:math';
 
 import 'package:dominion_comanion/database/card_database.dart';
 import 'package:dominion_comanion/database/model/card/card_db_model.dart';
@@ -27,8 +28,30 @@ class CardService {
     return Future.wait(cardIds
         .toList()
         .map((cardId) async =>
-        CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
+            CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
         .toList());
+  }
+
+  Future<Map<CardModel, List<String>>?> getCardOfTheDay() async {
+    int? cardDBSize = await _cardDatabase.getCardsLength();
+    if (cardDBSize == null) {
+      return null;
+    }
+    DateTime now = DateTime.now();
+    String dateString =
+        now.year.toString() + now.month.toString() + now.day.toString();
+    int? dateInt = int.tryParse(dateString);
+    if (dateInt == null) {
+      return null;
+    }
+    Random random = Random(dateInt);
+    int position = random.nextInt(cardDBSize - 1);
+    CardDBModel cardDBModel = await _cardDatabase.getCardAtPosition(position);
+    CardModel card = CardModel.fromDBModel(cardDBModel);
+    List<String> cardIds = !card.id.contains('-set-')
+        ? [card.id]
+        : await getCardIdsBySetId(card.id);
+    return {card: cardIds};
   }
 
   Future<List<String>> getCardIdsForPopup(CardModel card) async {

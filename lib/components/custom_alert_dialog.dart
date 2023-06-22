@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 
 class CustomAlertDialog extends StatelessWidget {
-  const CustomAlertDialog({super.key, required this.title, required this.message, this.onConfirm});
+  const CustomAlertDialog(
+      {super.key,
+      required this.title,
+      required this.message,
+      this.onlyCancelButton = false,
+      this.onConfirm});
 
   final String title;
   final String message;
+  final bool onlyCancelButton;
   final void Function()? onConfirm;
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(title),
-      content:  SingleChildScrollView(
+      content: SingleChildScrollView(
         child: ListBody(
-          children:  <Widget>[
+          children: <Widget>[
             Text(message),
           ],
         ),
@@ -25,13 +31,15 @@ class CustomAlertDialog extends StatelessWidget {
             Navigator.pop(context, false);
           },
         ),
-        TextButton(
-          child: const Text('Ja'),
-          onPressed: () {
-            Navigator.pop(context, true);
-            onConfirm != null ? onConfirm!() : "";
-          },
-        ),
+        !onlyCancelButton
+            ? TextButton(
+                child: const Text('Ja'),
+                onPressed: () {
+                  Navigator.pop(context, true);
+                  onConfirm != null ? onConfirm!() : "";
+                },
+              )
+            : Container(),
       ],
     );
   }

@@ -1,6 +1,4 @@
 // https://www.section.io/engineering-education/how-to-handle-navigation-in-flutter/
-import 'dart:developer';
-
 import 'package:dominion_comanion/pages/create_deck_page.dart';
 import 'package:dominion_comanion/pages/deck_info_page.dart';
 import 'package:dominion_comanion/pages/decks_page.dart';
