@@ -131,13 +131,19 @@ class _HomePageState extends State<HomePage> {
                     height: 40,
                   ),
                   MenuButton(
+                      text: "Neu",
+                      callback: () {
+                        Navigator.pushNamed(context, route.deckPage);
+                      }),
+                  const SizedBox(height: 10),
+                  MenuButton(
                       text: "Decks",
                       callback: () {
                         Navigator.pushNamed(context, route.deckPage);
                       }),
                   const SizedBox(height: 10),
                   MenuButton(
-                      text: "Sammlung",
+                      text: "Tageskarte",
                       callback: () {
                         Navigator.pushNamed(context, route.deckPage);
                       }),

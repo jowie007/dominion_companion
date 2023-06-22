@@ -1,4 +1,3 @@
-import 'package:dominion_comanion/services/expansion_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
 
@@ -26,11 +25,22 @@ class _DominionCompanionState extends State<DominionCompanion> {
     return MaterialApp(
       title: 'Connect Page',
       theme: ThemeData(
-        fontFamily: 'TrajanPro',
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: Colors.orangeAccent,
           secondary: const Color(0xff966a22),
         ),
+        dialogBackgroundColor: Colors.white,
+        appBarTheme: Theme.of(context).appBarTheme.copyWith(
+              iconTheme: const IconThemeData(color: Colors.white),
+              titleTextStyle: const TextStyle(
+                  fontSize: 20, fontFamily: 'TrajanPro', color: Colors.white),
+            ),
+        canvasColor: Colors.white,
+        textTheme: Theme.of(context).textTheme.apply(
+              fontFamily: 'TrajanPro',
+              bodyColor: Colors.black,
+              displayColor: Colors.black,
+            ),
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Colors.white,
           selectionColor: Colors.white.withOpacity(0.2),
