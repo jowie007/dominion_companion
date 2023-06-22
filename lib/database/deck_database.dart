@@ -52,8 +52,8 @@ class DeckDatabase {
   Future<DeckDBModel?> getDeckByPosition(
       int position, bool sortAsc, String sortKey) async {
     await openDb();
-    final List<Map<String, dynamic>> maps = await _database
-        .rawQuery('SELECT * FROM deck LIMIT 1 OFFSET $position;');
+    final List<Map<String, dynamic>> maps = await _database.rawQuery(
+        'SELECT * FROM deck ORDER BY $sortKey ${sortAsc ? 'ASC' : 'DESC'} LIMIT 1 OFFSET $position');
     return maps.isNotEmpty ? DeckDBModel.fromDB(maps.first) : null;
   }
 

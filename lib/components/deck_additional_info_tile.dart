@@ -38,8 +38,8 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                 widget.deckModel.content.isNotEmpty
                     ? Column(
                         children: [
-                          Row(
-                            children: const [
+                          const Row(
+                            children: [
                               Text(
                                 "Extras:",
                                 style: TextStyle(

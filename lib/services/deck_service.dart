@@ -27,7 +27,7 @@ class DeckService {
 
   Directory? appDocumentsDir;
 
-  late ValueNotifier<bool> changeNotify;
+  ValueNotifier<bool> notifier = ValueNotifier(false);
 
   static final DeckService _deckService = DeckService._internal();
 
@@ -38,10 +38,6 @@ class DeckService {
   }
 
   DeckService._internal();
-
-  void initializeChangeNotify() {
-    changeNotify = ValueNotifier(false);
-  }
 
   Future<List<DeckModel>> getDeckList(
       {bool sortAsc = true, String sortKey = "creationDate"}) async {
@@ -62,22 +58,22 @@ class DeckService {
   }
 
   Future<int> updateDeck(DeckModel deckModel) {
-    changeNotify.value = !changeNotify.value;
+    notifier.value = !notifier.value;
     return _deckDatabase.updateDeck(DeckDBModel.fromModel(deckModel));
   }
 
   Future<int> saveDeck(DeckModel deckModel) {
-    changeNotify.value = !changeNotify.value;
+    notifier.value = !notifier.value;
     return _deckDatabase.insertDeck(DeckDBModel.fromModel(deckModel));
   }
 
   Future<int> renameDeck(int id, String newName) {
-    changeNotify.value = !changeNotify.value;
+    notifier.value = !notifier.value;
     return _deckDatabase.renameDeck(id, newName);
   }
 
   Future<int> deleteDeckByName(String name) {
-    changeNotify.value = !changeNotify.value;
+    notifier.value = !notifier.value;
     return _deckDatabase.deleteDeckByName(name);
   }
 

@@ -7,6 +7,7 @@ import 'package:dominion_comanion/components/custom_alert_dialog.dart';
 import 'package:dominion_comanion/components/dropdown_sort.dart';
 import 'package:dominion_comanion/components/lazy_scroll_view_decks.dart';
 import 'package:dominion_comanion/model/settings/settings_model.dart';
+import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:dominion_comanion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 
@@ -20,13 +21,15 @@ class DecksPage extends StatefulWidget {
 // TODO Reloading einbauen, falls etwas angepasst wird
 // TODO Immer nur fünf Decks laden und dann erst beim Scrollen
 class _DecksState extends State<DecksPage> {
-  SettingsModel settings = SettingsService().getCachedSettings();
-  bool refreshToggle = false;
+  SettingsService settingService = SettingsService();
+  DeckService deckService = DeckService();
 
   // https://docs.flutter.dev/cookbook/navigation/navigate-with-arguments
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
+    SettingsModel settings = settingService.getCachedSettings();
+
     return Scaffold(
       appBar: const BasicAppBar(title: 'Decks'),
       body: Stack(
@@ -41,33 +44,20 @@ class _DecksState extends State<DecksPage> {
           ),
           Align(
             alignment: Alignment.topCenter,
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 60),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    DropdownSort(
-                      sortAsc: settings.sortAsc,
-                      sortKey: settings.sortKey,
-                      onChanged: (asc, key) =>
-                      {
-                        setState(() {
-                          SettingsService().setCachedSettingsSortAsc(asc);
-                          SettingsService().setCachedSettingsSortKey(key);
-                        })
-                      },
-                    ),
-                    // TODO Wird noch nicht neugeladen
-                    // TODO Auch bei Bild einfügen neu laden
-                    // TODO Auch bei Bewertung ändern neu laden
-                    LazyScrollViewDecks(
-                      onChange: () =>
-                          setState(() {
-                            refreshToggle = !refreshToggle;
-                          }),
-                    ),
-                  ],
-                ),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  DropdownSort(
+                    sortAsc: settings.sortAsc,
+                    sortKey: settings.sortKey,
+                    onChanged: (asc, key) => {
+                      setState(() {
+                        settingService.updateCachedSettings(key, asc);
+                      })
+                    },
+                  ),
+                  const LazyScrollViewDecks(),
+                ],
               ),
             ),
           ),

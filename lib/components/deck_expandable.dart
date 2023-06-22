@@ -14,20 +14,17 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
 class DeckExpandable extends StatefulWidget {
-  const DeckExpandable({
-    super.key,
-    required this.deckModel,
-    this.initiallyExpanded = false,
-    this.isNewlyCreated = false,
-    this.onDelete,
-    this.onRename,
-  });
+  const DeckExpandable(
+      {super.key,
+      required this.deckModel,
+      this.initiallyExpanded = false,
+      this.isNewlyCreated = false,
+      this.onChange});
 
   final DeckModel deckModel;
   final bool initiallyExpanded;
   final bool isNewlyCreated;
-  final void Function()? onDelete;
-  final void Function()? onRename;
+  final void Function()? onChange;
 
   @override
   State<DeckExpandable> createState() => _DeckExpandableState();
@@ -59,6 +56,12 @@ class _DeckExpandableState extends State<DeckExpandable> {
   @override
   Widget build(BuildContext context) {
     final allCards = widget.deckModel.getAllCards();
+    void onChange() {
+      if (widget.onChange != null) {
+        widget.onChange!();
+      }
+    }
+
     const backgroundImage = AssetImage("assets/menu/main_scroll_crop.png");
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
@@ -96,13 +99,13 @@ class _DeckExpandableState extends State<DeckExpandable> {
                   );
                 },
               );
-              if (delete == true && widget.onDelete != null) {
-                widget.onDelete!();
+              if (delete == true) {
                 setState(() {
                   DeckService().deleteDeckByName(widget.deckModel.name);
                   ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text("Deck wurde gelöscht")));
                 });
+                onChange();
               }
               return delete;
             }
@@ -118,6 +121,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
               );
               if (swapCards == true) {
                 // TODO Karten austauschen
+                onChange();
               }
               return swapCards;
             }
@@ -154,14 +158,10 @@ class _DeckExpandableState extends State<DeckExpandable> {
                         builder: (BuildContext innerContext) => NameDeckDialog(
                           oldName: widget.deckModel.name,
                           onSaved: (deckName) => setState(
-                            () async {
-                              await DeckService()
-                                  .renameDeck(widget.deckModel.id!, deckName);
-                              if (widget.onRename != null) {
-                                widget.onRename!();
-                                // TODO Hier weiterarbeiten
-                                log("ON RENAME");
-                              }
+                            () {
+                              DeckService()
+                                  .renameDeck(widget.deckModel.id!, deckName)
+                                  .then((value) => onChange());
                             },
                           ),
                         ),
@@ -260,7 +260,8 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                     Icons.camera,
                                     color: Colors.black,
                                   ),
-                                  onPressed: () => {pickImage()},
+                                  onPressed: () =>
+                                      {pickImage().then((_) => onChange())},
                                 ),
                               ),
                             ),
@@ -293,7 +294,9 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                 onChanged: (value) => {
                                   widget.deckModel.rating =
                                       value == null ? null : int.parse(value),
-                                  deckService.updateDeck(widget.deckModel)
+                                  deckService
+                                      .updateDeck(widget.deckModel)
+                                      .then((_) => onChange())
                                 },
                               ),
                             ),

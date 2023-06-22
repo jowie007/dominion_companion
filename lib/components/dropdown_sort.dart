@@ -19,6 +19,7 @@ const Map<String, String> itemMap = {
   "creationDate": "Erstelldatum",
   "editDate": "Bearbeitungsdatum",
   "rating": "Bewertung",
+  "name": "Name"
 };
 
 class _DropdownSortState extends State<DropdownSort> {

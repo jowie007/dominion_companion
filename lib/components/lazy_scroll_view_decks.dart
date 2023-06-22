@@ -1,32 +1,49 @@
+import 'dart:developer';
+
 import 'package:dominion_comanion/components/deck_expandable.dart';
 import 'package:dominion_comanion/model/deck/deck_model.dart';
+import 'package:dominion_comanion/model/settings/settings_model.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
+import 'package:dominion_comanion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 
 class LazyScrollViewDecks extends StatefulWidget {
-  const LazyScrollViewDecks(
-      {super.key, required this.onChange});
+  const LazyScrollViewDecks({super.key, this.onChange});
 
-  final void Function() onChange;
+  final void Function()? onChange;
 
   @override
   State<LazyScrollViewDecks> createState() => _LazyScrollViewDecksState();
 }
 
 class _LazyScrollViewDecksState extends State<LazyScrollViewDecks> {
+  SettingsService settingService = SettingsService();
   List<DeckModel> decks = [];
   bool showLoadingIcon = true;
+  bool cachedNotifier = false;
 
   @override
   initState() {
     super.initState();
+    init();
+  }
+
+  void init() {
+    decks = [];
+    showLoadingIcon = true;
+    cachedNotifier = settingService.notifier.value;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       loadExpansionRecursive();
     });
   }
 
   loadExpansionRecursive() async {
-    DeckService().getDeckByPosition(decks.length).then(
+    SettingsModel settingsModel = SettingsService().getCachedSettings();
+    log(settingsModel.sortKey + settingsModel.sortAsc.toString());
+    DeckService()
+        .getDeckByPosition(decks.length,
+            sortAsc: settingsModel.sortAsc, sortKey: settingsModel.sortKey)
+        .then(
           (element) => {
             setState(
               () {
@@ -48,28 +65,39 @@ class _LazyScrollViewDecksState extends State<LazyScrollViewDecks> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
-        child: Column(
-          children: [
-            ...decks
-                .map<Widget>((e) => DeckExpandable(
-                      deckModel: e,
-                      onDelete: () {
-                        widget.onChange();
-                      },
-                      onRename: () {
-                        widget.onChange();
-                      },
-                    ))
-                .toList(),
-            showLoadingIcon
-                ? const Center(child: CircularProgressIndicator())
-                : Container()
-          ],
-        ),
-      ),
+    return ValueListenableBuilder(
+      valueListenable: settingService.notifier,
+      builder: (BuildContext context, bool val, Widget? child) {
+        if(cachedNotifier != settingService.notifier.value) {
+          cachedNotifier = settingService.notifier.value;
+          init();
+        }
+        return SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
+            child: Column(
+              children: [
+                ...decks
+                    .map<Widget>((e) => DeckExpandable(
+                          deckModel: e,
+                          onChange: () {
+                            if (widget.onChange != null) {
+                              widget.onChange!();
+                            }
+                            setState(() {
+                              init();
+                            });
+                          },
+                        ))
+                    .toList(),
+                showLoadingIcon
+                    ? const Center(child: CircularProgressIndicator())
+                    : Container()
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

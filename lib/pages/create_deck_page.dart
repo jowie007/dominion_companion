@@ -4,7 +4,6 @@ import 'package:dominion_comanion/components/expansion_expandable.dart';
 import 'package:dominion_comanion/components/floating_action_button_coin.dart';
 import 'package:dominion_comanion/components/lazy_scroll_view_expansion.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
-import 'package:dominion_comanion/services/expansion_service.dart';
 import 'package:dominion_comanion/services/temporary_deck_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
@@ -45,9 +44,8 @@ class _CreateDeckState extends State<CreateDeckPage> {
     _selectedCardService.initializeSelectedCardIds();
     ValueNotifier<bool> notifier = ValueNotifier(false);
     ValueNotifier<bool> fabExtended = ValueNotifier(false);
-    DeckService().initializeChangeNotify();
     return ValueListenableBuilder(
-      valueListenable: DeckService().changeNotify,
+      valueListenable: DeckService().notifier,
       builder: (BuildContext context, bool val, Widget? child) {
         return Scaffold(
           appBar: const BasicAppBar(title: 'Deck erstellen'),

@@ -16,6 +16,7 @@ import 'package:dominion_comanion/services/content_service.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:dominion_comanion/services/end_service.dart';
 import 'package:dominion_comanion/services/hand_service.dart';
+import 'package:flutter/cupertino.dart';
 
 // TODO Einmal initial laden und erst dann weitermachen
 class SettingsService {
@@ -28,6 +29,8 @@ class SettingsService {
   factory SettingsService() {
     return _settingsService;
   }
+
+  ValueNotifier<bool> notifier = ValueNotifier(false);
 
   SettingsService._internal();
 
@@ -49,16 +52,19 @@ class SettingsService {
 
   void setCachedSettings(SettingsModel settingsModel) {
     settings = settingsModel;
+    notifier.value = !notifier.value;
     updateSettingsTable(settings);
   }
 
   void setCachedSettingsSortKey(String sortKey) {
     settings.sortKey = sortKey;
+    notifier.value = !notifier.value;
     updateSettingsTable(settings);
   }
 
   void setCachedSettingsSortAsc(bool sortAsc) {
     settings.sortAsc = sortAsc;
+    notifier.value = !notifier.value;
     updateSettingsTable(settings);
   }
 
@@ -66,7 +72,14 @@ class SettingsService {
     return _settingsDatabase.deleteSettingsTable();
   }
 
-  Future<int> updateSettingsTable(SettingsModel settings) {
+  Future<int> updateCachedSettings(String sortKey, bool sortAsc) {
+    settings.sortKey = sortKey;
+    settings.sortAsc = sortAsc;
+    notifier.value = !notifier.value;
+    return _settingsDatabase.updateSettings(SettingsDBModel.fromModel(settings));
+  }
+
+  Future<int> updateSettingsTable(SettingsModel settingsModel) {
     return _settingsDatabase.updateSettings(SettingsDBModel.fromModel(settings));
   }
 }
