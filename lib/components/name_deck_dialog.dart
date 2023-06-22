@@ -5,10 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class NameDeckDialog extends StatelessWidget {
-  const NameDeckDialog(
-      {super.key,
-      required this.onSaved,
-      this.oldName = ""});
+  const NameDeckDialog({super.key, required this.onSaved, this.oldName = ""});
 
   final void Function(String deckName) onSaved;
   final String oldName;
@@ -26,10 +23,10 @@ class NameDeckDialog extends StatelessWidget {
       future: deckService.getAllDeckNames(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Column(
+          return const Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               CircularProgressIndicator(),
             ],
           );
@@ -105,7 +102,7 @@ class NameDeckDialog extends StatelessWidget {
                                             'Es existiert bereits ein Deck mit diesem Namen.')));
                                     return;
                                   }
-                                  onSaved(deckNameController.text);
+                                  onSaved(deckNameController.text.toString());
                                   Navigator.pop(context);
                                 },
                                 child: const Text('Speichern'),

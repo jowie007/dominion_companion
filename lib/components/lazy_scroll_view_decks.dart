@@ -4,9 +4,10 @@ import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:flutter/material.dart';
 
 class LazyScrollViewDecks extends StatefulWidget {
-  const LazyScrollViewDecks({super.key, required this.onLongPress});
+  const LazyScrollViewDecks(
+      {super.key, required this.onChange});
 
-  final void Function() onLongPress;
+  final void Function() onChange;
 
   @override
   State<LazyScrollViewDecks> createState() => _LazyScrollViewDecksState();
@@ -54,7 +55,14 @@ class _LazyScrollViewDecksState extends State<LazyScrollViewDecks> {
           children: [
             ...decks
                 .map<Widget>((e) => DeckExpandable(
-                    deckModel: e, onLongPress: widget.onLongPress))
+                      deckModel: e,
+                      onDelete: () {
+                        widget.onChange();
+                      },
+                      onRename: () {
+                        widget.onChange();
+                      },
+                    ))
                 .toList(),
             showLoadingIcon
                 ? const Center(child: CircularProgressIndicator())

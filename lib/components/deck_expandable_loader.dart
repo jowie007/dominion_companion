@@ -53,7 +53,6 @@ class DeckExpandableLoader extends StatelessWidget {
                     deckModel: snapshot.data!,
                     initiallyExpanded: initiallyExpanded,
                     isNewlyCreated: isNewlyCreated,
-                    onLongPress: onLongPress,
                   )
                 : const Text('Deck konnte nicht geladen werden');
           } else {

@@ -36,7 +36,7 @@ class DeckDatabase {
     final List<Map<String, dynamic>> maps =
         await _database.query('deck', columns: ["name"]);
     return List.generate(maps.length, (i) {
-      return maps[i]["name"];
+      return maps[i]["name"].toString();
     });
   }
 
