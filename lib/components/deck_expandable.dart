@@ -88,7 +88,9 @@ class _DeckExpandableState extends State<DeckExpandable> {
                   child: Icon(Icons.swap_horizontal_circle)),
             ],
           ),
-          direction: DismissDirection.horizontal,
+          direction: !widget.isNewlyCreated
+              ? DismissDirection.horizontal
+              : DismissDirection.none,
           confirmDismiss: (direction) async {
             if (direction == DismissDirection.startToEnd) {
               final delete = await showDialog<bool>(
