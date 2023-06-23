@@ -25,11 +25,13 @@ class CardService {
   }
 
   Future<List<CardModel>> getCardsByCardIds(List<String> cardIds) {
-    return Future.wait(cardIds
-        .toList()
-        .map((cardId) async =>
-            CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
-        .toList());
+    return cardIds.isNotEmpty
+        ? Future.wait(cardIds
+            .toList()
+            .map((cardId) async =>
+                CardModel.fromDBModel(await _cardDatabase.getCardById(cardId)))
+            .toList())
+        : Future.wait([]);
   }
 
   Future<Map<CardModel, List<String>>?> getCardOfTheDay() async {

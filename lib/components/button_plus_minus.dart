@@ -19,6 +19,7 @@ class _ButtonPlusMinusState extends State<ButtonPlusMinus> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 268,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(120),
         image: const DecorationImage(
@@ -40,21 +41,22 @@ class _ButtonPlusMinusState extends State<ButtonPlusMinus> {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onPressed: widget.onMinus,
-            child: Stack(
+            child: const Stack(
               alignment: Alignment.center,
-              children: const [
+              children: [
                 Icon(Icons.remove, color: Colors.white),
               ],
             ),
           ),
-          Text(widget.text, style: const TextStyle(fontSize: 18, color: Colors.white)),
+          Text(widget.text,
+              style: const TextStyle(fontSize: 18, color: Colors.white)),
           MaterialButton(
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onPressed: widget.onPlus,
-            child: Stack(
+            child: const Stack(
               alignment: Alignment.center,
-              children: const [
+              children: [
                 Icon(Icons.add, color: Colors.white),
               ],
             ),

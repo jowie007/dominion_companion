@@ -91,7 +91,7 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                                 ? CardInfoTile(
                                     onChanged: (bool? newValue) => setState(() {
                                       selectedCardService
-                                          .toggleSelectedCardIdDB(
+                                          .toggleSelectedCardId(
                                               widget.expansion.cards[index].id);
                                       widget.onChanged();
                                     }),

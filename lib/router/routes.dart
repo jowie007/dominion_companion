@@ -20,9 +20,7 @@ Route<dynamic> controller(RouteSettings settings) {
     case createDeckPage:
       final arguments = (settings.arguments ?? <String, dynamic>{}) as Map;
       return CupertinoPageRoute(
-          builder: (context) => CreateDeckPage(
-              random:
-                  arguments['random'] != null && arguments["random"] == "true"));
+          builder: (context) => CreateDeckPage(deckId: arguments['deckId']));
     case deckInfoPage:
       return CupertinoPageRoute(builder: (context) => const DeckInfoPage());
     default:

@@ -39,6 +39,11 @@ class DeckService {
 
   DeckService._internal();
 
+  Future<List<String>?> getCardIdsByDeckId(int id) async {
+    final deck = await _deckDatabase.getDeckById(id);
+    return deck?.cardIds;
+  }
+
   Future<List<DeckModel>> getDeckList(
       {bool sortAsc = true, String sortKey = "creationDate"}) async {
     var deckList = await _deckDatabase.getDeckList(sortAsc, sortKey);
@@ -55,6 +60,11 @@ class DeckService {
 
   Future<List<String>> getAllDeckNames() async {
     return await _deckDatabase.getAllDeckNames();
+  }
+
+  Future<void> updateCardIds(int deckId, List<String> cardIds) {
+    notifier.value = !notifier.value;
+    return _deckDatabase.updateCardIds(deckId, cardIds);
   }
 
   Future<int> updateDeck(DeckModel deckModel) {

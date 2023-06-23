@@ -12,6 +12,7 @@ import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:dominion_comanion/router/routes.dart' as route;
 
 class DeckExpandable extends StatefulWidget {
   const DeckExpandable(
@@ -110,7 +111,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
               return delete;
             }
             if (direction == DismissDirection.endToStart) {
-              final swapCards = await showDialog<bool>(
+              return await showDialog<bool>(
                 context: context,
                 builder: (context) {
                   return const CustomAlertDialog(
@@ -119,13 +120,15 @@ class _DeckExpandableState extends State<DeckExpandable> {
                   );
                 },
               );
-              if (swapCards == true) {
-                // TODO Karten austauschen
-                onChange();
-              }
-              return swapCards;
             }
             return false;
+          },
+          onDismissed: (direction) async {
+            if (direction == DismissDirection.endToStart) {
+              Navigator.pushNamed(context, route.createDeckPage,
+                      arguments: {"deckId": widget.deckModel.id})
+                  .then((value) => onChange());
+            }
           },
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16.0),

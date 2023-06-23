@@ -1,10 +1,14 @@
 import 'package:dominion_comanion/database/selected_cards_database.dart';
+import 'package:dominion_comanion/services/deck_service.dart';
 
 class SelectedCardService {
+  final DeckService deckService = DeckService();
   final SelectedCardDatabase _selectedCardDatabase = SelectedCardDatabase();
   late List<String> selectedCardIds = [];
+  late bool modifyDeck = false;
 
-  static final SelectedCardService _selectedCardService = SelectedCardService._internal();
+  static final SelectedCardService _selectedCardService =
+      SelectedCardService._internal();
 
   factory SelectedCardService() {
     return _selectedCardService;
@@ -12,51 +16,65 @@ class SelectedCardService {
 
   SelectedCardService._internal();
 
-  Future<void> initializeSelectedCardIds() async {
-    selectedCardIds = await _selectedCardDatabase.getSelectedCardIdList();
-  }
-
-  void insertSelectedCardIdsIntoDB(List<String> cardIds) {
-    for (var cardId in cardIds) {
-      insertSelectedCardIdIntoDB(cardId);
+  Future<void> initializeSelectedCardIds({int? deckId}) async {
+    if (deckId != null) {
+      selectedCardIds = await deckService.getCardIdsByDeckId(deckId) ?? [];
+      modifyDeck = true;
+    } else {
+      selectedCardIds = await _selectedCardDatabase.getSelectedCardIdList();
+      modifyDeck = false;
     }
   }
 
-  void deleteSelectedCardIdsFromDB(List<String> cardIds) {
+  void addSelectedCardIds(List<String> cardIds) {
     for (var cardId in cardIds) {
-      deleteSelectedCardIdFromDB(cardId);
+      addSelectedCardId(cardId);
     }
   }
 
-  void insertSelectedCardIdIntoDB(String cardId) {
+  void deleteSelectedCardIds(List<String> cardIds) {
+    for (var cardId in cardIds) {
+      deleteSelectedCardId(cardId);
+    }
+  }
+
+  void addSelectedCardId(String cardId) {
     if (!selectedCardIds.contains(cardId)) {
       selectedCardIds.add(cardId);
-      _selectedCardDatabase.insertSelectedCardId(cardId);
+      if (!modifyDeck) {
+        _selectedCardDatabase.insertSelectedCardId(cardId);
+      }
     }
   }
 
-  void deleteSelectedCardIdFromDB(String cardId) {
+  void deleteSelectedCardId(String cardId) {
     if (selectedCardIds.contains(cardId)) {
       selectedCardIds.remove(cardId);
-      _selectedCardDatabase.deleteSelectedCardId(cardId);
+      if (!modifyDeck) {
+        _selectedCardDatabase.deleteSelectedCardId(cardId);
+      }
     }
   }
 
-  void toggleSelectedCardIdDB(String cardId) {
+  void toggleSelectedCardId(String cardId) {
     if (selectedCardIds.contains(cardId)) {
       selectedCardIds.remove(cardId);
-      _selectedCardDatabase.deleteSelectedCardId(cardId);
+      if (!modifyDeck) {
+        _selectedCardDatabase.deleteSelectedCardId(cardId);
+      }
     } else {
       selectedCardIds.add(cardId);
-      _selectedCardDatabase.insertSelectedCardId(cardId);
+      if (!modifyDeck) {
+        _selectedCardDatabase.insertSelectedCardId(cardId);
+      }
     }
   }
 
   void toggleSelectedExpansion(List<String> cardsInExpansion) {
     if (isExpansionSelected(cardsInExpansion) == false) {
-      insertSelectedCardIdsIntoDB(cardsInExpansion);
+      addSelectedCardIds(cardsInExpansion);
     } else {
-      deleteSelectedCardIdsFromDB(cardsInExpansion);
+      deleteSelectedCardIds(cardsInExpansion);
     }
   }
 

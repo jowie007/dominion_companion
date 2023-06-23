@@ -18,7 +18,9 @@ class DeckDBModel {
   DeckDBModel.fromDB(Map<String, dynamic> dbData) {
     id = dbData['id'];
     name = dbData['name'].toString();
-    cardIds = dbData['cardIds'].split(',');
+    cardIds = dbData['cardIds'].toString().trim() != ""
+        ? dbData['cardIds'].split(',')
+        : [];
     image = dbData['image'];
     creationDate = DateTime.fromMicrosecondsSinceEpoch(dbData['creationDate']);
     editDate = dbData['editDate'] != null
