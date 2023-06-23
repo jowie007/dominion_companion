@@ -24,6 +24,11 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
   final CardService _cardService = CardService();
   final ContentService _contentService = ContentService();
 
+  String prettyDateString(DateTime date) {
+    return "${date.day < 10 ? 0 : ""}${date.day}.${date.month < 10 ? 0 : ""}${date.month}.${date.year} "
+        "${date.hour < 10 ? 0 : ""}${date.hour}:${date.minute < 10 ? 0 : ""}${date.minute} Uhr";
+  }
+
   @override
   Widget build(BuildContext context) {
     final allEmptyCards = widget.deckModel.end.getAllEmptyCardIds();
@@ -68,8 +73,10 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                     : Container(),
                 Column(
                   children: [
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
+                        Icon(Icons.collections_bookmark, size: 14),
+                        SizedBox(width: 8),
                         Text(
                           "Austeilen:",
                           style:
@@ -143,8 +150,10 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                     ),
                   ],
                 ),
-                Row(
-                  children: const [
+                const Row(
+                  children: [
+                    Icon(Icons.av_timer_rounded, size: 14),
+                    SizedBox(width: 8),
                     Text(
                       "Ende:",
                       style: TextStyle(decoration: TextDecoration.underline),
@@ -171,6 +180,51 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                     ),
                   ],
                 ),
+                const Row(
+                  children: [
+                    Icon(Icons.cake_outlined, size: 14),
+                    SizedBox(width: 8),
+                    Text(
+                      "Erstelldatum:",
+                      style: TextStyle(decoration: TextDecoration.underline),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                        child: Text(
+                            prettyDateString(widget.deckModel.creationDate))),
+                  ],
+                ),
+                widget.deckModel.editDate != null
+                    ? const Row(
+                        children: [
+                          Icon(Icons.refresh, size: 14),
+                          SizedBox(width: 8),
+                          Text(
+                            "Bearbeitungsdatum:",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      )
+                    : Container(),
+                widget.deckModel.editDate != null
+                    ? Row(
+                        children: [
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Expanded(
+                              child: Text(prettyDateString(
+                                  widget.deckModel.editDate!))),
+                        ],
+                      )
+                    : Container(),
               ],
             ),
           ),

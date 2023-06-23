@@ -22,12 +22,9 @@ class DeckDBModel {
         ? dbData['cardIds'].split(',')
         : [];
     image = dbData['image'];
-    creationDate = DateTime.fromMicrosecondsSinceEpoch(dbData['creationDate']);
+    creationDate = DateTime.fromMillisecondsSinceEpoch(dbData['creationDate']);
     editDate = dbData['editDate'] != null
-        ? DateTime.fromMicrosecondsSinceEpoch(dbData['editDate'])
-        : null;
-    editDate = dbData['editDate'] != null
-        ? DateTime.fromMicrosecondsSinceEpoch(dbData['editDate'])
+        ? DateTime.fromMillisecondsSinceEpoch(dbData['editDate'])
         : null;
     rating = dbData['rating'];
   }
