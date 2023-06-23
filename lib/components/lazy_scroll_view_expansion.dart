@@ -31,14 +31,10 @@ class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
             setState(
               () {
                 if (element != null) {
-                  setState(() {
-                    expansions.add(element);
-                  });
+                  expansions.add(element);
                   loadExpansionRecursive();
                 } else {
-                  setState(() {
-                    showLoadingIcon = false;
-                  });
+                  showLoadingIcon = false;
                 }
               },
             ),

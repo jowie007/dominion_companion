@@ -23,7 +23,7 @@ class _DominionCompanionState extends State<DominionCompanion> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Connect Page',
+      title: "Julias' Dominion Companion",
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: Colors.orangeAccent,

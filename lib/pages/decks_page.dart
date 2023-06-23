@@ -18,8 +18,6 @@ class DecksPage extends StatefulWidget {
   State<DecksPage> createState() => _DecksState();
 }
 
-// TODO Reloading einbauen, falls etwas angepasst wird
-// TODO Immer nur fünf Decks laden und dann erst beim Scrollen
 class _DecksState extends State<DecksPage> {
   SettingsService settingService = SettingsService();
   DeckService deckService = DeckService();
