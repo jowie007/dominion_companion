@@ -55,7 +55,7 @@ class _DeckInfoState extends State<SettingsPage> {
                   const SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () {
-                      // Share.shareXFiles(['${directory.path}/image.jpg'], text: 'Great picture');
+                      Share.shareXFiles(['${directory.path}/image.jpg'], text: 'Great picture');
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
