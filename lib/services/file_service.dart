@@ -17,23 +17,18 @@ class FileService {
 
   ValueNotifier<bool> notifier = ValueNotifier(false);
 
-  void openFile(String path) {
-    final assetPath = 'assets/instructions/${widget.expansionId}.pdf';
+  void openFile(String assetPath, String tempPath) async {
     final ByteData assetData = await rootBundle.load(assetPath);
     final tempDir = await getTemporaryDirectory();
-    final tempFilePath = '${tempDir.path}/${widget.expansionId}.pdf';
+    final tempFilePath = '${tempDir.path}/$tempPath';
     final tempFile = File(tempFilePath);
     await tempFile.writeAsBytes(assetData.buffer.asUint8List(assetData.offsetInBytes, assetData.lengthInBytes));
-    final result = await OpenFilex.open(tempFilePath);
+    await OpenFilex.open(tempFilePath);
   }
 
-  void openExpansionInstruction(String expansionId) {
-    final assetPath = 'assets/instructions/${expansionId}.pdf';
-    final ByteData assetData = await rootBundle.load(assetPath);
-    final tempDir = await getTemporaryDirectory();
-    final tempFilePath = '${tempDir.path}/${widget.expansionId}.pdf';
-    final tempFile = File(tempFilePath);
-    await tempFile.writeAsBytes(assetData.buffer.asUint8List(assetData.offsetInBytes, assetData.lengthInBytes));
-    final result = await OpenFilex.open(tempFilePath);
+  void openExpansionInstructions(String expansionId) {
+    final assetPath = 'assets/instructions/$expansionId.pdf';
+    final tempPath = '$expansionId.pdf';
+    openFile(assetPath, tempPath);
   }
 }

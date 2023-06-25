@@ -1,14 +1,6 @@
-import 'dart:developer';
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:dominion_comanion/components/border_button_component.dart';
-import 'package:dominion_comanion/components/instructions_popup.dart';
+import 'package:dominion_comanion/services/file_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:open_filex/open_filex.dart';
-import 'package:path_provider/path_provider.dart';
 
 class CardPopup extends StatefulWidget {
   const CardPopup({super.key, required this.cardIds, this.expansionId = ""});
@@ -130,14 +122,7 @@ class _CardPopupState extends State<CardPopup> {
                     },
                   ),*/
                   onClick: () async {
-                    final assetPath = 'assets/instructions/${widget.expansionId}.pdf';
-                    final ByteData assetData = await rootBundle.load(assetPath);
-                    final tempDir = await getTemporaryDirectory();
-                    final tempFilePath = '${tempDir.path}/${widget.expansionId}.pdf';
-                    final tempFile = File(tempFilePath);
-                    await tempFile.writeAsBytes(assetData.buffer.asUint8List(assetData.offsetInBytes, assetData.lengthInBytes));
-                    final result = await OpenFilex.open(tempFilePath);
-                    log(result.message);
+                    FileService().openExpansionInstructions(widget.expansionId);
                   }
                 ))
             : Container(),
