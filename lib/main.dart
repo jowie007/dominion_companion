@@ -29,6 +29,7 @@ class _DominionCompanionState extends State<DominionCompanion> {
           primary: Colors.orangeAccent,
           secondary: const Color(0xff966a22),
         ),
+        scaffoldBackgroundColor: Colors.black,
         dialogBackgroundColor: Colors.white,
         appBarTheme: Theme.of(context).appBarTheme.copyWith(
               iconTheme: const IconThemeData(color: Colors.white),

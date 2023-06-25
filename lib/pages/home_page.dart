@@ -175,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                   MenuButton(
                       text: "Einstellungen",
                       callback: () {
-                        Navigator.pushNamed(context, route.deckPage);
+                        Navigator.pushNamed(context, route.settingsPage);
                       }),
                 ]),
               ),

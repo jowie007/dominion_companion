@@ -33,11 +33,14 @@ dependencies:
     sdk: flutter
   sqflite:
   path:
-  pdfx: 2.3.0
-  package_info_plus: 3.1.2
+  #pdfx: 2.3.0
+  open_filex: ^4.3.2
+  package_info_plus: ^4.0.2
   image_picker: ^0.8.8
   path_provider: ^2.0.15
   assets_audio_player: ^3.0.6
+  share_plus: ^7.0.2
+  flutter_cache_manager: ^3.3.0
 
 
   # The following adds the Cupertino Icons font to your application.
