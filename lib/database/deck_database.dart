@@ -49,6 +49,13 @@ class DeckDatabase {
     });
   }
 
+  Future<DeckDBModel?> getDeckByName(String name) async {
+    await openDb();
+    final List<Map<String, dynamic>> maps =
+    await _database.query('deck', where: "name = ?", whereArgs: [name]);
+    return maps.isNotEmpty ? DeckDBModel.fromDB(maps.first) : null;
+  }
+
   Future<DeckDBModel?> getDeckById(int id) async {
     await openDb();
     final List<Map<String, dynamic>> maps =

@@ -1,16 +1,12 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dominion_comanion/components/basic_appbar.dart';
-import 'package:dominion_comanion/components/button_player_count.dart';
-import 'package:dominion_comanion/components/deck_expandable_loader.dart';
-import 'package:dominion_comanion/components/menu_button.dart';
-import 'package:dominion_comanion/components/name_deck_dialog.dart';
-import 'package:dominion_comanion/components/floating_action_button_coin.dart';
-import 'package:dominion_comanion/model/deck/deck_model.dart';
+import 'package:dominion_comanion/components/custom_alert_dialog.dart';
+import 'package:dominion_comanion/components/error_dialog.dart';
 import 'package:dominion_comanion/services/deck_service.dart';
-import 'package:dominion_comanion/services/temporary_deck_service.dart';
+import 'package:dominion_comanion/services/file_service.dart';
 import 'package:flutter/material.dart';
-import 'package:share_plus/share_plus.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -25,10 +21,48 @@ class _DeckInfoState extends State<SettingsPage> {
     super.initState();
   }
 
+  void onLoadDeck() async {
+    final dbDecks = await DeckService().pickDeckJSONFile();
+    if (dbDecks == null && context.mounted) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const ErrorDialog(
+              title: "Fehler", message: "Decks konnten nicht geladen werden");
+        },
+      );
+    } else {
+      final deckNames = await DeckService().getAllDeckNames();
+      log(dbDecks.toString());
+      dbDecks!.map(
+        (deck) async => {
+          log("YES"),
+          if (deckNames.contains(deck.name)) {
+            await showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return CustomAlertDialog(
+                  title: "Doppeltes Deck",
+                  message:
+                      "Ein Deck, welches importiert wird, trägt den gleichen Namen, wie ein bereits existierendes Deck. Möchtest du das existierende Deck überschreiben?",
+                  cancelText: "Überspringen",
+                  confirmText: "Überschreiben",
+                  onConfirm: () => DeckService().importDeck(deck),
+                );
+              },
+            ),
+          } else {
+            DeckService().importDeck(deck),
+          }
+        },
+      ).toList();
+    }
+  }
+
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
-    late DeckModel temporaryDeck;
+    final cachedContext = context;
     return Scaffold(
       appBar: const BasicAppBar(title: 'Einstellungen'),
       body: Stack(
@@ -54,7 +88,9 @@ class _DeckInfoState extends State<SettingsPage> {
                   ),
                   const SizedBox(height: 10),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      FileService().shareTemporaryJSONFile("decks",
+                          jsonEncode(await DeckService().getDBDeckList()));
                       // Share.shareXFiles(['${directory.path}/image.jpg'], text: 'Great picture');
                     },
                     style: ElevatedButton.styleFrom(
@@ -64,8 +100,8 @@ class _DeckInfoState extends State<SettingsPage> {
                   ),
                   const SizedBox(height: 10),
                   ElevatedButton(
-                    onPressed: () {
-                      // Navigator.pushNamed(context, route.createDeckPage);
+                    onPressed: () async {
+                      onLoadDeck();
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,

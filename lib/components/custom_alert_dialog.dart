@@ -6,12 +6,18 @@ class CustomAlertDialog extends StatelessWidget {
       required this.title,
       required this.message,
       this.onlyCancelButton = false,
-      this.onConfirm});
+        this.onConfirm,
+      this.onCancel,
+      this.confirmText = "Ja",
+      this.cancelText = "Abbrechen"});
 
   final String title;
   final String message;
   final bool onlyCancelButton;
+  final String confirmText;
+  final String cancelText;
   final void Function()? onConfirm;
+  final void Function()? onCancel;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +32,15 @@ class CustomAlertDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         TextButton(
-          child: const Text('Abbrechen'),
+          child: Text(cancelText),
           onPressed: () {
             Navigator.pop(context, false);
+            onCancel != null ? onCancel!() : "";
           },
         ),
         !onlyCancelButton
             ? TextButton(
-                child: const Text('Ja'),
+                child: Text(confirmText),
                 onPressed: () {
                   Navigator.pop(context, true);
                   onConfirm != null ? onConfirm!() : "";

@@ -14,6 +14,7 @@ import 'package:dominion_comanion/model/hand/hand_type_enum.dart';
 import 'package:dominion_comanion/services/card_service.dart';
 import 'package:dominion_comanion/services/content_service.dart';
 import 'package:dominion_comanion/services/end_service.dart';
+import 'package:dominion_comanion/services/file_service.dart';
 import 'package:dominion_comanion/services/hand_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
@@ -44,9 +45,31 @@ class DeckService {
     return deck?.cardIds;
   }
 
+  Future<List<DeckDBModel>?> pickDeckJSONFile() async {
+    final file = await FileService().pickFile();
+    if (file == null) {
+      return null;
+    }
+    List<DeckDBModel>? dbDecks;
+    dbDecks = await getDBDecksFromJson(await file.readAsString());
+    return dbDecks;
+  }
+
+  Future<List<DeckDBModel>> getDBDecksFromJson(String jsonString) async {
+    List<dynamic> decks = jsonDecode(jsonString);
+    List<DeckDBModel> dbDecks =
+        decks.map((deck) => DeckDBModel.fromDB(deck)).toList();
+    return dbDecks;
+  }
+
+  Future<List<DeckDBModel>> getDBDeckList(
+      {bool sortAsc = true, String sortKey = "creationDate"}) async {
+    return await _deckDatabase.getDeckList(sortAsc, sortKey);
+  }
+
   Future<List<DeckModel>> getDeckList(
       {bool sortAsc = true, String sortKey = "creationDate"}) async {
-    var deckList = await _deckDatabase.getDeckList(sortAsc, sortKey);
+    var deckList = await getDBDeckList(sortKey: sortKey, sortAsc: sortAsc);
     return Future.wait(
         deckList.map((deckDBModel) => deckFromDBModel(deckDBModel)));
   }
@@ -65,6 +88,15 @@ class DeckService {
   Future<void> updateCardIds(int deckId, List<String> cardIds) {
     notifier.value = !notifier.value;
     return _deckDatabase.updateCardIds(deckId, cardIds);
+  }
+
+  Future<int> importDeck(DeckDBModel deckDBModel) async {
+    if (await _deckDatabase.getDeckByName(deckDBModel.name) != null) {
+      _deckDatabase.deleteDeckByName(deckDBModel.name);
+    }
+    deckDBModel.id = null;
+    notifier.value = !notifier.value;
+    return _deckDatabase.insertDeck(deckDBModel);
   }
 
   Future<int> updateDeck(DeckModel deckModel) {
