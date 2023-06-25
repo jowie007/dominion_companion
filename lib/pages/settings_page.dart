@@ -36,7 +36,6 @@ class _DeckInfoState extends State<SettingsPage> {
       log(dbDecks.toString());
       dbDecks!.map(
         (deck) async => {
-          log("YES"),
           if (deckNames.contains(deck.name)) {
             await showDialog(
               context: context,
