@@ -1,7 +1,22 @@
+import 'package:dominion_comanion/components/custom_alert_dialog.dart';
+import 'package:dominion_comanion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-void main() => runApp(const DominionCompanion());
+Future<void> main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  runApp(const DominionCompanion());
+  final settingsService = SettingsService();
+  try {
+    await settingsService.initializeApp();
+    FlutterNativeSplash.remove();
+  } on Exception catch (e) {
+    settingsService.initException = e;
+    FlutterNativeSplash.remove();
+  }
+}
 
 class DominionCompanion extends StatefulWidget {
   const DominionCompanion({super.key});
@@ -14,12 +29,9 @@ class _DominionCompanionState extends State<DominionCompanion> {
   @override
   initState() {
     super.initState();
-    // ExpansionService().loadJsonExpansionsIntoDB();
   }
 
   // TODO Gilden-Münzen mit + höhergestellt anzeigen
-  // TODO Edit splash screen
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -1,24 +1,18 @@
 import 'dart:developer';
 
-import 'package:dominion_comanion/database/card_database.dart';
-import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_comanion/database/model/settings/settings_db_model.dart';
 import 'package:dominion_comanion/database/settings_database.dart';
-import 'package:dominion_comanion/model/card/card_model.dart';
-import 'package:dominion_comanion/model/card/card_type_infos.dart';
-import 'package:dominion_comanion/model/content/content_model.dart';
-import 'package:dominion_comanion/model/deck/deck_model.dart';
-import 'package:dominion_comanion/model/end/end_model.dart';
-import 'package:dominion_comanion/model/hand/hand_model.dart';
 import 'package:dominion_comanion/model/settings/settings_model.dart';
 import 'package:dominion_comanion/services/card_service.dart';
 import 'package:dominion_comanion/services/content_service.dart';
-import 'package:dominion_comanion/services/deck_service.dart';
 import 'package:dominion_comanion/services/end_service.dart';
+import 'package:dominion_comanion/services/expansion_service.dart';
 import 'package:dominion_comanion/services/hand_service.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
-// TODO Einmal initial laden und erst dann weitermachen
 class SettingsService {
   static final SettingsService _settingsService = SettingsService._internal();
 
@@ -34,11 +28,64 @@ class SettingsService {
 
   SettingsService._internal();
 
-  Future<void> initSettings() async {
+  Exception? initException;
+
+  Future<void> initializeApp(
+      {deleteSettings = false, checkCardNames = false}) async {
+    await initCachedSettings();
+    if(settings == null) {
+      await initDatabase();
+      await initCachedSettings();
+    }
+    PackageInfo.fromPlatform().then((packageInfo) async {
+      if (settings.version != packageInfo.version) {
+        await ExpansionService()
+            .deleteExpansionTable()
+            .then((value) => CardService().deleteCardTable())
+            .then((value) => ContentService().deleteContentTable())
+            .then((value) => HandService().deleteHandTable())
+            .then((value) => EndService().deleteEndTable())
+            .then((value) => ExpansionService().loadJsonExpansionsIntoDB())
+            .then((value) => log("ALL EXPANSIONS LOADED"));
+        updateVersion(packageInfo.version);
+      }
+    });
+
+    if (checkCardNames) {
+      testCardNames();
+    }
+
+    if (deleteSettings) {
+      deleteSettingsTable()
+          .then((value) => initDatabase())
+          .then((value) => initCachedSettings())
+          .then((value) => log("ALL SETTINGS LOADED"));
+    }
+  }
+
+  void testCardNames() async {
+    CardService().getAllCards().then(
+      (cards) async {
+        for (var card in cards) {
+          var split = card.id.split("-");
+          if (split[1] != "set") {
+            try {
+              await rootBundle
+                  .load('assets/cards/full/${split[0]}/${split[2]}.png');
+            } catch (_) {
+              log("${card.id} not found");
+            }
+          }
+        }
+      },
+    );
+  }
+
+  Future<void> initDatabase() async {
     await _settingsDatabase.initDatabase();
   }
 
-  Future<void> loadSettings() async {
+  Future<void> initCachedSettings() async {
     settings = await getSettings();
   }
 
@@ -76,10 +123,19 @@ class SettingsService {
     settings.sortKey = sortKey;
     settings.sortAsc = sortAsc;
     notifier.value = !notifier.value;
-    return _settingsDatabase.updateSettings(SettingsDBModel.fromModel(settings));
+    return _settingsDatabase
+        .updateSettings(SettingsDBModel.fromModel(settings));
+  }
+
+  Future<int> updateVersion(String version) {
+    settings.version = version;
+    notifier.value = !notifier.value;
+    return _settingsDatabase
+        .updateSettings(SettingsDBModel.fromModel(settings));
   }
 
   Future<int> updateSettingsTable(SettingsModel settingsModel) {
-    return _settingsDatabase.updateSettings(SettingsDBModel.fromModel(settings));
+    return _settingsDatabase
+        .updateSettings(SettingsDBModel.fromModel(settings));
   }
 }

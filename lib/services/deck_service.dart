@@ -153,8 +153,9 @@ class DeckService {
     final path =
         '${appDocumentsDir!.path}/decks/images/${deckName.toLowerCase()}.jpg';
     try {
-      await File(path).exists();
-      File(path).delete();
+      if(await File(path).exists()) {
+        File(path).delete();
+      }
     } catch (_) {}
   }
 

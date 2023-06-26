@@ -3,18 +3,13 @@ import 'dart:math';
 
 import 'package:dominion_comanion/components/card_popup.dart';
 import 'package:dominion_comanion/components/custom_alert_dialog.dart';
+import 'package:dominion_comanion/components/error_dialog.dart';
 import 'package:dominion_comanion/components/menu_button.dart';
 import 'package:dominion_comanion/services/card_service.dart';
-import 'package:dominion_comanion/services/content_service.dart';
-import 'package:dominion_comanion/services/end_service.dart';
-import 'package:dominion_comanion/services/expansion_service.dart';
-import 'package:dominion_comanion/services/hand_service.dart';
 import 'package:dominion_comanion/services/music_service.dart';
 import 'package:dominion_comanion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
-import 'package:flutter/services.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 import '../components/floating_action_button_coin.dart';
 
@@ -27,55 +22,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _musicService = MusicService();
-  CardService cardService = CardService();
-
-  testCardNames() async {
-    dev.log("TEST CARD NAMES");
-    /*List<Image> columns = [];
-      CardService().getAllCards().then((value) => value.forEach((element) {
-        columns.add(Image(
-          image: AssetImage(
-              'assets/cards/full/${element.id.split("-")[0]}/${element.id.split("-")[2]}.png'),
-        ));
-      }));
-      return Column(children: columns);*/
-    CardService().getAllCards().then((value) => value.forEach((element) async {
-          var split = element.id.split("-");
-          if (split[1] != "set") {
-            try {
-              await rootBundle
-                  .load('assets/cards/full/${split[0]}/${split[2]}.png');
-            } catch (_) {
-              dev.log("${element.id} not found");
-            }
-          }
-        }));
-  }
+  final _cardService = CardService();
+  final _settingsService = SettingsService();
 
   @override
   Widget build(BuildContext context) {
-    /* TODO Auslagern in main.dart und anpassen, dass nur neu intialisiert wird, wenn sich die DB Version geändert hat*/
-    // ExpansionService().loadJsonExpansionsIntoDB();
-    PackageInfo.fromPlatform()
-        .then((packageInfo) => {dev.log("INIT DB " + packageInfo.version)});
-    ExpansionService()
-        .deleteExpansionTable()
-        .then((value) => CardService().deleteCardTable())
-        .then((value) => ContentService().deleteContentTable())
-        .then((value) => HandService().deleteHandTable())
-        .then((value) => EndService().deleteEndTable())
-        .then((value) => ExpansionService().loadJsonExpansionsIntoDB())
-        .then((value) => ExpansionService()
-            .loadAllExpansions()
-            .then((value) => dev.log("ALL EXPANSIONS LOADED")))
-        .then((_) => testCardNames());
-
-    SettingsService()
-        .deleteSettingsTable()
-        .then((value) => SettingsService().initSettings())
-        .then((value) => SettingsService().loadSettings())
-        .then((value) => dev.log("ALL SETTINGS LOADED"));
-
     final boxartList = [
       "adventures.webp",
       "allies.jpg",
@@ -89,6 +40,17 @@ class _HomePageState extends State<HomePage> {
       "seaside.jpg",
       "seaside2.jpg"
     ];
+
+    if (_settingsService.initException != null) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return ErrorDialog(
+              title: "Fehler",
+              message: _settingsService.initException.toString());
+        },
+      );
+    }
 
     return Scaffold(
       body: Stack(
@@ -152,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                           context: context,
                           builder: (context) {
                             return FutureBuilder(
-                              future: cardService.getCardOfTheDay(),
+                              future: _cardService.getCardOfTheDay(),
                               builder: (context, snapshot) {
                                 if (snapshot.hasData && snapshot.data != null) {
                                   return CardPopup(
@@ -162,7 +124,8 @@ class _HomePageState extends State<HomePage> {
                                 } else {
                                   return const CustomAlertDialog(
                                     title: "Fehler",
-                                    message: "Karte konnte nicht geladen werden",
+                                    message:
+                                        "Karte konnte nicht geladen werden",
                                     onlyCancelButton: true,
                                   );
                                 }
