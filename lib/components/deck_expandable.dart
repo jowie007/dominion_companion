@@ -160,7 +160,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                       onLongPress: () => showDialog<String>(
                         context: context,
                         useRootNavigator: false,
-                        builder: (BuildContext innerContext) => NameDeckDialog(
+                        builder: (innerContext) => NameDeckDialog(
                           oldName: widget.deckModel.name,
                           onSaved: (deckName) => setState(
                             () {

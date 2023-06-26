@@ -18,7 +18,6 @@ class NameDeckDialog extends StatelessWidget {
 
     final scaffoldMessenger = ScaffoldMessenger.of(context);
 
-    // TODO Snackbar in der Ebene über dem Dialog anzeigen
     return FutureBuilder(
       future: deckService.getAllDeckNames(),
       builder: (context, snapshot) {
@@ -35,81 +34,84 @@ class NameDeckDialog extends StatelessWidget {
             throw Exception(snapshot.error);
           } else if (snapshot.hasData) {
             return snapshot.data != null
-                ? Dialog(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Text('Deck speichern'),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 10),
-                            child: TextField(
-                              controller: deckNameController,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: 'Name des Decks',
+                ? Scaffold(
+                    backgroundColor: Colors.transparent,
+                    body: Dialog(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Text('Decknamen anpassen'),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 10),
+                              child: TextField(
+                                controller: deckNameController,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Name des Decks',
+                                ),
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.allow(RegExp(
+                                      r"[\da-zA-ZÀ-ÿ\u1E9E\u00DF -_!?&]")),
+                                ],
                               ),
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r"[\da-zA-ZÀ-ÿ\u1E9E\u00DF -_!?&]")),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Abbrechen'),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    if (deckNameController.text == "") {
+                                      scaffoldMessenger.showSnackBar(const SnackBar(
+                                          content: Text(
+                                              'Deckname darf nicht leer sein.')));
+                                      return;
+                                    }
+                                    if (deckNameController.text.toLowerCase() ==
+                                        oldName.toLowerCase()) {
+                                      scaffoldMessenger.showSnackBar(const SnackBar(
+                                          content: Text(
+                                              'Deckname ist der gleiche wie zuvor.')));
+                                      return;
+                                    }
+                                    if (deckNameController.text.toLowerCase() ==
+                                        "Temporäres Deck".toLowerCase()) {
+                                      scaffoldMessenger.showSnackBar(const SnackBar(
+                                          content: Text(
+                                              'Naja ein temoräres Deck ist es nicht. Wähl besser einen anderen Namen.')));
+                                      return;
+                                    }
+                                    if (snapshot.data!
+                                        .map((e) => e.toLowerCase())
+                                        .contains(deckNameController.text
+                                            .toLowerCase())) {
+                                      scaffoldMessenger.showSnackBar(const SnackBar(
+                                          content: Text(
+                                              'Es existiert bereits ein Deck mit diesem Namen.')));
+                                      return;
+                                    }
+                                    onSaved(deckNameController.text.toString());
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Speichern'),
+                                ),
                               ],
                             ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Abbrechen'),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  if (deckNameController.text == "") {
-                                    scaffoldMessenger.showSnackBar(const SnackBar(
-                                        content: Text(
-                                            'Deckname darf nicht leer sein.')));
-                                    return;
-                                  }
-                                  if (deckNameController.text.toLowerCase() ==
-                                      oldName.toLowerCase()) {
-                                    scaffoldMessenger.showSnackBar(const SnackBar(
-                                        content: Text(
-                                            'Deckname ist der gleiche wie zuvor.')));
-                                    return;
-                                  }
-                                  if (deckNameController.text.toLowerCase() ==
-                                      "Temporäres Deck".toLowerCase()) {
-                                    scaffoldMessenger.showSnackBar(const SnackBar(
-                                        content: Text(
-                                            'Ne, du speicherst es ja, es ist dann kein temporäres Deck mehr.')));
-                                    return;
-                                  }
-                                  if (snapshot.data!
-                                      .map((e) => e.toLowerCase())
-                                      .contains(deckNameController.text
-                                          .toLowerCase())) {
-                                    scaffoldMessenger.showSnackBar(const SnackBar(
-                                        content: Text(
-                                            'Es existiert bereits ein Deck mit diesem Namen.')));
-                                    return;
-                                  }
-                                  onSaved(deckNameController.text.toString());
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Speichern'),
-                              ),
-                            ],
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   )
