@@ -149,16 +149,21 @@ class DeckService {
         end);
   }
 
+  Future<void> removeCachedImage(String deckName) async {
+    final path =
+        '${appDocumentsDir!.path}/decks/images/${deckName.toLowerCase()}.jpg';
+    try {
+      await File(path).exists();
+      File(path).delete();
+    } catch (_) {}
+  }
+
   Future<File?> getImage(String deckName, String? base64String) async {
     appDocumentsDir ??= await getApplicationDocumentsDirectory();
     final path =
         '${appDocumentsDir!.path}/decks/images/${deckName.toLowerCase()}.jpg';
     if (base64String == null) {
-      try {
-        await File(path).exists();
-      } catch (_) {
-        File(path).delete();
-      }
+      removeCachedImage(deckName);
       return null;
     }
     try {

@@ -255,6 +255,8 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                           widget.deckModel.image = null;
                                           deckService
                                               .updateDeck(widget.deckModel);
+                                          deckService.removeCachedImage(
+                                              widget.deckModel.name);
                                         }),
                                       );
                                     },

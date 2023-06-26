@@ -21,6 +21,8 @@ class _DeckInfoState extends State<SettingsPage> {
     super.initState();
   }
 
+  final _deckService = DeckService();
+
   void onLoadDeck() async {
     final dbDecks = await DeckService().pickDeckJSONFile();
     if (dbDecks == null && context.mounted) {
@@ -33,35 +35,39 @@ class _DeckInfoState extends State<SettingsPage> {
       );
     } else {
       final deckNames = await DeckService().getAllDeckNames();
-      log(dbDecks.toString());
-      dbDecks!.map(
-        (deck) async => {
-          if (deckNames.contains(deck.name)) {
-            await showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return CustomAlertDialog(
-                  title: "Doppeltes Deck",
-                  message:
-                      "Ein Deck, welches importiert wird, trägt den gleichen Namen, wie ein bereits existierendes Deck. Möchtest du das existierende Deck überschreiben?",
-                  cancelText: "Überspringen",
-                  confirmText: "Überschreiben",
-                  onConfirm: () => DeckService().importDeck(deck),
-                );
-              },
-            ),
-          } else {
-            DeckService().importDeck(deck),
-          }
-        },
-      ).toList();
+      for (var deck in dbDecks!) {
+        if (deckNames.contains(deck.name) && context.mounted) {
+          await showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return CustomAlertDialog(
+                title: "Doppeltes Deck",
+                message:
+                    "Ein Deck mit dem Namen ${deck.name} exisitert bereits. Möchtest du das existierende Deck überschreiben?",
+                cancelText: "Überspringen",
+                confirmText: "Überschreiben",
+                onConfirm: () => {
+                  _deckService.removeCachedImage(deck.name),
+                  DeckService().importDeck(deck)
+                },
+              );
+            },
+          );
+        } else if (context.mounted) {
+          _deckService.removeCachedImage(deck.name);
+          DeckService().importDeck(deck);
+        }
+      }
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Decks wurden importiert.')));
+      }
     }
   }
 
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
-    final cachedContext = context;
     return Scaffold(
       appBar: const BasicAppBar(title: 'Einstellungen'),
       body: Stack(
