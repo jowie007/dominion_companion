@@ -49,11 +49,11 @@ class NameDeckDialog extends StatelessWidget {
                             const Text('Decknamen anpassen'),
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 10),
+                                  horizontal: 28, vertical: 10),
                               child: TextField(
+                                maxLength: 20,
                                 controller: deckNameController,
                                 decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
                                   hintText: 'Name des Decks',
                                 ),
                                 inputFormatters: <TextInputFormatter>[

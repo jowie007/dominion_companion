@@ -18,7 +18,7 @@ class SettingsService {
 
   final SettingsDatabase _settingsDatabase = SettingsDatabase();
 
-  late SettingsModel settings;
+  SettingsModel? settings;
 
   factory SettingsService() {
     return _settingsService;
@@ -38,15 +38,14 @@ class SettingsService {
       await initCachedSettings();
     }
     PackageInfo.fromPlatform().then((packageInfo) async {
-      if (settings.version != packageInfo.version) {
+      if (settings!.version != packageInfo.version) {
         await ExpansionService()
             .deleteExpansionTable()
             .then((value) => CardService().deleteCardTable())
             .then((value) => ContentService().deleteContentTable())
             .then((value) => HandService().deleteHandTable())
             .then((value) => EndService().deleteEndTable())
-            .then((value) => ExpansionService().loadJsonExpansionsIntoDB())
-            .then((value) => log("ALL EXPANSIONS LOADED"));
+            .then((value) => ExpansionService().loadJsonExpansionsIntoDB());
         updateVersion(packageInfo.version);
       }
     });
@@ -94,25 +93,25 @@ class SettingsService {
   }
 
   SettingsModel getCachedSettings() {
-    return settings;
+    return settings!;
   }
 
   void setCachedSettings(SettingsModel settingsModel) {
     settings = settingsModel;
     notifier.value = !notifier.value;
-    updateSettingsTable(settings);
+    updateSettingsTable(settings!);
   }
 
   void setCachedSettingsSortKey(String sortKey) {
-    settings.sortKey = sortKey;
+    settings!.sortKey = sortKey;
     notifier.value = !notifier.value;
-    updateSettingsTable(settings);
+    updateSettingsTable(settings!);
   }
 
   void setCachedSettingsSortAsc(bool sortAsc) {
-    settings.sortAsc = sortAsc;
+    settings!.sortAsc = sortAsc;
     notifier.value = !notifier.value;
-    updateSettingsTable(settings);
+    updateSettingsTable(settings!);
   }
 
   Future<int> deleteSettingsTable() {
@@ -120,22 +119,22 @@ class SettingsService {
   }
 
   Future<int> updateCachedSettings(String sortKey, bool sortAsc) {
-    settings.sortKey = sortKey;
-    settings.sortAsc = sortAsc;
+    settings!.sortKey = sortKey;
+    settings!.sortAsc = sortAsc;
     notifier.value = !notifier.value;
     return _settingsDatabase
-        .updateSettings(SettingsDBModel.fromModel(settings));
+        .updateSettings(SettingsDBModel.fromModel(settings!));
   }
 
   Future<int> updateVersion(String version) {
-    settings.version = version;
+    settings!.version = version;
     notifier.value = !notifier.value;
     return _settingsDatabase
-        .updateSettings(SettingsDBModel.fromModel(settings));
+        .updateSettings(SettingsDBModel.fromModel(settings!));
   }
 
   Future<int> updateSettingsTable(SettingsModel settingsModel) {
     return _settingsDatabase
-        .updateSettings(SettingsDBModel.fromModel(settings));
+        .updateSettings(SettingsDBModel.fromModel(settings!));
   }
 }

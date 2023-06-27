@@ -67,67 +67,78 @@ class _CardInfoTileState extends State<CardInfoTile> {
           title: Stack(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // https://stackoverflow.com/questions/57699497/how-to-create-a-background-with-stripes-in-flutter
-                  cardColors != null
-                      ? Container(
-                          width: 68,
-                          height: 48,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              stops:
-                                  cardService.getStopsByColors(cardColors, 1),
-                              colors: cardColors,
-                              tileMode: TileMode.repeated,
-                            ),
-                          ),
-                        )
-                      : Container(),
-                ],
-              ),
-              Row(
                 children: <Widget>[
                   SizedBox(
                     width: 74,
                     child: Stack(
                       clipBehavior: Clip.none,
                       children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // https://stackoverflow.com/questions/57699497/how-to-create-a-background-with-stripes-in-flutter
+                            cardColors != null
+                                ? Container(
+                                    width: 68,
+                                    height: 48,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        stops: cardService.getStopsByColors(
+                                            cardColors, 1),
+                                        colors: cardColors,
+                                        tileMode: TileMode.repeated,
+                                      ),
+                                    ),
+                                  )
+                                : Container(),
+                          ],
+                        ),
                         widget.card.cardCost.debt != ''
                             ? widget.card.cardCost.coin != ''
                                 ? Positioned(
+                                    top: 3,
                                     left: 24,
                                     child: CostComponent(
                                         width: 40,
                                         type: 'debt',
                                         value: widget.card.cardCost.debt),
                                   )
-                                : CostComponent(
-                                    width: 40,
-                                    type: 'debt',
-                                    value: widget.card.cardCost.debt)
+                                : Positioned(
+                                    left: 2,
+                                    top: 3,
+                                    child: CostComponent(
+                                        width: 40,
+                                        type: 'debt',
+                                        value: widget.card.cardCost.debt),
+                                  )
                             : Container(),
                         widget.card.cardCost.potion != ''
                             ? widget.card.cardCost.coin != ''
                                 ? const Positioned(
-                                    left: 24,
+                                    left: 28,
+                                    top: 3,
                                     child: CostComponent(
                                         width: 26, type: 'potion'),
                                   )
-                                : const Padding(
-                                    padding: EdgeInsets.fromLTRB(6, 0, 0, 0),
+                                : const Positioned(
+                                    left: 8,
+                                    top: 3,
                                     child: CostComponent(
                                         width: 26, type: 'potion'),
                                   )
                             : Container(),
                         widget.card.cardCost.coin != ''
-                            ? CostComponent(
-                                width: 40,
-                                type: 'coin',
-                                value: widget.card.cardCost.coin)
+                            ? Positioned(
+                                top: 3,
+                                left: 2,
+                                child: CostComponent(
+                                    width: 40,
+                                    type: 'coin',
+                                    value: widget.card.cardCost.coin),
+                              )
                             : const SizedBox(width: 26),
                       ],
                     ),

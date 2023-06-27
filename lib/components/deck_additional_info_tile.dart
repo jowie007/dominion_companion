@@ -71,6 +71,26 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                         ],
                       )
                     : Container(),
+                const Row(
+                  children: [
+                    Icon(Icons.info_outline, size: 14),
+                    SizedBox(width: 8),
+                    Text(
+                      "Voller Name:",
+                      style: TextStyle(decoration: TextDecoration.underline),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                        child: Text(
+                            widget.deckModel.name)),
+                  ],
+                ),
                 Column(
                   children: [
                     const Row(

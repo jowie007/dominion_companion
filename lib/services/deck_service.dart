@@ -119,6 +119,11 @@ class DeckService {
     return _deckDatabase.deleteDeckByName(name);
   }
 
+  Future<int> deleteDeckById(int? id) {
+    notifier.value = !notifier.value;
+    return _deckDatabase.deleteDeckById(id);
+  }
+
   DeckModel deckFromNameAndAdditional(
       int id,
       String name,

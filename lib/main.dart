@@ -1,4 +1,3 @@
-import 'package:dominion_comanion/components/custom_alert_dialog.dart';
 import 'package:dominion_comanion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dominion_comanion/router/routes.dart' as route;
@@ -31,7 +30,6 @@ class _DominionCompanionState extends State<DominionCompanion> {
     super.initState();
   }
 
-  // TODO Gilden-Münzen mit + höhergestellt anzeigen
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -49,15 +47,20 @@ class _DominionCompanionState extends State<DominionCompanion> {
                   fontSize: 20, fontFamily: 'TrajanPro', color: Colors.white),
             ),
         canvasColor: Colors.white,
+        inputDecorationTheme: const InputDecorationTheme(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.orangeAccent),
+          ),
+          border: OutlineInputBorder(),
+        ),
         textTheme: Theme.of(context).textTheme.apply(
               fontFamily: 'TrajanPro',
               bodyColor: Colors.black,
               displayColor: Colors.black,
             ),
-        textSelectionTheme: TextSelectionThemeData(
-          cursorColor: Colors.white,
-          selectionColor: Colors.white.withOpacity(0.2),
-          selectionHandleColor: Colors.white,
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Colors.orangeAccent,
+          selectionHandleColor: Colors.orangeAccent,
         ),
         useMaterial3: true,
       ),

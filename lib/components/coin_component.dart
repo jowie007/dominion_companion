@@ -32,7 +32,9 @@ class CostComponent extends StatelessWidget {
                   ),
                 ),
                 width: width,
-                padding: const EdgeInsets.fromLTRB(2, 5, 0, 0),
+                // Adjusted for two digit numbers
+                padding: EdgeInsets.fromLTRB(
+                    splitValuePlus[0].toString().length > 1 ? 0 : 2, 5, 0, 0),
                 child: value != null && splitValuePlus.isNotEmpty
                     ? FittedBox(
                         fit: BoxFit.scaleDown,

@@ -53,80 +53,83 @@ class _CardPopupState extends State<CardPopup> {
   Widget build(BuildContext context) {
     updateCardPath();
     // TODO Reihenfolge der Karten sortieren
-    return Stack(
-      children: [
-        Center(
-          child: FractionallySizedBox(
-            widthFactor: 0.7,
-            heightFactor: 0.9,
-            child: Transform(
-              transform: Matrix4.identity()
-                ..setEntry(3, 2, 0.001) // perspective
-                ..rotateX(0.01 * _offset.dy) // changed
-                ..rotateY(-0.01 * _offset.dx),
-              alignment: FractionalOffset.center,
-              child: GestureDetector(
-                onPanUpdate: (details) => setState(() => updatePan(details)),
-                onDoubleTap: () => setState(() => _offset = Offset.zero),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16.0),
-                  child: Image(
-                    image: AssetImage(_cardPath),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+      child: Stack(
+        children: [
+          Center(
+            child: FractionallySizedBox(
+              widthFactor: 0.7,
+              heightFactor: 0.9,
+              child: Transform(
+                transform: Matrix4.identity()
+                  ..setEntry(3, 2, 0.001) // perspective
+                  ..rotateX(0.01 * _offset.dy) // changed
+                  ..rotateY(-0.01 * _offset.dx),
+                alignment: FractionalOffset.center,
+                child: GestureDetector(
+                  onPanUpdate: (details) => setState(() => updatePan(details)),
+                  onDoubleTap: () => setState(() => _offset = Offset.zero),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: Image(
+                      image: AssetImage(_cardPath),
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-        widget.cardIds.length > 1
-            ? Align(
-                alignment: FractionalOffset.bottomLeft,
-                child: BorderButtonComponent(
-                  icon: Icons.arrow_back_ios_new,
-                  color: 'blue',
-                  onClick: () => setState(
-                    () => previousCard(),
+          widget.cardIds.length > 1
+              ? Align(
+                  alignment: FractionalOffset.bottomLeft,
+                  child: BorderButtonComponent(
+                    icon: Icons.arrow_back_ios_new,
+                    color: 'blue',
+                    onClick: () => setState(
+                      () => previousCard(),
+                    ),
                   ),
-                ),
-              )
-            : Container(),
-        widget.cardIds.length > 1
-            ? Align(
-                alignment: FractionalOffset.bottomRight,
-                child: BorderButtonComponent(
-                  icon: Icons.arrow_forward_ios,
-                  color: 'blue',
-                  onClick: () => setState(
-                    () => nextCard(),
+                )
+              : Container(),
+          widget.cardIds.length > 1
+              ? Align(
+                  alignment: FractionalOffset.bottomRight,
+                  child: BorderButtonComponent(
+                    icon: Icons.arrow_forward_ios,
+                    color: 'blue',
+                    onClick: () => setState(
+                      () => nextCard(),
+                    ),
                   ),
-                ),
-              )
-            : Container(),
-        Align(
-            alignment: FractionalOffset.bottomCenter,
-            child: BorderButtonComponent(
-                icon: Icons.close,
-                onClick: () =>
-                    Navigator.of(context, rootNavigator: true).pop())),
-        widget.expansionId != ""
-            ? Align(
-                alignment: FractionalOffset.topRight,
-                child: BorderButtonComponent(
-                  icon: Icons.description_outlined,
-                  color: 'green',
-                  width: 60,
-                  /*onClick: () => showDialog(
+                )
+              : Container(),
+          Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: BorderButtonComponent(
+                  icon: Icons.close,
+                  onClick: () =>
+                      Navigator.of(context, rootNavigator: true).pop())),
+          widget.expansionId != ""
+              ? Align(
+                  alignment: FractionalOffset.topRight,
+                  child: BorderButtonComponent(
+                      icon: Icons.description_outlined,
+                      color: 'green',
+                      width: 60,
+                      /*onClick: () => showDialog(
                     context: context,
                     builder: (context) {
                       return InstructionsPopup(expansionId: widget.expansionId);
                     },
                   ),*/
-                  onClick: () async {
-                    FileService().openExpansionInstructions(widget.expansionId);
-                  }
-                ))
-            : Container(),
-      ],
+                      onClick: () async {
+                        FileService()
+                            .openExpansionInstructions(widget.expansionId);
+                      }))
+              : Container(),
+        ],
+      ),
     );
   }
 }

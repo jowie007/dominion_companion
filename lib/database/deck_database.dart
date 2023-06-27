@@ -52,7 +52,7 @@ class DeckDatabase {
   Future<DeckDBModel?> getDeckByName(String name) async {
     await openDb();
     final List<Map<String, dynamic>> maps =
-    await _database.query('deck', where: "name = ?", whereArgs: [name]);
+        await _database.query('deck', where: "name = ?", whereArgs: [name]);
     return maps.isNotEmpty ? DeckDBModel.fromDB(maps.first) : null;
   }
 
@@ -75,8 +75,7 @@ class DeckDatabase {
     await openDb();
     await _database.rawQuery(
         'UPDATE deck SET cardIds = ?, editDate = ? WHERE id = ?',
-        [cardIds.join(','), DateTime.now().millisecondsSinceEpoch, deckId]
-    );
+        [cardIds.join(','), DateTime.now().millisecondsSinceEpoch, deckId]);
   }
 
   Future<int> updateDeck(DeckDBModel deck) async {
@@ -88,6 +87,13 @@ class DeckDatabase {
   Future<int> deleteDeckByName(String name) async {
     await openDb();
     return await _database.delete('deck', where: "name = ?", whereArgs: [name]);
+  }
+
+  Future<int> deleteDeckById(int? id) async {
+    await openDb();
+    return id != null
+        ? await _database.delete('deck', where: "id = ?", whereArgs: [id])
+        : 0;
   }
 
   Future<int> renameDeck(int id, String newName) async {

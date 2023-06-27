@@ -69,7 +69,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15.0),
         child: Dismissible(
-          key: Key(widget.deckModel.name),
+          key: Key(widget.deckModel.id!.toString()),
           background: const Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -104,7 +104,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
               );
               if (delete == true) {
                 setState(() {
-                  DeckService().deleteDeckByName(widget.deckModel.name);
+                  DeckService().deleteDeckById(widget.deckModel.id);
                   ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text("Deck wurde gelöscht")));
                 });
@@ -183,17 +183,17 @@ class _DeckExpandableState extends State<DeckExpandable> {
                               ),
                             ),
                             padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              alignment: Alignment.center,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(4, 2, 4, 0),
                               child: Text(
                                 widget.deckModel.name != ""
                                     ? widget.deckModel.name
                                     : "Temporäres Deck",
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize: 18,
                                   color: Colors.black,
                                 ),
                               ),
