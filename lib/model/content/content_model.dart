@@ -1,4 +1,4 @@
-import 'package:dominion_comanion/database/model/content/content_db_model.dart';
+import 'package:dominion_companion/database/model/content/content_db_model.dart';
 
 class ContentModel {
   late String id;

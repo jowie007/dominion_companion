@@ -1,5 +1,5 @@
-import 'package:dominion_comanion/database/selected_cards_database.dart';
-import 'package:dominion_comanion/services/deck_service.dart';
+import 'package:dominion_companion/database/selected_cards_database.dart';
+import 'package:dominion_companion/services/deck_service.dart';
 
 class SelectedCardService {
   final DeckService deckService = DeckService();

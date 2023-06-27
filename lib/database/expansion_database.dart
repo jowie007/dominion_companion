@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
+import 'package:dominion_companion/database/model/expansion/expansion_db_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

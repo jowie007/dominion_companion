@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:dominion_comanion/components/deck_expandable.dart';
-import 'package:dominion_comanion/model/deck/deck_model.dart';
+import 'package:dominion_companion/components/deck_expandable.dart';
+import 'package:dominion_companion/model/deck/deck_model.dart';
 import 'package:flutter/material.dart';
 
 class DeckExpandableLoader extends StatelessWidget {

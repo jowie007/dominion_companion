@@ -1,19 +1,17 @@
-import 'dart:convert';
-import 'dart:developer';
-
-import 'package:dominion_comanion/model/card/card_model.dart';
-import 'package:dominion_comanion/model/deck/deck_model.dart';
-import 'package:dominion_comanion/services/card_service.dart';
-import 'package:dominion_comanion/services/content_service.dart';
-import 'package:dominion_comanion/services/player_service.dart';
+import 'package:dominion_companion/model/card/card_model.dart';
+import 'package:dominion_companion/model/deck/deck_model.dart';
+import 'package:dominion_companion/services/card_service.dart';
+import 'package:dominion_companion/services/content_service.dart';
+import 'package:dominion_companion/services/player_service.dart';
 import 'package:flutter/material.dart';
 
 class DeckAdditionalInfoTile extends StatefulWidget {
   const DeckAdditionalInfoTile(
-      {super.key, required this.deckModel, required this.cards});
+      {super.key, required this.deckModel, required this.cards, this.isTemporary = false});
 
   final DeckModel deckModel;
   final List<CardModel> cards;
+  final bool isTemporary;
 
   @override
   State<DeckAdditionalInfoTile> createState() => _DeckAdditionalInfoTileState();
@@ -45,10 +43,11 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                         children: [
                           const Row(
                             children: [
+                              Icon(Icons.stars, size: 14),
+                              SizedBox(width: 8),
                               Text(
                                 "Extras:",
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline),
+                                style: TextStyle(decoration: TextDecoration.underline),
                               ),
                             ],
                           ),
@@ -71,7 +70,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                         ],
                       )
                     : Container(),
-                const Row(
+                !widget.isTemporary ? const Row(
                   children: [
                     Icon(Icons.info_outline, size: 14),
                     SizedBox(width: 8),
@@ -80,8 +79,8 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                       style: TextStyle(decoration: TextDecoration.underline),
                     ),
                   ],
-                ),
-                Row(
+                ) : Container(),
+                !widget.isTemporary ? Row(
                   children: [
                     const SizedBox(
                       width: 20,
@@ -90,7 +89,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                         child: Text(
                             widget.deckModel.name)),
                   ],
-                ),
+                ) : Container(),
                 Column(
                   children: [
                     const Row(

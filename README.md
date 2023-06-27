@@ -1,4 +1,4 @@
-# dominion_comanion
+# dominion_companion
 
 Shuffle your Dominion decks
 

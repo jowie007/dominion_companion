@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:dominion_comanion/components/basic_appbar.dart';
-import 'package:dominion_comanion/components/custom_alert_dialog.dart';
-import 'package:dominion_comanion/components/error_dialog.dart';
-import 'package:dominion_comanion/services/deck_service.dart';
-import 'package:dominion_comanion/services/file_service.dart';
+import 'package:dominion_companion/components/basic_appbar.dart';
+import 'package:dominion_companion/components/custom_alert_dialog.dart';
+import 'package:dominion_companion/components/error_dialog.dart';
+import 'package:dominion_companion/services/deck_service.dart';
+import 'package:dominion_companion/services/file_service.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {

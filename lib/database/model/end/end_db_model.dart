@@ -1,4 +1,4 @@
-import 'package:dominion_comanion/model/end/end_model.dart';
+import 'package:dominion_companion/model/end/end_model.dart';
 
 class EndDBModel {
   late String id;

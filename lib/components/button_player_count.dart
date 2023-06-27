@@ -1,5 +1,5 @@
-import 'package:dominion_comanion/components/button_plus_minus.dart';
-import 'package:dominion_comanion/services/player_service.dart';
+import 'package:dominion_companion/components/button_plus_minus.dart';
+import 'package:dominion_companion/services/player_service.dart';
 import 'package:flutter/material.dart';
 
 class ButtonPlayerCount extends StatefulWidget {

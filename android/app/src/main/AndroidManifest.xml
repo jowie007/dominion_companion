@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.myxes.dominion_comanion">
+    package="de.myxes.dominion_companion">
    <application
         android:label="Julias' Dominion Companion"
         android:name="${applicationName}"

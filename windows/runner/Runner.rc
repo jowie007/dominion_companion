@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "de.myxes" "\0"
-            VALUE "FileDescription", "dominion_comanion" "\0"
+            VALUE "FileDescription", "dominion_companion" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "dominion_comanion" "\0"
+            VALUE "InternalName", "dominion_companion" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 de.myxes. All rights reserved." "\0"
-            VALUE "OriginalFilename", "dominion_comanion.exe" "\0"
-            VALUE "ProductName", "dominion_comanion" "\0"
+            VALUE "OriginalFilename", "dominion_companion.exe" "\0"
+            VALUE "ProductName", "dominion_companion" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

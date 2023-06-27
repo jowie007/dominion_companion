@@ -1,13 +1,13 @@
 import 'dart:developer';
 
-import 'package:dominion_comanion/components/basic_appbar.dart';
-import 'package:dominion_comanion/components/button_player_count.dart';
-import 'package:dominion_comanion/components/deck_expandable_loader.dart';
-import 'package:dominion_comanion/components/name_deck_dialog.dart';
-import 'package:dominion_comanion/components/floating_action_button_coin.dart';
-import 'package:dominion_comanion/model/deck/deck_model.dart';
-import 'package:dominion_comanion/services/deck_service.dart';
-import 'package:dominion_comanion/services/temporary_deck_service.dart';
+import 'package:dominion_companion/components/basic_appbar.dart';
+import 'package:dominion_companion/components/button_player_count.dart';
+import 'package:dominion_companion/components/deck_expandable_loader.dart';
+import 'package:dominion_companion/components/name_deck_dialog.dart';
+import 'package:dominion_companion/components/floating_action_button_coin.dart';
+import 'package:dominion_companion/model/deck/deck_model.dart';
+import 'package:dominion_companion/services/deck_service.dart';
+import 'package:dominion_companion/services/temporary_deck_service.dart';
 import 'package:flutter/material.dart';
 
 class DeckInfoPage extends StatefulWidget {

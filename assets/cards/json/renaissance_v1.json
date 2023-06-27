@@ -1,0 +1,546 @@
+{
+  "id": "renaissance_v1",
+  "name": "Renaissance",
+  "version": "V1",
+  "cards": [
+    {
+      "id": "renaissance_v1-card-diener",
+      "name": "Diener",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-grenzposten",
+      "name": "Grenzposten",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-experiment",
+      "name": "Experiment",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-fortschritt",
+      "name": "Fortschritt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-schauspieltruppe",
+      "name": "Schauspieltruppe",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-bergdorf",
+      "name": "Bergdorf",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-erfinder",
+      "name": "Erfinder",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-fahnentraeger",
+      "name": "Fahnenträger",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-priester",
+      "name": "Priester",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-seidenhaendlerin",
+      "name": "Seidenhändlerin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-versteck",
+      "name": "Versteck",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-anwerber",
+      "name": "Anwerber",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-bildhauerin",
+      "name": "Bildhauerin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-freibeuterin",
+      "name": "Freibeuterin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-gelehrte",
+      "name": "Gelehrte",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-schatzmeisterin",
+      "name": "Schatzmeisterin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-seher",
+      "name": "Seher",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-goldmuenze",
+      "name": "Goldmünze",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-gewuerze",
+      "name": "Gewürze",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-zepter",
+      "name": "Zepter",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-frachtschiff",
+      "name": "Frachtschiff",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-forscherin",
+      "name": "Forscherin",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-patron",
+      "name": "Patron",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-alte_hexe",
+      "name": "Alte Hexe",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-schwarzer_meister",
+      "name": "Schwarzer Meister",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-abwassertunnel",
+      "name": "Abwassertunnel",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-festzug",
+      "name": "Festzug",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-kathedrale",
+      "name": "Kathedrale",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-stadttor",
+      "name": "Stadttor",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-sternenkarte",
+      "name": "Sternenkarte",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-erkundung",
+      "name": "Erkundung",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-finsterer_plan",
+      "name": "Finsterer Plan",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-kleiner_markt",
+      "name": "Kleiner Markt",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-speicher",
+      "name": "Speicher",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-akademie",
+      "name": "Akademie",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-flotte",
+      "name": "Flotte",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-gildenhaus",
+      "name": "Gildenhaus",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-kapitalismus",
+      "name": "Akademie",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-piazza",
+      "name": "Piazza",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-strassennetz",
+      "name": "Strassennetz",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-fruchtwechsel",
+      "name": "Fruchtwechsel",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-innovation",
+      "name": "Innovation",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-kaserne",
+      "name": "Kaserne",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-kanal",
+      "name": "Kanal",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "7"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-zitadelle",
+      "name": "Zitadelle",
+      "cardTypes": "projekt",
+      "cardCost": {
+        "coin": "8"
+      }
+    },
+    {
+      "id": "renaissance_v1-card-fahne",
+      "name": "Fahne",
+      "cardTypes": "artefakt",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "renaissance_v1-card-fahnentraeger"
+        ]
+      },
+      "invisible": true
+    },
+    {
+      "id": "renaissance_v1-card-horn",
+      "name": "Horn",
+      "cardTypes": "artefakt",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "renaissance_v1-card-grenzposten"
+        ]
+      },
+      "invisible": true
+    },
+    {
+      "id": "renaissance_v1-card-laterne",
+      "name": "Laterne",
+      "cardTypes": "artefakt",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "renaissance_v1-card-grenzposten"
+        ]
+      },
+      "invisible": true
+    },
+    {
+      "id": "renaissance_v1-card-schatzkiste",
+      "name": "Schatzkiste",
+      "cardTypes": "artefakt",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "renaissance_v1-card-freibeuterin"
+        ]
+      },
+      "invisible": true
+    },
+    {
+      "id": "renaissance_v1-card-schluessel",
+      "name": "Schlüssel",
+      "cardTypes": "artefakt",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "renaissance_v1-card-schatzmeisterin"
+        ]
+      },
+      "invisible": true
+    }
+  ],
+  "content": [
+    {
+      "id": "renaissance_v1-content-renaissance_tableau",
+      "name": "Renaissance Tableau",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "renaissance_v1-card-diener",
+          "renaissance_v1-card-schauspieltruppe",
+          "renaissance_v1-card-seidenhaendlerin",
+          "renaissance_v1-card-anwerber",
+          "renaissance_v1-card-bildhauerin",
+          "renaissance_v1-card-freibeuterin",
+          "renaissance_v1-card-patron",
+          "renaissance_v1-card-festzug",
+          "renaissance_v1-card-erkundung",
+          "renaissance_v1-card-akademie",
+          "renaissance_v1-card-gildenhaus"
+        ]
+      },
+      "count": "0,2,3,4,5,6"
+    },
+    {
+      "id": "renaissance_v1-content-marker",
+      "name": "Renaissance Marker",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "renaissance_v1-card-diener",
+          "renaissance_v1-card-schauspieltruppe",
+          "renaissance_v1-card-seidenhaendlerin",
+          "renaissance_v1-card-anwerber",
+          "renaissance_v1-card-bildhauerin",
+          "renaissance_v1-card-freibeuterin",
+          "renaissance_v1-card-patron",
+          "renaissance_v1-card-festzug",
+          "renaissance_v1-card-erkundung",
+          "renaissance_v1-card-akademie",
+          "renaissance_v1-card-gildenhaus"
+        ]
+      },
+      "count": "0,35,35,35,35,35"
+    },
+    {
+      "id": "renaissance_v1-content-holzesteine",
+      "name": "Renaissance Holzsteine",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "renaissance_v1-card-abwassertunnel",
+          "renaissance_v1-card-festzug",
+          "renaissance_v1-card-kathedrale",
+          "renaissance_v1-card-stadttor",
+          "renaissance_v1-card-sternenkarte",
+          "renaissance_v1-card-erkundung",
+          "renaissance_v1-card-finsterer_plan",
+          "renaissance_v1-card-kleiner_markt",
+          "renaissance_v1-card-speicher",
+          "renaissance_v1-card-akademie",
+          "renaissance_v1-card-flotte",
+          "renaissance_v1-card-gildenhaus",
+          "renaissance_v1-card-kapitalismus",
+          "renaissance_v1-card-piazza",
+          "renaissance_v1-card-strassennetz",
+          "renaissance_v1-card-fruchtwechsel",
+          "renaissance_v1-card-innovation",
+          "renaissance_v1-card-kaserne",
+          "renaissance_v1-card-kanal",
+          "renaissance_v1-card-zitadelle"
+        ]
+      },
+      "count": "0,4,6,8,10,12"
+    }
+  ],
+  "handContents": [
+    {
+      "id": "renaissance_v1-hand_contents-1",
+      "additionalElements": {
+        "renaissance_v1-content-renaissance_tableau": 1
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "renaissance_v1-card-diener",
+          "renaissance_v1-card-schauspieltruppe",
+          "renaissance_v1-card-seidenhaendlerin",
+          "renaissance_v1-card-anwerber",
+          "renaissance_v1-card-bildhauerin",
+          "renaissance_v1-card-freibeuterin",
+          "renaissance_v1-card-patron",
+          "renaissance_v1-card-festzug",
+          "renaissance_v1-card-erkundung",
+          "renaissance_v1-card-akademie",
+          "renaissance_v1-card-gildenhaus"
+        ]
+      }
+    },
+    {
+      "id": "renaissance_v1-hand_contents-2",
+      "additionalElements": {
+        "renaissance_v1-content-holzsteine": 2
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "renaissance_v1-card-abwassertunnel",
+          "renaissance_v1-card-festzug",
+          "renaissance_v1-card-kathedrale",
+          "renaissance_v1-card-stadttor",
+          "renaissance_v1-card-sternenkarte",
+          "renaissance_v1-card-erkundung",
+          "renaissance_v1-card-finsterer_plan",
+          "renaissance_v1-card-kleiner_markt",
+          "renaissance_v1-card-speicher",
+          "renaissance_v1-card-akademie",
+          "renaissance_v1-card-flotte",
+          "renaissance_v1-card-gildenhaus",
+          "renaissance_v1-card-kapitalismus",
+          "renaissance_v1-card-piazza",
+          "renaissance_v1-card-strassennetz",
+          "renaissance_v1-card-fruchtwechsel",
+          "renaissance_v1-card-innovation",
+          "renaissance_v1-card-kaserne",
+          "renaissance_v1-card-kanal",
+          "renaissance_v1-card-zitadelle"
+        ]
+      }
+    }
+  ]
+}

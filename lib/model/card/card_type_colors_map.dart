@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 const lightBrown = Color(0xffa98e5f);
+const lightBrown2 = Color(0xffa98545);
 const lightGrey = Color(0xff969696);
 const lightOrange = Color(0xffeab97e);
 const lowGreen = Color(0xff437026);
+const rosa = Color(0xffea7f9f);
 
 final Map<String, List<Color>> cardTypeColorsMap = {
   "aktion": [Colors.white],
@@ -33,6 +35,7 @@ final Map<String, List<Color>> cardTypeColorsMap = {
   "aktion-unheil": [Colors.white],
   "aktion-unterschlupf": [Colors.white, Colors.deepOrange],
   "aktion-zombie": [Colors.white],
+  "artefakt": [lightBrown2],
   "befehl-aktion": [Colors.white],
   "ereignis": [lightGrey],
   "fluch": [Colors.deepPurple],
@@ -59,6 +62,7 @@ final Map<String, List<Color>> cardTypeColorsMap = {
   "punkte-reaktion": [Colors.green, Colors.blueAccent],
   "punkte-schloss": [Colors.green],
   "punkte-unterschlupf": [Colors.green, Colors.deepOrange],
+  "projekt": [rosa],
   "reaktion-unterschlupf": [Colors.blueAccent, Colors.deepOrange],
   "unterschlupf": [Colors.white],
   "zustand": [lightOrange],

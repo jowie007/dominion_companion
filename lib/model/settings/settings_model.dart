@@ -1,4 +1,4 @@
-import 'package:dominion_comanion/database/model/settings/settings_db_model.dart';
+import 'package:dominion_companion/database/model/settings/settings_db_model.dart';
 
 class SettingsModel {
   late String version;

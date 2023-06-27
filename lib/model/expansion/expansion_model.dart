@@ -1,8 +1,8 @@
-import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
-import 'package:dominion_comanion/model/card/card_model.dart';
-import 'package:dominion_comanion/model/content/content_model.dart';
-import 'package:dominion_comanion/model/end/end_model.dart';
-import 'package:dominion_comanion/model/hand/hand_model.dart';
+import 'package:dominion_companion/database/model/expansion/expansion_db_model.dart';
+import 'package:dominion_companion/model/card/card_model.dart';
+import 'package:dominion_companion/model/content/content_model.dart';
+import 'package:dominion_companion/model/end/end_model.dart';
+import 'package:dominion_companion/model/hand/hand_model.dart';
 
 class ExpansionModel {
   late String id;

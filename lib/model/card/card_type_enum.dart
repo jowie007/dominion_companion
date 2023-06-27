@@ -1,6 +1,7 @@
 enum CardTypeEnum {
   aktion,
   angriff,
+  artefakt,
   befehl,
   dauer,
   erbstueck,
@@ -15,6 +16,7 @@ enum CardTypeEnum {
   pluendern,
   punkte,
   preis,
+  projekt,
   reaktion,
   reisender,
   reserve,

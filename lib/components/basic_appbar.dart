@@ -1,4 +1,4 @@
-import 'package:dominion_comanion/services/music_service.dart';
+import 'package:dominion_companion/services/music_service.dart';
 import 'package:flutter/material.dart';
 
 class BasicAppBar extends StatefulWidget implements PreferredSizeWidget {

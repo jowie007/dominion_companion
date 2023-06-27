@@ -1,18 +1,18 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:dominion_comanion/components/card_info_tile.dart';
-import 'package:dominion_comanion/components/custom_alert_dialog.dart';
-import 'package:dominion_comanion/components/deck_additional_info_tile.dart';
-import 'package:dominion_comanion/components/dropdown_rating.dart';
-import 'package:dominion_comanion/components/error_dialog.dart';
-import 'package:dominion_comanion/components/name_deck_dialog.dart';
-import 'package:dominion_comanion/model/deck/deck_model.dart';
-import 'package:dominion_comanion/services/deck_service.dart';
+import 'package:dominion_companion/components/card_info_tile.dart';
+import 'package:dominion_companion/components/custom_alert_dialog.dart';
+import 'package:dominion_companion/components/deck_additional_info_tile.dart';
+import 'package:dominion_companion/components/dropdown_rating.dart';
+import 'package:dominion_companion/components/error_dialog.dart';
+import 'package:dominion_companion/components/name_deck_dialog.dart';
+import 'package:dominion_companion/model/deck/deck_model.dart';
+import 'package:dominion_companion/services/deck_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:dominion_comanion/router/routes.dart' as route;
+import 'package:dominion_companion/router/routes.dart' as route;
 
 class DeckExpandable extends StatefulWidget {
   const DeckExpandable(
@@ -69,7 +69,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15.0),
         child: Dismissible(
-          key: Key(widget.deckModel.id!.toString()),
+          key: Key(widget.deckModel.name),
           background: const Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -218,7 +218,8 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                   )
                                 : DeckAdditionalInfoTile(
                                     deckModel: widget.deckModel,
-                                    cards: allCards);
+                                    cards: allCards,
+                                    isTemporary: widget.isNewlyCreated);
                           })
                     ],
                   ),

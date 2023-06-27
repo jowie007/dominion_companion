@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:dominion_comanion/helpers/converters.dart';
-import 'package:dominion_comanion/model/content/content_model.dart';
+import 'package:dominion_companion/helpers/converters.dart';
+import 'package:dominion_companion/model/content/content_model.dart';
 
 class ContentDBModel {
   late String id;

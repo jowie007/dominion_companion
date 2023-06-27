@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:dominion_comanion/database/model/settings/settings_db_model.dart';
+import 'package:dominion_companion/database/model/settings/settings_db_model.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -32,11 +32,11 @@ class SettingsDatabase {
         {"id": "settings", "version": packageInfo.version, "sortKey": "creationDate", "sortAsc": 1});
   }
 
-  Future<SettingsDBModel> getSettings() async {
+  Future<SettingsDBModel?> getSettings() async {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database
         .rawQuery('SELECT * FROM settings WHERE id LIKE ?', ["settings%"]);
-    return SettingsDBModel.fromDB(maps.first);
+    return maps.isNotEmpty ? SettingsDBModel.fromDB(maps.first) : null;
   }
 
   Future<int> updateSettings(SettingsDBModel settings) async {

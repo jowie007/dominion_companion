@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:dominion_comanion/database/content_database.dart';
-import 'package:dominion_comanion/database/model/content/content_db_model.dart';
-import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
+import 'package:dominion_companion/database/content_database.dart';
+import 'package:dominion_companion/database/model/content/content_db_model.dart';
+import 'package:dominion_companion/database/model/expansion/expansion_db_model.dart';
 
 class ContentService {
   late ContentDatabase _contentDatabase;

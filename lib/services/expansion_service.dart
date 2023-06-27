@@ -1,22 +1,22 @@
 import 'dart:developer';
 
-import 'package:dominion_comanion/database/expansion_database.dart';
-import 'package:dominion_comanion/database/model/card/card_db_model.dart';
-import 'package:dominion_comanion/database/model/content/content_db_model.dart';
-import 'package:dominion_comanion/database/model/end/end_db_model.dart';
-import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
-import 'package:dominion_comanion/database/model/hand/hand_db_model.dart';
-import 'package:dominion_comanion/model/card/card_model.dart';
-import 'package:dominion_comanion/model/content/content_model.dart';
-import 'package:dominion_comanion/model/end/end_model.dart';
-import 'package:dominion_comanion/model/expansion/expansion_model.dart';
-import 'package:dominion_comanion/model/hand/hand_model.dart';
-import 'package:dominion_comanion/model/hand/hand_type_enum.dart';
-import 'package:dominion_comanion/services/card_service.dart';
-import 'package:dominion_comanion/services/content_service.dart';
-import 'package:dominion_comanion/services/end_service.dart';
-import 'package:dominion_comanion/services/hand_service.dart';
-import 'package:dominion_comanion/services/json_service.dart';
+import 'package:dominion_companion/database/expansion_database.dart';
+import 'package:dominion_companion/database/model/card/card_db_model.dart';
+import 'package:dominion_companion/database/model/content/content_db_model.dart';
+import 'package:dominion_companion/database/model/end/end_db_model.dart';
+import 'package:dominion_companion/database/model/expansion/expansion_db_model.dart';
+import 'package:dominion_companion/database/model/hand/hand_db_model.dart';
+import 'package:dominion_companion/model/card/card_model.dart';
+import 'package:dominion_companion/model/content/content_model.dart';
+import 'package:dominion_companion/model/end/end_model.dart';
+import 'package:dominion_companion/model/expansion/expansion_model.dart';
+import 'package:dominion_companion/model/hand/hand_model.dart';
+import 'package:dominion_companion/model/hand/hand_type_enum.dart';
+import 'package:dominion_companion/services/card_service.dart';
+import 'package:dominion_companion/services/content_service.dart';
+import 'package:dominion_companion/services/end_service.dart';
+import 'package:dominion_companion/services/hand_service.dart';
+import 'package:dominion_companion/services/json_service.dart';
 
 class ExpansionService {
   late ExpansionDatabase _expansionDatabase;
@@ -78,7 +78,7 @@ class ExpansionService {
     var cards = (await _cardService.getCardsByExpansionFromDB(expansionDBModel))
         .map((card) => CardModel.fromDBModel(card))
         .toList();
-    cards.sort((a, b) => CardModel.sortCardComparisonExpansion(a, b));
+    // cards.sort((a, b) => CardModel.sortCardComparisonExpansion(a, b));
     return cards;
   }
 

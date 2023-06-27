@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:dominion_comanion/services/deck_service.dart';
+import 'package:dominion_companion/services/deck_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

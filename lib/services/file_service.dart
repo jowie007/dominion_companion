@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
+import 'package:dominion_companion/database/model/deck/deck_db_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -21,6 +21,12 @@ class FileService {
   FileService._internal();
 
   ValueNotifier<bool> notifier = ValueNotifier(false);
+
+  Future<File> getTempFile(String assetPath, String tempPath) async  {
+    final tempDir = await getTemporaryDirectory();
+    final tempFilePath = '${tempDir.path}/$tempPath';
+    return File(tempFilePath);
+  }
 
   void openFile(String assetPath, String tempPath) async {
     final ByteData assetData = await rootBundle.load(assetPath);

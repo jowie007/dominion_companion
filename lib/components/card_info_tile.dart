@@ -1,10 +1,10 @@
-import 'package:dominion_comanion/components/card_popup.dart';
-import 'package:dominion_comanion/components/coin_component.dart';
-import 'package:dominion_comanion/components/round_checkbox.dart';
-import 'package:dominion_comanion/components/expansion_icon.dart';
-import 'package:dominion_comanion/model/card/card_model.dart';
-import 'package:dominion_comanion/services/card_service.dart';
-import 'package:dominion_comanion/services/player_service.dart';
+import 'package:dominion_companion/components/card_popup.dart';
+import 'package:dominion_companion/components/coin_component.dart';
+import 'package:dominion_companion/components/round_checkbox.dart';
+import 'package:dominion_companion/components/expansion_icon.dart';
+import 'package:dominion_companion/model/card/card_model.dart';
+import 'package:dominion_companion/services/card_service.dart';
+import 'package:dominion_companion/services/player_service.dart';
 import 'package:flutter/material.dart';
 
 class CardInfoTile extends StatefulWidget {

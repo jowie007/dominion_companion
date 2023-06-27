@@ -1,6 +1,6 @@
 {
-    "name": "dominion_comanion",
-    "short_name": "dominion_comanion",
+    "name": "dominion_companion",
+    "short_name": "dominion_companion",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

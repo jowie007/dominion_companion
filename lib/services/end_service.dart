@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:dominion_comanion/database/end_database.dart';
-import 'package:dominion_comanion/database/model/expansion/expansion_db_model.dart';
-import 'package:dominion_comanion/database/model/end/end_db_model.dart';
+import 'package:dominion_companion/database/end_database.dart';
+import 'package:dominion_companion/database/model/expansion/expansion_db_model.dart';
+import 'package:dominion_companion/database/model/end/end_db_model.dart';
 
 class EndService {
   late EndDatabase _endDatabase;

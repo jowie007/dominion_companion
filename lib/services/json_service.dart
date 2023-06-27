@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:dominion_comanion/model/expansion/expansion_model.dart';
+import 'package:dominion_companion/model/expansion/expansion_model.dart';
 import 'package:flutter/services.dart';
 
 class JsonService {
@@ -16,7 +16,8 @@ class JsonService {
     'gilden_v1',
     'abenteuer_v1',
     'empires_v2',
-    'nocturne_v1'
+    'nocturne_v1',
+    'renaissance_v1'
   ];
 
   List<Future<ExpansionModel>> getExpansionsFromJSON() {

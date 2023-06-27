@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:dominion_comanion/database/model/hand/hand_db_model.dart';
-import 'package:dominion_comanion/model/hand/hand_type_enum.dart';
+import 'package:dominion_companion/database/model/hand/hand_db_model.dart';
+import 'package:dominion_companion/model/hand/hand_type_enum.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

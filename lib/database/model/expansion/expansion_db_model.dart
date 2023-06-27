@@ -1,4 +1,4 @@
-import 'package:dominion_comanion/model/expansion/expansion_model.dart';
+import 'package:dominion_companion/model/expansion/expansion_model.dart';
 
 class ExpansionDBModel {
   late String id;

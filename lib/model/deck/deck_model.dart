@@ -1,10 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:dominion_comanion/model/card/card_model.dart';
-import 'package:dominion_comanion/model/content/content_model.dart';
-import 'package:dominion_comanion/model/end/end_model.dart';
-import 'package:dominion_comanion/model/hand/hand_model.dart';
+import 'package:dominion_companion/model/card/card_model.dart';
+import 'package:dominion_companion/model/content/content_model.dart';
+import 'package:dominion_companion/model/end/end_model.dart';
+import 'package:dominion_companion/model/hand/hand_model.dart';
 
 class DeckModel {
   late int? id;

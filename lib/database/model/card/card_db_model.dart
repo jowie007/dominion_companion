@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:dominion_comanion/helpers/converters.dart';
-import 'package:dominion_comanion/model/card/card_model.dart';
-import 'package:dominion_comanion/model/card/card_type_enum.dart';
+import 'package:dominion_companion/helpers/converters.dart';
+import 'package:dominion_companion/model/card/card_model.dart';
+import 'package:dominion_companion/model/card/card_type_enum.dart';
 
 import 'card_cost_db_model.dart';
 

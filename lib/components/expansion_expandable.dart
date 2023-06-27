@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:dominion_comanion/components/card_info_tile.dart';
-import 'package:dominion_comanion/components/round_checkbox.dart';
-import 'package:dominion_comanion/model/expansion/expansion_model.dart';
-import 'package:dominion_comanion/services/expansion_service.dart';
-import 'package:dominion_comanion/services/selected_card_service.dart';
+import 'package:dominion_companion/components/card_info_tile.dart';
+import 'package:dominion_companion/components/round_checkbox.dart';
+import 'package:dominion_companion/model/expansion/expansion_model.dart';
+import 'package:dominion_companion/services/expansion_service.dart';
+import 'package:dominion_companion/services/selected_card_service.dart';
 import 'package:flutter/material.dart';
 
 class ExpansionExpandable extends StatefulWidget {

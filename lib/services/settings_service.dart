@@ -1,13 +1,13 @@
 import 'dart:developer';
 
-import 'package:dominion_comanion/database/model/settings/settings_db_model.dart';
-import 'package:dominion_comanion/database/settings_database.dart';
-import 'package:dominion_comanion/model/settings/settings_model.dart';
-import 'package:dominion_comanion/services/card_service.dart';
-import 'package:dominion_comanion/services/content_service.dart';
-import 'package:dominion_comanion/services/end_service.dart';
-import 'package:dominion_comanion/services/expansion_service.dart';
-import 'package:dominion_comanion/services/hand_service.dart';
+import 'package:dominion_companion/database/model/settings/settings_db_model.dart';
+import 'package:dominion_companion/database/settings_database.dart';
+import 'package:dominion_companion/model/settings/settings_model.dart';
+import 'package:dominion_companion/services/card_service.dart';
+import 'package:dominion_companion/services/content_service.dart';
+import 'package:dominion_companion/services/end_service.dart';
+import 'package:dominion_companion/services/expansion_service.dart';
+import 'package:dominion_companion/services/hand_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,15 +30,16 @@ class SettingsService {
 
   Exception? initException;
 
+  // Adjust version in pubspec.yaml
   Future<void> initializeApp(
-      {deleteSettings = false, checkCardNames = false}) async {
+      {deleteSettings = false, checkCardNames = false, initializeExpansions = false}) async {
     await initCachedSettings();
-    if(settings == null) {
+    if (settings == null) {
       await initDatabase();
       await initCachedSettings();
     }
     PackageInfo.fromPlatform().then((packageInfo) async {
-      if (settings!.version != packageInfo.version) {
+      if (settings!.version != packageInfo.version || initializeExpansions) {
         await ExpansionService()
             .deleteExpansionTable()
             .then((value) => CardService().deleteCardTable())
@@ -88,8 +89,9 @@ class SettingsService {
     settings = await getSettings();
   }
 
-  Future<SettingsModel> getSettings() async {
-    return SettingsModel.fromDBModel(await _settingsDatabase.getSettings());
+  Future<SettingsModel?> getSettings() async {
+    final settings = await _settingsDatabase.getSettings();
+    return settings != null ? SettingsModel.fromDBModel(settings) : null;
   }
 
   SettingsModel getCachedSettings() {

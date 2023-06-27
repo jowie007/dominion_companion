@@ -1,6 +1,6 @@
-import 'package:dominion_comanion/components/expansion_expandable.dart';
-import 'package:dominion_comanion/model/expansion/expansion_model.dart';
-import 'package:dominion_comanion/services/expansion_service.dart';
+import 'package:dominion_companion/components/expansion_expandable.dart';
+import 'package:dominion_companion/model/expansion/expansion_model.dart';
+import 'package:dominion_companion/services/expansion_service.dart';
 import 'package:flutter/material.dart';
 
 class LazyScrollViewExpansions extends StatefulWidget {

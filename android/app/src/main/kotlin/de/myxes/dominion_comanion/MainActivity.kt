@@ -1,4 +1,4 @@
-package de.myxes.dominion_comanion
+package de.myxes.dominion_companion
 
 import io.flutter.embedding.android.FlutterActivity
 

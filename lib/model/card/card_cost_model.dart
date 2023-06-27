@@ -1,4 +1,4 @@
-import 'package:dominion_comanion/database/model/card/card_cost_db_model.dart';
+import 'package:dominion_companion/database/model/card/card_cost_db_model.dart';
 
 class CardCostModel {
   late String coin;

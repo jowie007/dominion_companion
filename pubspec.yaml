@@ -1,4 +1,4 @@
-name: dominion_comanion
+name: dominion_companion
 description: Shuffle your Dominion decks
 
 # The following line prevents the package from being accidentally published to
@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+2
+version: 1.0.0+3
 
 environment:
   sdk: '>=2.18.6 <3.0.0'
@@ -76,7 +76,6 @@ flutter:
     - assets/audio/
     - assets/cards/types/
     - assets/cards/types/small/
-    - assets/cards/images/base/
     - assets/cards/other/
     - assets/cards/json/
     - assets/cards/full/alchemisten_v1/
@@ -91,6 +90,7 @@ flutter:
     - assets/cards/full/abenteuer_v1/
     - assets/cards/full/empires_v2/
     - assets/cards/full/nocturne_v1/
+    - assets/cards/full/renaissance_v1/
     - assets/menu/
     - assets/instructions/
     - assets/artwork/cover/

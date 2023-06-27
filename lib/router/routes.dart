@@ -1,9 +1,9 @@
 // https://www.section.io/engineering-education/how-to-handle-navigation-in-flutter/
-import 'package:dominion_comanion/pages/create_deck_page.dart';
-import 'package:dominion_comanion/pages/deck_info_page.dart';
-import 'package:dominion_comanion/pages/decks_page.dart';
-import 'package:dominion_comanion/pages/home_page.dart';
-import 'package:dominion_comanion/pages/settings_page.dart';
+import 'package:dominion_companion/pages/create_deck_page.dart';
+import 'package:dominion_companion/pages/deck_info_page.dart';
+import 'package:dominion_companion/pages/decks_page.dart';
+import 'package:dominion_companion/pages/home_page.dart';
+import 'package:dominion_companion/pages/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 
 const String homePage = 'homePage';

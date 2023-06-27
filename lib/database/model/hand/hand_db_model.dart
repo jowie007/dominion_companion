@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:dominion_comanion/helpers/converters.dart';
-import 'package:dominion_comanion/model/hand/hand_model.dart';
+import 'package:dominion_companion/helpers/converters.dart';
+import 'package:dominion_companion/model/hand/hand_model.dart';
 
 class HandDBModel {
   late String id;

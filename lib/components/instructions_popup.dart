@@ -1,4 +1,4 @@
-/*import 'package:dominion_comanion/components/border_button_component.dart';
+/*import 'package:dominion_companion/components/border_button_component.dart';
 import 'package:flutter/material.dart';
 import 'package:pdfx/pdfx.dart';
 

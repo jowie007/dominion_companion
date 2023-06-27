@@ -1,18 +1,18 @@
 import 'dart:developer';
 
-import 'package:dominion_comanion/database/card_database.dart';
-import 'package:dominion_comanion/database/model/deck/deck_db_model.dart';
-import 'package:dominion_comanion/model/card/card_model.dart';
-import 'package:dominion_comanion/model/card/card_type_infos.dart';
-import 'package:dominion_comanion/model/content/content_model.dart';
-import 'package:dominion_comanion/model/deck/deck_model.dart';
-import 'package:dominion_comanion/model/end/end_model.dart';
-import 'package:dominion_comanion/model/hand/hand_model.dart';
-import 'package:dominion_comanion/services/card_service.dart';
-import 'package:dominion_comanion/services/content_service.dart';
-import 'package:dominion_comanion/services/deck_service.dart';
-import 'package:dominion_comanion/services/end_service.dart';
-import 'package:dominion_comanion/services/hand_service.dart';
+import 'package:dominion_companion/database/card_database.dart';
+import 'package:dominion_companion/database/model/deck/deck_db_model.dart';
+import 'package:dominion_companion/model/card/card_model.dart';
+import 'package:dominion_companion/model/card/card_type_infos.dart';
+import 'package:dominion_companion/model/content/content_model.dart';
+import 'package:dominion_companion/model/deck/deck_model.dart';
+import 'package:dominion_companion/model/end/end_model.dart';
+import 'package:dominion_companion/model/hand/hand_model.dart';
+import 'package:dominion_companion/services/card_service.dart';
+import 'package:dominion_companion/services/content_service.dart';
+import 'package:dominion_companion/services/deck_service.dart';
+import 'package:dominion_companion/services/end_service.dart';
+import 'package:dominion_companion/services/hand_service.dart';
 
 class TemporaryDeckService {
   final DeckService _deckService = DeckService();
