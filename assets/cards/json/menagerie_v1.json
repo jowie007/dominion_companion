@@ -1,0 +1,269 @@
+{
+  "id": "menagerie_v1",
+  "name": "Menagerie",
+  "version": "V1",
+  "cards": [
+    {
+      "id": "menagerie_v1-card-kamelzug",
+      "name": "Kamelzug",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-schrott",
+      "name": "Schrott",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-verschneites_dorf",
+      "name": "Verschneites Dorf",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-ziegenhirtin",
+      "name": "Ziegenhirtin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-herberge",
+      "name": "Herberge",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-kavallerie",
+      "name": "Kavallerie",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-kopfgeldjaegerin",
+      "name": "Kopfgeldjägerin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-stallbursche",
+      "name": "Stallbursche",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-brennofen",
+      "name": "Brennofen",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-fischer",
+      "name": "Fischer",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-jagdhuette",
+      "name": "Jagdhütte",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-koppel",
+      "name": "Koppel",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-pferdestall",
+      "name": "Pferdestall",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-vertreibung",
+      "name": "Vertreibung",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-zufluchtsort",
+      "name": "Zufluchtsort",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-schlachtross",
+      "name": "Schlachtross",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "6*"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-wanderin",
+      "name": "Wanderin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "6*"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-viehmarkt",
+      "name": "Viehmarkt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "7*"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-nachschub",
+      "name": "Nachschub",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-depot",
+      "name": "Depot",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-drahtzieher",
+      "name": "Drahtzieher",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-lastkahn",
+      "name": "Lastkahn",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-wache",
+      "name": "Wache",
+      "cardTypes": "aktion, dauer, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-dorfanger",
+      "name": "Dorfanger",
+      "cardTypes": "aktion, dauer, reaktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-schlitten",
+      "name": "Schlitten",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-hirtenhund",
+      "name": "Hirtenhund",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-falknerin",
+      "name": "Falknerin",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-kardinal",
+      "name": "Kardinal",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-hexenzirkel",
+      "name": "Hexenzirkel",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-schwarze_katze",
+      "name": "Schwarze Katze",
+      "cardTypes": "aktion, angriff, reaktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-pferd",
+      "name": "Pferd",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3*"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "menagerie_v1-card-schrott",
+          "menagerie_v1-card-herberge",
+          "menagerie_v1-card-kavallerie",
+          "menagerie_v1-card-stallbursche",
+          "menagerie_v1-card-koppel",
+          "menagerie_v1-card-pferdestall",
+          "menagerie_v1-card-nachschub",
+          "menagerie_v1-card-schlitten"
+          // TODO EXTEND LIST
+        ]
+      },
+      "invisible": true
+    }
+  ]
+}
