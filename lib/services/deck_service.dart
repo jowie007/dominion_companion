@@ -25,6 +25,7 @@ class DeckService {
   final ContentService _contentService = ContentService();
   final HandService _handService = HandService();
   final EndService _endService = EndService();
+  final FileService _fileService = FileService();
 
   Directory? appDocumentsDir;
 
@@ -46,7 +47,7 @@ class DeckService {
   }
 
   Future<List<DeckDBModel>?> pickDeckJSONFile() async {
-    final file = await FileService().pickFile();
+    final file = await _fileService.pickFile();
     if (file == null) {
       return null;
     }
@@ -55,10 +56,14 @@ class DeckService {
     return dbDecks;
   }
 
-  Future<List<DeckDBModel>> getDBDecksFromJson(String jsonString) async {
-    List<dynamic> decks = jsonDecode(jsonString);
-    List<DeckDBModel> dbDecks =
-        decks.map((deck) => DeckDBModel.fromDB(deck)).toList();
+  Future<List<DeckDBModel>?> getDBDecksFromJson(String jsonString) async {
+    List<DeckDBModel> dbDecks;
+    try {
+      List<dynamic> decks = jsonDecode(jsonString);
+      dbDecks = decks.map((deck) => DeckDBModel.fromDB(deck)).toList();
+    } catch (_) {
+      return null;
+    }
     return dbDecks;
   }
 
@@ -158,7 +163,7 @@ class DeckService {
     final path =
         '${appDocumentsDir!.path}/decks/images/${deckName.toLowerCase()}.jpg';
     try {
-      if(await File(path).exists()) {
+      if (await File(path).exists()) {
         File(path).delete();
       }
     } catch (_) {}

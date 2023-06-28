@@ -64,6 +64,9 @@ class FileService {
         file = File(pickedFile.path!);
       }
     }
+    // TODO Warum geht das nicht?
+    // TODO Auch export nochmal checken
+    log("ERR"+ file!.readAsStringSync());
     return file;
   }
 }

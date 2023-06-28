@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_companion/model/card/card_model.dart';
 import 'package:dominion_companion/model/deck/deck_model.dart';
 import 'package:dominion_companion/services/card_service.dart';
@@ -158,9 +160,10 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                                 future: _contentService
                                     .getContentById(content.key.toString()),
                                 builder: (context, snapshot) {
+                                  log(content.key.toString() + (snapshot.data != null).toString());
                                   return Text(snapshot.data != null
                                       ? snapshot.data!.name
-                                      : 'Test');
+                                      : 'Fehler');
                                 },
                               ),
                             ],

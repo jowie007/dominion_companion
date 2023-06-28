@@ -105,9 +105,9 @@ class _CardPopupState extends State<CardPopup> {
                             width: snapshot.data!["width"]!.toDouble(),
                             height: snapshot.data!["height"]!.toDouble(),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(28.0),
                               child: Padding(
-                                padding: const EdgeInsets.all(2.0),
+                                padding: const EdgeInsets.fromLTRB(4.0, 0.0, 0.0, 0.0),
                                 child: Image.asset(
                                   _cardPath,
                                   fit: BoxFit.cover,
