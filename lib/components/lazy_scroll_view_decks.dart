@@ -39,7 +39,6 @@ class _LazyScrollViewDecksState extends State<LazyScrollViewDecks> {
 
   loadExpansionRecursive() async {
     SettingsModel settingsModel = SettingsService().getCachedSettings();
-    log(settingsModel.sortKey + settingsModel.sortAsc.toString());
     DeckService()
         .getDeckByPosition(decks.length,
             sortAsc: settingsModel.sortAsc, sortKey: settingsModel.sortKey)
@@ -68,33 +67,38 @@ class _LazyScrollViewDecksState extends State<LazyScrollViewDecks> {
     return ValueListenableBuilder(
       valueListenable: settingService.notifier,
       builder: (BuildContext context, bool val, Widget? child) {
-        if(cachedNotifier != settingService.notifier.value) {
+        if (cachedNotifier != settingService.notifier.value) {
           cachedNotifier = settingService.notifier.value;
           init();
         }
         return SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
-            child: Column(
-              children: [
-                ...decks
-                    .map<Widget>((e) => DeckExpandable(
-                          deckModel: e,
-                          onChange: () {
-                            if (widget.onChange != null) {
-                              widget.onChange!();
-                            }
-                            setState(() {
-                              init();
-                            });
-                          },
-                        ))
-                    .toList(),
-                showLoadingIcon
-                    ? const Center(child: CircularProgressIndicator())
-                    : Container()
-              ],
-            ),
+            child: !showLoadingIcon && decks.isEmpty
+                ? const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: Text("Keine Decks gefunden..."),
+                  )
+                : Column(
+                    children: [
+                      ...decks
+                          .map<Widget>((e) => DeckExpandable(
+                                deckModel: e,
+                                onChange: () {
+                                  if (widget.onChange != null) {
+                                    widget.onChange!();
+                                  }
+                                  setState(() {
+                                    init();
+                                  });
+                                },
+                              ))
+                          .toList(),
+                      showLoadingIcon
+                          ? const Center(child: CircularProgressIndicator())
+                          : Container()
+                    ],
+                  ),
           ),
         );
       },

@@ -172,7 +172,7 @@ class _CardPopupState extends State<CardPopup> {
             ),
           );
         } else {
-          return const Text('Karte konnte nicht geladen werden');
+          return Container();
         }
       },
     );

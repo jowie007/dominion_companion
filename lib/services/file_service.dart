@@ -22,7 +22,7 @@ class FileService {
 
   ValueNotifier<bool> notifier = ValueNotifier(false);
 
-  Future<File> getTempFile(String assetPath, String tempPath) async  {
+  Future<File> getTempFile(String assetPath, String tempPath) async {
     final tempDir = await getTemporaryDirectory();
     final tempFilePath = '${tempDir.path}/$tempPath';
     return File(tempFilePath);
@@ -64,9 +64,6 @@ class FileService {
         file = File(pickedFile.path!);
       }
     }
-    // TODO Warum geht das nicht?
-    // TODO Auch export nochmal checken
-    log("ERR"+ file!.readAsStringSync());
     return file;
   }
 }

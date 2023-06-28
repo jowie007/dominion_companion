@@ -160,7 +160,6 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                                 future: _contentService
                                     .getContentById(content.key.toString()),
                                 builder: (context, snapshot) {
-                                  log(content.key.toString() + (snapshot.data != null).toString());
                                   return Text(snapshot.data != null
                                       ? snapshot.data!.name
                                       : 'Fehler');
