@@ -259,11 +259,325 @@
           "menagerie_v1-card-koppel",
           "menagerie_v1-card-pferdestall",
           "menagerie_v1-card-nachschub",
-          "menagerie_v1-card-schlitten"
-          // TODO EXTEND LIST
+          "menagerie_v1-card-schlitten",
+          "menagerie_v1-card-ausritt",
+          "menagerie_v1-card-forderung",
+          "menagerie_v1-card-gutes_geschaeft",
+          "menagerie_v1-card-stampede"
         ]
       },
       "invisible": true
+    },
+    {
+      "id": "menagerie_v1-card-verzoegerung",
+      "name": "Verzögerung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "0"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-verzweiflung",
+      "name": "Verzweiflung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "0"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-ausritt",
+      "name": "Ausritt",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-plackerei",
+      "name": "Plackerei",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-verfolgung",
+      "name": "Verfolgung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-wagnis",
+      "name": "Wagnis",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-fussmarsch",
+      "name": "Fussmarsch",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-transport",
+      "name": "Transport",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-verbesserung",
+      "name": "Verbesserung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-gutes_geschaeft",
+      "name": "Gutes Geschäft",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-investition",
+      "name": "Investition",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-nutze_den_tag",
+      "name": "Nutze den Tag",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-verbannung",
+      "name": "Verbannung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-forderung",
+      "name": "Forderung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-kommerz",
+      "name": "Kommerz",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-stampede",
+      "name": "Stampede",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-reiche_ernte",
+      "name": "Reiche Ernte",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "7"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-enklave",
+      "name": "Enklave",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "8"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-besiedlung",
+      "name": "Besiedlung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "10"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-buendnis",
+      "name": "Bündnis",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "10"
+      }
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_affen",
+      "name": "Weg des Affen",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_chamaeleons",
+      "name": "Weg des Chamäleuns",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_eichhoernchens",
+      "name": "Weg des Eichhörnchens",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_der_eule",
+      "name": "Weg der Eule",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_frosches",
+      "name": "Weg des Frosches",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_kamels",
+      "name": "Weg des Kamels",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_der_maus",
+      "name": "Weg der Maus",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_maultiers",
+      "name": "Weg des Maultiers",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_maulwurfs",
+      "name": "Weg des Maulwurfs",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_ochsen",
+      "name": "Weg des Ochsen",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_otters",
+      "name": "Weg des Otters",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_pferdes",
+      "name": "Weg des Pferdes",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_der_ratte",
+      "name": "Weg der Ratte",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_der_robbe",
+      "name": "Weg der Robbe",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_schafs",
+      "name": "Weg des Schafs",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_der_schildkroete",
+      "name": "Weg der Schildkröte",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_schmetterlings",
+      "name": "Weg des Schmetterlings",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_schweins",
+      "name": "Weg des Schweins",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_des_wurms",
+      "name": "Weg des Wurms",
+      "cardTypes": "weg"
+    },
+    {
+      "id": "menagerie_v1-card-weg_der_ziege",
+      "name": "Weg der Ziege",
+      "cardTypes": "weg"
+    }
+  ],
+  "content": [
+    {
+      "id": "renaissance_v1-content-exil_tableau",
+      "name": "Exil Tableau",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "menagerie_v1-card-depot",
+          "menagerie_v1-card-hexenzirkel",
+          "menagerie_v1-card-kamelzug",
+          "menagerie_v1-card-kardinal",
+          "menagerie_v1-card-kopfgeldjaegerin",
+          "menagerie_v1-card-vertreibung",
+          "menagerie_v1-card-wache",
+          "menagerie_v1-card-zufluchtsort",
+          "menagerie_v1-card-enklave",
+          "menagerie_v1-card-investition",
+          "menagerie_v1-card-transport",
+          "menagerie_v1-card-verbannung",
+          "menagerie_v1-card-weg_des_kamels",
+          "menagerie_v1-card-weg_des_wurms"
+        ]
+      },
+      "count": "0,2,3,4,5,6"
+    }
+  ],
+  "handContents": [
+    {
+      "id": "menagerie_v1-hand_contents-1",
+      "additionalElements": {
+        "renaissance_v1-content-exil_tableau": 1
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "menagerie_v1-card-depot",
+          "menagerie_v1-card-hexenzirkel",
+          "menagerie_v1-card-kamelzug",
+          "menagerie_v1-card-kardinal",
+          "menagerie_v1-card-kopfgeldjaegerin",
+          "menagerie_v1-card-vertreibung",
+          "menagerie_v1-card-wache",
+          "menagerie_v1-card-zufluchtsort",
+          "menagerie_v1-card-enklave",
+          "menagerie_v1-card-investition",
+          "menagerie_v1-card-transport",
+          "menagerie_v1-card-verbannung",
+          "menagerie_v1-card-weg_des_kamels",
+          "menagerie_v1-card-weg_des_wurms"
+        ]
+      }
     }
   ]
 }

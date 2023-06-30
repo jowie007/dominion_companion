@@ -13,6 +13,7 @@ final Map<String, List<Color>> cardTypeColorsMap = {
   "aktion-angriff-dauer": [Colors.deepOrangeAccent],
   "aktion-angriff-pluendern": [Colors.white],
   "aktion-angriff-reisender": [Colors.white],
+  "aktion-angriff-reaktion": [Colors.blueAccent],
   "aktion-angriff-ritter": [Colors.white],
   "aktion-angriff-punkte": [Colors.white, Colors.green],
   "aktion-angriff-unheil": [Colors.white],
@@ -65,5 +66,6 @@ final Map<String, List<Color>> cardTypeColorsMap = {
   "projekt": [rosa],
   "reaktion-unterschlupf": [Colors.blueAccent, Colors.deepOrange],
   "unterschlupf": [Colors.white],
+  "weg": [Colors.lightBlueAccent],
   "zustand": [lightOrange],
 };

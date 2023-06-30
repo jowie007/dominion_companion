@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dominion_companion/database/card_database.dart';
 import 'package:dominion_companion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_companion/model/card/card_model.dart';
+import 'package:dominion_companion/model/card/card_type_enum.dart';
 import 'package:dominion_companion/model/card/card_type_infos.dart';
 import 'package:dominion_companion/model/content/content_model.dart';
 import 'package:dominion_companion/model/deck/deck_model.dart';
@@ -47,13 +48,21 @@ class TemporaryDeckService {
     const max = 2;
     cardIds.shuffle();
     List<CardModel> cards = await _cardService.getCardsByCardIds(cardIds);
-    List<CardModel> vCards = [...cards];
+    CardModel? wegCard;
+    for (var card in cards) {
+      if (card.cardTypes.contains(CardTypeEnum.weg)) {
+        wegCard = card;
+        break;
+      }
+    }
+    cards = cards.where((card) => !card.cardTypes.contains(CardTypeEnum.weg)).toList();
+    List<CardModel> normalCards = [...cards];
     List<CardModel> hCards = [];
     for (var element in horizontalCards) {
       var count = 0;
       for (var card in cards) {
         if (card.cardTypes.contains(element)) {
-          vCards.remove(card);
+          normalCards.remove(card);
           if (count < max) {
             hCards.add(card);
             count++;
@@ -61,8 +70,12 @@ class TemporaryDeckService {
         }
       }
     }
-    return [...hCards, ...vCards.take(DeckService.deckSize).toList()]
+    var ret = [...hCards, ...normalCards.take(DeckService.deckSize).toList()]
         .map((card) => card.id)
         .toList();
+    if (wegCard != null) {
+      ret.add(wegCard.id);
+    }
+    return ret;
   }
 }

@@ -17,7 +17,8 @@ class JsonService {
     'abenteuer_v1',
     'empires_v2',
     'nocturne_v1',
-    'renaissance_v1'
+    'renaissance_v1',
+    'menagerie_v1'
   ];
 
   List<Future<ExpansionModel>> getExpansionsFromJSON() {

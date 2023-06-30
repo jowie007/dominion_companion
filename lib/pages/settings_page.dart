@@ -6,6 +6,7 @@ import 'package:dominion_companion/components/custom_alert_dialog.dart';
 import 'package:dominion_companion/components/error_dialog.dart';
 import 'package:dominion_companion/services/deck_service.dart';
 import 'package:dominion_companion/services/file_service.dart';
+import 'package:dominion_companion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -22,6 +23,7 @@ class _DeckInfoState extends State<SettingsPage> {
   }
 
   final _deckService = DeckService();
+  final _settingsService = SettingsService();
 
   void onLoadDeck() async {
     final dbDecks = await DeckService().pickDeckJSONFile();
@@ -112,6 +114,15 @@ class _DeckInfoState extends State<SettingsPage> {
                         backgroundColor: Colors.black,
                         foregroundColor: Colors.white),
                     child: const Text("Decks laden"),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Version:",
+                    style: TextStyle(
+                        fontSize: 20, decoration: TextDecoration.underline),
+                  ),
+                  Text(
+                    _settingsService.getCachedSettings().version,
                   ),
                 ]),
               ),

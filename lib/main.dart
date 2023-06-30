@@ -5,8 +5,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 // TODO Dont check cards and dont init expansions
 // TODO Prüfen warum decks gelöscht werden
-// TODO Border von Karten anpassen
 // TODO Reihenfolge von Karten in Decks anpassen
+// TODO Anleitungen hinzufügen
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);

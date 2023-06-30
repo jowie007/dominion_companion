@@ -27,6 +27,7 @@ enum CardTypeEnum {
   schloss,
   unheil,
   unterschlupf,
+  weg,
   zombie,
   zustand,
 }
