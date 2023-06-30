@@ -6,6 +6,7 @@ import 'package:dominion_companion/database/deck_database.dart';
 import 'package:dominion_companion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_companion/helpers/shuffle.dart';
 import 'package:dominion_companion/model/card/card_model.dart';
+import 'package:dominion_companion/model/card/card_type_enum.dart';
 import 'package:dominion_companion/model/content/content_model.dart';
 import 'package:dominion_companion/model/deck/deck_model.dart';
 import 'package:dominion_companion/model/end/end_model.dart';
@@ -309,7 +310,25 @@ class DeckService {
               .map((card) async => CardModel.fromDBModel(card))));
     }
     additionalCards.addAll(alwaysCards);
-    return additionalCards;
+
+    CardModel? verbuendeteCard;
+    for (var card in additionalCards) {
+      if (card.cardTypes.contains(CardTypeEnum.verbuendete)) {
+        verbuendeteCard = card;
+        break;
+      }
+    }
+    additionalCards = additionalCards
+        .where((card) => !card.cardTypes.contains(CardTypeEnum.verbuendete))
+        .toList();
+    var ret = additionalCards;
+    if (verbuendeteCard != null) {
+      ret.add(verbuendeteCard);
+    }
+    ret.forEach((element) {
+      log(element.name);
+    });
+    return ret;
   }
 
   List<String> getActiveExpansionIdsByCardIds(List<String> cardIds) {

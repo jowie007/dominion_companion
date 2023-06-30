@@ -1,0 +1,949 @@
+{
+  "id": "verbuendete_v1",
+  "name": "Verbündete",
+  "version": "V1",
+  "cards": [
+    {
+      "id": "verbuendete_v1-card-haendlerlager",
+      "name": "Händlerlager",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-waechter",
+      "name": "Wächter",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-botin",
+      "name": "Botin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-ortschaft",
+      "name": "Ortschaft",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-schreinerin",
+      "name": "Schreinerin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-wirtin",
+      "name": "Wirtin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-aufwiegler",
+      "name": "Aufwiegler",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-barbar",
+      "name": "Barbar",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-hauptstadt",
+      "name": "Hauptstadt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-jaegerin",
+      "name": "Jägerin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-markthalle",
+      "name": "Markthalle",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-spezialistin",
+      "name": "Spezialistin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-tausch",
+      "name": "Tausch",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-umgestaltung",
+      "name": "Umgestaltung",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-marquis",
+      "name": "Marquis",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-schmeichler",
+      "name": "Schmeichler",
+      "cardTypes": "aktion, kontakt",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-tand",
+      "name": "Tand",
+      "cardTypes": "geld, kontakt",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-importeurin",
+      "name": "Importeurin",
+      "cardTypes": "aktion, dauer, kontakt",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-untergebener",
+      "name": "Untergebener",
+      "cardTypes": "aktion, kontakt",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-mittelsmann",
+      "name": "Mittelsmann",
+      "cardTypes": "aktion, kontakt",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-gildenmeisterin",
+      "name": "Gildenmeisterin",
+      "cardTypes": "aktion, kontakt",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-unterhaendlerin",
+      "name": "Unterhändlerin",
+      "cardTypes": "aktion, kontakt",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-vertrag",
+      "name": "Vertrag",
+      "cardTypes": "geld, dauer, kontakt",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-koenigliche_galeere",
+      "name": "Königliche Galeere",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-wegelagerer",
+      "name": "Wegelagerer",
+      "cardTypes": "aktion, dauer, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "verbuendete_v1-set-augurinnen",
+      "name": "Augurinnen",
+      "cardTypes": "aktion, augurin",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-kraeutersammlerin",
+      "name": "Kräutersammlerin",
+      "cardTypes": "aktion, augurin",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "verbuendete_v1-set-augurinnen"
+    },
+    {
+      "id": "verbuendete_v1-card-altardienerin",
+      "name": "Altardienerin",
+      "cardTypes": "aktion, augurin",
+      "cardCost": {
+        "coin": "4"
+      },
+      "setId": "verbuendete_v1-set-augurinnen"
+    },
+    {
+      "id": "verbuendete_v1-card-meisterhexe",
+      "name": "Meisterhexe",
+      "cardTypes": "aktion, augurin",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "verbuendete_v1-set-augurinnen"
+    },
+    {
+      "id": "verbuendete_v1-card-prophetin",
+      "name": "Prophetin",
+      "cardTypes": "aktion, augurin",
+      "cardCost": {
+        "coin": "6"
+      },
+      "setId": "verbuendete_v1-set-augurinnen"
+    },
+    {
+      "id": "verbuendete_v1-set-bastionen",
+      "name": "Bastionen",
+      "cardTypes": "aktion, bastion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-zelt",
+      "name": "Zelt",
+      "cardTypes": "aktion, bastion",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "verbuendete_v1-set-bastionen"
+    },
+    {
+      "id": "verbuendete_v1-card-garnision",
+      "name": "Garnision",
+      "cardTypes": "aktion, dauer, bastion",
+      "cardCost": {
+        "coin": "4"
+      },
+      "setId": "verbuendete_v1-set-bastionen"
+    },
+    {
+      "id": "verbuendete_v1-card-huegelfort",
+      "name": "Hügelfort",
+      "cardTypes": "aktion, bastion",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "verbuendete_v1-set-bastionen"
+    },
+    {
+      "id": "verbuendete_v1-card-burg",
+      "name": "Burg",
+      "cardTypes": "aktion, punkte, dauer, bastion",
+      "cardCost": {
+        "coin": "6"
+      },
+      "setId": "verbuendete_v1-set-bastionen"
+    },
+    {
+      "id": "verbuendete_v1-set-buerger",
+      "name": "Bürger",
+      "cardTypes": "aktion, buerger",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-ausruferin",
+      "name": "Ausruferin",
+      "cardTypes": "aktion, buerger",
+      "cardCost": {
+        "coin": "2"
+      },
+      "setId": "verbuendete_v1-set-buerger"
+    },
+    {
+      "id": "verbuendete_v1-card-eisenschmied",
+      "name": "Eisenschmied",
+      "cardTypes": "aktion, buerger",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "verbuendete_v1-set-buerger"
+    },
+    {
+      "id": "verbuendete_v1-card-mueller",
+      "name": "Müller",
+      "cardTypes": "aktion, buerger",
+      "cardCost": {
+        "coin": "4"
+      },
+      "setId": "verbuendete_v1-set-buerger"
+    },
+    {
+      "id": "verbuendete_v1-card-aelteste",
+      "name": "Älteste",
+      "cardTypes": "aktion, buerger",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "verbuendete_v1-set-buerger"
+    },
+    {
+      "id": "verbuendete_v1-set-irrfahrten",
+      "name": "Irrfahrten",
+      "cardTypes": "aktion, irrfahrt",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-alte_landkarte",
+      "name": "Alte Landkarte",
+      "cardTypes": "aktion, irrfahrt",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "verbuendete_v1-set-irrfahrten"
+    },
+    {
+      "id": "verbuendete_v1-card-seereise",
+      "name": "Seereise",
+      "cardTypes": "aktion, dauer, irrfahrt",
+      "cardCost": {
+        "coin": "4"
+      },
+      "setId": "verbuendete_v1-set-irrfahrten"
+    },
+    {
+      "id": "verbuendete_v1-card-versunkener_schatz",
+      "name": "Versunkener Schatz",
+      "cardTypes": "geld, irrfahrt",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "verbuendete_v1-set-irrfahrten"
+    },
+    {
+      "id": "verbuendete_v1-card-ferne_kueste",
+      "name": "Ferne Küste",
+      "cardTypes": "aktion, punkte, irrfahrt",
+      "cardCost": {
+        "coin": "6"
+      },
+      "setId": "verbuendete_v1-set-irrfahrten"
+    },
+    {
+      "id": "verbuendete_v1-set-konflikte",
+      "name": "Konflikte",
+      "cardTypes": "aktion, konflikt",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-schlachtplan",
+      "name": "Schlachtplan",
+      "cardTypes": "aktion, konflikt",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "verbuendete_v1-set-konflikte"
+    },
+    {
+      "id": "verbuendete_v1-card-bogenschuetzin",
+      "name": "Bogenschützin",
+      "cardTypes": "aktion, angriff, konflikt",
+      "cardCost": {
+        "coin": "4"
+      },
+      "setId": "verbuendete_v1-set-konflikte"
+    },
+    {
+      "id": "verbuendete_v1-card-kriegsherr",
+      "name": "Kriegsherr",
+      "cardTypes": "aktion, dauer, angriff, konflikt",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "verbuendete_v1-set-konflikte"
+    },
+    {
+      "id": "verbuendete_v1-card-territorium",
+      "name": "Territorium",
+      "cardTypes": "punkte, konflikt",
+      "cardCost": {
+        "coin": "6"
+      },
+      "setId": "verbuendete_v1-set-konflikte"
+    },
+    {
+      "id": "verbuendete_v1-set-zauberer",
+      "name": "Zauberer",
+      "cardTypes": "aktion, zauberer",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-zauberschueler",
+      "name": "Zauberschüler",
+      "cardTypes": "aktion, zauberer, kontakt",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "verbuendete_v1-set-zauberer"
+    },
+    {
+      "id": "verbuendete_v1-card-berschwoerer",
+      "name": "Beschwörer",
+      "cardTypes": "aktion, dauer, zauberer",
+      "cardCost": {
+        "coin": "4"
+      },
+      "setId": "verbuendete_v1-set-zauberer"
+    },
+    {
+      "id": "verbuendete_v1-card-hexenmeister",
+      "name": "Beschwörer",
+      "cardTypes": "aktion, angriff, zauberer",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "verbuendete_v1-set-zauberer"
+    },
+    {
+      "id": "verbuendete_v1-card-lich",
+      "name": "Lich",
+      "cardTypes": "aktion, zauberer",
+      "cardCost": {
+        "coin": "6"
+      },
+      "setId": "verbuendete_v1-set-zauberer"
+    },
+    {
+      "id": "verbuendete_v1-card-architektengilde",
+      "name": "Architektengilde",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-bankiersverbund",
+      "name": "Bankiersverbund",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-bergvolk",
+      "name": "Bergvolk",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-bund_der_ladenbesitzer",
+      "name": "Bund der Ladenbesitzer",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-erfinderfamilie",
+      "name": "Erfinderfamilie",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-freimaurerloge",
+      "name": "Freimaurerloge",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-friedlicher_kult",
+      "name": "Friedlicher Kult",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-gefolgschaft_der_schreiber",
+      "name": "Gefolgschaft der Schreiber",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-handwerkergilde",
+      "name": "Handwerkergilde",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-hexenbund",
+      "name": "Hexenbund",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-hoehlenbewohner",
+      "name": "Höhlenbewohner",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-höhlenhafen",
+      "name": "Höhlenhafen",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-holzarbeitergilde",
+      "name": "Holzarbeitergilde",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-huette_der_fallensteller",
+      "name": "Architektengilde",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-inselvolk",
+      "name": "Inselvolk",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-markstaedte",
+      "name": "Marktstädte",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-nomadenstamm",
+      "name": "Nomadenstamm",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-schaefer_der_hochebene",
+      "name": "Schäfer der Hochebene",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-stadtstaat",
+      "name": "Stadtstaat",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-sterndeuterorden",
+      "name": "Sterndeuterorden",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-taschendiebe",
+      "name": "Taschendiebe",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-waldbewohner",
+      "name": "Waldbewohner",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    },
+    {
+      "id": "verbuendete_v1-card-wuestenfuehrer",
+      "name": "Wüstenführer",
+      "cardTypes": "verbuendete",
+      "invisible": true,
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    }
+  ],
+  "content": [
+    {
+      "id": "verbuendete_v1-content-gefallen_tableau",
+      "name": "Gefallen Tableau",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      },
+      "count": "0,2,3,4,5,6"
+    }
+  ],
+  "handContents": [
+    {
+      "id": "verbuendete_v1-hand_contents-1",
+      "additionalElements": {
+        "verbuendete_v1-content-gefallen_tableau": 1
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "verbuendete_v1-card-schmeichler",
+          "verbuendete_v1-card-tand",
+          "verbuendete_v1-card-importeurin",
+          "verbuendete_v1-card-untergebener",
+          "verbuendete_v1-card-mittelsmann",
+          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-unterhaendlerin",
+          "verbuendete_v1-card-vertrag",
+          "verbuendete_v1-card-zauberschueler"
+        ]
+      }
+    }
+  ]
+}
