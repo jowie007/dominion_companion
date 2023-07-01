@@ -325,9 +325,6 @@ class DeckService {
     if (verbuendeteCard != null) {
       ret.add(verbuendeteCard);
     }
-    ret.forEach((element) {
-      log(element.name);
-    });
     return ret;
   }
 

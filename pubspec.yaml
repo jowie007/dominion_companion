@@ -91,12 +91,14 @@ flutter:
     - assets/cards/full/renaissance_v1/
     - assets/cards/full/menagerie_v1/
     - assets/cards/full/verbuendete_v1/
+    - assets/cards/full/pluenderer_v1/
     - assets/menu/
     - assets/instructions/
     - assets/artwork/cover/
     - assets/artwork/boxart/
     - assets/artwork/background/
     - assets/artwork/icon/
+    - assets/artwork/splash/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

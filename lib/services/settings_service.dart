@@ -32,14 +32,25 @@ class SettingsService {
 
   // Adjust version in pubspec.yaml
   Future<void> initializeApp(
-      {deleteSettings = false, checkCardNames = false, initializeExpansions = false}) async {
+      {deleteSettings = false,
+      checkCardNames = false,
+      initializeExpansions = false}) async {
+    if (deleteSettings) {
+      await deleteSettingsTable()
+          .then((value) => initDatabase())
+          .then((value) => initCachedSettings())
+          .then((value) => log("ALL SETTINGS LOADED"));
+    }
+
     await initCachedSettings();
     if (settings == null) {
+      log("SETTING IS NULL");
       await initDatabase();
       await initCachedSettings();
     }
     await PackageInfo.fromPlatform().then((packageInfo) async {
-      if (settings!.version != packageInfo.version || initializeExpansions) {
+      if (settings!.version != packageInfo.version ||
+          initializeExpansions) {
         await ExpansionService()
             .deleteExpansionTable()
             .then((value) => CardService().deleteCardTable())
@@ -47,19 +58,12 @@ class SettingsService {
             .then((value) => HandService().deleteHandTable())
             .then((value) => EndService().deleteEndTable())
             .then((value) => ExpansionService().loadJsonExpansionsIntoDB());
-        updateVersion(packageInfo.version);
+        await updateVersion(packageInfo.version);
       }
     });
 
     if (checkCardNames) {
       testCardNames();
-    }
-
-    if (deleteSettings) {
-      deleteSettingsTable()
-          .then((value) => initDatabase())
-          .then((value) => initCachedSettings())
-          .then((value) => log("ALL SETTINGS LOADED"));
     }
   }
 
@@ -134,6 +138,13 @@ class SettingsService {
     return _settingsDatabase
         .updateSettings(SettingsDBModel.fromModel(settings!));
   }
+
+ /* Future<int> updateLoadingSuccess(bool loadingSuccess) {
+    settings!.loadingSuccess = loadingSuccess;
+    notifier.value = !notifier.value;
+    return _settingsDatabase
+        .updateSettings(SettingsDBModel.fromModel(settings!));
+  }*/
 
   Future<int> updateSettingsTable(SettingsModel settingsModel) {
     return _settingsDatabase

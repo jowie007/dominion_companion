@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
             child: Align(
               alignment: Alignment.topCenter,
               child: Container(
-                padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
+                padding: const EdgeInsets.fromLTRB(0, 60, 0, 40),
                 child: Column(children: [
                   const SizedBox(
                     height: 140,

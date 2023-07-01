@@ -1,0 +1,678 @@
+{
+  "id": "pluenderer_v1",
+  "name": "Plünderer",
+  "version": "V1",
+  "cards": [
+    {
+      "id": "pluenderer_v1-card-grotte",
+      "name": "Grotte",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-schamanin",
+      "name": "Schamanin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-suche",
+      "name": "Suche",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-blinder_passagier",
+      "name": "Blinder Passagier",
+      "cardTypes": "aktion, dauer, reaktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-einsamer_schrein",
+      "name": "Einsamer Schrein",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-sirene",
+      "name": "Sirene",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-vorarbeiter",
+      "name": "Vorarbeiter",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-abenteurerin",
+      "name": "Abenteurerin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-ausgesetzter",
+      "name": "Ausgesetzter",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-flaggschiff",
+      "name": "Flagschiff",
+      "cardTypes": "aktion, dauer, befehl",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-hafendorf",
+      "name": "Hafendorf",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-kartenzeichnerin",
+      "name": "Kartenzeichnerin",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-landungstrupp",
+      "name": "Landungstrupp",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-schiffsjunge",
+      "name": "Schiffsjunge",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-sumpfhuetten",
+      "name": "Sumpfhütten",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-bergbaustrasse",
+      "name": "Bergbaustrasse",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-erste_maatin",
+      "name": "Erste Maatin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-fregatte",
+      "name": "Fregatte",
+      "cardTypes": "aktion, dauer, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-gauner",
+      "name": "Gauner",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-langschiff",
+      "name": "Langschiff",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-mannschaft",
+      "name": "Mannschaft",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-meuchlerin",
+      "name": "Meuchlerin",
+      "cardTypes": "aktion, dauer, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-pilger",
+      "name": "Pilger",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-quartiermeister",
+      "name": "Quartiermeister",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-vergroesserung",
+      "name": "Vergrösserung",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-wohlhabendes_dorf",
+      "name": "Wohlhabendes Dorf",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-juwelen_ei",
+      "name": "Juwelen-Ei",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-kaefig",
+      "name": "Käfig",
+      "cardTypes": "geld, dauer",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-gondel",
+      "name": "Gondel",
+      "cardTypes": "geld, dauer",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-schmelztiegel",
+      "name": "Schmelztiegel",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-seil",
+      "name": "Seil",
+      "cardTypes": "geld, dauer",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-ueberfluss",
+      "name": "Überfluss",
+      "cardTypes": "geld, dauer",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-werkzeug",
+      "name": "Werkzeug",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-anhaenger",
+      "name": "Anhänger",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-figurine",
+      "name": "Figurine",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-silbermine",
+      "name": "Silbermine",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-spitzhacke",
+      "name": "Spitzhacke",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-vergrabener_schatz",
+      "name": "Vergrabener Schatz",
+      "cardTypes": "geld, dauer",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-sack_voll_kostbarkeiten",
+      "name": "Sack voll Kostbarkeiten",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-koenigstruhe",
+      "name": "Königstruhe",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "7"
+      }
+    },
+    {
+      "id": "pluenderer_v1-set-kostbarkeiten",
+      "name": "Kostbarkeiten",
+      "cardTypes": "geld, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "pluenderer_v1-card-suche",
+          "pluenderer_v1-card-juwelen_ei",
+          "pluenderer_v1-card-spitzhacke",
+          "pluenderer_v1-card-sack_voll_kostbarkeiten",
+          "pluenderer_v1-card-riskieren",
+          "pluenderer_v1-card-brandschatzung",
+          "pluenderer_v1-card-pluenderung",
+          "pluenderer_v1-card-aufbluehen"
+        ]
+      },
+      "invisible": true
+    },
+    {
+      "id": "pluenderer_v1-card-amphore",
+      "name": "Amphore",
+      "cardTypes": "geld, dauer, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-dublonen",
+      "name": "Dublonen",
+      "cardTypes": "geld, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-endloser_kelch",
+      "name": "Endloser Kelch",
+      "cardTypes": "geld, dauer, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-galionsfigur",
+      "name": "Galionsfigur",
+      "cardTypes": "geld, dauer, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-hammer",
+      "name": "Hammer",
+      "cardTypes": "geld, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-insignien",
+      "name": "Insignien",
+      "cardTypes": "geld, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-juwelen",
+      "name": "Juwelen",
+      "cardTypes": "geld, dauer, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-kugel",
+      "name": "Kugel",
+      "cardTypes": "geld, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-raetselschatulle",
+      "name": "Rätselschatulle",
+      "cardTypes": "geld, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-schild",
+      "name": "Schild",
+      "cardTypes": "geld, reaktion, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-schwert",
+      "name": "Schwert",
+      "cardTypes": "geld, angriff, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-sextant",
+      "name": "Sextant",
+      "cardTypes": "geld, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-stab",
+      "name": "Stab",
+      "cardTypes": "geld, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-zauberrolle",
+      "name": "Zauberrolle",
+      "cardTypes": "aktion, geld, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-zuchtziege",
+      "name": "Zuchtziege",
+      "cardTypes": "geld, kostbarkeit",
+      "cardCost": {
+        "coin": "7*"
+      },
+      "setId": "pluenderer_v1-set-kostbarkeiten"
+    },
+    {
+      "id": "pluenderer_v1-card-aufdringlich",
+      "name": "Aufdringlich",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-benachbart",
+      "name": "Benachbart",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-billig",
+      "name": "Billig",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-eilig",
+      "name": "Eilig",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-freundlich",
+      "name": "Freundlich",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-fromm",
+      "name": "Fromm",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-geduldig",
+      "name": "Geduldig",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-geerbt",
+      "name": "Geerbt",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-inspirierend",
+      "name": "Inspirierend",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-reich",
+      "name": "Reich",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-scheu",
+      "name": "Scheu",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-unermuedlich",
+      "name": "Unermüdlich",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-verflucht",
+      "name": "Verflucht",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-vorherbestimmt",
+      "name": "Vorherbestimmt",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-waghalsig",
+      "name": "Waghalsig",
+      "cardTypes": "merkmal"
+    },
+    {
+      "id": "pluenderer_v1-card-vergraben",
+      "name": "Vergraben",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "1"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-ausweichen",
+      "name": "Ausweichen",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-beeilung",
+      "name": "Beeilung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-riskieren",
+      "name": "Riskieren",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-zustellung",
+      "name": "Zustellung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-brandschatzung",
+      "name": "Brandschatzung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-in_see_stechen",
+      "name": "In See stechen",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-herumsuchen",
+      "name": "Herumsuchen",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-spiegeln",
+      "name": "Spiegeln",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-vorbereitung",
+      "name": "Vorbereitung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-mahlstrom",
+      "name": "Mahlstrom",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-reise",
+      "name": "Reise",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-pluenderung",
+      "name": "Plünderung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-aufbluehen",
+      "name": "Aufblühen",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "10"
+      }
+    },
+    {
+      "id": "pluenderer_v1-card-invasion",
+      "name": "Invasion",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "10"
+      }
+    }
+  ]
+}

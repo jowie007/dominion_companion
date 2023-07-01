@@ -15,7 +15,8 @@ class SettingsDatabase {
           "id STRING PRIMARY KEY, "
           "version STRING, "
           "sortKey STRING, "
-          "sortAsc BOOL)");
+          "sortAsc BOOL, "
+          "loadingSuccess BOOL)");
     });
     return _database;
   }
@@ -28,8 +29,13 @@ class SettingsDatabase {
   Future<int> initDatabase() async {
     await openDb();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    return await _database.insert('settings',
-        {"id": "settings", "version": packageInfo.version, "sortKey": "creationDate", "sortAsc": 1});
+    return await _database.insert('settings', {
+      "id": "settings",
+      "version": packageInfo.version,
+      "sortKey": "creationDate",
+      "sortAsc": 1,
+      "loadingSuccess": 1
+    });
   }
 
   Future<SettingsDBModel?> getSettings() async {

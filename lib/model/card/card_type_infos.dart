@@ -4,4 +4,5 @@ const horizontalCards = [
   CardTypeEnum.ereignis,
   CardTypeEnum.landmarke,
   CardTypeEnum.projekt,
+  CardTypeEnum.merkmal,
 ];

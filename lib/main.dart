@@ -13,7 +13,7 @@ Future<void> main() async {
   runApp(const DominionCompanion());
   final settingsService = SettingsService();
   try {
-    await settingsService.initializeApp(checkCardNames: true, initializeExpansions: true);
+    await settingsService.initializeApp(checkCardNames: true, initializeExpansions: true, deleteSettings: true);
     FlutterNativeSplash.remove();
   } on Exception catch (e) {
     settingsService.initException = e;

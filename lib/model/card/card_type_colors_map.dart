@@ -7,6 +7,7 @@ const lightGrey = Color(0xff969696);
 const lightOrange = Color(0xffeab97e);
 const lowGreen = Color(0xff437026);
 const rosa = Color(0xffea7f9f);
+const lightPurple = Color(0xffaa7fea);
 
 final Map<String, List<Color>> cardTypeColorsMap = {
   "aktion": [Colors.white],
@@ -26,6 +27,7 @@ final Map<String, List<Color>> cardTypeColorsMap = {
   "aktion-buerger": [Colors.white],
   "aktion-dauer": [Colors.deepOrangeAccent],
   "aktion-dauer-angriff": [Colors.deepOrangeAccent],
+  "aktion-dauer-befehl": [Colors.deepOrangeAccent],
   "aktion-dauer-konflikt": [Colors.deepOrangeAccent],
   "aktion-dauer-bastion": [Colors.deepOrangeAccent],
   "aktion-dauer-irrfahrt": [Colors.deepOrangeAccent],
@@ -34,6 +36,7 @@ final Map<String, List<Color>> cardTypeColorsMap = {
   "aktion-dauer-zauberer": [Colors.deepOrangeAccent],
   "aktion-erscheinung": [Colors.white],
   "aktion-geld": [Colors.white, Colors.orangeAccent],
+  "aktion-geld-kostbarkeit": [Colors.white, Colors.orangeAccent],
   "aktion-irrfahrt": [Colors.white],
   "aktion-konflikt": [Colors.white],
   "aktion-kontakt": [Colors.white],
@@ -62,19 +65,24 @@ final Map<String, List<Color>> cardTypeColorsMap = {
   "gabe": [Colors.amberAccent],
   "geld": [Colors.orangeAccent],
   "geld-angriff": [Colors.orangeAccent],
+  "geld-angriff-kostbarkeit": [Colors.orangeAccent],
   "geld-angriff-segen": [Colors.orangeAccent],
   "geld-dauer": [Colors.orangeAccent, Colors.deepOrangeAccent],
   "geld-dauer-kontakt": [Colors.orangeAccent, Colors.deepOrangeAccent],
+  "geld-dauer-kostbarkeit": [Colors.orangeAccent, Colors.deepOrangeAccent],
   "geld-erbstueck": [Colors.orangeAccent],
   "geld-irrfahrt": [Colors.orangeAccent],
   "geld-kontakt": [Colors.orangeAccent],
+  "geld-kostbarkeit": [Colors.orangeAccent],
   "geld-preis": [Colors.white],
   "geld-punkte": [Colors.orangeAccent, Colors.green],
   "geld-punkte-erbstueck": [Colors.orangeAccent, Colors.green],
   "geld-punkte-schloss": [Colors.orangeAccent, Colors.green],
   "geld-reaktion": [Colors.orangeAccent, Colors.blueAccent],
+  "geld-reaktion-kostbarkeit": [Colors.orangeAccent, Colors.blueAccent],
   "geld-reserve": [Colors.orangeAccent],
   "landmarke": [lowGreen],
+  "merkmal": [lightPurple],
   "nacht": [Colors.black12],
   "nacht-angriff-unheil": [Colors.black12],
   "nacht-dauer": [Colors.orangeAccent, Colors.black12],

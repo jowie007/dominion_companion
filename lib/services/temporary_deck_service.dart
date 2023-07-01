@@ -55,10 +55,24 @@ class TemporaryDeckService {
         break;
       }
     }
-    cards = cards.where((card) => !card.cardTypes.contains(CardTypeEnum.weg)).toList();
+    cards = cards
+        .where((card) => !card.cardTypes.contains(CardTypeEnum.weg))
+        .toList();
     List<CardModel> normalCards = [...cards];
     List<CardModel> hCards = [];
-    for (var element in horizontalCards) {
+    var count = 0;
+    for(var card in cards) {
+      for (var element in horizontalCards) {
+        if (card.cardTypes.contains(element)) {
+          normalCards.remove(card);
+          if (count < max) {
+            hCards.add(card);
+            count++;
+          }
+        }
+      }
+    }
+    /*for (var element in horizontalCards) {
       var count = 0;
       for (var card in cards) {
         if (card.cardTypes.contains(element)) {
@@ -69,7 +83,7 @@ class TemporaryDeckService {
           }
         }
       }
-    }
+    }*/
     var ret = [...hCards, ...normalCards.take(DeckService.deckSize).toList()]
         .map((card) => card.id)
         .toList();
