@@ -38,7 +38,7 @@ class SettingsService {
       await initDatabase();
       await initCachedSettings();
     }
-    PackageInfo.fromPlatform().then((packageInfo) async {
+    await PackageInfo.fromPlatform().then((packageInfo) async {
       if (settings!.version != packageInfo.version || initializeExpansions) {
         await ExpansionService()
             .deleteExpansionTable()

@@ -164,8 +164,8 @@
       }
     },
     {
-      "id": "verbuendete_v1-card-gildenmeisterin",
-      "name": "Gildenmeisterin",
+      "id": "verbuendete_v1-card-gildemeisterin",
+      "name": "Gildemeisterin",
       "cardTypes": "aktion, kontakt",
       "cardCost": {
         "coin": "5"
@@ -212,6 +212,15 @@
       }
     },
     {
+      "id": "verbuendete_v1-card-augurinnen",
+      "name": "Augurinnen",
+      "cardTypes": "aktion, augurin",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "verbuendete_v1-set-augurinnen"
+    },
+    {
       "id": "verbuendete_v1-card-kraeutersammlerin",
       "name": "Kräutersammlerin",
       "cardTypes": "aktion, augurin",
@@ -256,6 +265,15 @@
       }
     },
     {
+      "id": "verbuendete_v1-card-bastionen",
+      "name": "Bastionen",
+      "cardTypes": "aktion, bastion",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "verbuendete_v1-set-bastionen"
+    },
+    {
       "id": "verbuendete_v1-card-zelt",
       "name": "Zelt",
       "cardTypes": "aktion, bastion",
@@ -265,8 +283,8 @@
       "setId": "verbuendete_v1-set-bastionen"
     },
     {
-      "id": "verbuendete_v1-card-garnision",
-      "name": "Garnision",
+      "id": "verbuendete_v1-card-garnison",
+      "name": "Garnison",
       "cardTypes": "aktion, dauer, bastion",
       "cardCost": {
         "coin": "4"
@@ -298,6 +316,15 @@
       "cardCost": {
         "coin": "2"
       }
+    },
+    {
+      "id": "verbuendete_v1-card-buerger",
+      "name": "Bürger",
+      "cardTypes": "aktion, buerger",
+      "cardCost": {
+        "coin": "2"
+      },
+      "setId": "verbuendete_v1-set-buerger"
     },
     {
       "id": "verbuendete_v1-card-ausruferin",
@@ -344,6 +371,15 @@
       }
     },
     {
+      "id": "verbuendete_v1-card-irrfahrten",
+      "name": "Irrfahrten",
+      "cardTypes": "aktion, irrfahrt",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "verbuendete_v1-set-irrfahrten"
+    },
+    {
       "id": "verbuendete_v1-card-alte_landkarte",
       "name": "Alte Landkarte",
       "cardTypes": "aktion, irrfahrt",
@@ -386,6 +422,15 @@
       "cardCost": {
         "coin": "3"
       }
+    },
+    {
+      "id": "verbuendete_v1-card-konflikte",
+      "name": "Konflikte",
+      "cardTypes": "aktion, konflikt",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "verbuendete_v1-set-konflikte"
     },
     {
       "id": "verbuendete_v1-card-schlachtplan",
@@ -432,6 +477,15 @@
       }
     },
     {
+      "id": "verbuendete_v1-card-zauberer",
+      "name": "Zauberer",
+      "cardTypes": "aktion, kontakt",
+      "cardCost": {
+        "coin": "3"
+      },
+      "setId": "verbuendete_v1-set-zauberer"
+    },
+    {
       "id": "verbuendete_v1-card-zauberschueler",
       "name": "Zauberschüler",
       "cardTypes": "aktion, zauberer, kontakt",
@@ -441,7 +495,7 @@
       "setId": "verbuendete_v1-set-zauberer"
     },
     {
-      "id": "verbuendete_v1-card-berschwoerer",
+      "id": "verbuendete_v1-card-beschwoerer",
       "name": "Beschwörer",
       "cardTypes": "aktion, dauer, zauberer",
       "cardCost": {
@@ -479,7 +533,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -498,7 +552,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -517,7 +571,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -536,7 +590,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -555,7 +609,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -574,7 +628,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -593,7 +647,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -612,7 +666,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -631,7 +685,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -650,7 +704,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -669,7 +723,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -677,7 +731,7 @@
       }
     },
     {
-      "id": "verbuendete_v1-card-höhlenhafen",
+      "id": "verbuendete_v1-card-hoehlenhafen",
       "name": "Höhlenhafen",
       "cardTypes": "verbuendete",
       "invisible": true,
@@ -688,7 +742,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -707,7 +761,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -726,7 +780,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -745,7 +799,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -753,7 +807,7 @@
       }
     },
     {
-      "id": "verbuendete_v1-card-markstaedte",
+      "id": "verbuendete_v1-card-marktstaedte",
       "name": "Marktstädte",
       "cardTypes": "verbuendete",
       "invisible": true,
@@ -764,7 +818,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -783,7 +837,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -802,7 +856,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -821,7 +875,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -840,7 +894,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -859,7 +913,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -878,7 +932,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -897,7 +951,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -916,7 +970,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
@@ -938,7 +992,7 @@
           "verbuendete_v1-card-importeurin",
           "verbuendete_v1-card-untergebener",
           "verbuendete_v1-card-mittelsmann",
-          "verbuendete_v1-card-gildenmeisterin",
+          "verbuendete_v1-card-gildemeisterin",
           "verbuendete_v1-card-unterhaendlerin",
           "verbuendete_v1-card-vertrag",
           "verbuendete_v1-card-zauberschueler"
