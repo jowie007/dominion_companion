@@ -92,6 +92,8 @@ flutter:
     - assets/cards/full/menagerie_v1/
     - assets/cards/full/verbuendete_v1/
     - assets/cards/full/pluenderer_v1/
+    - assets/cards/full/promos_v1/
+    - assets/cards/full/ausgemustert_v1/
     - assets/menu/
     - assets/instructions/
     - assets/artwork/cover/

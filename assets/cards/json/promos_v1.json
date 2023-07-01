@@ -1,0 +1,105 @@
+{
+  "id": "promos_v1",
+  "name": "Promos",
+  "version": "V1",
+  "cards": [
+    {
+      "id": "promos_v1-card-schwarzmarkt",
+      "name": "Schwarzmarkt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "promos_v1-card-schweriner_dom",
+      "name": "Schweriner Dom",
+      "cardTypes": "aktion, dauer",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "promos_v1-card-abbruch",
+      "name": "Abbruch",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "promos_v1-card-gesandter",
+      "name": "Gesandter",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "promos_v1-set-sauna_eisloch",
+      "name": "Sauna/Eisloch",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "promos_v1-card-sauna",
+      "name": "Sauna",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      },
+      "setId": "promos_v1-set-sauna_eisloch"
+    },
+    {
+      "id": "promos_v1-card-eisloch",
+      "name": "Eisloch",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      },
+      "setId": "promos_v1-set-sauna_eisloch"
+    },
+    {
+      "id": "promos_v1-card-carcassonne",
+      "name": "Carcassonne",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "promos_v1-card-gouverneur",
+      "name": "Gouverneur",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "promos_v1-card-kapitaen_tobias",
+      "name": "Kapitän Tobias",
+      "cardTypes": "aktion, dauer, befehl",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "promos_v1-card-prinz",
+      "name": "Prinz",
+      "cardTypes": "aktion, dauer, befehl",
+      "cardCost": {
+        "coin": "8"
+      }
+    },
+    {
+      "id": "promos_v1-card-einladung",
+      "name": "Einladung",
+      "cardTypes": "ereignis",
+      "cardCost": {
+        "coin": "5"
+      }
+    }
+  ]
+}

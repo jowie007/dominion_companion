@@ -44,8 +44,8 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-leihaus",
-      "name": "Leihaus",
+      "id": "bluetezeit_v2-card-leihhaus",
+      "name": "Leihhaus",
       "cardTypes": "aktion",
       "cardCost": {
         "coin": "5"
@@ -189,7 +189,7 @@
     },
     {
       "id": "bluetezeit_v2-card-talisman",
-      "name": "Talsiman",
+      "name": "Talisman",
       "cardTypes": "geld",
       "cardCost": {
         "coin": "4"
