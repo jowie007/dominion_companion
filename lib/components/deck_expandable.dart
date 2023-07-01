@@ -65,12 +65,10 @@ class _DeckExpandableState extends State<DeckExpandable> {
 
     const backgroundImage = AssetImage("assets/menu/main_scroll_crop.png");
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(15.0),
-        child: Dismissible(
-          key: Key(widget.deckModel.name),
-          background: const Row(
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+      child: Stack(
+        children: [
+          const Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -79,7 +77,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                   child: Icon(Icons.delete)),
             ],
           ),
-          secondaryBackground: const Row(
+          const Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -88,234 +86,251 @@ class _DeckExpandableState extends State<DeckExpandable> {
                   child: Icon(Icons.swap_horizontal_circle)),
             ],
           ),
-          direction: !widget.isNewlyCreated
-              ? DismissDirection.horizontal
-              : DismissDirection.none,
-          confirmDismiss: (direction) async {
-            if (direction == DismissDirection.startToEnd) {
-              final delete = await showDialog<bool>(
-                context: context,
-                builder: (context) {
-                  return const CustomAlertDialog(
-                    title: "Löschen",
-                    message: "Soll das Deck wirklich gelöscht werden?",
+          ClipRRect(
+            borderRadius: BorderRadius.circular(0.0),
+            child: Dismissible(
+              key: Key(widget.deckModel.name),
+              direction: !widget.isNewlyCreated
+                  ? DismissDirection.horizontal
+                  : DismissDirection.none,
+              confirmDismiss: (direction) async {
+                if (direction == DismissDirection.startToEnd) {
+                  final delete = await showDialog<bool>(
+                    context: context,
+                    builder: (context) {
+                      return const CustomAlertDialog(
+                        title: "Löschen",
+                        message: "Soll das Deck wirklich gelöscht werden?",
+                      );
+                    },
                   );
-                },
-              );
-              if (delete == true) {
-                setState(() {
-                  DeckService().deleteDeckById(widget.deckModel.id);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Deck wurde gelöscht")));
-                });
-                onChange();
-              }
-              return delete;
-            }
-            if (direction == DismissDirection.endToStart) {
-              return await showDialog<bool>(
-                context: context,
-                builder: (context) {
-                  return const CustomAlertDialog(
-                    title: "Bearbeiten",
-                    message: "Sollen die enthaltenen Karten angepasst werden?",
+                  if (delete == true) {
+                    setState(() {
+                      DeckService().deleteDeckById(widget.deckModel.id);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Deck wurde gelöscht")));
+                    });
+                    onChange();
+                  }
+                  return delete;
+                }
+                if (direction == DismissDirection.endToStart) {
+                  return await showDialog<bool>(
+                    context: context,
+                    builder: (context) {
+                      return const CustomAlertDialog(
+                        title: "Bearbeiten",
+                        message:
+                            "Sollen die enthaltenen Karten angepasst werden?",
+                      );
+                    },
                   );
-                },
-              );
-            }
-            return false;
-          },
-          onDismissed: (direction) async {
-            if (direction == DismissDirection.endToStart) {
-              Navigator.pushNamed(context, route.createDeckPage,
-                      arguments: {"deckId": widget.deckModel.id})
-                  .then((value) => onChange());
-            }
-          },
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(16.0),
-            child: Stack(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 56,
-                  decoration: BoxDecoration(color: Colors.white.withOpacity(1)),
-                  child: widget.deckModel.image != null
-                      ? Image.file(
-                          widget.deckModel.image!,
-                          fit: BoxFit.cover,
-                        )
-                      : Container(),
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  child: ExpansionTile(
-                    initiallyExpanded: widget.initiallyExpanded,
-                    trailing: const SizedBox(
-                      width: 0,
-                      height: 0,
-                    ),
-                    collapsedIconColor: Colors.white,
-                    title: GestureDetector(
-                      onLongPress: () => showDialog<String>(
-                        context: context,
-                        useRootNavigator: false,
-                        builder: (innerContext) => NameDeckDialog(
-                          oldName: widget.deckModel.name,
-                          onSaved: (deckName) => setState(
-                            () {
-                              DeckService()
-                                  .renameDeck(widget.deckModel.id!, deckName)
-                                  .then((value) => onChange());
-                            },
-                          ),
-                        ),
-                      ),
-                      child: Container(
-                        padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                image: backgroundImage,
+                }
+                return false;
+              },
+              onDismissed: (direction) async {
+                if (direction == DismissDirection.endToStart) {
+                  Navigator.pushNamed(context, route.createDeckPage,
+                          arguments: {"deckId": widget.deckModel.id})
+                      .then((value) => onChange());
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 56,
+                        decoration:
+                            BoxDecoration(color: Colors.white.withOpacity(1)),
+                        child: widget.deckModel.image != null
+                            ? Image.file(
+                                widget.deckModel.image!,
                                 fit: BoxFit.cover,
+                              )
+                            : Container(),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        child: ExpansionTile(
+                          initiallyExpanded: widget.initiallyExpanded,
+                          trailing: const SizedBox(
+                            width: 0,
+                            height: 0,
+                          ),
+                          collapsedIconColor: Colors.white,
+                          title: GestureDetector(
+                            onLongPress: () => showDialog<String>(
+                              context: context,
+                              useRootNavigator: false,
+                              builder: (innerContext) => NameDeckDialog(
+                                oldName: widget.deckModel.name,
+                                onSaved: (deckName) => setState(
+                                  () {
+                                    DeckService()
+                                        .renameDeck(
+                                            widget.deckModel.id!, deckName)
+                                        .then((value) => onChange());
+                                  },
+                                ),
                               ),
                             ),
-                            padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(4, 2, 4, 0),
-                              child: Text(
-                                widget.deckModel.name != ""
-                                    ? widget.deckModel.name
-                                    : "Temporäres Deck",
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  overflow: TextOverflow.ellipsis,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  color: Colors.black,
+                            child: Container(
+                              padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20.0),
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: backgroundImage,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 2, 0, 2),
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(4, 2, 4, 0),
+                                    child: Text(
+                                      widget.deckModel.name != ""
+                                          ? widget.deckModel.name
+                                          : "Temporäres Deck",
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
+                          children: <Widget>[
+                            ListView.builder(
+                                physics: const ClampingScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: allCards.length + 1,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return index < allCards.length
+                                      ? CardInfoTile(
+                                          onChanged: (bool? newValue) =>
+                                              (newValue),
+                                          card: allCards[index],
+                                          value: true,
+                                          hasCheckbox: false,
+                                          showCardCount: true,
+                                        )
+                                      : DeckAdditionalInfoTile(
+                                          deckModel: widget.deckModel,
+                                          cards: allCards,
+                                          isTemporary: widget.isNewlyCreated);
+                                })
+                          ],
                         ),
                       ),
-                    ),
-                    children: <Widget>[
-                      ListView.builder(
-                          physics: const ClampingScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: allCards.length + 1,
-                          itemBuilder: (BuildContext context, int index) {
-                            return index < allCards.length
-                                ? CardInfoTile(
-                                    onChanged: (bool? newValue) => (newValue),
-                                    card: allCards[index],
-                                    value: true,
-                                    hasCheckbox: false,
-                                    showCardCount: true,
-                                  )
-                                : DeckAdditionalInfoTile(
-                                    deckModel: widget.deckModel,
-                                    cards: allCards,
-                                    isTemporary: widget.isNewlyCreated);
-                          })
+                      !widget.isNewlyCreated
+                          ? Container(
+                              height: 56,
+                              padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+                              child: Align(
+                                alignment: FractionalOffset.centerLeft,
+                                child: Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(2000),
+                                    image: const DecorationImage(
+                                      image: backgroundImage,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    alignment: Alignment.center,
+                                    child: GestureDetector(
+                                      onLongPress: () {
+                                        showDialog<bool>(
+                                          context: context,
+                                          builder: (context) {
+                                            return CustomAlertDialog(
+                                              title: "Bild entfernen",
+                                              message:
+                                                  "Soll das aktuelle Bild entfernt werden?",
+                                              onConfirm: () => setState(() {
+                                                widget.deckModel.image = null;
+                                                deckService.updateDeck(
+                                                    widget.deckModel);
+                                                deckService.removeCachedImage(
+                                                    widget.deckModel.name);
+                                              }),
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: IconButton(
+                                        icon: const Icon(
+                                          Icons.camera,
+                                          color: Colors.black,
+                                        ),
+                                        onPressed: () => {
+                                          pickImage().then((_) => onChange())
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(),
+                      !widget.isNewlyCreated
+                          ? Container(
+                              height: 56,
+                              padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
+                              child: Align(
+                                alignment: FractionalOffset.centerRight,
+                                child: Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(2000),
+                                    image: const DecorationImage(
+                                      image: backgroundImage,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  child: FittedBox(
+                                    fit: BoxFit.contain,
+                                    alignment: Alignment.center,
+                                    child: DropdownSort(
+                                      width: 30,
+                                      rating: widget.deckModel.rating,
+                                      onChanged: (value) => {
+                                        widget.deckModel.rating = value == null
+                                            ? null
+                                            : int.parse(value),
+                                        deckService
+                                            .updateDeck(widget.deckModel)
+                                            .then((_) => onChange())
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(),
                     ],
                   ),
                 ),
-                !widget.isNewlyCreated
-                    ? Container(
-                        height: 56,
-                        padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                        child: Align(
-                          alignment: FractionalOffset.centerLeft,
-                          child: Container(
-                            width: 30,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(2000),
-                              image: const DecorationImage(
-                                image: backgroundImage,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              alignment: Alignment.center,
-                              child: GestureDetector(
-                                onLongPress: () {
-                                  showDialog<bool>(
-                                    context: context,
-                                    builder: (context) {
-                                      return CustomAlertDialog(
-                                        title: "Bild entfernen",
-                                        message:
-                                            "Soll das aktuelle Bild entfernt werden?",
-                                        onConfirm: () => setState(() {
-                                          widget.deckModel.image = null;
-                                          deckService
-                                              .updateDeck(widget.deckModel);
-                                          deckService.removeCachedImage(
-                                              widget.deckModel.name);
-                                        }),
-                                      );
-                                    },
-                                  );
-                                },
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.camera,
-                                    color: Colors.black,
-                                  ),
-                                  onPressed: () =>
-                                      {pickImage().then((_) => onChange())},
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    : Container(),
-                !widget.isNewlyCreated
-                    ? Container(
-                        height: 56,
-                        padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
-                        child: Align(
-                          alignment: FractionalOffset.centerRight,
-                          child: Container(
-                            width: 30,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(2000),
-                              image: const DecorationImage(
-                                image: backgroundImage,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            child: FittedBox(
-                              fit: BoxFit.contain,
-                              alignment: Alignment.center,
-                              child: DropdownSort(
-                                width: 30,
-                                rating: widget.deckModel.rating,
-                                onChanged: (value) => {
-                                  widget.deckModel.rating =
-                                      value == null ? null : int.parse(value),
-                                  deckService
-                                      .updateDeck(widget.deckModel)
-                                      .then((_) => onChange())
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    : Container(),
-              ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
