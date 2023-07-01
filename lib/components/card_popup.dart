@@ -78,9 +78,14 @@ class _CardPopupState extends State<CardPopup> {
     updateCardPath();
     // TODO Reihenfolge der Karten sortieren
     return FutureBuilder(
-      future: getImageDimensions(),
+      future: Future.wait([
+        getImageDimensions(),
+        _fileService.checkForExpansionsInstructions(widget.expansionId)
+      ]),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data != null) {
+          var imageDimensions = snapshot.data![0] as Map<String, int>;
+          var instructionExistst = snapshot.data![1] as bool;
           return Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
             child: Stack(
@@ -102,12 +107,13 @@ class _CardPopupState extends State<CardPopup> {
                             setState(() => _offset = Offset.zero),
                         child: FittedBox(
                           child: SizedBox(
-                            width: snapshot.data!["width"]!.toDouble(),
-                            height: snapshot.data!["height"]!.toDouble(),
+                            width: imageDimensions["width"]!.toDouble(),
+                            height: imageDimensions["height"]!.toDouble(),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(28.0),
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(4.0, 0.0, 0.0, 0.0),
+                                padding: const EdgeInsets.fromLTRB(
+                                    4.0, 0.0, 0.0, 0.0),
                                 child: Image.asset(
                                   _cardPath,
                                   fit: BoxFit.cover,
@@ -150,7 +156,7 @@ class _CardPopupState extends State<CardPopup> {
                         icon: Icons.close,
                         onClick: () =>
                             Navigator.of(context, rootNavigator: true).pop())),
-                widget.expansionId != ""
+                widget.expansionId != "" && instructionExistst
                     ? Align(
                         alignment: FractionalOffset.topRight,
                         child: BorderButtonComponent(

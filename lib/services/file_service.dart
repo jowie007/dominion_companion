@@ -38,6 +38,16 @@ class FileService {
     await OpenFilex.open(tempFilePath);
   }
 
+  Future<bool> checkForExpansionsInstructions(String expansionId) async {
+    final assetPath = 'assets/instructions/$expansionId.pdf';
+    try {
+      await rootBundle.load(assetPath);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
   void openExpansionInstructions(String expansionId) {
     final assetPath = 'assets/instructions/$expansionId.pdf';
     final tempPath = '$expansionId.pdf';
