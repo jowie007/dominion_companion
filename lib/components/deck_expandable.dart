@@ -189,8 +189,6 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 2, 0, 2),
                                   child: Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(4, 2, 4, 0),

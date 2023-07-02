@@ -240,6 +240,8 @@ class DeckService {
 
     for (var whenDeckConsistsOfXCardTypesCard
         in whenDeckConsistsOfXCardTypesCards) {
+      var neededCount = whenDeckConsistsOfXCardTypesCard
+          .whenDeckConsistsOfXCardTypesOfExpansion!.keys.first;
       var expansionCardCount = 0;
       for (var card in cards) {
         if (whenDeckConsistsOfXCardTypesCard.getExpansionId() ==
@@ -249,28 +251,32 @@ class DeckService {
           for (var conditionTypeList in conditionTypeLists) {
             if (listEquals(conditionTypeList, card.cardTypes)) {
               expansionCardCount++;
+              if (expansionCardCount >= neededCount) {
+                break;
+              }
             }
           }
         }
-      }
-      if (expansionCardCount >=
-          whenDeckConsistsOfXCardTypesCard
-              .whenDeckConsistsOfXCardTypesOfExpansion!.keys.first) {
-        additionalCards.add(whenDeckConsistsOfXCardTypesCard);
+        if (expansionCardCount >= neededCount) {
+          additionalCards.add(whenDeckConsistsOfXCardTypesCard);
+          break;
+        }
       }
     }
 
     for (var whenDeckConsistsOfXCardsCard in whenDeckConsistsOfXCardsCards) {
       var cardCount = 0;
+      var neededCount =
+          whenDeckConsistsOfXCardsCard.whenDeckConsistsOfXCards!.keys.first;
       for (var selectedCard in cards) {
         if (whenDeckConsistsOfXCardsCard.whenDeckConsistsOfXCards!.values.first
             .contains(selectedCard.id)) {
           cardCount++;
+          if (cardCount >= neededCount) {
+            additionalCards.add(whenDeckConsistsOfXCardsCard);
+            break;
+          }
         }
-      }
-      if (cardCount >=
-          whenDeckConsistsOfXCardsCard.whenDeckConsistsOfXCards!.keys.first) {
-        additionalCards.add(whenDeckConsistsOfXCardsCard);
       }
     }
 
@@ -362,6 +368,7 @@ class DeckService {
             }
             if (count >= entry.key) {
               ret.add(ContentModel.fromDBModel(contentModel));
+              break;
             }
           }
         }
