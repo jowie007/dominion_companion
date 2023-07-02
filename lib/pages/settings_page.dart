@@ -41,6 +41,7 @@ class _DeckInfoState extends State<SettingsPage> {
         if (deckNames.contains(deck.name) && context.mounted) {
           await showDialog(
             context: context,
+            barrierDismissible: false,
             builder: (BuildContext context) {
               return CustomAlertDialog(
                 title: "Doppeltes Deck",

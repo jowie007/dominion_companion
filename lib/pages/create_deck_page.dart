@@ -66,7 +66,7 @@ class _CreateDeckState extends State<CreateDeckPage> {
                   message: "Seite ohne Speichern verlassen?",
                   onConfirm: () => Navigator.of(context).pop(true));
             },
-          );
+          ) ?? false;
         }
         return true;
       },

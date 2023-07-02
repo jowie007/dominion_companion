@@ -95,7 +95,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                   : DismissDirection.none,
               confirmDismiss: (direction) async {
                 if (direction == DismissDirection.startToEnd) {
-                  final delete = await showDialog<bool>(
+                  final delete = await showDialog(
                     context: context,
                     builder: (context) {
                       return const CustomAlertDialog(
@@ -103,7 +103,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                         message: "Soll das Deck wirklich gelöscht werden?",
                       );
                     },
-                  );
+                  ) ?? false;
                   if (delete == true) {
                     setState(() {
                       DeckService().deleteDeckById(widget.deckModel.id);
@@ -115,7 +115,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                   return delete;
                 }
                 if (direction == DismissDirection.endToStart) {
-                  return await showDialog<bool>(
+                  return await showDialog(
                     context: context,
                     builder: (context) {
                       return const CustomAlertDialog(
@@ -124,7 +124,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                             "Sollen die enthaltenen Karten angepasst werden?",
                       );
                     },
-                  );
+                  ) ?? false;
                 }
                 return false;
               },
