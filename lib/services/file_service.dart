@@ -58,7 +58,7 @@ class FileService {
     final directory = await getApplicationDocumentsDirectory();
     final path = '${directory.path}/$name.json';
     final file = File(path);
-    file.writeAsString(content);
+    await file.writeAsString(content);
     Share.shareXFiles([XFile(path)], text: 'Meine Dominion Decks');
   }
 

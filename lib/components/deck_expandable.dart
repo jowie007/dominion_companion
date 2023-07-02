@@ -41,11 +41,15 @@ class _DeckExpandableState extends State<DeckExpandable> {
   Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(
-          source: ImageSource.gallery, maxHeight: 1000, maxWidth: 1000);
+          source: ImageSource.gallery,
+          maxHeight: 400,
+          maxWidth: 400,
+          imageQuality: 50);
       if (image == null) return;
       setState(() {
         widget.deckModel.image = File(image.path);
-        deckService.setCachedImage(widget.deckModel.id!, base64Encode(widget.deckModel.image!.readAsBytesSync()));
+        deckService.setCachedImage(widget.deckModel.id!,
+            base64Encode(widget.deckModel.image!.readAsBytesSync()));
       });
     } on PlatformException catch (e) {
       return showDialog(
@@ -270,6 +274,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                               message:
                                                   "Soll das aktuelle Bild entfernt werden?",
                                               onConfirm: () => setState(() {
+                                                widget.deckModel.image = null;
                                                 deckService.removeCachedImage(
                                                     widget.deckModel.id!);
                                               }),

@@ -77,9 +77,10 @@ class DeckService {
       {bool sortAsc = true, String sortKey = "creationDate"}) async {
     var dbDeckList = await _deckDatabase.getDeckList(sortAsc, sortKey);
     for (var dbDeck in dbDeckList) {
-      var image = await getCachedImage(dbDeck.id!);
-      if (image != null) {
-        dbDeck.image = base64Encode((image).readAsBytesSync());
+      var image = dbDeck.id != null ? await getCachedImage(dbDeck.id!) : null;
+      if (image != null && await image.exists()) {
+        List<int> bytes = await image.readAsBytes();
+        dbDeck.image = base64Encode(bytes);
       }
     }
     return dbDeckList;
@@ -108,7 +109,10 @@ class DeckService {
     return _deckDatabase.updateCardIds(deckId, cardIds);
   }
 
-  Future<int> importDeck(DeckDBModel deckDBModel) async {
+  Future<int> importDeck(DeckDBModel deckDBModel, {int? deleteId}) async {
+    if(deleteId != null && await _deckDatabase.getDeckById(deleteId) != null) {
+      _deckDatabase.deleteDeckById(deleteId);
+    }
     if (await _deckDatabase.getDeckByName(deckDBModel.name) != null) {
       _deckDatabase.deleteDeckByName(deckDBModel.name);
     }

@@ -38,33 +38,37 @@ class _DeckInfoState extends State<SettingsPage> {
     } else {
       final dbDecks = await DeckService().getDBDeckList();
       for (var importedDeck in importedDecks!) {
+        int? existingId;
+        int? newId;
         for (var dbDeck in dbDecks) {
-          int? newId;
-          if (dbDeck.name.toLowerCase() == importedDeck.name.toLowerCase() &&
-              context.mounted) {
-            await showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (BuildContext context) {
-                return CustomAlertDialog(
-                  title: "Doppeltes Deck",
-                  message:
-                      "Ein Deck mit dem Namen ${importedDeck.name} exisitert bereits. Möchtest du das existierende Deck überschreiben?",
-                  cancelText: "Überspringen",
-                  confirmText: "Überschreiben",
-                  onConfirm: () async => {
-                    _deckService.removeCachedImage(dbDeck.id!),
-                    newId = await DeckService().importDeck(importedDeck),
-                    _deckService.setCachedImage(newId!, importedDeck.image),
-                  },
-                );
-              },
-            );
-          } else if (context.mounted) {
-            _deckService.removeCachedImage(dbDeck.id!);
-            newId = await DeckService().importDeck(importedDeck);
-            _deckService.setCachedImage(newId, importedDeck.image);
+          if (dbDeck.name.toLowerCase() == importedDeck.name.toLowerCase()) {
+            existingId = dbDeck.id;
+            break;
           }
+        }
+        if (existingId != null && context.mounted) {
+          await showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return CustomAlertDialog(
+                title: "Doppeltes Deck",
+                message:
+                    "Ein Deck mit dem Namen ${importedDeck.name} exisitert bereits. Möchtest du das existierende Deck überschreiben?",
+                cancelText: "Überspringen",
+                confirmText: "Überschreiben",
+                onConfirm: () async => {
+                  await _deckService.removeCachedImage(existingId!),
+                  newId = await DeckService()
+                      .importDeck(importedDeck, deleteId: existingId),
+                  await _deckService.setCachedImage(newId!, importedDeck.image),
+                },
+              );
+            },
+          );
+        } else if (context.mounted) {
+          newId = await DeckService().importDeck(importedDeck);
+          await _deckService.setCachedImage(newId, importedDeck.image);
         }
       }
       if (context.mounted) {
@@ -103,10 +107,10 @@ class _DeckInfoState extends State<SettingsPage> {
                   const SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () async {
-                      FileService().shareTemporaryJSONFile(
-                          "decks",
-                          jsonEncode(
-                              await DeckService().getDBDeckListWithImages()));
+                      var deckDBList =
+                          await DeckService().getDBDeckListWithImages();
+                      var jsonFile = jsonEncode(deckDBList);
+                      FileService().shareTemporaryJSONFile("decks", jsonFile);
                       // Share.shareXFiles(['${directory.path}/image.jpg'], text: 'Great picture');
                     },
                     style: ElevatedButton.styleFrom(

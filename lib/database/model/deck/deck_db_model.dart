@@ -33,9 +33,7 @@ class DeckDBModel {
     id = model.id;
     name = model.name;
     cardIds = model.cards.map((card) => card.id).toList();
-    image = model.image != null
-        ? base64Encode(model.image!.readAsBytesSync())
-        : null;
+    image = null;
     creationDate = model.creationDate;
     editDate = model.editDate;
     rating = model.rating;
@@ -50,4 +48,13 @@ class DeckDBModel {
         'editDate': editDate != null ? editDate!.millisecondsSinceEpoch : null,
         'rating': rating,
       };
+
+  Map<String, dynamic> toDBJson() => {
+    'id': id,
+    'name': name,
+    'cardIds': cardIds.join(','),
+    'creationDate': creationDate.millisecondsSinceEpoch,
+    'editDate': editDate != null ? editDate!.millisecondsSinceEpoch : null,
+    'rating': rating,
+  };
 }

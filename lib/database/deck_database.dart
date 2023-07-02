@@ -27,7 +27,7 @@ class DeckDatabase {
 
   Future<int> insertDeck(DeckDBModel deck) async {
     await openDb();
-    return await _database.insert('deck', deck.toJson());
+    return await _database.insert('deck', deck.toDBJson());
   }
 
   Future<List<String>> getAllDeckNames() async {
