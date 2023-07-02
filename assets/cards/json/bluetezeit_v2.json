@@ -250,7 +250,7 @@
     },
     {
       "id": "bluetezeit_v2-content-spieler_tableau",
-      "name": "Player Tableau",
+      "name": "Spieler*innen Tableau",
       "whenDeckConsistsOfXCards": {
         "1": [
           "bluetezeit_v2-card-bischof",

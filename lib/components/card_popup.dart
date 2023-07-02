@@ -76,7 +76,6 @@ class _CardPopupState extends State<CardPopup> {
   @override
   Widget build(BuildContext context) {
     updateCardPath();
-    // TODO Reihenfolge der Karten sortieren
     return FutureBuilder(
       future: Future.wait([
         getImageDimensions(),

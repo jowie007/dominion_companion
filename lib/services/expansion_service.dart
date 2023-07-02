@@ -99,7 +99,7 @@ class ExpansionService {
     var cards = (await _cardService.getCardsByExpansionFromDB(expansionDBModel))
         .map((card) => CardModel.fromDBModel(card))
         .toList();
-    // cards.sort((a, b) => CardModel.sortCardComparisonExpansion(a, b));
+    cards.sort((a, b) => CardModel.sortCardComparisonExpansion(a, b));
     return cards;
   }
 

@@ -25,12 +25,6 @@ class CardModel {
   late CardCostModel cardCost;
   late String text;
   late List<String> count;
-  static final List<List<String>> sortTypeOrderDeck = [
-    ["punkte"],
-    ["geld"],
-    ["fluch"]
-  ];
-  static final List<List<String>> sortTypeOrderExpansion = [[]];
 
   CardModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -134,12 +128,24 @@ class CardModel {
     return retMap;
   }
 
+  static List<List<String>> sortTypeOrder = [
+    ["aktion"],
+    ["punkte"],
+    ["fluch"],
+    ["ereignis"],
+    ["projekt"],
+    ["merkmal"],
+    ["landmarke"],
+    ["weg"],
+    ["geld"],
+  ];
+
   static int sortCardComparisonDeck(CardModel card1, CardModel card2) {
-    return sortCardComparison(card1, card2, sortTypeOrderDeck);
+    return sortCardComparison(card1, card2, sortTypeOrder);
   }
 
   static int sortCardComparisonExpansion(CardModel card1, CardModel card2) {
-    return sortCardComparison(card1, card2, sortTypeOrderExpansion);
+    return sortCardComparison(card1, card2, []);
   }
 
   static int sortCardComparison(
@@ -150,14 +156,28 @@ class CardModel {
         CardModel.getCardTypesString(card2.cardTypes).toLowerCase();
     var cardPosition1 = 0;
     var cardPosition2 = 0;
-    sortTypeOrder.asMap().forEach((index, value) => {
-          if (value.contains(cardTypes1)) {cardPosition1 = index},
-          if (value.contains(cardTypes2)) {cardPosition2 = index}
-        });
+    var index = 1;
+    for (var sortTypes in sortTypeOrder) {
+      for (var sortType in sortTypes) {
+        if (cardTypes1.contains(sortType) && cardPosition1 == 0) {
+          cardPosition1 = index;
+        }
+        if (cardTypes2.contains(sortType) && cardPosition2 == 0) {
+          cardPosition2 = index;
+        }
+      }
+      index = index + 1;
+    }
     if (!card1.supply) {
       cardPosition1 = cardPosition1 + 1000;
     }
     if (!card2.supply) {
+      cardPosition2 = cardPosition2 + 1000;
+    }
+    if (card1.always) {
+      cardPosition1 = cardPosition1 + 1000;
+    }
+    if (card2.always) {
       cardPosition2 = cardPosition2 + 1000;
     }
     if (cardPosition1 == cardPosition2) {
@@ -179,13 +199,13 @@ class CardModel {
   static int compareStringNumbers(String stringNumber1, String stringNumber2) {
     var numbers1 = stringNumber1.split(RegExp(r'\D'));
     var numbers2 = stringNumber2.split(RegExp(r'\D'));
-    var number1 = 0;
-    var number2 = 0;
+    var number1 = -1;
+    var number2 = -1;
     if (numbers1.isNotEmpty) {
-      number1 = int.tryParse(numbers1.first) ?? 0;
+      number1 = int.tryParse(numbers1.first) ?? 1000;
     }
     if (numbers2.isNotEmpty) {
-      number2 = int.tryParse(numbers2.first) ?? 0;
+      number2 = int.tryParse(numbers2.first) ?? 1000;
     }
     var ret = 0;
     if (number1 < number2) {
