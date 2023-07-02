@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_companion/components/expansion_expandable.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
@@ -16,6 +18,7 @@ class LazyScrollViewExpansions extends StatefulWidget {
 class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
   List<ExpansionModel> expansions = [];
   bool showLoadingIcon = true;
+  bool disposed = false;
 
   @override
   initState() {
@@ -25,21 +28,32 @@ class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
     });
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    disposed = true;
+  }
+
   loadExpansionRecursive() async {
-    ExpansionService().getExpansionByPosition(expansions.length).then(
-          (element) => {
-            setState(
-              () {
-                if (element != null) {
-                  expansions.add(element);
-                  loadExpansionRecursive();
-                } else {
-                  showLoadingIcon = false;
-                }
-              },
-            ),
-          },
-        );
+    if (!disposed) {
+      ExpansionService().getExpansionByPosition(expansions.length).then(
+            (element) => {
+              if (!disposed)
+                {
+                  setState(
+                    () {
+                      if (element != null) {
+                        expansions.add(element);
+                        loadExpansionRecursive();
+                      } else {
+                        showLoadingIcon = false;
+                      }
+                    },
+                  ),
+                },
+            },
+          );
+    }
   }
 
   @override

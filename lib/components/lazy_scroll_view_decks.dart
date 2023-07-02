@@ -21,6 +21,7 @@ class _LazyScrollViewDecksState extends State<LazyScrollViewDecks> {
   List<DeckModel> decks = [];
   bool showLoadingIcon = true;
   bool cachedNotifier = false;
+  bool disposed = false;
 
   @override
   initState() {
@@ -28,38 +29,52 @@ class _LazyScrollViewDecksState extends State<LazyScrollViewDecks> {
     init();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    disposed = true;
+  }
+
   void init() {
     decks = [];
     showLoadingIcon = true;
     cachedNotifier = settingService.notifier.value;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      loadExpansionRecursive();
+      loadExpansions();
     });
   }
 
-  loadExpansionRecursive() async {
-    SettingsModel settingsModel = SettingsService().getCachedSettings();
-    DeckService()
-        .getDeckByPosition(decks.length,
-            sortAsc: settingsModel.sortAsc, sortKey: settingsModel.sortKey)
-        .then(
-          (element) => {
-            setState(
-              () {
-                if (element != null) {
-                  setState(() {
-                    decks.add(element);
-                  });
-                  loadExpansionRecursive();
-                } else {
-                  setState(() {
-                    showLoadingIcon = false;
-                  });
-                }
-              },
-            ),
-          },
-        );
+  loadExpansions() {
+    loadExpansionRecursive(SettingsService().getCachedSettings());
+  }
+
+  loadExpansionRecursive(SettingsModel settingsModel) async {
+    if (!disposed) {
+      DeckService()
+          .getDeckByPosition(decks.length,
+              sortAsc: settingsModel.sortAsc, sortKey: settingsModel.sortKey)
+          .then(
+            (element) => {
+              if (!disposed)
+                {
+                  setState(
+                    () {
+                      if (element != null) {
+                        setState(() {
+                          decks.add(element);
+                        });
+                        loadExpansionRecursive(settingsModel);
+                      } else {
+                        setState(() {
+                          showLoadingIcon = false;
+                        });
+                      }
+                    },
+                  ),
+                },
+            },
+          );
+    }
   }
 
   @override
