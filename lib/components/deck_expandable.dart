@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
@@ -39,11 +40,12 @@ class _DeckExpandableState extends State<DeckExpandable> {
   // https://medium.com/unitechie/flutter-tutorial-image-picker-from-camera-gallery-c27af5490b74
   Future pickImage() async {
     try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final image = await ImagePicker().pickImage(
+          source: ImageSource.gallery, maxHeight: 1000, maxWidth: 1000);
       if (image == null) return;
       setState(() {
         widget.deckModel.image = File(image.path);
-        deckService.updateDeck(widget.deckModel);
+        deckService.setCachedImage(widget.deckModel.id!, base64Encode(widget.deckModel.image!.readAsBytesSync()));
       });
     } on PlatformException catch (e) {
       return showDialog(
@@ -268,11 +270,8 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                               message:
                                                   "Soll das aktuelle Bild entfernt werden?",
                                               onConfirm: () => setState(() {
-                                                widget.deckModel.image = null;
-                                                deckService.updateDeck(
-                                                    widget.deckModel);
                                                 deckService.removeCachedImage(
-                                                    widget.deckModel.name);
+                                                    widget.deckModel.id!);
                                               }),
                                             );
                                           },

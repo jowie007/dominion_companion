@@ -16,7 +16,6 @@ class DeckDatabase {
         "CREATE TABLE deck("
         "id INTEGER PRIMARY KEY, "
         "name STRING, "
-        "image STRING, "
         "rating STRING, "
         "cardIds STRING, "
         "creationDate STRING, "
@@ -80,8 +79,8 @@ class DeckDatabase {
 
   Future<int> updateDeck(DeckDBModel deck) async {
     await openDb();
-    return await _database.update('deck', deck.toJson(),
-        where: "name = ?", whereArgs: [deck.name]);
+    return await _database
+        .update('deck', deck.toJson(), where: "id = ?", whereArgs: [deck.id]);
   }
 
   Future<int> deleteDeckByName(String name) async {

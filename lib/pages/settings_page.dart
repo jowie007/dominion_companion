@@ -26,8 +26,8 @@ class _DeckInfoState extends State<SettingsPage> {
   final _settingsService = SettingsService();
 
   void onLoadDeck() async {
-    final dbDecks = await DeckService().pickDeckJSONFile();
-    if (dbDecks == null && context.mounted) {
+    final importedDecks = await DeckService().pickDeckJSONFile();
+    if (importedDecks == null && context.mounted) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -36,29 +36,35 @@ class _DeckInfoState extends State<SettingsPage> {
         },
       );
     } else {
-      final deckNames = await DeckService().getAllDeckNames();
-      for (var deck in dbDecks!) {
-        if (deckNames.contains(deck.name) && context.mounted) {
-          await showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (BuildContext context) {
-              return CustomAlertDialog(
-                title: "Doppeltes Deck",
-                message:
-                    "Ein Deck mit dem Namen ${deck.name} exisitert bereits. Möchtest du das existierende Deck überschreiben?",
-                cancelText: "Überspringen",
-                confirmText: "Überschreiben",
-                onConfirm: () => {
-                  _deckService.removeCachedImage(deck.name),
-                  DeckService().importDeck(deck)
-                },
-              );
-            },
-          );
-        } else if (context.mounted) {
-          _deckService.removeCachedImage(deck.name);
-          DeckService().importDeck(deck);
+      final dbDecks = await DeckService().getDBDeckList();
+      for (var importedDeck in importedDecks!) {
+        for (var dbDeck in dbDecks) {
+          int? newId;
+          if (dbDeck.name.toLowerCase() == importedDeck.name.toLowerCase() &&
+              context.mounted) {
+            await showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return CustomAlertDialog(
+                  title: "Doppeltes Deck",
+                  message:
+                      "Ein Deck mit dem Namen ${importedDeck.name} exisitert bereits. Möchtest du das existierende Deck überschreiben?",
+                  cancelText: "Überspringen",
+                  confirmText: "Überschreiben",
+                  onConfirm: () async => {
+                    _deckService.removeCachedImage(dbDeck.id!),
+                    newId = await DeckService().importDeck(importedDeck),
+                    _deckService.setCachedImage(newId!, importedDeck.image),
+                  },
+                );
+              },
+            );
+          } else if (context.mounted) {
+            _deckService.removeCachedImage(dbDeck.id!);
+            newId = await DeckService().importDeck(importedDeck);
+            _deckService.setCachedImage(newId, importedDeck.image);
+          }
         }
       }
       if (context.mounted) {
@@ -97,14 +103,16 @@ class _DeckInfoState extends State<SettingsPage> {
                   const SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () async {
-                      FileService().shareTemporaryJSONFile("decks",
-                          jsonEncode(await DeckService().getDBDeckList()));
+                      FileService().shareTemporaryJSONFile(
+                          "decks",
+                          jsonEncode(
+                              await DeckService().getDBDeckListWithImages()));
                       // Share.shareXFiles(['${directory.path}/image.jpg'], text: 'Great picture');
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                         foregroundColor: Colors.white),
-                    child: const Text("Decks speichern"),
+                    child: const Text("Decks exportieren"),
                   ),
                   const SizedBox(height: 10),
                   ElevatedButton(
@@ -114,7 +122,7 @@ class _DeckInfoState extends State<SettingsPage> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                         foregroundColor: Colors.white),
-                    child: const Text("Decks laden"),
+                    child: const Text("Decks importieren"),
                   ),
                   const SizedBox(height: 20),
                   const Text(

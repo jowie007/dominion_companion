@@ -73,6 +73,18 @@ class DeckService {
     return await _deckDatabase.getDeckList(sortAsc, sortKey);
   }
 
+  Future<List<DeckDBModel>> getDBDeckListWithImages(
+      {bool sortAsc = true, String sortKey = "creationDate"}) async {
+    var dbDeckList = await _deckDatabase.getDeckList(sortAsc, sortKey);
+    for (var dbDeck in dbDeckList) {
+      var image = await getCachedImage(dbDeck.id!);
+      if (image != null) {
+        dbDeck.image = base64Encode((image).readAsBytesSync());
+      }
+    }
+    return dbDeckList;
+  }
+
   Future<List<DeckModel>> getDeckList(
       {bool sortAsc = true, String sortKey = "creationDate"}) async {
     var deckList = await getDBDeckList(sortKey: sortKey, sortAsc: sortAsc);
@@ -160,35 +172,43 @@ class DeckService {
         end);
   }
 
-  Future<void> removeCachedImage(String deckName) async {
-    final path =
-        '${appDocumentsDir!.path}/decks/images/${deckName.toLowerCase()}.jpg';
+  Future<void> setCachedImage(int deckId, String? base64String) async {
+    appDocumentsDir ??= await getApplicationDocumentsDirectory();
+    final path = '${appDocumentsDir!.path}/decks/images/$deckId.jpg';
+    if (base64String == null) {
+      removeCachedImage(deckId);
+    } else {
+      try {
+        if (!(await File(path).exists())) {
+          final file = await File(path).create(recursive: true);
+          file.writeAsBytesSync(base64Decode(base64String));
+        }
+      } catch (_) {}
+    }
+  }
+
+  Future<File?> getCachedImage(int deckId) async {
+    appDocumentsDir ??= await getApplicationDocumentsDirectory();
+    final path = '${appDocumentsDir!.path}/decks/images/$deckId.jpg';
+    try {
+      if (await File(path).exists()) {
+        return File(path);
+      } else {
+        return null;
+      }
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<void> removeCachedImage(int deckId) async {
+    appDocumentsDir ??= await getApplicationDocumentsDirectory();
+    final path = '${appDocumentsDir!.path}/decks/images/$deckId.jpg';
     try {
       if (await File(path).exists()) {
         File(path).delete();
       }
     } catch (_) {}
-  }
-
-  Future<File?> getImage(String deckName, String? base64String) async {
-    appDocumentsDir ??= await getApplicationDocumentsDirectory();
-    final path =
-        '${appDocumentsDir!.path}/decks/images/${deckName.toLowerCase()}.jpg';
-    if (base64String == null) {
-      removeCachedImage(deckName);
-      return null;
-    }
-    try {
-      if (await File(path).exists()) {
-        return File(path);
-      } else {
-        final file = await File(path).create(recursive: true);
-        file.writeAsBytesSync(base64Decode(base64String));
-        return file;
-      }
-    } catch (_) {
-      return null;
-    }
   }
 
   Future<DeckModel> deckFromDBModel(DeckDBModel deckDBModel) async {
@@ -200,7 +220,7 @@ class DeckService {
     var ret = DeckModel(
       deckDBModel.id,
       deckDBModel.name,
-      await getImage(deckDBModel.name, deckDBModel.image),
+      deckDBModel.id != null ? await getCachedImage(deckDBModel.id!) : null,
       deckDBModel.creationDate,
       deckDBModel.editDate,
       deckDBModel.rating,
