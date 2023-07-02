@@ -34,6 +34,15 @@ class ContentDatabase {
     return await _database.insert('content', content.toJson());
   }
 
+  Future<void> insertContents(List<ContentDBModel> contents) async {
+    await openDb();
+    var batch = _database.batch();
+    for (var content in contents) {
+      batch.insert('content', content.toJson());
+    }
+    await batch.commit(noResult: true);
+  }
+
   Future<List<ContentDBModel>> getContentList() async {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.query('content');

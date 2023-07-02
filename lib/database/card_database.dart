@@ -47,6 +47,17 @@ class CardDatabase {
     return await _database.insert('card', card.toJson());
   }
 
+  // How to use batch
+  // https://stackoverflow.com/questions/64539536/warning-database-has-been-locked-for-00010-000000-make-sure-you-always-use-th
+  Future<void> insertCards(List<CardDBModel> cards) async {
+    await openDb();
+    var batch = _database.batch();
+    for (var card in cards) {
+      batch.insert('card', card.toJson());
+    }
+    await batch.commit(noResult: true);
+  }
+
   Future<int?> getCardsLength() async {
     await openDb();
     return Sqflite.firstIntValue(

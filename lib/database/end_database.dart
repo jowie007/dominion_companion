@@ -34,6 +34,15 @@ class EndDatabase {
     return await _database.insert('end', end.toJson());
   }
 
+  Future<void> insertEnds(List<EndDBModel> ends) async {
+    await openDb();
+    var batch = _database.batch();
+    for (var end in ends) {
+      batch.insert('end', end.toJson());
+    }
+    await batch.commit(noResult: true);
+  }
+
   Future<List<EndDBModel>> getEndList() async {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.query('end');

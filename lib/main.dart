@@ -6,7 +6,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 // TODO Dont check cards and dont init expansions
 // TODO Prüfen warum decks gelöscht werden
 // TODO Reihenfolge von Karten in Decks anpassen
-// TODO Anleitungen hinzufügen
 // TODO Prüfen warum 15 Karten ausgewählt (z.B. pluenderer_v1-card-amphore)
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

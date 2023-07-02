@@ -31,10 +31,9 @@ class SettingsService {
   Exception? initException;
 
   // Adjust version in pubspec.yaml
-  Future<void> initializeApp(
-      {deleteSettings = false,
-      checkCardNames = false,
-      initializeExpansions = false}) async {
+  Future<void> initializeApp({deleteSettings = false,
+    checkCardNames = false,
+    initializeExpansions = false}) async {
     if (deleteSettings) {
       await deleteSettingsTable()
           .then((value) => initDatabase())
@@ -50,7 +49,8 @@ class SettingsService {
     }
     await PackageInfo.fromPlatform().then((packageInfo) async {
       if (settings!.version != packageInfo.version ||
-          initializeExpansions) {
+          initializeExpansions || !settings!.loadingSuccess) {
+        await updateLoadingSuccess(false);
         await ExpansionService()
             .deleteExpansionTable()
             .then((value) => CardService().deleteCardTable())
@@ -59,6 +59,7 @@ class SettingsService {
             .then((value) => EndService().deleteEndTable())
             .then((value) => ExpansionService().loadJsonExpansionsIntoDB());
         await updateVersion(packageInfo.version);
+        await updateLoadingSuccess(true);
       }
     });
 
@@ -69,7 +70,7 @@ class SettingsService {
 
   void testCardNames() async {
     CardService().getAllCards().then(
-      (cards) async {
+          (cards) async {
         for (var card in cards) {
           var split = card.id.split("-");
           if (split[1] != "set") {
@@ -139,12 +140,12 @@ class SettingsService {
         .updateSettings(SettingsDBModel.fromModel(settings!));
   }
 
- /* Future<int> updateLoadingSuccess(bool loadingSuccess) {
+  Future<int> updateLoadingSuccess(bool loadingSuccess) {
     settings!.loadingSuccess = loadingSuccess;
     notifier.value = !notifier.value;
     return _settingsDatabase
         .updateSettings(SettingsDBModel.fromModel(settings!));
-  }*/
+  }
 
   Future<int> updateSettingsTable(SettingsModel settingsModel) {
     return _settingsDatabase

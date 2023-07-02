@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:dominion_companion/database/content_database.dart';
 import 'package:dominion_companion/database/model/content/content_db_model.dart';
 import 'package:dominion_companion/database/model/expansion/expansion_db_model.dart';
+import 'package:dominion_companion/model/content/content_model.dart';
 
 class ContentService {
   late ContentDatabase _contentDatabase;
@@ -18,6 +19,12 @@ class ContentService {
 
   void insertContentIntoDB(ContentDBModel contentDBModel) {
     _contentDatabase.insertContent(contentDBModel);
+  }
+
+  Future<void> insertContentModelsIntoDB(List<ContentModel> contentModels) {
+    return _contentDatabase.insertContents(contentModels
+        .map((content) => ContentDBModel.fromModel(content))
+        .toList());
   }
 
   Future<ContentDBModel> getContentById(String contentId) async {

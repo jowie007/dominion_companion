@@ -45,6 +45,16 @@ class ExpansionDatabase {
     return await _database.insert('expansion', expansion.toJson());
   }
 
+  Future<void> insertExpansions(List<ExpansionDBModel> expansions) async {
+    await openDb();
+    var batch = _database.batch();
+    for (var expansion in expansions) {
+      batch.insert('expansion', expansion.toJson());
+    }
+    await batch.commit(noResult: true);
+  }
+
+
   Future<List<ExpansionDBModel>> getExpansionList() async {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.query('expansion');

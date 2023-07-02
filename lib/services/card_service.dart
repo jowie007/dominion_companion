@@ -24,6 +24,12 @@ class CardService {
     _cardDatabase.insertCard(cardDBModel);
   }
 
+  Future<void> insertCardModelsIntoDB(List<CardModel> cardModels) {
+    return _cardDatabase.insertCards(cardModels
+        .map((cardModel) => CardDBModel.fromModel(cardModel))
+        .toList());
+  }
+
   Future<List<CardModel>> getCardsByCardIds(List<String> cardIds) {
     return cardIds.isNotEmpty
         ? Future.wait(cardIds

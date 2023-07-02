@@ -36,6 +36,15 @@ class HandDatabase {
     return await _database.insert('hand', hand.toJson());
   }
 
+  Future<void> insertHands(List<HandDBModel> hands) async {
+    await openDb();
+    var batch = _database.batch();
+    for (var hand in hands) {
+      batch.insert('hand', hand.toJson());
+    }
+    await batch.commit(noResult: true);
+  }
+
   Future<List<HandDBModel>> getHandList() async {
     await openDb();
     final List<Map<String, dynamic>> maps = await _database.query('hand');

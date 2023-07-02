@@ -43,34 +43,55 @@ class ExpansionService {
         : [expansion.name, expansion.version].join(" - ");
   }
 
-  void insertExpansionIntoDB(ExpansionModel expansionModel) {
+  /*void insertExpansionModelsIntoDB(List<ExpansionModel> expansionModels) {
     _expansionDatabase
         .insertExpansion(ExpansionDBModel.fromModel(expansionModel));
-    for (var element in expansionModel.cards) {
-      _cardService.insertCardIntoDB(CardDBModel.fromModel(element));
-    }
-    for (var element in expansionModel.content) {
-      _contentService.insertContentIntoDB(ContentDBModel.fromModel(element));
-    }
-    for (var element in [
+    _cardService.insertCardModelsIntoDB(expansionModel.cards);
+    _contentService.insertContentModelsIntoDB(expansionModel.content);
+    _handService.insertHandModelsIntoDB([
       ...expansionModel.handMoneyCards,
       ...expansionModel.handOtherCards,
       ...expansionModel.handContents
-    ]) {
-      _handService.insertHandIntoDB(HandDBModel.fromModel(element));
-    }
+    ]);
     if (expansionModel.end != null) {
       _endService.insertEndIntoDB(EndDBModel.fromModel(expansionModel.end!));
     }
+  }*/
+
+  Future<void> insertExpansionModelsIntoDB(List<ExpansionModel> expansionModels) {
+    return _expansionDatabase.insertExpansions(expansionModels
+        .map((expansionModel) => ExpansionDBModel.fromModel(expansionModel))
+        .toList());
+  }
+
+  void insertExpansionsWithDependenciesIntoDB(List<ExpansionModel> expansionModels) async {
+    await insertExpansionModelsIntoDB(expansionModels);
+    /*_expansionDatabase
+        .insertExpansionModelsIntoDB(ExpansionDBModel.fromModel(expansionModels));*/
+    var cards = expansionModels.expand((e) => e.cards).toList();
+    await _cardService.insertCardModelsIntoDB(cards);
+    var contents = expansionModels.expand((e) => e.content).toList();
+    await _contentService.insertContentModelsIntoDB(contents);
+    var hands = expansionModels.expand((e) => [
+      ...e.handMoneyCards,
+      ...e.handOtherCards,
+      ...e.handContents
+    ]).toList();
+    await _handService.insertHandModelsIntoDB(hands);
+    List<EndModel> ends = [];
+    for (var expansionModel in expansionModels) {
+      if(expansionModel.end != null) {
+        ends.add(expansionModel.end!);
+      }
+    }
+    await _endService.insertEndModelsIntoDB(ends);
   }
 
   Future<void> loadJsonExpansionsIntoDB() async {
-    /* await Future.wait(JsonService().getExpansions().map((element) async => {
-      _expansionDatabase.deleteExpansionById((await element).id)
-    }).toList()); */
-    JsonService().getExpansionsFromJSON().forEach((expansionModel) async {
+    insertExpansionsWithDependenciesIntoDB(await Future.wait(JsonService().getExpansionsFromJSON()));
+    /*JsonService().getExpansionsFromJSON().forEach((expansionModel) async {
       insertExpansionIntoDB(await expansionModel);
-    });
+    });*/
   }
 
   Future<List<CardModel>> getSortedCardsByExpansionDBModel(
