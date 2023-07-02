@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:dominion_companion/components/deck_expandable.dart';
@@ -19,9 +20,11 @@ class LazyScrollViewDecks extends StatefulWidget {
 class _LazyScrollViewDecksState extends State<LazyScrollViewDecks> {
   SettingsService settingService = SettingsService();
   List<DeckModel> decks = [];
+  List<UniqueKey> keys = [];
   bool showLoadingIcon = true;
   bool cachedNotifier = false;
   bool disposed = false;
+  int activeLoader = 0;
 
   @override
   initState() {
@@ -35,39 +38,41 @@ class _LazyScrollViewDecksState extends State<LazyScrollViewDecks> {
     disposed = true;
   }
 
-  void init() {
-    decks = [];
-    showLoadingIcon = true;
-    cachedNotifier = settingService.notifier.value;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      loadExpansions();
+  void init() async {
+    setState(() {
+      decks = [];
+      showLoadingIcon = true;
+      cachedNotifier = settingService.notifier.value;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        loadExpansions();
+      });
     });
   }
 
   loadExpansions() {
-    loadExpansionRecursive(SettingsService().getCachedSettings());
+    setState(() {
+      activeLoader = activeLoader + 1;
+    });
+    loadExpansionRecursive(SettingsService().getCachedSettings(), activeLoader);
   }
 
-  loadExpansionRecursive(SettingsModel settingsModel) async {
-    if (!disposed) {
+  loadExpansionRecursive(SettingsModel settingsModel, int loaderId) async {
+    if (!disposed || loaderId != activeLoader) {
       DeckService()
           .getDeckByPosition(decks.length,
               sortAsc: settingsModel.sortAsc, sortKey: settingsModel.sortKey)
           .then(
             (element) => {
-              if (!disposed)
+              if (!disposed || loaderId != activeLoader)
                 {
                   setState(
                     () {
                       if (element != null) {
-                        setState(() {
-                          decks.add(element);
-                        });
-                        loadExpansionRecursive(settingsModel);
+                        decks.add(element);
+                        keys.add(UniqueKey());
+                        loadExpansionRecursive(settingsModel, loaderId);
                       } else {
-                        setState(() {
-                          showLoadingIcon = false;
-                        });
+                        showLoadingIcon = false;
                       }
                     },
                   ),
@@ -98,12 +103,20 @@ class _LazyScrollViewDecksState extends State<LazyScrollViewDecks> {
                     children: [
                       ...decks
                           .map<Widget>((e) => DeckExpandable(
+                                key: keys[decks.indexOf(e)],
                                 deckModel: e,
+                                onRouteLeave: () {
+                                  setState(() {
+                                    disposed = true;
+                                    decks = [];
+                                  });
+                                },
                                 onChange: () {
                                   if (widget.onChange != null) {
                                     widget.onChange!();
                                   }
                                   setState(() {
+                                    disposed = false;
                                     init();
                                   });
                                 },

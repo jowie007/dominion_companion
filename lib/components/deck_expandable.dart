@@ -20,12 +20,14 @@ class DeckExpandable extends StatefulWidget {
       required this.deckModel,
       this.initiallyExpanded = false,
       this.isNewlyCreated = false,
-      this.onChange});
+      this.onChange,
+      this.onRouteLeave});
 
   final DeckModel deckModel;
   final bool initiallyExpanded;
   final bool isNewlyCreated;
   final void Function()? onChange;
+  final void Function()? onRouteLeave;
 
   @override
   State<DeckExpandable> createState() => _DeckExpandableState();
@@ -89,21 +91,22 @@ class _DeckExpandableState extends State<DeckExpandable> {
           ClipRRect(
             borderRadius: BorderRadius.circular(0.0),
             child: Dismissible(
-              key: Key(widget.deckModel.name),
+              key: widget.key ?? Key(widget.deckModel.name),
               direction: !widget.isNewlyCreated
                   ? DismissDirection.horizontal
                   : DismissDirection.none,
               confirmDismiss: (direction) async {
                 if (direction == DismissDirection.startToEnd) {
                   final delete = await showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const CustomAlertDialog(
-                        title: "Löschen",
-                        message: "Soll das Deck wirklich gelöscht werden?",
-                      );
-                    },
-                  ) ?? false;
+                        context: context,
+                        builder: (context) {
+                          return const CustomAlertDialog(
+                            title: "Löschen",
+                            message: "Soll das Deck wirklich gelöscht werden?",
+                          );
+                        },
+                      ) ??
+                      false;
                   if (delete == true) {
                     setState(() {
                       DeckService().deleteDeckById(widget.deckModel.id);
@@ -116,20 +119,24 @@ class _DeckExpandableState extends State<DeckExpandable> {
                 }
                 if (direction == DismissDirection.endToStart) {
                   return await showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const CustomAlertDialog(
-                        title: "Bearbeiten",
-                        message:
-                            "Sollen die enthaltenen Karten angepasst werden?",
-                      );
-                    },
-                  ) ?? false;
+                        context: context,
+                        builder: (context) {
+                          return const CustomAlertDialog(
+                            title: "Bearbeiten",
+                            message:
+                                "Sollen die enthaltenen Karten angepasst werden?",
+                          );
+                        },
+                      ) ??
+                      false;
                 }
                 return false;
               },
               onDismissed: (direction) async {
                 if (direction == DismissDirection.endToStart) {
+                  if (widget.onRouteLeave != null) {
+                    widget.onRouteLeave!();
+                  }
                   Navigator.pushNamed(context, route.createDeckPage,
                           arguments: {"deckId": widget.deckModel.id})
                       .then((value) => onChange());
