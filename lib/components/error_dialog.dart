@@ -10,9 +10,9 @@ class ErrorDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(title),
-      content:  SingleChildScrollView(
+      content: SingleChildScrollView(
         child: ListBody(
-          children:  <Widget>[
+          children: <Widget>[
             Text(message),
           ],
         ),

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:dominion_companion/database/content_database.dart';
 import 'package:dominion_companion/database/model/content/content_db_model.dart';

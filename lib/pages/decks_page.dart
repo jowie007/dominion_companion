@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dominion_companion/components/basic_appbar.dart';
 import 'package:dominion_companion/components/button_player_count.dart';
 import 'package:dominion_companion/components/dropdown_sort.dart';

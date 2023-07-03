@@ -19,8 +19,7 @@ class _BasicAppBarState extends State<BasicAppBar> {
     final musicService = MusicService();
 
     return AppBar(
-      title:
-          Text(widget.title),
+      title: Text(widget.title),
       centerTitle: true,
       actions: <Widget>[
         ValueListenableBuilder(

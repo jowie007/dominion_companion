@@ -1,11 +1,5 @@
-import 'dart:developer';
-
 import 'package:dominion_companion/database/expansion_database.dart';
-import 'package:dominion_companion/database/model/card/card_db_model.dart';
-import 'package:dominion_companion/database/model/content/content_db_model.dart';
-import 'package:dominion_companion/database/model/end/end_db_model.dart';
 import 'package:dominion_companion/database/model/expansion/expansion_db_model.dart';
-import 'package:dominion_companion/database/model/hand/hand_db_model.dart';
 import 'package:dominion_companion/model/card/card_model.dart';
 import 'package:dominion_companion/model/content/content_model.dart';
 import 'package:dominion_companion/model/end/end_model.dart';
@@ -58,13 +52,15 @@ class ExpansionService {
     }
   }*/
 
-  Future<void> insertExpansionModelsIntoDB(List<ExpansionModel> expansionModels) {
+  Future<void> insertExpansionModelsIntoDB(
+      List<ExpansionModel> expansionModels) {
     return _expansionDatabase.insertExpansions(expansionModels
         .map((expansionModel) => ExpansionDBModel.fromModel(expansionModel))
         .toList());
   }
 
-  void insertExpansionsWithDependenciesIntoDB(List<ExpansionModel> expansionModels) async {
+  void insertExpansionsWithDependenciesIntoDB(
+      List<ExpansionModel> expansionModels) async {
     await insertExpansionModelsIntoDB(expansionModels);
     /*_expansionDatabase
         .insertExpansionModelsIntoDB(ExpansionDBModel.fromModel(expansionModels));*/
@@ -72,15 +68,14 @@ class ExpansionService {
     await _cardService.insertCardModelsIntoDB(cards);
     var contents = expansionModels.expand((e) => e.content).toList();
     await _contentService.insertContentModelsIntoDB(contents);
-    var hands = expansionModels.expand((e) => [
-      ...e.handMoneyCards,
-      ...e.handOtherCards,
-      ...e.handContents
-    ]).toList();
+    var hands = expansionModels
+        .expand((e) =>
+            [...e.handMoneyCards, ...e.handOtherCards, ...e.handContents])
+        .toList();
     await _handService.insertHandModelsIntoDB(hands);
     List<EndModel> ends = [];
     for (var expansionModel in expansionModels) {
-      if(expansionModel.end != null) {
+      if (expansionModel.end != null) {
         ends.add(expansionModel.end!);
       }
     }
@@ -88,7 +83,8 @@ class ExpansionService {
   }
 
   Future<void> loadJsonExpansionsIntoDB() async {
-    insertExpansionsWithDependenciesIntoDB(await Future.wait(JsonService().getExpansionsFromJSON()));
+    insertExpansionsWithDependenciesIntoDB(
+        await Future.wait(JsonService().getExpansionsFromJSON()));
     /*JsonService().getExpansionsFromJSON().forEach((expansionModel) async {
       insertExpansionIntoDB(await expansionModel);
     });*/

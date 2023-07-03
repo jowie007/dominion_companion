@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dominion_companion/model/card/card_model.dart';
@@ -21,15 +20,28 @@ class DeckModel {
   late HandModel handContents;
   late EndModel end;
 
-  DeckModel(this.id, this.name, this.image, this.creationDate, this.editDate, this.rating, this.cards, this.additionalCards, this.content,
-      this.handMoneyCards, this.handOtherCards, this.handContents, this.end);
+  DeckModel(
+      this.id,
+      this.name,
+      this.image,
+      this.creationDate,
+      this.editDate,
+      this.rating,
+      this.cards,
+      this.additionalCards,
+      this.content,
+      this.handMoneyCards,
+      this.handOtherCards,
+      this.handContents,
+      this.end);
 
   List<CardModel> getAllCards() {
     var allCards = [...cards];
     allCards.sort((a, b) => CardModel.sortCardComparisonDeck(a, b));
     if (additionalCards != null) {
       var sortedAdditionalCards = [...additionalCards!];
-      sortedAdditionalCards.sort((a, b) => CardModel.sortCardComparisonDeck(a, b));
+      sortedAdditionalCards
+          .sort((a, b) => CardModel.sortCardComparisonDeck(a, b));
       allCards.addAll(sortedAdditionalCards);
     }
     return allCards;

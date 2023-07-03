@@ -10,7 +10,7 @@ class SettingsModel {
     version = json['version'];
     sortKey = json['sortKey'];
     sortAsc = json['sortAsc'] ?? false;
-    loadingSuccess= json['loadingSucess'] ?? false;
+    loadingSuccess = json['loadingSucess'] ?? false;
   }
 
   SettingsModel.fromDBModel(SettingsDBModel dbModel) {

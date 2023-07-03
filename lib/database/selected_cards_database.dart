@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -19,8 +20,7 @@ class SelectedCardDatabase {
 
   Future<int> insertSelectedCardId(String selectedCardId) async {
     await openDb();
-    return await _database
-        .insert('selectedCard', {"id": selectedCardId});
+    return await _database.insert('selectedCard', {"id": selectedCardId});
   }
 
   Future<List<String>> getSelectedCardIdList() async {

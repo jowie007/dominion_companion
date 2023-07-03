@@ -1,6 +1,6 @@
+import 'package:dominion_companion/router/routes.dart' as route;
 import 'package:dominion_companion/services/settings_service.dart';
 import 'package:flutter/material.dart';
-import 'package:dominion_companion/router/routes.dart' as route;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 // TODO Dont check cards and dont init expansions
@@ -14,7 +14,8 @@ Future<void> main() async {
   runApp(const DominionCompanion());
   final settingsService = SettingsService();
   try {
-    await settingsService.initializeApp(checkCardNames: true, initializeExpansions: true, deleteSettings: true);
+    await settingsService.initializeApp(
+        checkCardNames: true, initializeExpansions: true, deleteSettings: true);
     FlutterNativeSplash.remove();
   } on Exception catch (e) {
     settingsService.initException = e;

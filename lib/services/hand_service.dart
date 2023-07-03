@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:dominion_companion/database/hand_database.dart';
 import 'package:dominion_companion/database/model/hand/hand_db_model.dart';

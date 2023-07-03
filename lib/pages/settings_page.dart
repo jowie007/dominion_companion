@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:dominion_companion/components/basic_appbar.dart';
 import 'package:dominion_companion/components/custom_alert_dialog.dart';
@@ -122,8 +121,9 @@ class _DeckInfoState extends State<SettingsPage> {
                       );
                       if (withImages != null) {
                         List<DeckDBModel> deckDBList;
-                        if(withImages) {
-                          deckDBList = await DeckService().getDBDeckListWithImages();
+                        if (withImages) {
+                          deckDBList =
+                              await DeckService().getDBDeckListWithImages();
                         } else {
                           deckDBList = await DeckService().getDBDeckList();
                         }

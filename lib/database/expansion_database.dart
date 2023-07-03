@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:developer';
+
 import 'package:dominion_companion/database/model/expansion/expansion_db_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -15,14 +15,14 @@ class ExpansionDatabase {
         version: 1, onCreate: (Database db, int version) async {
       await db.execute(
         "CREATE TABLE expansion(id STRING PRIMARY KEY, "
-            "name STRING, "
-            "version STRING, "
-            "cardIds STRING, "
-            "contentIds STRING, "
-            "handMoneyCardIds STRING, "
-            "handOtherCardIds STRING, "
-            "handContentIds STRING, "
-            "endId STRING)",
+        "name STRING, "
+        "version STRING, "
+        "cardIds STRING, "
+        "contentIds STRING, "
+        "handMoneyCardIds STRING, "
+        "handOtherCardIds STRING, "
+        "handContentIds STRING, "
+        "endId STRING)",
       );
     });
     return _database;
@@ -30,8 +30,8 @@ class ExpansionDatabase {
 
   Future<ExpansionDBModel?> getExpansionByPosition(int position) async {
     await openDb();
-    final List<Map<String, dynamic>> maps =
-    await _database.rawQuery('SELECT * FROM expansion LIMIT 1 OFFSET $position;');
+    final List<Map<String, dynamic>> maps = await _database
+        .rawQuery('SELECT * FROM expansion LIMIT 1 OFFSET $position;');
     return maps.isNotEmpty ? ExpansionDBModel.fromDB(maps.first) : null;
   }
 
@@ -53,7 +53,6 @@ class ExpansionDatabase {
     }
     await batch.commit(noResult: true);
   }
-
 
   Future<List<ExpansionDBModel>> getExpansionList() async {
     await openDb();

@@ -33,16 +33,15 @@ class MusicService {
       loopMode: LoopMode.single,
       headPhoneStrategy: HeadPhoneStrategy.pauseOnUnplug,
       notificationSettings: NotificationSettings(
-        nextEnabled: false,
-        prevEnabled: false,
-        customStopAction: (_) {
-          assetsAudioPlayer!.stop();
-          assetsAudioPlayer = null;
-        },
-        customPlayPauseAction: (_) {
-          togglePlaying();
-        }
-      ),
+          nextEnabled: false,
+          prevEnabled: false,
+          customStopAction: (_) {
+            assetsAudioPlayer!.stop();
+            assetsAudioPlayer = null;
+          },
+          customPlayPauseAction: (_) {
+            togglePlaying();
+          }),
     );
   }
 

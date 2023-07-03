@@ -3,14 +3,19 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 class FloatingActionButtonCoin extends StatefulWidget {
-  const FloatingActionButtonCoin({super.key, required this.icon, required this.tooltip, required this.onPressed});
+  const FloatingActionButtonCoin(
+      {super.key,
+      required this.icon,
+      required this.tooltip,
+      required this.onPressed});
 
   final IconData icon;
   final String tooltip;
   final void Function() onPressed;
 
   @override
-  State<FloatingActionButtonCoin> createState() => _FloatingActionButtonCoinState();
+  State<FloatingActionButtonCoin> createState() =>
+      _FloatingActionButtonCoinState();
 }
 
 class _FloatingActionButtonCoinState extends State<FloatingActionButtonCoin> {
@@ -30,9 +35,8 @@ class _FloatingActionButtonCoinState extends State<FloatingActionButtonCoin> {
                 image: AssetImage("assets/cards/other/coin.png"),
                 fit: BoxFit.cover),
           ),
-          child:
-          Icon(widget.icon, color: Colors.black) // button text
-      ),
+          child: Icon(widget.icon, color: Colors.black) // button text
+          ),
     );
   }
 }

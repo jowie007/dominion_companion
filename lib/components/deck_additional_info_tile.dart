@@ -9,7 +9,10 @@ import 'package:flutter/material.dart';
 
 class DeckAdditionalInfoTile extends StatefulWidget {
   const DeckAdditionalInfoTile(
-      {super.key, required this.deckModel, required this.cards, this.isTemporary = false});
+      {super.key,
+      required this.deckModel,
+      required this.cards,
+      this.isTemporary = false});
 
   final DeckModel deckModel;
   final List<CardModel> cards;
@@ -49,7 +52,8 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                               SizedBox(width: 8),
                               Text(
                                 "Extras:",
-                                style: TextStyle(decoration: TextDecoration.underline),
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline),
                               ),
                             ],
                           ),
@@ -72,26 +76,29 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                         ],
                       )
                     : Container(),
-                !widget.isTemporary ? const Row(
-                  children: [
-                    Icon(Icons.info_outline, size: 14),
-                    SizedBox(width: 8),
-                    Text(
-                      "Voller Name:",
-                      style: TextStyle(decoration: TextDecoration.underline),
-                    ),
-                  ],
-                ) : Container(),
-                !widget.isTemporary ? Row(
-                  children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                        child: Text(
-                            widget.deckModel.name)),
-                  ],
-                ) : Container(),
+                !widget.isTemporary
+                    ? const Row(
+                        children: [
+                          Icon(Icons.info_outline, size: 14),
+                          SizedBox(width: 8),
+                          Text(
+                            "Voller Name:",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      )
+                    : Container(),
+                !widget.isTemporary
+                    ? Row(
+                        children: [
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Expanded(child: Text(widget.deckModel.name)),
+                        ],
+                      )
+                    : Container(),
                 Column(
                   children: [
                     const Row(

@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:dominion_companion/database/model/settings/settings_db_model.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path/path.dart';

@@ -6,7 +6,7 @@ class CustomAlertDialog extends StatelessWidget {
       required this.title,
       required this.message,
       this.onlyCancelButton = false,
-        this.onConfirm,
+      this.onConfirm,
       this.onCancel,
       this.confirmText = "Ja",
       this.cancelText = "Abbrechen"});

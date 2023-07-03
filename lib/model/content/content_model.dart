@@ -27,13 +27,11 @@ class ContentModel {
     count = dbModel.count;
   }
 
-  static Map<int, List<String>> whenDeckConsistsOfXCardsFromJSON(
-      dynamic json) {
+  static Map<int, List<String>> whenDeckConsistsOfXCardsFromJSON(dynamic json) {
     Map<int, List<String>> retMap = {};
     var jsonMap = Map<String, List<dynamic>>.from(json);
     for (var stringMapKey in jsonMap.keys) {
-      retMap[int.parse(stringMapKey)] =
-          List<String>.from(json[stringMapKey]);
+      retMap[int.parse(stringMapKey)] = List<String>.from(json[stringMapKey]);
     }
     return retMap;
   }

@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import '../../../model/deck/deck_model.dart';
 
 class DeckDBModel {
@@ -50,11 +47,11 @@ class DeckDBModel {
       };
 
   Map<String, dynamic> toDBJson() => {
-    'id': id,
-    'name': name,
-    'cardIds': cardIds.join(','),
-    'creationDate': creationDate.millisecondsSinceEpoch,
-    'editDate': editDate != null ? editDate!.millisecondsSinceEpoch : null,
-    'rating': rating,
-  };
+        'id': id,
+        'name': name,
+        'cardIds': cardIds.join(','),
+        'creationDate': creationDate.millisecondsSinceEpoch,
+        'editDate': editDate != null ? editDate!.millisecondsSinceEpoch : null,
+        'rating': rating,
+      };
 }

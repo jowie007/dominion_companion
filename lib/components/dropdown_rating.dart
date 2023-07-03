@@ -53,7 +53,7 @@ class _DropdownSortState extends State<DropdownSort> {
                     : Text(
                         value,
                         textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 22),
+                        style: const TextStyle(fontSize: 22),
                       ),
               ),
             ),

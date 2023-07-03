@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:developer';
+
 import 'package:dominion_companion/database/model/deck/deck_db_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';

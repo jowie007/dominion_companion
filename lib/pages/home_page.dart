@@ -1,15 +1,14 @@
-import 'dart:developer' as dev;
 import 'dart:math';
 
 import 'package:dominion_companion/components/card_popup.dart';
 import 'package:dominion_companion/components/custom_alert_dialog.dart';
 import 'package:dominion_companion/components/error_dialog.dart';
 import 'package:dominion_companion/components/menu_button.dart';
+import 'package:dominion_companion/router/routes.dart' as route;
 import 'package:dominion_companion/services/card_service.dart';
 import 'package:dominion_companion/services/music_service.dart';
 import 'package:dominion_companion/services/settings_service.dart';
 import 'package:flutter/material.dart';
-import 'package:dominion_companion/router/routes.dart' as route;
 
 import '../components/floating_action_button_coin.dart';
 

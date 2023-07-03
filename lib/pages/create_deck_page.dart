@@ -1,15 +1,13 @@
-import 'dart:developer';
-
 import 'package:dominion_companion/components/basic_appbar.dart';
 import 'package:dominion_companion/components/basic_infobar_bottom.dart';
 import 'package:dominion_companion/components/custom_alert_dialog.dart';
 import 'package:dominion_companion/components/floating_action_button_coin.dart';
 import 'package:dominion_companion/components/lazy_scroll_view_expansion.dart';
+import 'package:dominion_companion/router/routes.dart' as route;
 import 'package:dominion_companion/services/deck_service.dart';
 import 'package:dominion_companion/services/temporary_deck_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:dominion_companion/router/routes.dart' as route;
 
 import '../services/selected_card_service.dart';
 
@@ -59,14 +57,15 @@ class _CreateDeckState extends State<CreateDeckPage> {
         if (listEquals(initialCardIds, _selectedCardService.selectedCardIds) !=
             true) {
           return await showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return CustomAlertDialog(
-                  title: "Seite verlassen",
-                  message: "Seite ohne Speichern verlassen?",
-                  onConfirm: () => Navigator.of(context).pop(true));
-            },
-          ) ?? false;
+                context: context,
+                builder: (BuildContext context) {
+                  return CustomAlertDialog(
+                      title: "Seite verlassen",
+                      message: "Seite ohne Speichern verlassen?",
+                      onConfirm: () => Navigator.of(context).pop(true));
+                },
+              ) ??
+              false;
         }
         return true;
       },

@@ -31,9 +31,10 @@ class SettingsService {
   Exception? initException;
 
   // Adjust version in pubspec.yaml
-  Future<void> initializeApp({deleteSettings = false,
-    checkCardNames = false,
-    initializeExpansions = false}) async {
+  Future<void> initializeApp(
+      {deleteSettings = false,
+      checkCardNames = false,
+      initializeExpansions = false}) async {
     if (deleteSettings) {
       await deleteSettingsTable()
           .then((value) => initDatabase())
@@ -49,7 +50,8 @@ class SettingsService {
     }
     await PackageInfo.fromPlatform().then((packageInfo) async {
       if (settings!.version != packageInfo.version ||
-          initializeExpansions || !settings!.loadingSuccess) {
+          initializeExpansions ||
+          !settings!.loadingSuccess) {
         await updateLoadingSuccess(false);
         await ExpansionService()
             .deleteExpansionTable()
@@ -70,7 +72,7 @@ class SettingsService {
 
   void testCardNames() async {
     CardService().getAllCards().then(
-          (cards) async {
+      (cards) async {
         for (var card in cards) {
           var split = card.id.split("-");
           if (split[1] != "set") {

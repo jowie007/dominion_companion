@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:developer';
+
 import 'package:dominion_companion/database/model/content/content_db_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -71,15 +71,16 @@ class ContentDatabase {
 
   Future<ContentDBModel> getContentById(String id) async {
     await openDb();
-    final List<Map<String, dynamic>> maps =
-        await _database.rawQuery('SELECT * FROM content WHERE id LIKE ?', ["$id%"]);
+    final List<Map<String, dynamic>> maps = await _database
+        .rawQuery('SELECT * FROM content WHERE id LIKE ?', ["$id%"]);
     return ContentDBModel.fromDB(maps.first);
   }
 
-  Future<List<ContentDBModel>> getContentByExpansionId(String expansionId) async {
+  Future<List<ContentDBModel>> getContentByExpansionId(
+      String expansionId) async {
     await openDb();
-    final List<Map<String, dynamic>> maps =
-    await _database.rawQuery('SELECT * FROM content WHERE id LIKE ?', ["$expansionId%"]);
+    final List<Map<String, dynamic>> maps = await _database
+        .rawQuery('SELECT * FROM content WHERE id LIKE ?', ["$expansionId%"]);
     return List.generate(maps.length, (i) {
       return ContentDBModel.fromDB(maps[i]);
     });
