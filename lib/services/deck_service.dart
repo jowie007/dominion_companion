@@ -110,7 +110,7 @@ class DeckService {
   }
 
   Future<int> importDeck(DeckDBModel deckDBModel, {int? deleteId}) async {
-    if(deleteId != null && await _deckDatabase.getDeckById(deleteId) != null) {
+    if (deleteId != null && await _deckDatabase.getDeckById(deleteId) != null) {
       _deckDatabase.deleteDeckById(deleteId);
     }
     if (await _deckDatabase.getDeckByName(deckDBModel.name) != null) {
@@ -179,9 +179,8 @@ class DeckService {
   Future<void> setCachedImage(int deckId, String? base64String) async {
     appDocumentsDir ??= await getApplicationDocumentsDirectory();
     final path = '${appDocumentsDir!.path}/decks/images/$deckId.jpg';
-    if (base64String == null) {
-      removeCachedImage(deckId);
-    } else {
+    await removeCachedImage(deckId);
+    if (base64String != null) {
       try {
         if (!(await File(path).exists())) {
           final file = await File(path).create(recursive: true);

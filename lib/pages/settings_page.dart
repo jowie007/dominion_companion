@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:dominion_companion/components/basic_appbar.dart';
 import 'package:dominion_companion/components/custom_alert_dialog.dart';
 import 'package:dominion_companion/components/error_dialog.dart';
+import 'package:dominion_companion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_companion/services/deck_service.dart';
 import 'package:dominion_companion/services/file_service.dart';
 import 'package:dominion_companion/services/settings_service.dart';
@@ -107,11 +108,29 @@ class _DeckInfoState extends State<SettingsPage> {
                   const SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () async {
-                      var deckDBList =
-                          await DeckService().getDBDeckListWithImages();
-                      var jsonFile = jsonEncode(deckDBList);
-                      FileService().shareTemporaryJSONFile("decks", jsonFile);
-                      // Share.shareXFiles(['${directory.path}/image.jpg'], text: 'Great picture');
+                      var withImages = await showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const CustomAlertDialog(
+                            title: "Decks exportieren",
+                            message:
+                                "Möchtest du die Decks mit oder ohne Bilder exportieren? Falls du dich für die Option mit Bildern entscheidest kann die Datei sehr groß werden und es kann eventuell zu Problemen beim Import kommen.",
+                            cancelText: "Ohne",
+                            confirmText: "Mit",
+                          );
+                        },
+                      );
+                      if (withImages != null) {
+                        List<DeckDBModel> deckDBList;
+                        if(withImages) {
+                          deckDBList = await DeckService().getDBDeckListWithImages();
+                        } else {
+                          deckDBList = await DeckService().getDBDeckList();
+                        }
+                        var jsonFile = jsonEncode(deckDBList);
+                        FileService().shareTemporaryJSONFile("decks", jsonFile);
+                        // Share.shareXFiles(['${directory.path}/image.jpg'], text: 'Great picture');
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,

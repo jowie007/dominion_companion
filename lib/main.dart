@@ -7,7 +7,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 // TODO Prüfen warum decks gelöscht werden
 // TODO Ladeicons anordnen
 // TODO ButtonSounds
-// TODO Checken warum Deckimport nicht mehr funktioniert & Maximales File Limit testen/Eventuell image nicht in Objekt speichern
+// TODO Startseite Images anpassen
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
