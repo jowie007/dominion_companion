@@ -30,7 +30,12 @@ class DeckExpandableLoader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircularProgressIndicator(),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
               Visibility(
                 visible: snapshot.hasData,
                 child: const Text(

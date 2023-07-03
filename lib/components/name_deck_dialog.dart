@@ -26,7 +26,7 @@ class NameDeckDialog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircularProgressIndicator(),
+              Center(child: CircularProgressIndicator()),
             ],
           );
         } else if (snapshot.connectionState == ConnectionState.done) {
