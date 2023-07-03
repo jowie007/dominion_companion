@@ -98,7 +98,6 @@ flutter:
     - assets/instructions/
     - assets/artwork/cover/
     - assets/artwork/boxart/
-    - assets/artwork/background/
     - assets/artwork/icon/
     - assets/artwork/splash/
 

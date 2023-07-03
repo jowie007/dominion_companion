@@ -6,6 +6,7 @@ import 'package:dominion_companion/components/error_dialog.dart';
 import 'package:dominion_companion/components/menu_button.dart';
 import 'package:dominion_companion/router/routes.dart' as route;
 import 'package:dominion_companion/services/card_service.dart';
+import 'package:dominion_companion/services/file_service.dart';
 import 'package:dominion_companion/services/music_service.dart';
 import 'package:dominion_companion/services/settings_service.dart';
 import 'package:flutter/material.dart';
@@ -23,22 +24,10 @@ class _HomePageState extends State<HomePage> {
   final _musicService = MusicService();
   final _cardService = CardService();
   final _settingsService = SettingsService();
+  final _fileService = FileService();
 
   @override
   Widget build(BuildContext context) {
-    final boxartList = [
-      "adventures.webp",
-      "allies.jpg",
-      "base.webp",
-      "cornucopia.jpg",
-      "empires.jpg",
-      "hinterlands.jpg",
-      "hinterlands2.jpg",
-      "nocturne.jpg",
-      "prosperity.jpg",
-      "seaside.jpg",
-      "seaside2.jpg"
-    ];
 
     if (_settingsService.initException != null) {
       showDialog(
@@ -57,8 +46,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(
-                    "assets/artwork/background/${boxartList[Random().nextInt(boxartList.length)]}"),
+                image: AssetImage(_fileService.backgroundImagePath!),
                 fit: BoxFit.cover,
               ),
             ),

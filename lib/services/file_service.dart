@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,6 +18,35 @@ class FileService {
   FileService._internal();
 
   ValueNotifier<bool> notifier = ValueNotifier(false);
+
+  String? backgroundImagePath;
+
+  final boxartList = [
+    "abenteuer_v1",
+    "alchemisten_v1",
+    "basisspiel_v1",
+    "basisspiel_v2",
+    "bluetezeit_v1",
+    "bluetezeit_v2",
+    "dark_ages_v1",
+    "empires_v2",
+    "gilden_v1",
+    "hinterland_v1",
+    "hinterland_v2",
+    "intrige_v2",
+    "menagerie_v1",
+    "nocturne_v1",
+    "pluenderer_v1",
+    "reiche_ernte_v1",
+    "renaissance_v1",
+    "seaside_v1",
+    "seaside_v2",
+    "verbuendete_v1",
+  ];
+
+  void initializeBackgroundImagePath() {
+    backgroundImagePath = "assets/artwork/boxart/${boxartList[Random().nextInt(boxartList.length)]}.jpg";
+  }
 
   Future<File> getTempFile(String assetPath, String tempPath) async {
     final tempDir = await getTemporaryDirectory();

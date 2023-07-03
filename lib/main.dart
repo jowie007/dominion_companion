@@ -6,7 +6,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 // TODO Dont check cards and dont init expansions
 // TODO Prüfen warum decks gelöscht werden
 // TODO ButtonSounds
-// TODO Startseite Images anpassen
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);

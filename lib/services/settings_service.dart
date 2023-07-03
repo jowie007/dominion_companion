@@ -7,6 +7,7 @@ import 'package:dominion_companion/services/card_service.dart';
 import 'package:dominion_companion/services/content_service.dart';
 import 'package:dominion_companion/services/end_service.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
+import 'package:dominion_companion/services/file_service.dart';
 import 'package:dominion_companion/services/hand_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,11 +31,14 @@ class SettingsService {
 
   Exception? initException;
 
+  FileService fileService = FileService();
+
   // Adjust version in pubspec.yaml
   Future<void> initializeApp(
       {deleteSettings = false,
       checkCardNames = false,
       initializeExpansions = false}) async {
+    fileService.initializeBackgroundImagePath();
     if (deleteSettings) {
       await deleteSettingsTable()
           .then((value) => initDatabase())
