@@ -17,6 +17,7 @@ class SettingsDatabase {
           "version STRING, "
           "sortKey STRING, "
           "sortAsc BOOL, "
+          "playAudio BOOL, "
           "loadingSuccess BOOL)");
     });
     return _database;
@@ -35,6 +36,7 @@ class SettingsDatabase {
       "version": packageInfo.version,
       "sortKey": "creationDate",
       "sortAsc": 1,
+      "playAudio": 1,
       "loadingSuccess": 1
     });
   }

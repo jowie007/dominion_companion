@@ -9,6 +9,7 @@ import 'package:dominion_companion/components/dropdown_rating.dart';
 import 'package:dominion_companion/components/error_dialog.dart';
 import 'package:dominion_companion/components/name_deck_dialog.dart';
 import 'package:dominion_companion/model/deck/deck_model.dart';
+import 'package:dominion_companion/services/audio_service.dart';
 import 'package:dominion_companion/services/deck_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -70,6 +71,8 @@ class _DeckExpandableState extends State<DeckExpandable> {
         widget.onChange!();
       }
     }
+
+    final audioService = AudioService();
 
     const backgroundImage = AssetImage("assets/menu/main_scroll_crop.png");
     return Padding(
@@ -169,6 +172,12 @@ class _DeckExpandableState extends State<DeckExpandable> {
                       Container(
                         alignment: Alignment.center,
                         child: ExpansionTile(
+                          onExpansionChanged: (value) => {
+                            if (value)
+                              {audioService.playAudioOpen()}
+                            else
+                              {audioService.playAudioClose()}
+                          },
                           initiallyExpanded: widget.initiallyExpanded,
                           trailing: const SizedBox(
                             width: 0,

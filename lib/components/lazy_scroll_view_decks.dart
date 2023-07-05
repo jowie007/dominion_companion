@@ -39,13 +39,11 @@ class _LazyScrollViewDecksState extends State<LazyScrollViewDecks> {
   }
 
   void init() async {
-    setState(() {
-      decks = [];
-      showLoadingIcon = true;
-      cachedNotifier = settingService.notifier.value;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        loadExpansions();
-      });
+    decks = [];
+    showLoadingIcon = true;
+    cachedNotifier = settingService.notifier.value;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      loadExpansions();
     });
   }
 

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dominion_companion/components/card_info_tile.dart';
 import 'package:dominion_companion/components/round_checkbox.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
+import 'package:dominion_companion/services/audio_service.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
 import 'package:dominion_companion/services/selected_card_service.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
   Widget build(BuildContext context) {
     final expansionService = ExpansionService();
     final selectedCardService = SelectedCardService();
+    final audioService = AudioService();
     final expansionCardIds = widget.expansion.getCardIdsToShuffle();
     return Stack(
       children: [
@@ -44,6 +46,12 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                 Container(
                   alignment: Alignment.center,
                   child: ExpansionTile(
+                    onExpansionChanged: (value) => {
+                      if (value)
+                        {audioService.playAudioOpen()}
+                      else
+                        {audioService.playAudioClose()}
+                    },
                     trailing: const SizedBox(
                       width: 0,
                       height: 0,

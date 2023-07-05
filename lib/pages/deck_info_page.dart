@@ -4,6 +4,7 @@ import 'package:dominion_companion/components/deck_expandable_loader.dart';
 import 'package:dominion_companion/components/floating_action_button_coin.dart';
 import 'package:dominion_companion/components/name_deck_dialog.dart';
 import 'package:dominion_companion/model/deck/deck_model.dart';
+import 'package:dominion_companion/services/audio_service.dart';
 import 'package:dominion_companion/services/deck_service.dart';
 import 'package:dominion_companion/services/temporary_deck_service.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class _DeckInfoState extends State<DeckInfoPage> {
 
   final _temporaryDeckService = TemporaryDeckService();
   final _deckService = DeckService();
+  final _audioService = AudioService();
 
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
@@ -49,7 +51,7 @@ class _DeckInfoState extends State<DeckInfoPage> {
                   futureDeckModel: _temporaryDeckService.temporaryDeck,
                   initiallyExpanded: true,
                   isNewlyCreated: true,
-                  onLoaded: (deckModel) => temporaryDeck = deckModel,
+                  onLoaded: (deckModel) => {temporaryDeck = deckModel, _audioService.stopPlaying()},
                 ),
               ),
             ),

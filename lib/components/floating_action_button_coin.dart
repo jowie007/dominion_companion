@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dominion_companion/services/audio_service.dart';
 import 'package:flutter/material.dart';
 
 class FloatingActionButtonCoin extends StatefulWidget {
@@ -19,11 +20,13 @@ class FloatingActionButtonCoin extends StatefulWidget {
 }
 
 class _FloatingActionButtonCoinState extends State<FloatingActionButtonCoin> {
+  AudioService audioService = AudioService();
+
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       heroTag: null,
-      onPressed: () => widget.onPressed(),
+      onPressed: () => {widget.onPressed(), audioService.playAudioCoin()},
       tooltip: widget.tooltip,
       backgroundColor: Colors.transparent,
       splashColor: Colors.transparent,

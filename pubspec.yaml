@@ -73,7 +73,8 @@ flutter:
   # https://docs.flutter.dev/development/ui/assets-and-images
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/audio/
+    - assets/audio/soundeffects/
+    - assets/audio/soundtrack/
     - assets/cards/other/
     - assets/cards/json/
     - assets/cards/full/alchemisten_v1/

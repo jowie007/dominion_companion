@@ -1,3 +1,4 @@
+import 'package:dominion_companion/services/audio_service.dart';
 import 'package:flutter/material.dart';
 
 class ButtonPlusMinus extends StatefulWidget {
@@ -18,6 +19,7 @@ class ButtonPlusMinus extends StatefulWidget {
 class _ButtonPlusMinusState extends State<ButtonPlusMinus> {
   @override
   Widget build(BuildContext context) {
+    final audioService = AudioService();
     return Container(
       width: 268,
       decoration: BoxDecoration(
@@ -40,7 +42,7 @@ class _ButtonPlusMinusState extends State<ButtonPlusMinus> {
           MaterialButton(
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
-            onPressed: widget.onMinus,
+            onPressed: () => {widget.onMinus(), audioService.playAudioButton()},
             child: const Stack(
               alignment: Alignment.center,
               children: [
@@ -53,7 +55,7 @@ class _ButtonPlusMinusState extends State<ButtonPlusMinus> {
           MaterialButton(
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
-            onPressed: widget.onPlus,
+            onPressed: () => {widget.onPlus(), audioService.playAudioButton()},
             child: const Stack(
               alignment: Alignment.center,
               children: [

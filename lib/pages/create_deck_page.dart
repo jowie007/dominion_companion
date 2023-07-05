@@ -1,9 +1,13 @@
+import 'dart:developer';
+
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:dominion_companion/components/basic_appbar.dart';
 import 'package:dominion_companion/components/basic_infobar_bottom.dart';
 import 'package:dominion_companion/components/custom_alert_dialog.dart';
 import 'package:dominion_companion/components/floating_action_button_coin.dart';
 import 'package:dominion_companion/components/lazy_scroll_view_expansion.dart';
 import 'package:dominion_companion/router/routes.dart' as route;
+import 'package:dominion_companion/services/audio_service.dart';
 import 'package:dominion_companion/services/deck_service.dart';
 import 'package:dominion_companion/services/temporary_deck_service.dart';
 import 'package:flutter/foundation.dart';
@@ -29,8 +33,10 @@ class _CreateDeckState extends State<CreateDeckPage> {
   final _selectedCardService = SelectedCardService();
   final _deckService = DeckService();
   final _temporaryDeckService = TemporaryDeckService();
+  final _audioService = AudioService();
 
   void onCreateNewDeck(bool random) {
+    _audioService.playAudioShuffle();
     _temporaryDeckService.saved = false;
     _temporaryDeckService.createTemporaryDBDeck(
         "", _selectedCardService.selectedCardIds, random);

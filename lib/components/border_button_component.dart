@@ -1,3 +1,4 @@
+import 'package:dominion_companion/services/audio_service.dart';
 import 'package:flutter/material.dart';
 
 class BorderButtonComponent extends StatelessWidget {
@@ -16,10 +17,11 @@ class BorderButtonComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final audioService = AudioService();
     return MaterialButton(
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
-      onPressed: onClick,
+      onPressed: () => {onClick(), audioService.playAudioButton()},
       child: Container(
         width: width,
         height: width,

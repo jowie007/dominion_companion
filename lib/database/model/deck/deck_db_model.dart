@@ -40,6 +40,15 @@ class DeckDBModel {
         'id': id,
         'name': name,
         'cardIds': cardIds.join(','),
+        'creationDate': creationDate.millisecondsSinceEpoch,
+        'editDate': editDate != null ? editDate!.millisecondsSinceEpoch : null,
+        'rating': rating,
+      };
+
+  Map<String, dynamic> toJsonWithImage() => {
+        'id': id,
+        'name': name,
+        'cardIds': cardIds.join(','),
         'image': image,
         'creationDate': creationDate.millisecondsSinceEpoch,
         'editDate': editDate != null ? editDate!.millisecondsSinceEpoch : null,

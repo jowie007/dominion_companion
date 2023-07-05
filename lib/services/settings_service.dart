@@ -127,6 +127,12 @@ class SettingsService {
     updateSettingsTable(settings!);
   }
 
+  void setCachedSettingsPlayAudio(bool playAudio) {
+    settings!.playAudio = playAudio;
+    notifier.value = !notifier.value;
+    updateSettingsTable(settings!);
+  }
+
   Future<int> deleteSettingsTable() {
     return _settingsDatabase.deleteSettingsTable();
   }

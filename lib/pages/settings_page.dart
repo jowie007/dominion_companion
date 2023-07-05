@@ -149,6 +149,32 @@ class _DeckInfoState extends State<SettingsPage> {
                   ),
                   const SizedBox(height: 20),
                   const Text(
+                    "Audio:",
+                    style: TextStyle(
+                        fontSize: 20, decoration: TextDecoration.underline),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 44, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Checkbox(
+                          value: _settingsService.getCachedSettings().playAudio,
+                          onChanged: (bool? value) {
+                            _settingsService
+                                .setCachedSettingsPlayAudio(value ?? false);
+                            setState(() {});
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          "Audioeffekte",
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
                     "Version:",
                     style: TextStyle(
                         fontSize: 20, decoration: TextDecoration.underline),
