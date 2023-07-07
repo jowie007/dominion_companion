@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:developer';
 
 import 'package:dominion_companion/components/border_button_component.dart';
 import 'package:dominion_companion/services/file_service.dart';
@@ -149,29 +147,38 @@ class _CardPopupState extends State<CardPopup> {
                         ),
                       )
                     : Container(),
-                Align(
-                    alignment: FractionalOffset.bottomCenter,
-                    child: BorderButtonComponent(
-                        icon: Icons.close,
-                        onClick: () =>
-                            Navigator.of(context, rootNavigator: true).pop())),
+                OrientationBuilder(
+                  builder: (context, orientation) {
+                    return Align(
+                        alignment: orientation == Orientation.portrait
+                            ? FractionalOffset.bottomCenter
+                            : FractionalOffset.topLeft,
+                        child: BorderButtonComponent(
+                            icon: Icons.close,
+                            onClick: () =>
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop()));
+                  },
+                ),
                 widget.expansionId != "" && instructionExistst
                     ? Align(
                         alignment: FractionalOffset.topRight,
-                        child: BorderButtonComponent(
-                            icon: Icons.description_outlined,
-                            color: 'green',
-                            width: 60,
-                            /*onClick: () => showDialog(
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 12, 7, 0),
+                            child: BorderButtonComponent(
+                                icon: Icons.description_outlined,
+                                color: 'green',
+                                width: 60,
+                                /*onClick: () => showDialog(
                     context: context,
                     builder: (context) {
                       return InstructionsPopup(expansionId: widget.expansionId);
                     },
                   ),*/
-                            onClick: () async {
-                              _fileService.openExpansionInstructions(
-                                  widget.expansionId);
-                            }))
+                                onClick: () async {
+                                  _fileService.openExpansionInstructions(
+                                      widget.expansionId);
+                                })))
                     : Container(),
               ],
             ),
