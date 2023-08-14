@@ -66,7 +66,13 @@ class ExpansionModel {
 
   getCardIdsToShuffle() {
     return cards
-        .where((card) => !card.invisible && card.setId == '')
+        .where((card) =>
+            !card.invisible &&
+            card.setId == '' &&
+            card.whenDeckConsistsOfXCards == null &&
+            card.whenDeckConsistsOfXCardsOfExpansionCount == null &&
+            card.whenDeckConsistsOfXCardTypesOfExpansion == null &&
+            !card.whenDeckContainsPotions)
         .map((card) => card.id)
         .toList();
   }

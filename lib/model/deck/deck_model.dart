@@ -37,13 +37,10 @@ class DeckModel {
 
   List<CardModel> getAllCards() {
     var allCards = [...cards];
-    allCards.sort((a, b) => CardModel.sortCardComparisonDeck(a, b));
     if (additionalCards != null) {
-      var sortedAdditionalCards = [...additionalCards!];
-      sortedAdditionalCards
-          .sort((a, b) => CardModel.sortCardComparisonDeck(a, b));
-      allCards.addAll(sortedAdditionalCards);
+      allCards.addAll(additionalCards!);
     }
+    allCards.sort((a, b) => CardModel.sortCardComparisonDeck(a, b));
     return allCards;
   }
 }

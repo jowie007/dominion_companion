@@ -770,7 +770,7 @@
     },
     {
       "id": "verbuendete_v1-card-huette_der_fallensteller",
-      "name": "Architektengilde",
+      "name": "Hütte der Fallensteller",
       "cardTypes": "verbuendete",
       "invisible": true,
       "whenDeckConsistsOfXCards": {

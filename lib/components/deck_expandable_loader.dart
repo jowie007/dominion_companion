@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dominion_companion/components/deck_expandable.dart';
 import 'package:dominion_companion/model/deck/deck_model.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +29,7 @@ class DeckExpandableLoader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Padding(
-                padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
                 child: Center(
                   child: CircularProgressIndicator(),
                 ),
@@ -48,7 +46,7 @@ class DeckExpandableLoader extends StatelessWidget {
         } else if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
             throw Exception(snapshot.error);
-            return Text(snapshot.error.toString());
+            // return Text(snapshot.error.toString());
           } else if (snapshot.hasData) {
             if (snapshot.data != null && onLoaded != null) {
               onLoaded!(snapshot.data!);

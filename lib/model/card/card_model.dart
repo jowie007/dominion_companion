@@ -127,15 +127,15 @@ class CardModel {
   }
 
   static List<List<String>> sortTypeOrder = [
-    ["aktion"],
-    ["punkte"],
-    ["fluch"],
     ["ereignis"],
     ["projekt"],
-    ["merkmal"],
+    ["gabe"],
+    ["plage"],
     ["landmarke"],
+    ["merkmal"],
     ["weg"],
-    ["geld"],
+    ["artefakt"],
+    ["verbuendete"]
   ];
 
   static int sortCardComparisonDeck(CardModel card1, CardModel card2) {
@@ -143,17 +143,17 @@ class CardModel {
   }
 
   static int sortCardComparisonExpansion(CardModel card1, CardModel card2) {
-    return sortCardComparison(card1, card2, []);
+    return sortCardComparison(card1, card2, sortTypeOrder);
   }
 
   static int sortCardComparison(
       CardModel card1, CardModel card2, List<List<String>> sortTypeOrder) {
+    var cardPosition1 = 0;
+    var cardPosition2 = 0;
     final cardTypes1 =
         CardModel.getCardTypesString(card1.cardTypes).toLowerCase();
     final cardTypes2 =
         CardModel.getCardTypesString(card2.cardTypes).toLowerCase();
-    var cardPosition1 = 0;
-    var cardPosition2 = 0;
     var index = 1;
     for (var sortTypes in sortTypeOrder) {
       for (var sortType in sortTypes) {
@@ -179,9 +179,12 @@ class CardModel {
       cardPosition2 = cardPosition2 + 1000;
     }
     if (cardPosition1 == cardPosition2) {
-      if (card1.cardCost.coin == card2.cardCost.coin) {
-        if (card1.cardCost.potion == card2.cardCost.potion) {
-          if (card1.cardCost.debt == card2.cardCost.debt) {
+      if (getFirstNumber(card1.cardCost.coin) ==
+          getFirstNumber(card2.cardCost.coin)) {
+        if (getFirstNumber(card1.cardCost.potion) ==
+            getFirstNumber(card2.cardCost.potion)) {
+          if (getFirstNumber(card1.cardCost.debt) ==
+              getFirstNumber(card2.cardCost.debt)) {
             return card1.name.compareTo(card2.name);
           }
           return compareStringNumbers(card1.cardCost.debt, card2.cardCost.debt);
@@ -200,10 +203,10 @@ class CardModel {
     var number1 = -1;
     var number2 = -1;
     if (numbers1.isNotEmpty) {
-      number1 = int.tryParse(numbers1.first) ?? 1000;
+      number1 = int.tryParse(numbers1.first) ?? -1;
     }
     if (numbers2.isNotEmpty) {
-      number2 = int.tryParse(numbers2.first) ?? 1000;
+      number2 = int.tryParse(numbers2.first) ?? -1;
     }
     var ret = 0;
     if (number1 < number2) {
@@ -212,5 +215,14 @@ class CardModel {
       ret = 1;
     }
     return ret;
+  }
+
+  static int getFirstNumber(String stringNumber) {
+    var numbers1 = stringNumber.split(RegExp(r'\D'));
+    var number1 = -1;
+    if (numbers1.isNotEmpty) {
+      number1 = int.tryParse(numbers1.first) ?? -1;
+    }
+    return number1;
   }
 }

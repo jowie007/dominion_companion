@@ -218,6 +218,7 @@
       "cardCost": {
         "coin": "9"
       },
+      "supply": false,
       "count": "0,12,12,12,12,12"
     },
     {

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dominion_companion/components/expansion_expandable.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
@@ -68,7 +66,10 @@ class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
                     expansion: e, onChanged: () => {widget.onChanged()}))
                 .toList(),
             showLoadingIcon
-                ? const Center(child: CircularProgressIndicator())
+                ? Padding(
+                    padding: EdgeInsets.fromLTRB(0, expansions.isEmpty ? 16 : 0,
+                        0, expansions.isEmpty ? 16 : 0),
+                    child: const Center(child: CircularProgressIndicator()))
                 : Container()
           ],
         ),

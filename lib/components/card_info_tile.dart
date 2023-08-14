@@ -159,7 +159,7 @@ class _CardInfoTileState extends State<CardInfoTile> {
                         Text(
                           cardTypeString,
                           style: const TextStyle(
-                              fontSize: 14, color: Colors.black),
+                              fontSize: 14, color: Colors.black, fontStyle: FontStyle.italic),
                         ),
                       ],
                     ),
