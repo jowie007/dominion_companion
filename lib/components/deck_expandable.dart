@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dominion_companion/components/card_info_tile.dart';
@@ -52,7 +51,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
         deckService.setCachedImage(widget.deckModel.id!,
             base64Encode(widget.deckModel.image!.readAsBytesSync()));
       });
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       return showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -165,7 +164,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                         child: widget.deckModel.image != null
                             ? Image.file(
                                 widget.deckModel.image!,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fitWidth,
                               )
                             : Container(),
                       ),

@@ -271,7 +271,6 @@
       "id": "nocturne_v1-set-gaben",
       "name": "Gaben",
       "cardTypes": "gabe",
-      "invisible": true,
       "whenDeckConsistsOfXCardTypesOfExpansion": {
         "1": [
           "aktion, angriff, segen",
@@ -355,7 +354,6 @@
       "id": "nocturne_v1-set-plagen",
       "name": "Plagen",
       "cardTypes": "plage",
-      "invisible": true,
       "whenDeckConsistsOfXCardTypesOfExpansion": {
         "1": [
           "nacht, angriff, unheil",
@@ -441,7 +439,12 @@
       "id": "nocturne_v1-set-getaeuscht/neidisch",
       "name": "Getäuscht/Neidisch",
       "cardTypes": "zustand",
-      "invisible": true
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-neid",
+          "nocturne_v1-card-taeuschung"
+        ]
+      }
     },
     {
       "id": "nocturne_v1-card-getaeuscht",
@@ -459,7 +462,11 @@
       "id": "nocturne_v1-set-elendig/doppelt_elendig",
       "name": "Elendig/Doppelt Elendig",
       "cardTypes": "zustand",
-      "invisible": true
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-elend"
+        ]
+      }
     },
     {
       "id": "nocturne_v1-card-elendig",
@@ -477,7 +484,11 @@
       "id": "nocturne_v1-card-im_wald_verirrt",
       "name": "Im Wald verirrt",
       "cardTypes": "zustand",
-      "invisible": true
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "nocturne_v1-card-narr"
+        ]
+      }
     },
     {
       "id": "nocturne_v1-card-fledermaus",

@@ -1,16 +1,18 @@
 import 'dart:async';
 
 import 'package:dominion_companion/components/border_button_component.dart';
+import 'package:dominion_companion/components/custom_alert_dialog.dart';
 import 'package:dominion_companion/services/file_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:ui' as ui;
 
 class CardPopup extends StatefulWidget {
-  const CardPopup({super.key, required this.cardIds, this.expansionId = ""});
+  const CardPopup({super.key, required this.cardIds, this.expansionId = "", this.error = false});
 
   final List<String> cardIds;
   final String expansionId;
+  final bool error;
 
   @override
   State<CardPopup> createState() => _CardPopupState();
@@ -73,7 +75,19 @@ class _CardPopupState extends State<CardPopup> {
 
   @override
   Widget build(BuildContext context) {
-    updateCardPath();
+    var error = widget.error;
+    try {
+      updateCardPath();
+    } catch (_) {
+      error = true;
+    }
+    if(error) {
+      return const CustomAlertDialog(
+        title: "Fehler",
+        message: "Karte konnte nicht geladen werden",
+        onlyCancelButton: true,
+      );
+    }
     return FutureBuilder(
       future: Future.wait([
         getImageDimensions(),
@@ -82,7 +96,7 @@ class _CardPopupState extends State<CardPopup> {
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data != null) {
           var imageDimensions = snapshot.data![0] as Map<String, int>;
-          var instructionExistst = snapshot.data![1] as bool;
+          var instructionExists = snapshot.data![1] as bool;
           return Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
             child: Stack(
@@ -160,7 +174,7 @@ class _CardPopupState extends State<CardPopup> {
                                     .pop()));
                   },
                 ),
-                widget.expansionId != "" && instructionExistst
+                widget.expansionId != "" && instructionExists
                     ? Align(
                         alignment: FractionalOffset.topRight,
                         child: Padding(

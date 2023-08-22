@@ -135,7 +135,8 @@ class CardModel {
     ["merkmal"],
     ["weg"],
     ["artefakt"],
-    ["verbuendete"]
+    ["verbuendete"],
+    ["zustand"]
   ];
 
   static int sortCardComparisonDeck(CardModel card1, CardModel card2) {

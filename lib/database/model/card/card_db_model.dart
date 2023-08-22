@@ -49,7 +49,14 @@ class CardDBModel {
     relatedCardIds = dbData['relatedCardIds'] != null
         ? dbData['relatedCardIds'].toString().split(',')
         : List.empty();
-    invisible = dbData['invisible'] != null ? dbData['invisible'] > 0 : false;
+    invisible = dbData['invisible'] != null
+        ? dbData['invisible'] > 0 ||
+            setId != "" ||
+            whenDeckContainsPotions ||
+            whenDeckConsistsOfXCardTypesOfExpansion != null ||
+            whenDeckConsistsOfXCards != null ||
+            whenDeckConsistsOfXCardsOfExpansionCount != null
+        : false;
     cardTypes = CardModel.cardTypesFromString(dbData['cardTypes']);
     cardCost = CardCostDBModel(dbData['coin'].toString(),
         dbData['debt'].toString(), dbData['potion'].toString());

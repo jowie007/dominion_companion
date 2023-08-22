@@ -25,7 +25,6 @@
           "aktion, angriff, pluendern"
         ]
       },
-      "invisible": true,
       "cardTypes": "aktion, ruine",
       "cardCost": {
         "coin": "5"

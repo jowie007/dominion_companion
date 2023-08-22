@@ -324,7 +324,6 @@ class DeckService {
     if (verbuendeteCard != null) {
       ret.add(verbuendeteCard);
     }
-
     return ret;
   }
 

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dominion_companion/components/card_info_tile.dart';
 import 'package:dominion_companion/components/round_checkbox.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
@@ -26,7 +24,7 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
     final expansionService = ExpansionService();
     final selectedCardService = SelectedCardService();
     final audioService = AudioService();
-    final expansionCardIds = widget.expansion.getCardIdsToShuffle();
+    final visibleCards = widget.expansion.getVisibleCards();
     return Stack(
       children: [
         Padding(
@@ -92,22 +90,19 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                           // padding: const EdgeInsets.all(8),
                           physics: const ClampingScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: widget.expansion.cards.length,
+                          itemCount: visibleCards.length,
                           itemBuilder: (BuildContext context, int index) {
-                            var card = widget.expansion.cards[index];
-                            return !card.invisible && card.setId == ''
-                                ? CardInfoTile(
-                                    onChanged: (bool? newValue) => setState(() {
-                                      selectedCardService.toggleSelectedCardId(
-                                          widget.expansion.cards[index].id);
-                                      widget.onChanged();
-                                    }),
-                                    card: widget.expansion.cards[index],
-                                    value: selectedCardService.selectedCardIds
-                                        .contains(
-                                            widget.expansion.cards[index].id),
-                                  )
-                                : Container();
+                            var card = visibleCards[index];
+                            return CardInfoTile(
+                              onChanged: (bool? newValue) => setState(() {
+                                selectedCardService
+                                    .toggleSelectedCardId(card.id);
+                                widget.onChanged();
+                              }),
+                              card: card,
+                              value: selectedCardService.selectedCardIds
+                                  .contains(card.id),
+                            );
                           })
                     ],
                   ),
@@ -122,10 +117,10 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
           child: RoundCheckbox(
               onChanged: (bool? newValue) => setState(() {
                     selectedCardService
-                        .toggleSelectedExpansion(expansionCardIds);
+                        .toggleSelectedExpansion(widget.expansion);
                     widget.onChanged();
                   }),
-              value: selectedCardService.isExpansionSelected(expansionCardIds)),
+              value: selectedCardService.isExpansionSelected(widget.expansion)),
         ),
       ],
     );

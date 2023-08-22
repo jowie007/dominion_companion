@@ -371,8 +371,7 @@
         "1": [
           "renaissance_v1-card-fahnentraeger"
         ]
-      },
-      "invisible": true
+      }
     },
     {
       "id": "renaissance_v1-card-horn",
@@ -382,8 +381,7 @@
         "1": [
           "renaissance_v1-card-grenzposten"
         ]
-      },
-      "invisible": true
+      }
     },
     {
       "id": "renaissance_v1-card-laterne",
@@ -393,8 +391,7 @@
         "1": [
           "renaissance_v1-card-grenzposten"
         ]
-      },
-      "invisible": true
+      }
     },
     {
       "id": "renaissance_v1-card-schatzkiste",
@@ -404,8 +401,7 @@
         "1": [
           "renaissance_v1-card-freibeuterin"
         ]
-      },
-      "invisible": true
+      }
     },
     {
       "id": "renaissance_v1-card-schluessel",
@@ -415,8 +411,7 @@
         "1": [
           "renaissance_v1-card-schatzmeisterin"
         ]
-      },
-      "invisible": true
+      }
     }
   ],
   "content": [

@@ -525,7 +525,6 @@
       "id": "verbuendete_v1-card-architektengilde",
       "name": "Architektengilde",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -544,7 +543,6 @@
       "id": "verbuendete_v1-card-bankiersverbund",
       "name": "Bankiersverbund",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -563,7 +561,6 @@
       "id": "verbuendete_v1-card-bergvolk",
       "name": "Bergvolk",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -582,7 +579,6 @@
       "id": "verbuendete_v1-card-bund_der_ladenbesitzer",
       "name": "Bund der Ladenbesitzer",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -601,7 +597,6 @@
       "id": "verbuendete_v1-card-erfinderfamilie",
       "name": "Erfinderfamilie",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -620,7 +615,6 @@
       "id": "verbuendete_v1-card-freimaurerloge",
       "name": "Freimaurerloge",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -639,7 +633,6 @@
       "id": "verbuendete_v1-card-friedlicher_kult",
       "name": "Friedlicher Kult",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -658,7 +651,6 @@
       "id": "verbuendete_v1-card-gefolgschaft_der_schreiber",
       "name": "Gefolgschaft der Schreiber",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -677,7 +669,6 @@
       "id": "verbuendete_v1-card-handwerkergilde",
       "name": "Handwerkergilde",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -696,7 +687,6 @@
       "id": "verbuendete_v1-card-hexenbund",
       "name": "Hexenbund",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -715,7 +705,6 @@
       "id": "verbuendete_v1-card-hoehlenbewohner",
       "name": "Höhlenbewohner",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -734,7 +723,6 @@
       "id": "verbuendete_v1-card-hoehlenhafen",
       "name": "Höhlenhafen",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -753,7 +741,6 @@
       "id": "verbuendete_v1-card-holzarbeitergilde",
       "name": "Holzarbeitergilde",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -772,7 +759,6 @@
       "id": "verbuendete_v1-card-huette_der_fallensteller",
       "name": "Hütte der Fallensteller",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -791,7 +777,6 @@
       "id": "verbuendete_v1-card-inselvolk",
       "name": "Inselvolk",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -810,7 +795,6 @@
       "id": "verbuendete_v1-card-marktstaedte",
       "name": "Marktstädte",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -829,7 +813,6 @@
       "id": "verbuendete_v1-card-nomadenstamm",
       "name": "Nomadenstamm",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -848,7 +831,6 @@
       "id": "verbuendete_v1-card-schaefer_der_hochebene",
       "name": "Schäfer der Hochebene",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -867,7 +849,6 @@
       "id": "verbuendete_v1-card-stadtstaat",
       "name": "Stadtstaat",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -886,7 +867,6 @@
       "id": "verbuendete_v1-card-sterndeuterorden",
       "name": "Sterndeuterorden",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -905,7 +885,6 @@
       "id": "verbuendete_v1-card-taschendiebe",
       "name": "Taschendiebe",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -924,7 +903,6 @@
       "id": "verbuendete_v1-card-waldbewohner",
       "name": "Waldbewohner",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",
@@ -943,7 +921,6 @@
       "id": "verbuendete_v1-card-wuestenfuehrer",
       "name": "Wüstenführer",
       "cardTypes": "verbuendete",
-      "invisible": true,
       "whenDeckConsistsOfXCards": {
         "1": [
           "verbuendete_v1-card-schmeichler",

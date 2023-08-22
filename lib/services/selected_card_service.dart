@@ -1,4 +1,5 @@
 import 'package:dominion_companion/database/selected_cards_database.dart';
+import 'package:dominion_companion/model/expansion/expansion_model.dart';
 import 'package:dominion_companion/services/deck_service.dart';
 
 class SelectedCardService {
@@ -70,15 +71,16 @@ class SelectedCardService {
     }
   }
 
-  void toggleSelectedExpansion(List<String> cardsInExpansion) {
-    if (isExpansionSelected(cardsInExpansion) == false) {
-      addSelectedCardIds(cardsInExpansion);
+  void toggleSelectedExpansion(ExpansionModel expansionModel) {
+    if (isExpansionSelected(expansionModel) == false) {
+      addSelectedCardIds(expansionModel.getVisibleCardsIds());
     } else {
-      deleteSelectedCardIds(cardsInExpansion);
+      deleteSelectedCardIds(expansionModel.getCardIds());
     }
   }
 
-  bool? isExpansionSelected(List<String> cardsInExpansion) {
+  bool? isExpansionSelected(ExpansionModel expansionModel) {
+    var cardsInExpansion = expansionModel.getVisibleCardsIds();
     var containsOne = false;
     var containsAll = true;
     for (var cardId in cardsInExpansion) {

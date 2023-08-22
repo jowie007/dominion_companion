@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dominion_companion/services/deck_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -52,6 +50,8 @@ class NameDeckDialog extends StatelessWidget {
                                   horizontal: 28, vertical: 10),
                               child: TextField(
                                 maxLength: 20,
+                                textCapitalization: TextCapitalization.sentences,
+                                keyboardType: TextInputType.text,
                                 controller: deckNameController,
                                 decoration: const InputDecoration(
                                   hintText: 'Name des Decks',

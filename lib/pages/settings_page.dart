@@ -89,7 +89,7 @@ class _DeckInfoState extends State<SettingsPage> {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/menu/main_scroll_crop.png"),
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
           ),

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dominion_companion/model/card/card_model.dart';
 import 'package:dominion_companion/model/deck/deck_model.dart';
 import 'package:dominion_companion/services/card_service.dart';
@@ -72,19 +70,6 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                                   ],
                                 ),
                             ],
-                          ),
-                        ],
-                      )
-                    : Container(),
-                !widget.isTemporary
-                    ? const Row(
-                        children: [
-                          Icon(Icons.info_outline, size: 14),
-                          SizedBox(width: 8),
-                          Text(
-                            "Voller Name:",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
                           ),
                         ],
                       )
@@ -208,6 +193,19 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                     ),
                   ],
                 ),
+                !widget.isTemporary
+                    ? const Row(
+                  children: [
+                    Icon(Icons.info_outline, size: 14),
+                    SizedBox(width: 8),
+                    Text(
+                      "Voller Name:",
+                      style:
+                      TextStyle(decoration: TextDecoration.underline),
+                    ),
+                  ],
+                )
+                    : Container(),
                 const Row(
                   children: [
                     Icon(Icons.cake_outlined, size: 14),

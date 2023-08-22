@@ -64,16 +64,18 @@ class ExpansionModel {
     version = dbModel.version;
   }
 
-  getCardIdsToShuffle() {
+  getCardIds() {
+    return cards.map((card) => card.id).toList();
+  }
+
+  getVisibleCardsIds() {
     return cards
-        .where((card) =>
-            !card.invisible &&
-            card.setId == '' &&
-            card.whenDeckConsistsOfXCards == null &&
-            card.whenDeckConsistsOfXCardsOfExpansionCount == null &&
-            card.whenDeckConsistsOfXCardTypesOfExpansion == null &&
-            !card.whenDeckContainsPotions)
+        .where((card) => !card.invisible)
         .map((card) => card.id)
         .toList();
+  }
+
+  getVisibleCards() {
+    return cards.where((card) => !card.invisible).toList();
   }
 }

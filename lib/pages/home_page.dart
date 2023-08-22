@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:dominion_companion/components/card_popup.dart';
-import 'package:dominion_companion/components/custom_alert_dialog.dart';
 import 'package:dominion_companion/components/error_dialog.dart';
 import 'package:dominion_companion/components/menu_button.dart';
 import 'package:dominion_companion/router/routes.dart' as route;
@@ -28,7 +25,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     if (_settingsService.initException != null) {
       showDialog(
         context: context,
@@ -105,17 +101,13 @@ class _HomePageState extends State<HomePage> {
                               builder: (context, snapshot) {
                                 if (snapshot.hasData && snapshot.data != null) {
                                   return CardPopup(
-                                      cardIds: snapshot.data!.values.first,
-                                      expansionId: snapshot.data!.keys.first
-                                          .getExpansionId());
-                                } else {
-                                  return const CustomAlertDialog(
-                                    title: "Fehler",
-                                    message:
-                                        "Karte konnte nicht geladen werden",
-                                    onlyCancelButton: true,
+                                    cardIds: snapshot.data!.values.first,
+                                    expansionId: snapshot.data!.keys.first
+                                        .getExpansionId(),
+                                    error: snapshot.hasError,
                                   );
                                 }
+                                return Container();
                               },
                             );
                           },

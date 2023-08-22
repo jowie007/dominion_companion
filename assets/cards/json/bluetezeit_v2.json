@@ -213,7 +213,6 @@
           "aktion, angriff"
         ]
       },
-      "invisible": true,
       "cardTypes": "geld",
       "cardCost": {
         "coin": "9"
@@ -231,11 +230,11 @@
           "aktion, angriff"
         ]
       },
-      "invisible": true,
       "cardTypes": "punkte",
       "cardCost": {
         "coin": "11"
       },
+      "supply": false,
       "count": "0,8,12,12,12,12"
     }
   ],
