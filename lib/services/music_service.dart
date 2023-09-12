@@ -11,7 +11,7 @@ class MusicService {
     "assets/audio/soundtrack/dominion.wav",
     metas: Metas(
       title: "Julias' Dominion Companion",
-      image: const MetasImage.asset("assets/artwork/cover/cover.png"),
+      image: const MetasImage.file("assets/artwork/cover/cover.png"),
     ),
   );
 
@@ -35,6 +35,9 @@ class MusicService {
       notificationSettings: NotificationSettings(
           nextEnabled: false,
           prevEnabled: false,
+          seekBarEnabled: false,
+          stopEnabled: true,
+          playPauseEnabled: true,
           customStopAction: (_) {
             assetsAudioPlayer!.stop();
             assetsAudioPlayer = null;
