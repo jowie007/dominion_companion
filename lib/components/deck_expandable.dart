@@ -42,9 +42,9 @@ class _DeckExpandableState extends State<DeckExpandable> {
     try {
       final image = await ImagePicker().pickImage(
           source: ImageSource.gallery,
-          maxHeight: 400,
-          maxWidth: 400,
-          imageQuality: 50);
+          maxHeight: 600,
+          maxWidth: 600,
+          imageQuality: 70);
       if (image == null) return;
       setState(() {
         widget.deckModel.image = File(image.path);
@@ -164,7 +164,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                         child: widget.deckModel.image != null
                             ? Image.file(
                                 widget.deckModel.image!,
-                                fit: BoxFit.fitWidth,
+                                fit: BoxFit.cover,
                               )
                             : Container(),
                       ),

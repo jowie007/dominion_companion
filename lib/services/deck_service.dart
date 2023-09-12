@@ -125,9 +125,11 @@ class DeckService {
     return _deckDatabase.updateDeck(DeckDBModel.fromModel(deckModel));
   }
 
-  Future<int> saveDeck(DeckModel deckModel) {
+  Future<int> saveDeck(DeckModel deckModel) async {
     notifier.value = !notifier.value;
-    return _deckDatabase.insertDeck(DeckDBModel.fromModel(deckModel));
+    var newDeckId = await _deckDatabase.insertDeck(DeckDBModel.fromModel(deckModel));
+    await removeCachedImage(newDeckId);
+    return newDeckId;
   }
 
   Future<int> renameDeck(int id, String newName) {
