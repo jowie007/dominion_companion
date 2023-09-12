@@ -3,16 +3,13 @@ import 'package:dominion_companion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-// TODO Dont check cards and dont init expansions
-// TODO Prüfen warum decks gelöscht werden
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const DominionCompanion());
   final settingsService = SettingsService();
   try {
-    await settingsService.initializeApp(
-        checkCardNames: true, initializeExpansions: true, deleteSettings: true);
+    await settingsService.initializeApp();
     FlutterNativeSplash.remove();
   } on Exception catch (e) {
     settingsService.initException = e;
