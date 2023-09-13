@@ -11,7 +11,8 @@ class MusicService {
     "assets/audio/soundtrack/dominion.wav",
     metas: Metas(
       title: "Julias' Dominion Companion",
-      image: const MetasImage.file("assets/artwork/cover/cover.png"),
+      // At the moment the image is pixelated
+      // image: const MetasImage.file("assets/artwork/cover/cover.png"),
     ),
   );
 
