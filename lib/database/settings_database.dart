@@ -37,7 +37,7 @@ class SettingsDatabase {
       "sortKey": "creationDate",
       "sortAsc": 1,
       "playAudio": 1,
-      "loadingSuccess": 1
+      "loadingSuccess": 0
     });
   }
 
