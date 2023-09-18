@@ -52,21 +52,24 @@ class SettingsService {
       await initDatabase();
       await initCachedSettings();
     }
+
     await PackageInfo.fromPlatform().then((packageInfo) async {
       if (settings!.version != packageInfo.version ||
           initializeExpansions ||
           !settings!.loadingSuccess) {
         await updateLoadingSuccess(false);
-        await ExpansionService()
-            .deleteExpansionTable()
-            .then((value) => CardService().deleteCardTable())
-            .then((value) => ContentService().deleteContentTable())
-            .then((value) => HandService().deleteHandTable())
-            .then((value) => EndService().deleteEndTable())
-            .then((value) => ExpansionService().loadJsonExpansionsIntoDB());
+        await ExpansionService().deleteExpansionTable();
+        await CardService().deleteCardTable();
+        await ContentService().deleteContentTable();
+        await HandService().deleteHandTable();
+        await HandService().deleteHandTable();
+        await EndService().deleteEndTable();
+        await ExpansionService().loadJsonExpansionsIntoDB();
         await updateVersion(packageInfo.version);
         await updateLoadingSuccess(true);
       }
+    }).catchError((e) {
+      // Check if something is going wrong
     });
 
     if (checkCardNames) {
