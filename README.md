@@ -11,3 +11,8 @@ in the main.dart adjust
 await settingsService.initializeApp();
 to
 await settingsService.initializeApp(checkCardNames: true);
+
+
+## Create release
+Build -> Flutter -> Build APK
+build\app\outputs\flutter-apk\app-release.apk
