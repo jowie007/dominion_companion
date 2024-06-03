@@ -132,6 +132,15 @@
       }
     },
     {
+      "id": "seaside_v2-card-insel",
+      "name": "Insel",
+      "cardTypes": "aktion, punkte",
+      "cardCost": {
+        "coin": "4"
+      },
+      "count": "0,8,12,12,12,12"
+    },
+    {
       "id": "seaside_v2-card-karawane",
       "name": "Karawane",
       "cardTypes": "aktion, dauer",
@@ -186,15 +195,6 @@
       "cardCost": {
         "coin": "5"
       }
-    },
-    {
-      "id": "seaside_v2-card-insel",
-      "name": "Insel",
-      "cardTypes": "aktion, punkte",
-      "cardCost": {
-        "coin": "5"
-      },
-      "count": "0,8,12,12,12,12"
     },
     {
       "id": "seaside_v2-card-astrolabium",

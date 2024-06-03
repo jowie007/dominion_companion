@@ -6,11 +6,10 @@ import 'package:dominion_companion/services/player_service.dart';
 import 'package:flutter/material.dart';
 
 class DeckAdditionalInfoTile extends StatefulWidget {
-  const DeckAdditionalInfoTile(
-      {super.key,
-      required this.deckModel,
-      required this.cards,
-      this.isTemporary = false});
+  const DeckAdditionalInfoTile({super.key,
+    required this.deckModel,
+    required this.cards,
+    this.isTemporary = false});
 
   final DeckModel deckModel;
   final List<CardModel> cards;
@@ -26,8 +25,12 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
   final ContentService _contentService = ContentService();
 
   String prettyDateString(DateTime date) {
-    return "${date.day < 10 ? 0 : ""}${date.day}.${date.month < 10 ? 0 : ""}${date.month}.${date.year} "
-        "${date.hour < 10 ? 0 : ""}${date.hour}:${date.minute < 10 ? 0 : ""}${date.minute} Uhr";
+    return "${date.day < 10 ? 0 : ""}${date.day}.${date.month < 10
+        ? 0
+        : ""}${date.month}.${date.year} "
+        "${date.hour < 10 ? 0 : ""}${date.hour}:${date.minute < 10
+        ? 0
+        : ""}${date.minute} Uhr";
   }
 
   @override
@@ -43,46 +46,36 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
               children: [
                 widget.deckModel.content.isNotEmpty
                     ? Column(
-                        children: [
-                          const Row(
+                  children: [
+                    const Row(
+                      children: [
+                        Icon(Icons.stars, size: 14),
+                        SizedBox(width: 8),
+                        Text(
+                          "Extras:",
+                          style: TextStyle(
+                              decoration: TextDecoration.underline),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        for (var content in widget.deckModel.content)
+                          Row(
                             children: [
-                              Icon(Icons.stars, size: 14),
-                              SizedBox(width: 8),
-                              Text(
-                                "Extras:",
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline),
+                              const SizedBox(
+                                width: 20,
                               ),
+                              Text(content
+                                  .count[_playerService.players - 1]),
+                              const Text("x "),
+                              Text(content.name),
                             ],
                           ),
-                          Column(
-                            children: [
-                              for (var content in widget.deckModel.content)
-                                Row(
-                                  children: [
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text(content
-                                        .count[_playerService.players - 1]),
-                                    const Text("x "),
-                                    Text(content.name),
-                                  ],
-                                ),
-                            ],
-                          ),
-                        ],
-                      )
-                    : Container(),
-                !widget.isTemporary
-                    ? Row(
-                        children: [
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(child: Text(widget.deckModel.name)),
-                        ],
-                      )
+                      ],
+                    ),
+                  ],
+                )
                     : Container(),
                 Column(
                   children: [
@@ -93,14 +86,14 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                         Text(
                           "Austeilen:",
                           style:
-                              TextStyle(decoration: TextDecoration.underline),
+                          TextStyle(decoration: TextDecoration.underline),
                         ),
                       ],
                     ),
                     Column(
                       children: [
                         for (var card
-                            in widget.deckModel.handMoneyCards.getAllElements())
+                        in widget.deckModel.handMoneyCards.getAllElements())
                           Row(
                             children: [
                               const SizedBox(
@@ -120,7 +113,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                             ],
                           ),
                         for (var card
-                            in widget.deckModel.handOtherCards.getAllElements())
+                        in widget.deckModel.handOtherCards.getAllElements())
                           Row(
                             children: [
                               const SizedBox(
@@ -140,7 +133,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                             ],
                           ),
                         for (var content
-                            in widget.deckModel.handContents.getAllElements())
+                        in widget.deckModel.handContents.getAllElements())
                           Row(
                             children: [
                               const SizedBox(
@@ -184,9 +177,15 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                             _cardService.filterCardName(widget.cards, cardId))),
                         builder: (context, snapshot) {
                           return Text(
-                              "Wenn ${widget.deckModel.end.emptyCount} Stapel leer sind ${snapshot.data != null ? "oder wenn "
-                                  "${allEmptyCards.length > 1 ? 'einer' : ''} der "
-                                  "folgende${allEmptyCards.length > 1 ? 'n' : ''} Stapel leer ist: "
+                              "Wenn ${widget.deckModel.end
+                                  .emptyCount} Stapel leer sind ${snapshot
+                                  .data != null ? "oder wenn "
+                                  "${allEmptyCards.length > 1
+                                  ? 'einer'
+                                  : ''} der "
+                                  "folgende${allEmptyCards.length > 1
+                                  ? 'n'
+                                  : ''} Stapel leer ist: "
                                   "${snapshot.data!.join(", ")}" : ''}");
                         },
                       ),
@@ -206,7 +205,18 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                   ],
                 )
                     : Container(),
-                const Row(
+                !widget.isTemporary
+                    ? Row(
+                  children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(child: Text(widget.deckModel.name)),
+                  ],
+                )
+                    : Container(),
+                !widget.isTemporary
+                    ? const Row(
                   children: [
                     Icon(Icons.cake_outlined, size: 14),
                     SizedBox(width: 8),
@@ -216,7 +226,8 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                     ),
                   ],
                 ),
-                Row(
+                !widget.isTemporary
+                    ? Row(
                   children: [
                     const SizedBox(
                       width: 20,
@@ -228,28 +239,28 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                 ),
                 widget.deckModel.editDate != null
                     ? const Row(
-                        children: [
-                          Icon(Icons.refresh, size: 14),
-                          SizedBox(width: 8),
-                          Text(
-                            "Bearbeitungsdatum:",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
-                          ),
-                        ],
-                      )
+                  children: [
+                    Icon(Icons.refresh, size: 14),
+                    SizedBox(width: 8),
+                    Text(
+                      "Bearbeitungsdatum:",
+                      style:
+                      TextStyle(decoration: TextDecoration.underline),
+                    ),
+                  ],
+                )
                     : Container(),
                 widget.deckModel.editDate != null
                     ? Row(
-                        children: [
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(
-                              child: Text(prettyDateString(
-                                  widget.deckModel.editDate!))),
-                        ],
-                      )
+                  children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                        child: Text(prettyDateString(
+                            widget.deckModel.editDate!))),
+                  ],
+                )
                     : Container(),
               ],
             ),
