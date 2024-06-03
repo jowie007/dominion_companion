@@ -36,6 +36,22 @@
       }
     },
     {
+      "id": "ausgemustert_v1-card-handelsroute",
+      "name": "Handelsroute",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "ausgemustert_v1-card-lohn",
+      "name": "Lohn",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
       "id": "ausgemustert_v1-card-orakel",
       "name": "Orakel",
       "cardTypes": "aktion, angriff",
@@ -76,6 +92,14 @@
       }
     },
     {
+      "id": "ausgemustert_v1-card-schmuggelware",
+      "name": "Schmuggelware",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
       "id": "ausgemustert_v1-card-seehexe",
       "name": "Seehexe",
       "cardTypes": "aktion, angriff",
@@ -89,6 +113,30 @@
       "cardTypes": "punkte",
       "cardCost": {
         "coin": "4"
+      }
+    },
+    {
+      "id": "ausgemustert_v1-card-talisman",
+      "name": "Talisman",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "ausgemustert_v1-card-abenteuer",
+      "name": "Abenteuer",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "ausgemustert_v1-card-koenigliches_siegel",
+      "name": "Königliches Siegel",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
       }
     },
     {
@@ -124,6 +172,14 @@
       }
     },
     {
+      "id": "ausgemustert_v1-card-leihhaus",
+      "name": "Leihhaus",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
       "id": "ausgemustert_v1-card-blutzoll",
       "name": "Blutzoll",
       "cardTypes": "geld",
@@ -137,6 +193,22 @@
       "cardTypes": "aktion",
       "cardCost": {
         "coin": "5"
+      }
+    },
+    {
+      "id": "ausgemustert_v1-card-quacksalber",
+      "name": "Quacksalber",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "ausgemustert_v1-card-halsabschneider",
+      "name": "Halsabschneider",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "6"
       }
     }
   ]

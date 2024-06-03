@@ -4,14 +4,6 @@
   "version": "V2",
   "cards": [
     {
-      "id": "bluetezeit_v2-card-handelsroute",
-      "name": "Handelsroute",
-      "cardTypes": "aktion",
-      "cardCost": {
-        "coin": "3"
-      }
-    },
-    {
       "id": "bluetezeit_v2-card-arbeiterdorf",
       "name": "Arbeitderdorf",
       "cardTypes": "aktion",
@@ -38,14 +30,6 @@
     {
       "id": "bluetezeit_v2-card-gewoelbe",
       "name": "Gewölbe",
-      "cardTypes": "aktion",
-      "cardCost": {
-        "coin": "5"
-      }
-    },
-    {
-      "id": "bluetezeit_v2-card-leihhaus",
-      "name": "Leihhaus",
       "cardTypes": "aktion",
       "cardCost": {
         "coin": "5"
@@ -108,22 +92,6 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-halsabschneider",
-      "name": "Halsabschneider",
-      "cardTypes": "aktion, angriff",
-      "cardCost": {
-        "coin": "6"
-      }
-    },
-    {
-      "id": "bluetezeit_v2-card-quacksalber",
-      "name": "Quacksalber",
-      "cardTypes": "aktion, angriff",
-      "cardCost": {
-        "coin": "5"
-      }
-    },
-    {
       "id": "bluetezeit_v2-card-gesindel",
       "name": "Gesindel",
       "cardTypes": "aktion, angriff",
@@ -148,14 +116,6 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-abenteuer",
-      "name": "Abenteuer",
-      "cardTypes": "geld",
-      "cardCost": {
-        "coin": "5"
-      }
-    },
-    {
       "id": "bluetezeit_v2-card-hort",
       "name": "Hort",
       "cardTypes": "geld",
@@ -164,40 +124,8 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-lohn",
-      "name": "Lohn",
-      "cardTypes": "geld",
-      "cardCost": {
-        "coin": "3"
-      }
-    },
-    {
       "id": "bluetezeit_v2-card-steinbruch",
       "name": "Steinbruch",
-      "cardTypes": "geld",
-      "cardCost": {
-        "coin": "4"
-      }
-    },
-    {
-      "id": "bluetezeit_v2-card-koenigliches_siegel",
-      "name": "Königliches Siegel",
-      "cardTypes": "geld",
-      "cardCost": {
-        "coin": "5"
-      }
-    },
-    {
-      "id": "bluetezeit_v2-card-talisman",
-      "name": "Talisman",
-      "cardTypes": "geld",
-      "cardCost": {
-        "coin": "4"
-      }
-    },
-    {
-      "id": "bluetezeit_v2-card-schmuggelware",
-      "name": "Schmuggelware",
       "cardTypes": "geld",
       "cardCost": {
         "coin": "4"
@@ -244,7 +172,7 @@
       "name": "Handelsrouten Tableau",
       "whenDeckConsistsOfXCards": {
         "1": [
-          "bluetezeit_v2-card-handelsroute"
+          "ausgemustert_v1-card-handelsroute"
         ]
       }
     },
@@ -255,7 +183,7 @@
         "1": [
           "bluetezeit_v2-card-bischof",
           "bluetezeit_v2-card-denkmal",
-          "bluetezeit_v2-card-halsabschneider"
+          "ausgemustert_v1-card-halsabschneider"
         ]
       }
     },
@@ -264,7 +192,7 @@
       "name": "Geldmarker",
       "whenDeckConsistsOfXCards": {
         "1": [
-          "bluetezeit_v2-card-handelsroute"
+          "ausgemustert_v1-card-handelsroute"
         ]
       }
     },
@@ -275,7 +203,7 @@
         "1": [
           "bluetezeit_v2-card-bischof",
           "bluetezeit_v2-card-denkmal",
-          "bluetezeit_v2-card-halsabschneider"
+          "ausgemustert_v1-card-halsabschneider"
         ]
       },
       "count": "0,15,15,15,15,15"
@@ -287,7 +215,7 @@
         "1": [
           "bluetezeit_v2-card-bischof",
           "bluetezeit_v2-card-denkmal",
-          "bluetezeit_v2-card-halsabschneider"
+          "ausgemustert_v1-card-halsabschneider"
         ]
       },
       "count": "0,16,16,16,16,16"
@@ -301,7 +229,7 @@
       },
       "whenDeckConsistsOfXCards": {
         "1": [
-          "bluetezeit_v2-card-handelsroute"
+          "ausgemustert_v1-card-handelsroute"
         ]
       }
     },
@@ -314,7 +242,7 @@
         "1": [
           "bluetezeit_v2-card-bischof",
           "bluetezeit_v2-card-denkmal",
-          "bluetezeit_v2-card-halsabschneider"
+          "ausgemustert_v1-card-halsabschneider"
         ]
       }
     }
