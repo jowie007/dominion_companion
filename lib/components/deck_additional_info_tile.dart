@@ -225,7 +225,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                       style: TextStyle(decoration: TextDecoration.underline),
                     ),
                   ],
-                ),
+                ) : Container(),
                 !widget.isTemporary
                     ? Row(
                   children: [
@@ -236,7 +236,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                         child: Text(
                             prettyDateString(widget.deckModel.creationDate))),
                   ],
-                ),
+                ) : Container(),
                 widget.deckModel.editDate != null
                     ? const Row(
                   children: [
