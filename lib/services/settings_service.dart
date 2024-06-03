@@ -9,6 +9,7 @@ import 'package:dominion_companion/services/end_service.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
 import 'package:dominion_companion/services/file_service.dart';
 import 'package:dominion_companion/services/hand_service.dart';
+import 'package:dominion_companion/services/selected_card_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -58,6 +59,7 @@ class SettingsService {
           initializeExpansions ||
           !settings!.loadingSuccess) {
         await updateLoadingSuccess(false);
+        await SelectedCardService().deleteSelectedCards();
         await ExpansionService().deleteExpansionTable();
         await CardService().deleteCardTable();
         await ContentService().deleteContentTable();

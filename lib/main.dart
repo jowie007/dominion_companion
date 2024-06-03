@@ -3,15 +3,13 @@ import 'package:dominion_companion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-// TODO: Blütezeit entfernte Karten in ausgemustert packen, Versionsnummer anpassen
-
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const DominionCompanion());
   final settingsService = SettingsService();
   try {
-    await settingsService.initializeApp();
+    await settingsService.initializeApp(checkCardNames: true);
     FlutterNativeSplash.remove();
   } on Exception catch (e) {
     settingsService.initException = e;

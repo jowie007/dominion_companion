@@ -108,6 +108,30 @@
       }
     },
     {
+      "id": "bluetezeit_v2-card-buchhalterin",
+      "name": "Buchhalterin",
+      "cardTypes": "aktion, angriff, reaktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-card-magnatin",
+      "name": "Magnatin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-card-wunderheilerin",
+      "name": "Wunderheilerin",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
       "id": "bluetezeit_v2-card-bank",
       "name": "Bank",
       "cardTypes": "geld",
@@ -124,11 +148,59 @@
       }
     },
     {
+      "id": "bluetezeit_v2-card-kristallkugel",
+      "name": "Kristallkugel",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-card-sammelsurium",
+      "name": "Sammelsurium",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-card-waffenkiste",
+      "name": "Waffenkiste",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
       "id": "bluetezeit_v2-card-steinbruch",
       "name": "Steinbruch",
       "cardTypes": "geld",
       "cardCost": {
         "coin": "4"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-card-brautkrone",
+      "name": "Brautkrone",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-card-geldanlage",
+      "name": "Geldanlage",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "bluetezeit_v2-card-amboss",
+      "name": "Amboss",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "3"
       }
     },
     {
@@ -183,7 +255,9 @@
         "1": [
           "bluetezeit_v2-card-bischof",
           "bluetezeit_v2-card-denkmal",
-          "ausgemustert_v1-card-halsabschneider"
+          "ausgemustert_v1-card-halsabschneider",
+          "bluetezeit_v2-card-geldanlage",
+          "bluetezeit_v2-card-sammelsurium"
         ]
       }
     },
@@ -203,7 +277,9 @@
         "1": [
           "bluetezeit_v2-card-bischof",
           "bluetezeit_v2-card-denkmal",
-          "ausgemustert_v1-card-halsabschneider"
+          "ausgemustert_v1-card-halsabschneider",
+          "bluetezeit_v2-card-geldanlage",
+          "bluetezeit_v2-card-sammelsurium"
         ]
       },
       "count": "0,15,15,15,15,15"
@@ -215,7 +291,9 @@
         "1": [
           "bluetezeit_v2-card-bischof",
           "bluetezeit_v2-card-denkmal",
-          "ausgemustert_v1-card-halsabschneider"
+          "ausgemustert_v1-card-halsabschneider",
+          "bluetezeit_v2-card-geldanlage",
+          "bluetezeit_v2-card-sammelsurium"
         ]
       },
       "count": "0,16,16,16,16,16"
@@ -242,7 +320,9 @@
         "1": [
           "bluetezeit_v2-card-bischof",
           "bluetezeit_v2-card-denkmal",
-          "ausgemustert_v1-card-halsabschneider"
+          "ausgemustert_v1-card-halsabschneider",
+          "bluetezeit_v2-card-geldanlage",
+          "bluetezeit_v2-card-sammelsurium"
         ]
       }
     }

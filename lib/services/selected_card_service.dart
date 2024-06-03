@@ -33,6 +33,12 @@ class SelectedCardService {
     }
   }
 
+  Future<void> deleteSelectedCards() async {
+    if (!modifyDeck) {
+      await _selectedCardDatabase.deleteSelectedCards();
+    }
+  }
+
   void deleteSelectedCardIds(List<String> cardIds) {
     for (var cardId in cardIds) {
       deleteSelectedCardId(cardId);

@@ -37,4 +37,10 @@ class SelectedCardDatabase {
     return await _database
         .delete('selectedCard', where: "id = ?", whereArgs: [id]);
   }
+
+  Future<int> deleteSelectedCards() async {
+    await openDb();
+    return await _database
+        .delete('selectedCard');
+  }
 }
