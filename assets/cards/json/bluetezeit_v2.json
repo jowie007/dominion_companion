@@ -244,7 +244,7 @@
       "name": "Handelsrouten Tableau",
       "whenDeckConsistsOfXCards": {
         "1": [
-          "ausgemustert_v1-card-handelsroute"
+          "bluetezeit_v1-card-handelsroute"
         ]
       }
     },
@@ -255,7 +255,7 @@
         "1": [
           "bluetezeit_v2-card-bischof",
           "bluetezeit_v2-card-denkmal",
-          "ausgemustert_v1-card-halsabschneider",
+          "bluetezeit_v1-card-halsabschneider",
           "bluetezeit_v2-card-geldanlage",
           "bluetezeit_v2-card-sammelsurium"
         ]
@@ -266,7 +266,7 @@
       "name": "Geldmarker",
       "whenDeckConsistsOfXCards": {
         "1": [
-          "ausgemustert_v1-card-handelsroute"
+          "bluetezeit_v1-card-handelsroute"
         ]
       }
     },
@@ -277,7 +277,7 @@
         "1": [
           "bluetezeit_v2-card-bischof",
           "bluetezeit_v2-card-denkmal",
-          "ausgemustert_v1-card-halsabschneider",
+          "bluetezeit_v1-card-halsabschneider",
           "bluetezeit_v2-card-geldanlage",
           "bluetezeit_v2-card-sammelsurium"
         ]
@@ -291,7 +291,7 @@
         "1": [
           "bluetezeit_v2-card-bischof",
           "bluetezeit_v2-card-denkmal",
-          "ausgemustert_v1-card-halsabschneider",
+          "bluetezeit_v1-card-halsabschneider",
           "bluetezeit_v2-card-geldanlage",
           "bluetezeit_v2-card-sammelsurium"
         ]
@@ -307,7 +307,7 @@
       },
       "whenDeckConsistsOfXCards": {
         "1": [
-          "ausgemustert_v1-card-handelsroute"
+          "bluetezeit_v1-card-handelsroute"
         ]
       }
     },
@@ -320,7 +320,7 @@
         "1": [
           "bluetezeit_v2-card-bischof",
           "bluetezeit_v2-card-denkmal",
-          "ausgemustert_v1-card-halsabschneider",
+          "bluetezeit_v1-card-halsabschneider",
           "bluetezeit_v2-card-geldanlage",
           "bluetezeit_v2-card-sammelsurium"
         ]

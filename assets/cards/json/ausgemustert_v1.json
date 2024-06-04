@@ -4,7 +4,7 @@
   "version": "V1",
   "cards": [
     {
-      "id": "ausgemustert_v1-card-herzogin",
+      "id": "hinterland_v1-card-herzogin",
       "name": "Herzogin",
       "cardTypes": "aktion",
       "cardCost": {
@@ -12,7 +12,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-embargo",
+      "id": "seaside_v1-card-embargo",
       "name": "Embargo",
       "cardTypes": "aktion",
       "cardCost": {
@@ -20,7 +20,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-perlentaucher",
+      "id": "seaside_v1-card-perlentaucher",
       "name": "Perlentaucher",
       "cardTypes": "aktion",
       "cardCost": {
@@ -28,7 +28,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-botschafter",
+      "id": "seaside_v1-card-botschafter",
       "name": "Botschafter",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -36,7 +36,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-handelsroute",
+      "id": "bluetezeit_v1-card-handelsroute",
       "name": "Handelsroute",
       "cardTypes": "aktion",
       "cardCost": {
@@ -44,7 +44,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-lohn",
+      "id": "bluetezeit_v1-card-lohn",
       "name": "Lohn",
       "cardTypes": "geld",
       "cardCost": {
@@ -52,7 +52,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-orakel",
+      "id": "hinterland_v1-card-orakel",
       "name": "Orakel",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -60,7 +60,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-navigator",
+      "id": "seaside_v1-card-navigator",
       "name": "Navigator",
       "cardTypes": "aktion",
       "cardCost": {
@@ -68,7 +68,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-edler_raeuber",
+      "id": "hinterland_v1-card-edler_raeuber",
       "name": "Edler Räuder",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -76,7 +76,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-nomadencamp",
+      "id": "hinterland_v1-card-nomadencamp",
       "name": "Nomadencamp",
       "cardTypes": "aktion",
       "cardCost": {
@@ -84,7 +84,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-piratenschiff",
+      "id": "seaside_v1-card-piratenschiff",
       "name": "Piratenschiff",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -92,7 +92,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-schmuggelware",
+      "id": "bluetezeit_v1-card-schmuggelware",
       "name": "Schmuggelware",
       "cardTypes": "geld",
       "cardCost": {
@@ -100,7 +100,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-seehexe",
+      "id": "seaside_v1-card-seehexe",
       "name": "Seehexe",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -108,7 +108,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-seidenstrasse",
+      "id": "hinterland_v1-card-seidenstrasse",
       "name": "Seidenstraße",
       "cardTypes": "punkte",
       "cardCost": {
@@ -116,7 +116,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-talisman",
+      "id": "bluetezeit_v1-card-talisman",
       "name": "Talisman",
       "cardTypes": "geld",
       "cardCost": {
@@ -124,7 +124,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-abenteuer",
+      "id": "bluetezeit_v1-card-abenteuer",
       "name": "Abenteuer",
       "cardTypes": "geld",
       "cardCost": {
@@ -132,7 +132,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-koenigliches_siegel",
+      "id": "bluetezeit_v1-card-koenigliches_siegel",
       "name": "Königliches Siegel",
       "cardTypes": "geld",
       "cardCost": {
@@ -140,7 +140,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-schatztruhe",
+      "id": "hinterland_v1-card-schatztruhe",
       "name": "Schatztruhe",
       "cardTypes": "geld",
       "cardCost": {
@@ -148,7 +148,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-botschaft",
+      "id": "hinterland_v1-card-botschaft",
       "name": "Botschaft",
       "cardTypes": "aktion",
       "cardCost": {
@@ -156,7 +156,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-entdecker",
+      "id": "seaside_v1-card-entdecker",
       "name": "Entdecker",
       "cardTypes": "aktion",
       "cardCost": {
@@ -164,7 +164,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-geisterschiff",
+      "id": "seaside_v1-card-geisterschiff",
       "name": "Geisterschiff",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -172,7 +172,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-leihhaus",
+      "id": "bluetezeit_v1-card-leihhaus",
       "name": "Leihhaus",
       "cardTypes": "aktion",
       "cardCost": {
@@ -180,7 +180,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-blutzoll",
+      "id": "hinterland_v1-card-blutzoll",
       "name": "Blutzoll",
       "cardTypes": "geld",
       "cardCost": {
@@ -188,7 +188,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-mandarin",
+      "id": "hinterland_v1-card-mandarin",
       "name": "Mandarin",
       "cardTypes": "aktion",
       "cardCost": {
@@ -196,7 +196,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-quacksalber",
+      "id": "bluetezeit_v1-card-quacksalber",
       "name": "Quacksalber",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -204,7 +204,7 @@
       }
     },
     {
-      "id": "ausgemustert_v1-card-halsabschneider",
+      "id": "bluetezeit_v1-card-halsabschneider",
       "name": "Halsabschneider",
       "cardTypes": "aktion, angriff",
       "cardCost": {

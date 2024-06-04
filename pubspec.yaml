@@ -79,14 +79,18 @@ flutter:
     - assets/cards/json/
     - assets/cards/full/alchemisten_v1/
     - assets/cards/full/basisspiel_v2/
+    - assets/cards/full/bluetezeit_v1/
     - assets/cards/full/bluetezeit_v2/
     - assets/cards/full/reiche_ernte_v1/
+    - assets/cards/full/seaside_v1/
     - assets/cards/full/seaside_v2/
     - assets/cards/full/intrige_v2/
+    - assets/cards/full/hinterland_v1/
     - assets/cards/full/hinterland_v2/
     - assets/cards/full/dark_ages_v1/
     - assets/cards/full/gilden_v1/
     - assets/cards/full/abenteuer_v1/
+    - assets/cards/full/empires_v1/
     - assets/cards/full/empires_v2/
     - assets/cards/full/nocturne_v1/
     - assets/cards/full/renaissance_v1/
@@ -94,7 +98,6 @@ flutter:
     - assets/cards/full/verbuendete_v1/
     - assets/cards/full/pluenderer_v1/
     - assets/cards/full/promos_v1/
-    - assets/cards/full/ausgemustert_v1/
     - assets/menu/
     - assets/instructions/
     - assets/artwork/cover/
