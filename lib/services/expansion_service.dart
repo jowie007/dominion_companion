@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_companion/database/expansion_database.dart';
 import 'package:dominion_companion/database/model/expansion/expansion_db_model.dart';
 import 'package:dominion_companion/model/card/card_model.dart';
@@ -139,5 +141,21 @@ class ExpansionService {
     ExpansionDBModel? expansion =
         await _expansionDatabase.getExpansionByPosition(position);
     return expansion != null ? expansionModelFromExpansionDB(expansion) : null;
+  }
+
+  Future<List<ExpansionModel>> getAllExpansionsStartingWithId(
+      String expansionId) async {
+    String expansionPrefix = expansionId.split("_")[0];
+    return Future.wait((await _expansionDatabase
+        .getAllExpansionsStartingWithId(expansionPrefix)).map(
+            (expansionDBModel) async =>
+            expansionModelFromExpansionDB(expansionDBModel)));
+  }
+
+  Future<List<String>> getAllExpansionNamesStartingWithId(
+      String expansionId) async {
+    return (await getAllExpansionsStartingWithId(expansionId))
+        .map((expansion) => getExpansionName(expansion))
+        .toList();
   }
 }

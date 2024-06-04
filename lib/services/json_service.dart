@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 class JsonService {
   List<String> files = [
+    'basisspiel_v1',
     'basisspiel_v2',
     'bluetezeit_v2',
     'alchemisten_v1',

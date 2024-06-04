@@ -1,5 +1,6 @@
 import 'package:dominion_companion/components/card_info_tile.dart';
 import 'package:dominion_companion/components/round_checkbox.dart';
+import 'package:dominion_companion/components/select_version_dialog.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
 import 'package:dominion_companion/services/audio_service.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
@@ -55,30 +56,69 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                       height: 0,
                     ),
                     collapsedIconColor: Colors.white,
-                    title: Container(
-                      padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20.0),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                  "assets/menu/main_scroll_crop.png"),
-                              fit: BoxFit.cover,
+                    title: GestureDetector(
+                      onLongPress: () => showDialog<String>(
+                        context: context,
+                        useRootNavigator: false,
+                        builder: (innerContext) => FutureBuilder<List<String>>(
+                          future: expansionService
+                              .getAllExpansionNamesStartingWithId(
+                                  widget.expansion.id),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<List<String>> snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Center(child: CircularProgressIndicator()),
+                                ],
+                              );
+                            } else if (snapshot.hasError) {
+                              return Text(
+                                  'Error: ${snapshot.error}');
+                            } else {
+                              return SelectVersionDialog(
+                                currentVersion: widget.expansion.id,
+                                availableVersions: snapshot.data!,
+                                onSaved: (deckName) => setState(
+                                  () {
+                                    /*DeckService()
+                    .renameDeck(widget.deckModel.id!, deckName)
+                    .then((value) => onChange());*/
+                                  },
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    "assets/menu/main_scroll_crop.png"),
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
-                          padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            alignment: Alignment.center,
-                            child: Text(
-                              expansionService
-                                  .getExpansionName(widget.expansion),
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Colors.black,
+                            padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.center,
+                              child: Text(
+                                expansionService
+                                    .getExpansionName(widget.expansion),
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),

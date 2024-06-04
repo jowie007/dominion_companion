@@ -1,0 +1,310 @@
+{
+  "id": "basisspiel_v1",
+  "name": "Basisspiel",
+  "version": "V1",
+  "cards": [
+    {
+      "id": "basisspiel_v1-card-kapelle",
+      "name": "Kapelle",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-keller",
+      "name": "Keller",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-dorf",
+      "name": "Dorf",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-haendlerin",
+      "name": "Händlerin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-vasall",
+      "name": "Vasall",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-werkstatt",
+      "name": "Werkstatt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-geldverleiher",
+      "name": "Geldverleiher",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-schmiede",
+      "name": "Schmiede",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-thronsaal",
+      "name": "Thronsaal",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-umbau",
+      "name": "Umbau",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-wilddiebin",
+      "name": "Wilddiebin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-bibliothek",
+      "name": "Bibliothek",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-jahrmarkt",
+      "name": "Jahrmarkt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-laboratorium",
+      "name": "Laboratorium",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-markt",
+      "name": "Markt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-mine",
+      "name": "Mine",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-ratsversammlung",
+      "name": "Ratsversammlung",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-torwaechterin",
+      "name": "Torwächterin",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-toepferei",
+      "name": "Töpferei",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-buerokrat",
+      "name": "Bürokrat",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-miliz",
+      "name": "Miliz",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-banditin",
+      "name": "Banditin",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-hexe",
+      "name": "Hexe",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-burggraben",
+      "name": "Burggraben",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-gaerten",
+      "name": "Gärten",
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-kupfer",
+      "name": "Kupfer",
+      "always": true,
+      "invisible": true,
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "0"
+      },
+      "count": "0,60,60,60,120,120"
+    },
+    {
+      "id": "basisspiel_v1-card-silber",
+      "name": "Silber",
+      "always": true,
+      "invisible": true,
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "3"
+      },
+      "count": "0,40,40,40,80,80"
+    },
+    {
+      "id": "basisspiel_v1-card-gold",
+      "name": "Gold",
+      "always": true,
+      "invisible": true,
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "6"
+      },
+      "count": "0,30,30,30,60,60"
+    },
+    {
+      "id": "basisspiel_v1-card-anwesen",
+      "name": "Anwesen",
+      "always": true,
+      "invisible": true,
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": "2"
+      },
+      "count": "0,8,12,12,12,12"
+    },
+    {
+      "id": "basisspiel_v1-card-herzogtum",
+      "name": "Herzogtum",
+      "always": true,
+      "invisible": true,
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": "5"
+      },
+      "count": "0,8,12,12,12,12"
+    },
+    {
+      "id": "basisspiel_v1-card-provinz",
+      "name": "Provinz",
+      "always": true,
+      "invisible": true,
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": "8"
+      },
+      "count": "0,8,12,12,15,18"
+    },
+    {
+      "id": "basisspiel_v1-card-fluch",
+      "name": "Fluch",
+      "always": true,
+      "invisible": true,
+      "cardTypes": "fluch",
+      "cardCost": {
+        "coin": "0"
+      },
+      "count": "0,10,20,30,40,50"
+    }
+  ],
+  "handMoneyCards": [
+    {
+      "id": "basisspiel_v1-hand_money_cards",
+      "always": true,
+      "elements": {
+        "basisspiel_v1-card-kupfer": 7
+      }
+    }
+  ],
+  "handOtherCards": [
+    {
+      "id": "basisspiel_v1-hand_other_cards",
+      "always": true,
+      "elements": {
+        "basisspiel_v1-card-anwesen": 3
+      }
+    }
+  ],
+  "end": {
+    "id": "basisspiel_v1-end",
+    "always": true,
+    "emptyCards": [
+      "basisspiel_v1-card-provinz"
+    ],
+    "emptyCount": 3
+  }
+}

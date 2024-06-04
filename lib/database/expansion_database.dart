@@ -35,6 +35,29 @@ class ExpansionDatabase {
     return maps.isNotEmpty ? ExpansionDBModel.fromDB(maps.first) : null;
   }
 
+  Future<List<ExpansionDBModel>> getAllExpansionsStartingWithId(
+      String id) async {
+    await openDb();
+    final List<Map<String, dynamic>> maps = await _database.rawQuery(
+        'SELECT * FROM expansion WHERE id LIKE ? ORDER BY name;', ["$id%"]);
+    return maps.isNotEmpty
+        ? List.generate(maps.length, (i) {
+            return ExpansionDBModel.fromDB(maps[i]);
+          })
+        : [];
+  }
+
+  Future<List<String>> getAllExpansionNamesStartingWithId(String id) async {
+    await openDb();
+    final List<Map<String, dynamic>> maps = await _database.rawQuery(
+        'SELECT name FROM expansion WHERE id LIKE ? ORDER BY name;', ["$id%"]);
+    return maps.isNotEmpty
+        ? List.generate(maps.length, (i) {
+            return maps[i]['name'];
+          })
+        : [];
+  }
+
   Future<int> deleteExpansionTable() async {
     await openDb();
     return await _database.delete('expansion');
