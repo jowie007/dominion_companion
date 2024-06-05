@@ -52,10 +52,12 @@ class _CardInfoTileState extends State<CardInfoTile> {
                 return FutureBuilder(
                   future: cardService.getCardIdsForPopup(widget.card),
                   builder: (context, snapshot) {
-                    if (snapshot.hasData && snapshot.data != null) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasData && snapshot.data != null) {
                       return CardPopup(
                           cardIds: snapshot.data!,
-                          expansionId: widget.card.getExpansionId());
+                          expansionId: snapshot.data![0].split("-")[0]);
                     } else {
                       return const Text('Karte konnte nicht geladen werden');
                     }
@@ -159,7 +161,9 @@ class _CardInfoTileState extends State<CardInfoTile> {
                         Text(
                           cardTypeString,
                           style: const TextStyle(
-                              fontSize: 14, color: Colors.black, fontStyle: FontStyle.italic),
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontStyle: FontStyle.italic),
                         ),
                       ],
                     ),

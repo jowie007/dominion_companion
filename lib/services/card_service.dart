@@ -1,4 +1,5 @@
-import 'dart:math';
+import 'dart:developer';
+import 'dart:math' as math;
 
 import 'package:dominion_companion/database/card_database.dart';
 import 'package:dominion_companion/database/model/card/card_db_model.dart';
@@ -6,7 +7,9 @@ import 'package:dominion_companion/database/model/expansion/expansion_db_model.d
 import 'package:dominion_companion/model/card/card_model.dart';
 import 'package:dominion_companion/model/card/card_type_colors_map.dart';
 import 'package:dominion_companion/model/card/card_type_enum.dart';
+import 'package:dominion_companion/services/expansion_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CardService {
   late CardDatabase _cardDatabase;
@@ -51,7 +54,7 @@ class CardService {
     if (dateInt == null) {
       return null;
     }
-    Random random = Random(dateInt);
+    math.Random random = math.Random(dateInt);
     int position = random.nextInt(cardDBSize - 1);
     CardDBModel cardDBModel = await _cardDatabase.getCardAtPosition(position);
     CardModel card = CardModel.fromDBModel(cardDBModel);
@@ -63,13 +66,56 @@ class CardService {
 
   Future<List<String>> getCardIdsForPopup(CardModel card) async {
     return !card.id.contains('-set-')
-        ? [card.id]
+        ? [await getCardImageId(card.id) ?? '']
         : await getCardIdsBySetId(card.id);
+  }
+
+  Future<String?> getCardImageId(String cardId) async {
+    List<String> expansionIds = await ExpansionService()
+        .getAllExpansionIdsStartingWithId(cardId.split("_")[0]);
+    if (await testCardImage(cardId)) {
+      return cardId;
+    } else {
+      for (var expansionId in expansionIds) {
+        String cardIdRaw = cardId.split("-").sublist(1).join("-");
+        String otherId = "$expansionId-$cardIdRaw";
+        if (await testCardImage(otherId)) {
+          return "$expansionId-$cardIdRaw";
+        }
+      }
+    }
+    return null;
   }
 
   Future<List<String>> getCardIdsBySetId(String setId) async {
     return await Future.wait(
         (await getCardsBySetId(setId)).map((card) async => card.id));
+  }
+
+  Future<bool> testCardImage(String cardId) async {
+    var split = cardId.split("-");
+    if (split[1] != "set") {
+      try {
+        await rootBundle.load('assets/cards/full/${split[0]}/${split[2]}.png');
+        return true;
+      } catch (_) {}
+    }
+    return false;
+  }
+
+  void testCardNamesAndImages() async {
+    getAllCards().then(
+      (cards) async {
+        for (var card in cards) {
+          var split = card.id.split("-");
+          if (split[1] != "set") {
+            if (await getCardImageId(card.id) == null) {
+              log("${card.id} not found");
+            }
+          }
+        }
+      },
+    );
   }
 
   Future<List<CardDBModel>> getAllCards() async {

@@ -152,6 +152,13 @@ class ExpansionService {
             expansionModelFromExpansionDB(expansionDBModel)));
   }
 
+  Future<List<String>> getAllExpansionIdsStartingWithId(
+      String expansionId) async {
+    return (await getAllExpansionsStartingWithId(expansionId))
+        .map((expansion) => expansion.id)
+        .toList();
+  }
+
   Future<List<String>> getAllExpansionNamesStartingWithId(
       String expansionId) async {
     return (await getAllExpansionsStartingWithId(expansionId))

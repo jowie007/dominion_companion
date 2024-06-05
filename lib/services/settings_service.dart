@@ -37,7 +37,7 @@ class SettingsService {
   // Adjust version in pubspec.yaml
   Future<void> initializeApp(
       {deleteSettings = false,
-      checkCardNames = false,
+      checkCardNamesAndImages = false,
       initializeExpansions = false}) async {
     fileService.initializeBackgroundImagePath();
     if (deleteSettings) {
@@ -74,27 +74,9 @@ class SettingsService {
       // Check if something is going wrong
     });
 
-    if (checkCardNames) {
-      testCardNames();
+    if (checkCardNamesAndImages) {
+      CardService().testCardNamesAndImages();
     }
-  }
-
-  void testCardNames() async {
-    CardService().getAllCards().then(
-      (cards) async {
-        for (var card in cards) {
-          var split = card.id.split("-");
-          if (split[1] != "set") {
-            try {
-              await rootBundle
-                  .load('assets/cards/full/${split[0]}/${split[2]}.png');
-            } catch (_) {
-              log("${card.id} not found");
-            }
-          }
-        }
-      },
-    );
   }
 
   Future<void> initDatabase() async {

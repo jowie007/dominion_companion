@@ -10,7 +10,7 @@ change the version in the local.properties file
 in the main.dart adjust
 await settingsService.initializeApp();
 to
-await settingsService.initializeApp(checkCardNames: true);
+await settingsService.initializeApp(checkCardNamesAndImages: true);
 
 ## Create release
 Build -> Flutter -> Build APK
