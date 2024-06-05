@@ -2,6 +2,7 @@
   "id": "seaside_v2",
   "name": "Seaside",
   "version": "V2",
+  "priority": "2",
   "cards": [
     {
       "id": "seaside_v2-card-eingeborenendorf",

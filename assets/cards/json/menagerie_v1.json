@@ -2,6 +2,7 @@
   "id": "menagerie_v1",
   "name": "Menagerie",
   "version": "V1",
+  "priority": "1",
   "cards": [
     {
       "id": "menagerie_v1-card-kamelzug",

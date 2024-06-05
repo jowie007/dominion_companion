@@ -2,6 +2,7 @@
   "id": "abenteuer_v1",
   "name": "Abenteuer",
   "version": "V1",
+  "priority": "1",
   "cards": [
     {
       "id": "abenteuer_v1-set-page",

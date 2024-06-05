@@ -2,6 +2,7 @@
   "id": "ausgemustert_v1",
   "name": "Ausgemustert",
   "version": "V1",
+  "priority": "1",
   "cards": [
     {
       "id": "hinterland_v1-card-herzogin",

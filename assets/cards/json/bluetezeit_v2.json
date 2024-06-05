@@ -2,6 +2,7 @@
   "id": "bluetezeit_v2",
   "name": "Blütezeit",
   "version": "V2",
+  "priority": "2",
   "cards": [
     {
       "id": "bluetezeit_v2-card-arbeiterdorf",

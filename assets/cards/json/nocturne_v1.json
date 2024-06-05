@@ -2,6 +2,7 @@
   "id": "nocturne_v1",
   "name": "Nocturne",
   "version": "V1",
+  "priority": "1",
   "cards": [
     {
       "id": "nocturne_v1-card-kloster",

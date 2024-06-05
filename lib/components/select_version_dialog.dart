@@ -1,22 +1,37 @@
+import 'dart:developer';
+
 import 'package:dominion_companion/components/dropdown_expansion_version.dart';
+import 'package:dominion_companion/services/active_expansion_version_service.dart';
 import 'package:dominion_companion/services/deck_service.dart';
 import 'package:flutter/material.dart';
 
-class SelectVersionDialog extends StatelessWidget {
+class SelectVersionDialog extends StatefulWidget {
   const SelectVersionDialog(
-      {super.key,
+      {Key? key,
       required this.onSaved,
       required this.currentVersion,
-      required this.availableVersions});
+      required this.availableVersions})
+      : super(key: key);
 
   final void Function(String deckName) onSaved;
   final String currentVersion;
-  final List<String> availableVersions;
+  final Map<String, String> availableVersions;
+
+  @override
+  State<SelectVersionDialog> createState() => _SelectVersionDialogState();
+}
+
+class _SelectVersionDialogState extends State<SelectVersionDialog> {
+  late String selectedVersion;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedVersion = widget.currentVersion;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController deckNameController =
-        TextEditingController(text: currentVersion);
     final deckService = DeckService();
 
     return FutureBuilder(
@@ -52,13 +67,10 @@ class SelectVersionDialog extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 28, vertical: 10),
                               child: DropdownExpansionVersion(
-                                currentVersion: currentVersion,
-                                availableVersions: availableVersions,
+                                currentVersion: selectedVersion,
+                                availableVersions: widget.availableVersions,
                                 onChanged: (newVersion) => {
-                                  /*setState(() {
-                                    settingService.updateCachedSettings(
-                                        key, asc);
-                                  })*/
+                                  setState(() => selectedVersion = newVersion!)
                                 },
                               ),
                             ),
@@ -74,7 +86,7 @@ class SelectVersionDialog extends StatelessWidget {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    onSaved(deckNameController.text.toString());
+                                    widget.onSaved(selectedVersion);
                                     Navigator.pop(context);
                                   },
                                   child: const Text('Speichern'),

@@ -1,8 +1,10 @@
 import 'dart:developer';
 
+import 'package:dominion_companion/database/active_expansion_version_database.dart';
 import 'package:dominion_companion/database/model/settings/settings_db_model.dart';
 import 'package:dominion_companion/database/settings_database.dart';
 import 'package:dominion_companion/model/settings/settings_model.dart';
+import 'package:dominion_companion/services/active_expansion_version_service.dart';
 import 'package:dominion_companion/services/card_service.dart';
 import 'package:dominion_companion/services/content_service.dart';
 import 'package:dominion_companion/services/end_service.dart';
@@ -60,13 +62,15 @@ class SettingsService {
           !settings!.loadingSuccess) {
         await updateLoadingSuccess(false);
         await SelectedCardService().deleteSelectedCards();
-        await ExpansionService().deleteExpansionTable();
+        await ActiveExpansionVersionService().deleteDb();
+        await ExpansionService().deleteDb();
         await CardService().deleteCardTable();
         await ContentService().deleteContentTable();
         await HandService().deleteHandTable();
         await HandService().deleteHandTable();
         await EndService().deleteEndTable();
         await ExpansionService().loadJsonExpansionsIntoDB();
+        await ActiveExpansionVersionService().fillActiveExpansionVersionTable();
         await updateVersion(packageInfo.version);
         await updateLoadingSuccess(true);
       }

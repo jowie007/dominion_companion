@@ -1,21 +1,15 @@
 import 'package:dominion_companion/database/model/active_expansion_version/active_versions_db_model.dart';
 
 class ActiveExpansionVersionModel {
-  late String prefix;
-  late String version;
-  late int priority;
+  late String expansionId;
 
-  ActiveExpansionVersionModel(this.prefix, this.version);
+  ActiveExpansionVersionModel(this.expansionId);
 
   ActiveExpansionVersionModel.fromJson(Map<String, dynamic> json) {
-    prefix = json['prefix'];
-    version = json['version'];
-    priority = json['priority'];
+    expansionId = json['expansionId'];
   }
 
   ActiveExpansionVersionModel.fromDBModel(ActiveExpansionVersionDBModel dbModel) {
-    prefix = dbModel.prefix;
-    version = dbModel.version;
-    priority = dbModel.priority;
+    expansionId = dbModel.expansionId;
   }
 }

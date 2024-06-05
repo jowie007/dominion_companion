@@ -2,6 +2,7 @@
   "id": "gilden_v1",
   "name": "Gilden",
   "version": "V1",
+  "priority": "1",
   "cards": [
     {
       "id": "gilden_v1-card-steinmetz",

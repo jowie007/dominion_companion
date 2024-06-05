@@ -8,16 +8,19 @@ import 'package:dominion_companion/model/end/end_model.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
 import 'package:dominion_companion/model/hand/hand_model.dart';
 import 'package:dominion_companion/model/hand/hand_type_enum.dart';
+import 'package:dominion_companion/services/active_expansion_version_service.dart';
 import 'package:dominion_companion/services/card_service.dart';
 import 'package:dominion_companion/services/content_service.dart';
 import 'package:dominion_companion/services/end_service.dart';
 import 'package:dominion_companion/services/hand_service.dart';
 import 'package:dominion_companion/services/json_service.dart';
+import 'package:sqflite/sqflite.dart';
 
 class ExpansionService {
   late ExpansionDatabase _expansionDatabase;
   late CardService _cardService;
   late ContentService _contentService;
+  late ActiveExpansionVersionService _activeExpansionVersionService;
   late HandService _handService;
   late EndService _endService;
 
@@ -25,12 +28,13 @@ class ExpansionService {
     _expansionDatabase = ExpansionDatabase();
     _cardService = CardService();
     _contentService = ContentService();
+    _activeExpansionVersionService = ActiveExpansionVersionService();
     _handService = HandService();
     _endService = EndService();
   }
 
-  Future<int> deleteExpansionTable() {
-    return _expansionDatabase.deleteExpansionTable();
+  Future<void> deleteDb() async {
+    _expansionDatabase.deleteDb();
   }
 
   String getExpansionName(ExpansionModel expansion) {
@@ -39,21 +43,6 @@ class ExpansionService {
         : [expansion.name, expansion.version].join(" - ");
   }
 
-  /*void insertExpansionModelsIntoDB(List<ExpansionModel> expansionModels) {
-    _expansionDatabase
-        .insertExpansion(ExpansionDBModel.fromModel(expansionModel));
-    _cardService.insertCardModelsIntoDB(expansionModel.cards);
-    _contentService.insertContentModelsIntoDB(expansionModel.content);
-    _handService.insertHandModelsIntoDB([
-      ...expansionModel.handMoneyCards,
-      ...expansionModel.handOtherCards,
-      ...expansionModel.handContents
-    ]);
-    if (expansionModel.end != null) {
-      _endService.insertEndIntoDB(EndDBModel.fromModel(expansionModel.end!));
-    }
-  }*/
-
   Future<void> insertExpansionModelsIntoDB(
       List<ExpansionModel> expansionModels) {
     return _expansionDatabase.insertExpansions(expansionModels
@@ -61,11 +50,9 @@ class ExpansionService {
         .toList());
   }
 
-  void insertExpansionsWithDependenciesIntoDB(
+  Future<void> insertExpansionsWithDependenciesIntoDB(
       List<ExpansionModel> expansionModels) async {
     await insertExpansionModelsIntoDB(expansionModels);
-    /*_expansionDatabase
-        .insertExpansionModelsIntoDB(ExpansionDBModel.fromModel(expansionModels));*/
     var cards = expansionModels.expand((e) => e.cards).toList();
     await _cardService.insertCardModelsIntoDB(cards);
     var contents = expansionModels.expand((e) => e.content).toList();
@@ -85,11 +72,8 @@ class ExpansionService {
   }
 
   Future<void> loadJsonExpansionsIntoDB() async {
-    insertExpansionsWithDependenciesIntoDB(
-        await Future.wait(JsonService().getExpansionsFromJSON()));
-    /*JsonService().getExpansionsFromJSON().forEach((expansionModel) async {
-      insertExpansionIntoDB(await expansionModel);
-    });*/
+    await insertExpansionsWithDependenciesIntoDB(
+        await JsonService().getExpansionsFromJSON());
   }
 
   Future<List<CardModel>> getSortedCardsByExpansionDBModel(
@@ -137,9 +121,11 @@ class ExpansionService {
     return _expansionDatabase.getExpansionList();
   }
 
-  Future<ExpansionModel?> getExpansionByPosition(int position) async {
-    ExpansionDBModel? expansion =
-        await _expansionDatabase.getExpansionByPosition(position);
+  Future<ExpansionModel?> getActiveExpansionByPosition(int position) async {
+    List<String> activeExpansionIds =
+        await _activeExpansionVersionService.getSelectedExpansionIds();
+    ExpansionDBModel? expansion = await _expansionDatabase
+        .getActiveExpansionByPosition(position, activeExpansionIds);
     return expansion != null ? expansionModelFromExpansionDB(expansion) : null;
   }
 
@@ -147,8 +133,8 @@ class ExpansionService {
       String expansionId) async {
     String expansionPrefix = expansionId.split("_")[0];
     return Future.wait((await _expansionDatabase
-        .getAllExpansionsStartingWithId(expansionPrefix)).map(
-            (expansionDBModel) async =>
+            .getAllExpansionsStartingWithId(expansionPrefix))
+        .map((expansionDBModel) async =>
             expansionModelFromExpansionDB(expansionDBModel)));
   }
 
@@ -163,6 +149,45 @@ class ExpansionService {
       String expansionId) async {
     return (await getAllExpansionsStartingWithId(expansionId))
         .map((expansion) => getExpansionName(expansion))
+        .toList();
+  }
+
+  Future<Map<String, String>> getAllExpansionNamesAndIdsStartingWithId(
+      String expansionId) async {
+    List<ExpansionModel> allExpansions =
+        await getAllExpansionsStartingWithId(expansionId);
+    return Map.fromEntries(allExpansions.map(
+        (expansion) => MapEntry(expansion.id, getExpansionName(expansion))));
+  }
+
+  Future<List<String>> getUniqueExpansionIdsWithHigherPriority() async {
+    List<ExpansionDBModel> expansions = await getExpansionsFromDB();
+    List<ExpansionDBModel> uniqueExpansions = [];
+    for (var expansion in expansions) {
+      bool alreadyExists = false;
+      for (var uniqueExpansion in uniqueExpansions) {
+        if (uniqueExpansion.id.startsWith(expansion.id.split("_")[0])) {
+          alreadyExists = true;
+          if (expansion.priority > uniqueExpansion.priority) {
+            uniqueExpansions.remove(uniqueExpansion);
+            uniqueExpansions.add(expansion);
+          }
+          break;
+        }
+      }
+      if (!alreadyExists) {
+        uniqueExpansions.add(expansion);
+      }
+    }
+    return uniqueExpansions.map((expansion) => expansion.id).toList();
+  }
+
+  Future<List<String>> getExpansionIdsWithSamePrefix(String expansionId) async {
+    List<ExpansionDBModel> expansions = await getExpansionsFromDB();
+    return expansions
+        .where(
+            (expansion) => expansion.id.startsWith(expansionId.split("_")[0]))
+        .map((expansion) => expansion.id)
         .toList();
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
 import 'package:flutter/services.dart';
@@ -26,10 +27,18 @@ class JsonService {
     'ausgemustert_v1',
   ];
 
-  List<Future<ExpansionModel>> getExpansionsFromJSON() {
-    return files
-        .map((fileName) async => ExpansionModel.fromJson(jsonDecode(
-            await rootBundle.loadString('assets/cards/json/$fileName.json'))))
-        .toList();
+  Future<List<ExpansionModel>> getExpansionsFromJSON() async {
+    try {
+      List<Future<ExpansionModel>> futures = files.map((fileName) async {
+        String jsonString = await rootBundle.loadString('assets/cards/json/$fileName.json');
+        Map<String, dynamic> jsonMap = jsonDecode(jsonString);
+        return ExpansionModel.fromJson(jsonMap);
+      }).toList();
+      return await Future.wait(futures);
+    } catch (e) {
+      log('Error loading expansions: $e');
+      return [];
+    }
   }
+
 }

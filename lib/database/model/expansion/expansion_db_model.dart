@@ -4,6 +4,7 @@ class ExpansionDBModel {
   late String id;
   late String name;
   late String version;
+  late int priority;
   late List<String> cardIds;
   late List<String> contentIds;
   late List<String> handMoneyCardIds;
@@ -15,6 +16,7 @@ class ExpansionDBModel {
     id = dbData['id'].toString();
     name = dbData['name'].toString();
     version = dbData['version'].toString();
+    priority = dbData['priority'];
     cardIds = dbData['cardIds'] != '' ? dbData['cardIds'].split(',') : [];
     contentIds =
         dbData['contentIds'] != '' ? dbData['contentIds'].split(',') : [];
@@ -34,6 +36,7 @@ class ExpansionDBModel {
     id = model.id;
     name = model.name;
     version = model.version;
+    priority = model.priority;
     cardIds = model.cards.map((data) => data.id).toList();
     contentIds = model.content.map((data) => data.id).toList();
     handMoneyCardIds = model.handMoneyCards.map((data) => data.id).toList();
@@ -46,6 +49,7 @@ class ExpansionDBModel {
         'id': id,
         'name': name,
         'version': version,
+        'priority': priority,
         'cardIds': cardIds.join(","),
         'contentIds': contentIds.join(","),
         'handMoneyCardIds': handMoneyCardIds.join(","),

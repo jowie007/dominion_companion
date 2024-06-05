@@ -2,6 +2,7 @@
   "id": "alchemisten_v1",
   "name": "Alchemisten",
   "version": "V1",
+  "priority": "1",
   "cards": [
     {
       "id": "alchemisten_v1-card-verwandlung",

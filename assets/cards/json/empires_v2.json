@@ -2,6 +2,7 @@
   "id": "empires_v2",
   "name": "Empires",
   "version": "V2",
+  "priority": "2",
   "cards": [
     {
       "id": "empires_v2-set-schloesser",

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:dominion_companion/database/model/expansion/expansion_db_model.dart';
 import 'package:path/path.dart';
@@ -17,6 +18,7 @@ class ExpansionDatabase {
         "CREATE TABLE expansion(id STRING PRIMARY KEY, "
         "name STRING, "
         "version STRING, "
+        "priority INTEGER, "
         "cardIds STRING, "
         "contentIds STRING, "
         "handMoneyCardIds STRING, "
@@ -28,10 +30,12 @@ class ExpansionDatabase {
     return _database;
   }
 
-  Future<ExpansionDBModel?> getExpansionByPosition(int position) async {
+  Future<ExpansionDBModel?> getActiveExpansionByPosition(
+      int position, List<String> activeExpansionIds) async {
     await openDb();
-    final List<Map<String, dynamic>> maps = await _database
-        .rawQuery('SELECT * FROM expansion LIMIT 1 OFFSET $position;');
+    String formattedIds = activeExpansionIds.map((id) => "'$id'").join(', ');
+    final List<Map<String, dynamic>> maps = await _database.rawQuery(
+        'SELECT * FROM expansion WHERE id IN ($formattedIds) LIMIT 1 OFFSET $position');
     return maps.isNotEmpty ? ExpansionDBModel.fromDB(maps.first) : null;
   }
 
@@ -58,9 +62,9 @@ class ExpansionDatabase {
         : [];
   }
 
-  Future<int> deleteExpansionTable() async {
-    await openDb();
-    return await _database.delete('expansion');
+  Future<void> deleteDb() async {
+    String path = join(await getDatabasesPath(), "expansion.db");
+    await deleteDatabase(path);
   }
 
   Future<int> insertExpansion(ExpansionDBModel expansion) async {

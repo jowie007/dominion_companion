@@ -13,7 +13,6 @@ Future<void> main() async {
     // TODO: Add database to save versions
     // TODO: Clear database when everything is reloaded
     // TODO: Add hint when card from another version is selected, for example in the top right corner of the expansion expandable
-    // TODO: Link card (for example basisspiel_karte_xy_v1 soll die von basisspiel_karte_xy_v2 mitnutzen können, falls sonst keine existiert)
     // TODO: Das ist nicht schön wenn es hardgecodet ist: CardModel? verbuendeteCard;
     await settingsService.initializeApp(checkCardNamesAndImages: true, initializeExpansions: true, deleteSettings: false);
     FlutterNativeSplash.remove();

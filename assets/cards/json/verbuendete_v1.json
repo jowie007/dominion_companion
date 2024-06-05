@@ -2,6 +2,7 @@
   "id": "verbuendete_v1",
   "name": "Verbündete",
   "version": "V1",
+  "priority": "1",
   "cards": [
     {
       "id": "verbuendete_v1-card-haendlerlager",

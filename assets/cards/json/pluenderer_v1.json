@@ -2,6 +2,7 @@
   "id": "pluenderer_v1",
   "name": "Plünderer",
   "version": "V1",
+  "priority": "1",
   "cards": [
     {
       "id": "pluenderer_v1-card-grotte",

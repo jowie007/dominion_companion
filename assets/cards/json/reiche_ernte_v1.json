@@ -2,6 +2,7 @@
   "id": "reiche_ernte_v1",
   "name": "Reiche Ernte",
   "version": "V1",
+  "priority": "1",
   "cards": [
     {
       "id": "reiche_ernte_v1-set-preiskarten",

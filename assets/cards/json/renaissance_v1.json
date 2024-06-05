@@ -2,6 +2,7 @@
   "id": "renaissance_v1",
   "name": "Renaissance",
   "version": "V1",
+  "priority": "1",
   "cards": [
     {
       "id": "renaissance_v1-card-diener",

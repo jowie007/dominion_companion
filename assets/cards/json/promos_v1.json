@@ -2,6 +2,7 @@
   "id": "promos_v1",
   "name": "Promos",
   "version": "V1",
+  "priority": "1",
   "cards": [
     {
       "id": "promos_v1-card-schwarzmarkt",

@@ -32,9 +32,17 @@ class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
     disposed = true;
   }
 
+  void reloadData() {
+    setState(() {
+      expansions = [];
+      showLoadingIcon = true;
+      loadExpansionRecursive();
+    });
+  }
+
   loadExpansionRecursive() async {
     if (!disposed) {
-      ExpansionService().getExpansionByPosition(expansions.length).then(
+      ExpansionService().getActiveExpansionByPosition(expansions.length).then(
             (element) => {
               if (!disposed)
                 {
@@ -63,7 +71,10 @@ class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
           children: [
             ...expansions
                 .map<Widget>((e) => ExpansionExpandable(
-                    expansion: e, onChanged: () => {widget.onChanged()}))
+                      expansion: e,
+                      onChanged: () => {widget.onChanged()},
+                      onReload: reloadData,
+                    ))
                 .toList(),
             showLoadingIcon
                 ? Padding(

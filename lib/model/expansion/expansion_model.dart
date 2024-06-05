@@ -8,6 +8,7 @@ class ExpansionModel {
   late String id;
   late String name;
   late String version;
+  late int priority;
   late List<CardModel> cards;
   late List<ContentModel> content;
   late List<HandModel> handMoneyCards;
@@ -19,6 +20,11 @@ class ExpansionModel {
     id = json['id'].toString();
     name = json['name'];
     version = json['version'].toString();
+    try {
+      priority = int.parse(json['priority']);
+    } catch (e) {
+      priority = 0;
+    }
     cards = (json['cards'] as List)
         .map((data) => CardModel.fromJson(data))
         .toList();
@@ -49,6 +55,7 @@ class ExpansionModel {
     id = dbModel.id;
     name = dbModel.name;
     version = dbModel.version;
+    priority = dbModel.priority;
   }
 
   ExpansionModel.fromDBModelAndAdditional(
@@ -62,6 +69,7 @@ class ExpansionModel {
     id = dbModel.id;
     name = dbModel.name;
     version = dbModel.version;
+    priority = dbModel.priority;
   }
 
   getCardIds() {

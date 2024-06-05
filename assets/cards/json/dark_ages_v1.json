@@ -2,6 +2,7 @@
   "id": "dark_ages_v1",
   "name": "Dark Ages",
   "version": "V1",
+  "priority": "1",
   "cards": [
     {
       "id": "dark_ages_v1-set-ritter",

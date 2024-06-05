@@ -1,7 +1,9 @@
 import 'package:dominion_companion/components/card_info_tile.dart';
 import 'package:dominion_companion/components/round_checkbox.dart';
+import 'package:dominion_companion/components/round_tooltip.dart';
 import 'package:dominion_companion/components/select_version_dialog.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
+import 'package:dominion_companion/services/active_expansion_version_service.dart';
 import 'package:dominion_companion/services/audio_service.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
 import 'package:dominion_companion/services/selected_card_service.dart';
@@ -9,16 +11,21 @@ import 'package:flutter/material.dart';
 
 class ExpansionExpandable extends StatefulWidget {
   const ExpansionExpandable(
-      {super.key, required this.expansion, required this.onChanged});
+      {super.key,
+      required this.expansion,
+      required this.onChanged,
+      required this.onReload});
 
   final ExpansionModel expansion;
   final void Function() onChanged;
+  final VoidCallback onReload;
 
   @override
   State<ExpansionExpandable> createState() => _ExpansionExpandableState();
 }
 
 class _ExpansionExpandableState extends State<ExpansionExpandable> {
+  // TODO Check if another version has selected cards and show a tooltip
   // https://stackoverflow.com/questions/53908025/flutter-sortable-drag-and-drop-listview
   @override
   Widget build(BuildContext context) {
@@ -60,12 +67,13 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                       onLongPress: () => showDialog<String>(
                         context: context,
                         useRootNavigator: false,
-                        builder: (innerContext) => FutureBuilder<List<String>>(
+                        builder: (innerContext) =>
+                            FutureBuilder<Map<String, String>>(
                           future: expansionService
-                              .getAllExpansionNamesStartingWithId(
+                              .getAllExpansionNamesAndIdsStartingWithId(
                                   widget.expansion.id),
                           builder: (BuildContext context,
-                              AsyncSnapshot<List<String>> snapshot) {
+                              AsyncSnapshot<Map<String, String>> snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
                               return const Column(
@@ -76,17 +84,18 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                                 ],
                               );
                             } else if (snapshot.hasError) {
-                              return Text(
-                                  'Error: ${snapshot.error}');
+                              return Text('Error: ${snapshot.error}');
                             } else {
                               return SelectVersionDialog(
                                 currentVersion: widget.expansion.id,
                                 availableVersions: snapshot.data!,
-                                onSaved: (deckName) => setState(
+                                onSaved: (selectedVersion) => setState(
                                   () {
-                                    /*DeckService()
-                    .renameDeck(widget.deckModel.id!, deckName)
-                    .then((value) => onChange());*/
+                                    widget.onChanged();
+                                    ActiveExpansionVersionService()
+                                        .setActiveExpansionVersion(
+                                            selectedVersion);
+                                    widget.onReload();
                                   },
                                 ),
                               );
@@ -161,6 +170,15 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                     widget.onChanged();
                   }),
               value: selectedCardService.isExpansionSelected(widget.expansion)),
+        ),
+        const Positioned(
+          right: 4.0,
+          top: 12.0,
+          child: RoundTooltip(
+            title:
+                "Eine andere Version dieser Erweiterung besitzt ausgewählte Karten.",
+            icon: Icons.info,
+          ),
         ),
       ],
     );

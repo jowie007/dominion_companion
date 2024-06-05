@@ -2,6 +2,7 @@
   "id": "basisspiel_v2",
   "name": "Basisspiel",
   "version": "V2",
+  "priority": "2",
   "cards": [
     {
       "id": "basisspiel_v2-card-kapelle",
