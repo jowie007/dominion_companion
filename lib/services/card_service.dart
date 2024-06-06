@@ -130,6 +130,15 @@ class CardService {
     return await _cardDatabase.getAlwaysCardList();
   }
 
+  Future<List<CardDBModel>> getAlwaysCardsForActiveExpansionVersionIds(
+      List<String> activeExpansionVersionIds) async {
+    List<CardDBModel> alwaysCards = await _cardDatabase.getAlwaysCardList();
+    return alwaysCards
+        .where(
+            (card) => activeExpansionVersionIds.contains(card.id.split("-")[0]))
+        .toList();
+  }
+
   Future<List<CardDBModel>> getWhenDeckContainsPotionsCards() async {
     return await _cardDatabase.getWhenDeckContainsPotionsCardList();
   }

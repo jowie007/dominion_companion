@@ -37,7 +37,7 @@ class ActiveExpansionVersionService {
     }
   }
 
-  Future<List<String>> getSelectedExpansionIds() async {
+  Future<List<String>> getActiveExpansionVersionIds() async {
     return await _activeExpansionVersionDatabase.getActiveExpansionVersionIds();
   }
 

@@ -11,6 +11,7 @@ import 'package:dominion_companion/model/deck/deck_model.dart';
 import 'package:dominion_companion/model/end/end_model.dart';
 import 'package:dominion_companion/model/hand/hand_model.dart';
 import 'package:dominion_companion/model/hand/hand_type_enum.dart';
+import 'package:dominion_companion/services/active_expansion_version_service.dart';
 import 'package:dominion_companion/services/card_service.dart';
 import 'package:dominion_companion/services/content_service.dart';
 import 'package:dominion_companion/services/end_service.dart';
@@ -127,7 +128,8 @@ class DeckService {
 
   Future<int> saveDeck(DeckModel deckModel) async {
     notifier.value = !notifier.value;
-    var newDeckId = await _deckDatabase.insertDeck(DeckDBModel.fromModel(deckModel));
+    var newDeckId =
+        await _deckDatabase.insertDeck(DeckDBModel.fromModel(deckModel));
     await removeCachedImage(newDeckId);
     return newDeckId;
   }
@@ -219,7 +221,9 @@ class DeckService {
     List<CardModel> additionalCards = [];
 
     List<CardModel> alwaysCards = await Future.wait(
-        (await _cardService.getAlwaysCards())
+        (await _cardService.getAlwaysCardsForActiveExpansionVersionIds(
+                await ActiveExpansionVersionService()
+                    .getActiveExpansionVersionIds()))
             .map((card) async => CardModel.fromDBModel(card)));
     List<CardModel> whenDeckConsistsOfXCardTypesCards = await Future.wait(
         (await _cardService.getWhenDeckConsistsOfXCardTypesOfExpansionCards())

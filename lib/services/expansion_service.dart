@@ -123,7 +123,7 @@ class ExpansionService {
 
   Future<ExpansionModel?> getActiveExpansionByPosition(int position) async {
     List<String> activeExpansionIds =
-        await _activeExpansionVersionService.getSelectedExpansionIds();
+        await _activeExpansionVersionService.getActiveExpansionVersionIds();
     ExpansionDBModel? expansion = await _expansionDatabase
         .getActiveExpansionByPosition(position, activeExpansionIds);
     return expansion != null ? expansionModelFromExpansionDB(expansion) : null;
