@@ -36,16 +36,26 @@ class CardInfoTile extends StatefulWidget {
 }
 
 class _CardInfoTileState extends State<CardInfoTile> {
+  late final CardService cardService;
+  late final PlayerService playerService;
+  late final String cardTypeString;
+  late final List<Color> cardColors;
+
+  @override
+  void initState() {
+    super.initState();
+    cardService = CardService();
+    playerService = PlayerService();
+    cardTypeString = CardModel.getCardTypesString(widget.card.cardTypes);
+    cardColors = cardService.getColorsByCardTypeString(cardTypeString);
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final newCheckBoxTheme = theme.checkboxTheme.copyWith(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
     );
-    final CardService cardService = CardService();
-    final cardTypeString = CardModel.getCardTypesString(widget.card.cardTypes);
-    final cardColors = cardService.getColorsByCardTypeString(cardTypeString);
-    final PlayerService playerService = PlayerService();
 
     return Dismissible(
       key: UniqueKey(),

@@ -27,11 +27,9 @@ class CardPopup extends StatefulWidget {
 }
 
 class _CardPopupState extends State<CardPopup> {
-  // https://stackoverflow.com/questions/70529682/create-pop-up-dialog-in-flutter
-  // https://daily-dev-tips.com/posts/flutter-3d-pan-effect/
-  SettingsModel settings = SettingsService().getCachedSettings();
+  late final SettingsModel settings;
+  late final FileService _fileService;
   StreamSubscription<GyroscopeEvent>? _gyroscopeSubscription;
-  final _fileService = FileService();
   Offset _offset = Offset.zero;
   int _selectedCardPosition = 0;
   late String _cardPath;
@@ -85,6 +83,8 @@ class _CardPopupState extends State<CardPopup> {
   @override
   void initState() {
     super.initState();
+    settings = SettingsService().getCachedSettings();
+    _fileService = FileService();
     if (settings.gyroscopeCardPopup) {
       gyroscopeEventStream().listen(
         (GyroscopeEvent event) {
@@ -128,47 +128,52 @@ class _CardPopupState extends State<CardPopup> {
       );
     }
     return FutureBuilder(
-      future: Future.wait([
-        getImageDimensions(),
-        _fileService.checkForExpansionsInstructions(widget.expansionId)
-      ]),
+      future: getImageDimensions(),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data != null) {
-          var imageDimensions = snapshot.data![0] as Map<String, int>;
-          var instructionExists = snapshot.data![1] as bool;
-          return Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-            child: Stack(
-              children: [
-                Center(
-                  child: FractionallySizedBox(
-                    widthFactor: 0.7,
-                    heightFactor: 0.9,
-                    child: Transform(
-                      transform: Matrix4.identity()
-                        ..setEntry(3, 2, 0.001) // perspective
-                        ..rotateX(0.01 * _offset.dy) // changed
-                        ..rotateY(-0.01 * _offset.dx),
-                      alignment: FractionalOffset.center,
-                      child: GestureDetector(
-                        onPanUpdate: (details) => setState(() => {
-                              if (!settings.gyroscopeCardPopup)
-                                {updatePan(details)}
-                            }),
-                        onDoubleTap: () =>
-                            setState(() => _offset = Offset.zero),
-                        child: FittedBox(
-                          child: SizedBox(
-                            width: imageDimensions["width"]!.toDouble(),
-                            height: imageDimensions["height"]!.toDouble(),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(28.0),
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                    4.0, 0.0, 0.0, 0.0),
-                                child: Image.asset(
-                                  _cardPath,
-                                  fit: BoxFit.cover,
+          var imageDimensions = snapshot.data as Map<String, int>;
+          return FutureBuilder(
+            future:
+                _fileService.checkForExpansionsInstructions(widget.expansionId),
+            builder: (context, instructionSnapshot) {
+              var instructionExists = instructionSnapshot.hasData &&
+                  instructionSnapshot.data as bool;
+
+              return Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                child: Stack(
+                  children: [
+                    Center(
+                      child: FractionallySizedBox(
+                        widthFactor: 0.7,
+                        heightFactor: 0.9,
+                        child: Transform(
+                          transform: Matrix4.identity()
+                            ..setEntry(3, 2, 0.001) // perspective
+                            ..rotateX(0.01 * _offset.dy) // changed
+                            ..rotateY(-0.01 * _offset.dx),
+                          alignment: FractionalOffset.center,
+                          child: GestureDetector(
+                            onPanUpdate: (details) => setState(() => {
+                                  if (!settings.gyroscopeCardPopup)
+                                    {updatePan(details)}
+                                }),
+                            onDoubleTap: () =>
+                                setState(() => _offset = Offset.zero),
+                            child: FittedBox(
+                              child: SizedBox(
+                                width: imageDimensions["width"]!.toDouble(),
+                                height: imageDimensions["height"]!.toDouble(),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(28.0),
+                                  child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        4.0, 0.0, 0.0, 0.0),
+                                    child: Image.asset(
+                                      _cardPath,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -176,67 +181,67 @@ class _CardPopupState extends State<CardPopup> {
                         ),
                       ),
                     ),
-                  ),
-                ),
-                widget.cardIds.length > 1
-                    ? Align(
-                        alignment: FractionalOffset.bottomLeft,
-                        child: BorderButtonComponent(
-                          icon: Icons.arrow_back_ios_new,
-                          color: 'blue',
-                          onClick: () => setState(
-                            () => previousCard(),
-                          ),
-                        ),
-                      )
-                    : Container(),
-                widget.cardIds.length > 1
-                    ? Align(
-                        alignment: FractionalOffset.bottomRight,
-                        child: BorderButtonComponent(
-                          icon: Icons.arrow_forward_ios,
-                          color: 'blue',
-                          onClick: () => setState(
-                            () => nextCard(),
-                          ),
-                        ),
-                      )
-                    : Container(),
-                OrientationBuilder(
-                  builder: (context, orientation) {
-                    return Align(
-                        alignment: orientation == Orientation.portrait
-                            ? FractionalOffset.bottomCenter
-                            : FractionalOffset.topLeft,
-                        child: BorderButtonComponent(
-                            icon: Icons.close,
-                            onClick: () =>
-                                Navigator.of(context, rootNavigator: true)
-                                    .pop()));
-                  },
-                ),
-                widget.expansionId != "" && instructionExists
-                    ? Align(
-                        alignment: FractionalOffset.topRight,
-                        child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 12, 7, 0),
+                    widget.cardIds.length > 1
+                        ? Align(
+                            alignment: FractionalOffset.bottomLeft,
                             child: BorderButtonComponent(
-                                icon: Icons.description_outlined,
-                                color: 'green',
-                                width: 60,
-                                /*onClick: () => showDialog(
+                              icon: Icons.arrow_back_ios_new,
+                              color: 'blue',
+                              onClick: () => setState(
+                                () => previousCard(),
+                              ),
+                            ),
+                          )
+                        : Container(),
+                    widget.cardIds.length > 1
+                        ? Align(
+                            alignment: FractionalOffset.bottomRight,
+                            child: BorderButtonComponent(
+                              icon: Icons.arrow_forward_ios,
+                              color: 'blue',
+                              onClick: () => setState(
+                                () => nextCard(),
+                              ),
+                            ),
+                          )
+                        : Container(),
+                    OrientationBuilder(
+                      builder: (context, orientation) {
+                        return Align(
+                            alignment: orientation == Orientation.portrait
+                                ? FractionalOffset.bottomCenter
+                                : FractionalOffset.topLeft,
+                            child: BorderButtonComponent(
+                                icon: Icons.close,
+                                onClick: () =>
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pop()));
+                      },
+                    ),
+                    widget.expansionId != "" && instructionExists
+                        ? Align(
+                            alignment: FractionalOffset.topRight,
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 12, 7, 0),
+                                child: BorderButtonComponent(
+                                    icon: Icons.description_outlined,
+                                    color: 'green',
+                                    width: 60,
+                                    /*onClick: () => showDialog(
                     context: context,
                     builder: (context) {
                       return InstructionsPopup(expansionId: widget.expansionId);
                     },
                   ),*/
-                                onClick: () async {
-                                  _fileService.openExpansionInstructions(
-                                      widget.expansionId);
-                                })))
-                    : Container(),
-              ],
-            ),
+                                    onClick: () async {
+                                      _fileService.openExpansionInstructions(
+                                          widget.expansionId);
+                                    })))
+                        : Container(),
+                  ],
+                ),
+              );
+            },
           );
         } else {
           return Container();

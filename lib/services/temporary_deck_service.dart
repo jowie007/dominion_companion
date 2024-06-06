@@ -59,6 +59,7 @@ class TemporaryDeckService {
     if (oldDeck.cards.any((element) => element.id == newCardId)) {
       return false;
     }
+    morePossibleCardIds.insert(0, cardId);
     List<String> newCardIds =
         oldDeck.cards.map((e) => e.id == cardId ? newCardId : e.id).toList();
     temporaryDeck = _deckService.deckFromDBModel(DeckDBModel(

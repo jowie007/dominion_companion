@@ -175,7 +175,7 @@ class CardService {
     return card.name;
   }
 
-  List<Color>? getColorsByCardTypeString(String cardTypeString) {
+  List<Color> getColorsByCardTypeString(String cardTypeString) {
     final colors = <Color>[];
     final cardColors = cardTypeColorsMap[cardTypeString.toLowerCase()];
     if (cardColors != null) {

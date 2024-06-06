@@ -67,14 +67,15 @@ class _ExpansionExpandableState extends State<ExpansionExpandable>
   // https://stackoverflow.com/questions/53908025/flutter-sortable-drag-and-drop-listview
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final expansionService = ExpansionService();
     final selectedCardService = SelectedCardService();
     final audioService = AudioService();
     final visibleCards = widget.expansion.getVisibleCards();
     return Stack(
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+        Container(
+          margin: const EdgeInsets.all(20),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16.0),
             child: Stack(
@@ -89,109 +90,113 @@ class _ExpansionExpandableState extends State<ExpansionExpandable>
                 ),
                 Container(
                   alignment: Alignment.center,
-                  child: ExpansionTile(
-                    onExpansionChanged: (value) => {
-                      if (value)
-                        {audioService.playAudioOpen()}
-                      else
-                        {audioService.playAudioClose()}
-                    },
-                    trailing: const SizedBox(
-                      width: 0,
-                      height: 0,
-                    ),
-                    collapsedIconColor: Colors.white,
-                    title: GestureDetector(
-                      onLongPress: () => showDialog<String>(
-                        context: context,
-                        useRootNavigator: false,
-                        builder: (innerContext) =>
-                            FutureBuilder<Map<String, String>>(
-                          future: expansionService
-                              .getAllExpansionNamesAndIdsStartingWithId(
-                                  widget.expansion.id),
-                          builder: (BuildContext context,
-                              AsyncSnapshot<Map<String, String>> snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Center(child: CircularProgressIndicator()),
-                                ],
-                              );
-                            } else if (snapshot.hasError) {
-                              return Text('Error: ${snapshot.error}');
-                            } else {
-                              return SelectVersionDialog(
-                                currentVersion: widget.expansion.id,
-                                availableVersions: snapshot.data!,
-                                onSaved: (selectedVersion) => setState(
-                                  () {
-                                    widget.onChanged();
-                                    ActiveExpansionVersionService()
-                                        .setActiveExpansionVersion(
-                                            selectedVersion);
-                                    widget.onReload();
-                                  },
-                                ),
-                              );
-                            }
-                          },
-                        ),
+                  child: Theme(
+                    data: Theme.of(context)
+                        .copyWith(dividerColor: Colors.transparent),
+                    child: ExpansionTile(
+                      onExpansionChanged: (value) => {
+                        if (value)
+                          {audioService.playAudioOpen()}
+                        else
+                          {audioService.playAudioClose()}
+                      },
+                      trailing: const SizedBox(
+                        width: 0,
+                        height: 0,
                       ),
-                      child: Container(
-                        padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    "assets/menu/main_scroll_crop.png"),
-                                fit: BoxFit.cover,
+                      collapsedIconColor: Colors.white,
+                      title: GestureDetector(
+                        onLongPress: () => showDialog<String>(
+                          context: context,
+                          useRootNavigator: false,
+                          builder: (innerContext) =>
+                              FutureBuilder<Map<String, String>>(
+                            future: expansionService
+                                .getAllExpansionNamesAndIdsStartingWithId(
+                                    widget.expansion.id),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<Map<String, String>> snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Center(child: CircularProgressIndicator()),
+                                  ],
+                                );
+                              } else if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              } else {
+                                return SelectVersionDialog(
+                                  currentVersion: widget.expansion.id,
+                                  availableVersions: snapshot.data!,
+                                  onSaved: (selectedVersion) => setState(
+                                    () {
+                                      widget.onChanged();
+                                      ActiveExpansionVersionService()
+                                          .setActiveExpansionVersion(
+                                              selectedVersion);
+                                      widget.onReload();
+                                    },
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        child: Container(
+                          padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      "assets/menu/main_scroll_crop.png"),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            ),
-                            padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              alignment: Alignment.center,
-                              child: Text(
-                                expansionService
-                                    .getExpansionName(widget.expansion),
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.black,
+                              padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  expansionService
+                                      .getExpansionName(widget.expansion),
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
                       ),
+                      children: <Widget>[
+                        ListView.builder(
+                            // padding: const EdgeInsets.all(8),
+                            physics: const ClampingScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: visibleCards.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              var card = visibleCards[index];
+                              return CardInfoTile(
+                                onChanged: (bool? newValue) => setState(() {
+                                  selectedCardService
+                                      .toggleSelectedCardId(card.id);
+                                  widget.onChanged();
+                                }),
+                                card: card,
+                                value: selectedCardService.selectedCardIds
+                                    .contains(card.id),
+                              );
+                            })
+                      ],
                     ),
-                    children: <Widget>[
-                      ListView.builder(
-                          // padding: const EdgeInsets.all(8),
-                          physics: const ClampingScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: visibleCards.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            var card = visibleCards[index];
-                            return CardInfoTile(
-                              onChanged: (bool? newValue) => setState(() {
-                                selectedCardService
-                                    .toggleSelectedCardId(card.id);
-                                widget.onChanged();
-                              }),
-                              card: card,
-                              value: selectedCardService.selectedCardIds
-                                  .contains(card.id),
-                            );
-                          })
-                    ],
                   ),
                 ),
               ],
