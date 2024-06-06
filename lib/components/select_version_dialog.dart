@@ -1,5 +1,5 @@
 
-import 'package:dominion_companion/components/dropdown_expansion_version.dart';
+import 'package:dominion_companion/components/basic_dropdown.dart';
 import 'package:dominion_companion/services/deck_service.dart';
 import 'package:flutter/material.dart';
 
@@ -64,9 +64,9 @@ class _SelectVersionDialogState extends State<SelectVersionDialog> {
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 28, vertical: 10),
-                              child: DropdownExpansionVersion(
-                                currentVersion: selectedVersion,
-                                availableVersions: widget.availableVersions,
+                              child: BasicDropdown(
+                                selected: selectedVersion,
+                                available: widget.availableVersions,
                                 onChanged: (newVersion) => {
                                   setState(() => selectedVersion = newVersion!)
                                 },

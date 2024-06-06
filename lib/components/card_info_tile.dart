@@ -1,7 +1,9 @@
 import 'package:dominion_companion/components/card_popup.dart';
 import 'package:dominion_companion/components/coin_component.dart';
+import 'package:dominion_companion/components/custom_alert_dialog.dart';
 import 'package:dominion_companion/components/round_checkbox.dart';
 import 'package:dominion_companion/components/expansion_icon.dart';
+import 'package:dominion_companion/components/select_another_card_dialog.dart';
 import 'package:dominion_companion/model/card/card_model.dart';
 import 'package:dominion_companion/services/card_service.dart';
 import 'package:dominion_companion/services/player_service.dart';
@@ -14,13 +16,15 @@ class CardInfoTile extends StatefulWidget {
     required this.onChanged,
     required this.value,
     this.dismissable = false,
-    this.onDismissed,
+    this.onSwapRandom,
+    this.onSwapManual,
     this.hasCheckbox = true,
     this.showCardCount = false,
   });
 
   final void Function(bool? value) onChanged;
-  final void Function(DismissDirection direction)? onDismissed;
+  final void Function()? onSwapRandom;
+  final void Function(String newCardId)? onSwapManual;
   final CardModel card;
   final bool value;
   final bool dismissable;
@@ -43,18 +47,47 @@ class _CardInfoTileState extends State<CardInfoTile> {
     final cardColors = cardService.getColorsByCardTypeString(cardTypeString);
     final PlayerService playerService = PlayerService();
 
-    // TODO Continue implementing card swapping
     return Dismissible(
       key: UniqueKey(),
-      direction: widget.dismissable
-          ? DismissDirection.endToStart
+      direction: widget.dismissable && widget.onSwapRandom != null
+          ? DismissDirection.horizontal
           : DismissDirection.none,
-      onDismissed: (direction) {
-        if (widget.onDismissed != null) {
-          widget.onDismissed!(direction);
+      confirmDismiss: (direction) async {
+        if (direction == DismissDirection.endToStart) {
+          return await showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return CustomAlertDialog(
+                title: 'Karte zufällig ersetzen',
+                message:
+                'Möchtest du die Karte "${widget.card
+                    .name}" durch eine zufällige aus deiner Auswahl ersetzen?',
+                onConfirm: () {
+                  widget.onSwapRandom!();
+                },
+              );
+            },
+          );
+        } else if (direction == DismissDirection.startToEnd) {
+          return await showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return SelectAnotherCardDialog(
+                  onSaved:
+                      (String newCardId) => widget.onSwapManual!(newCardId),
+                  currentCard: widget.card);
+            },
+          );
         }
+        return false;
       },
       background: Container(
+        color: Colors.brown, // Change this to your desired color
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.only(left: 26),
+        child: const Icon(Icons.swap_vert_circle_outlined, color: Colors.white),
+      ),
+      secondaryBackground: Container(
         color: Colors.brown,
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.only(right: 26),
@@ -66,7 +99,8 @@ class _CardInfoTileState extends State<CardInfoTile> {
           data: theme.copyWith(checkboxTheme: newCheckBoxTheme),
           child: ListTile(
             onTap: () => widget.onChanged(false),
-            onLongPress: () => {
+            onLongPress: () =>
+            {
               showDialog(
                 context: context,
                 builder: (context) {
@@ -102,67 +136,67 @@ class _CardInfoTileState extends State<CardInfoTile> {
                               // https://stackoverflow.com/questions/57699497/how-to-create-a-background-with-stripes-in-flutter
                               cardColors != null
                                   ? Container(
-                                      width: 68,
-                                      height: 48,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                        gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          stops: cardService.getStopsByColors(
-                                              cardColors, 1),
-                                          colors: cardColors,
-                                          tileMode: TileMode.repeated,
-                                        ),
-                                      ),
-                                    )
+                                width: 68,
+                                height: 48,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.circular(100),
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    stops: cardService.getStopsByColors(
+                                        cardColors, 1),
+                                    colors: cardColors,
+                                    tileMode: TileMode.repeated,
+                                  ),
+                                ),
+                              )
                                   : Container(),
                             ],
                           ),
                           widget.card.cardCost.debt != ''
                               ? widget.card.cardCost.coin != ''
-                                  ? Positioned(
-                                      top: 3,
-                                      left: 24,
-                                      child: CostComponent(
-                                          width: 40,
-                                          type: 'debt',
-                                          value: widget.card.cardCost.debt),
-                                    )
-                                  : Positioned(
-                                      left: 2,
-                                      top: 3,
-                                      child: CostComponent(
-                                          width: 40,
-                                          type: 'debt',
-                                          value: widget.card.cardCost.debt),
-                                    )
+                              ? Positioned(
+                            top: 3,
+                            left: 24,
+                            child: CostComponent(
+                                width: 40,
+                                type: 'debt',
+                                value: widget.card.cardCost.debt),
+                          )
+                              : Positioned(
+                            left: 2,
+                            top: 3,
+                            child: CostComponent(
+                                width: 40,
+                                type: 'debt',
+                                value: widget.card.cardCost.debt),
+                          )
                               : Container(),
                           widget.card.cardCost.potion != ''
                               ? widget.card.cardCost.coin != ''
-                                  ? const Positioned(
-                                      left: 28,
-                                      top: 3,
-                                      child: CostComponent(
-                                          width: 26, type: 'potion'),
-                                    )
-                                  : const Positioned(
-                                      left: 8,
-                                      top: 3,
-                                      child: CostComponent(
-                                          width: 26, type: 'potion'),
-                                    )
+                              ? const Positioned(
+                            left: 28,
+                            top: 3,
+                            child: CostComponent(
+                                width: 26, type: 'potion'),
+                          )
+                              : const Positioned(
+                            left: 8,
+                            top: 3,
+                            child: CostComponent(
+                                width: 26, type: 'potion'),
+                          )
                               : Container(),
                           widget.card.cardCost.coin != ''
                               ? Positioned(
-                                  top: 3,
-                                  left: 2,
-                                  child: CostComponent(
-                                      width: 40,
-                                      type: 'coin',
-                                      value: widget.card.cardCost.coin),
-                                )
+                            top: 3,
+                            left: 2,
+                            child: CostComponent(
+                                width: 40,
+                                type: 'coin',
+                                value: widget.card.cardCost.coin),
+                          )
                               : const SizedBox(width: 26),
                         ],
                       ),
@@ -193,36 +227,36 @@ class _CardInfoTileState extends State<CardInfoTile> {
                     const Spacer(),
                     widget.hasCheckbox
                         ? RoundCheckbox(
-                            onChanged: widget.onChanged,
-                            value: widget.value,
-                          )
+                      onChanged: widget.onChanged,
+                      value: widget.value,
+                    )
                         : ExpansionIcon(icon: widget.card.id.split('-')[0])
                   ],
                 ),
                 widget.card.count.isNotEmpty && widget.showCardCount
                     ? Row(
-                        children: [
-                          const SizedBox(width: 36),
-                          Container(
-                            width: 40,
-                            height: 18,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              color: Colors.white,
-                            ),
-                            child: ValueListenableBuilder(
-                              valueListenable: playerService.notifier,
-                              builder: (BuildContext context, bool val,
-                                  Widget? child) {
-                                return Text(
-                                  widget.card.count[playerService.players - 1],
-                                  textAlign: TextAlign.center,
-                                );
-                              },
-                            ),
-                          ),
-                        ],
-                      )
+                  children: [
+                    const SizedBox(width: 36),
+                    Container(
+                      width: 40,
+                      height: 18,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.white,
+                      ),
+                      child: ValueListenableBuilder(
+                        valueListenable: playerService.notifier,
+                        builder: (BuildContext context, bool val,
+                            Widget? child) {
+                          return Text(
+                            widget.card.count[playerService.players - 1],
+                            textAlign: TextAlign.center,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                )
                     : Container()
               ],
             ),

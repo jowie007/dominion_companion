@@ -37,7 +37,7 @@ class TemporaryDeckService {
         null, name, null, cardIdsFiltered, DateTime.now(), null, null));
   }
 
-  Future<bool> replaceCardFromTemporaryDeck(String cardId) async {
+  Future<bool> replaceCardFromTemporaryDeckRandom(String cardId) async {
     if (morePossibleCardIds.isEmpty) {
       return false;
     }
@@ -48,6 +48,19 @@ class TemporaryDeckService {
         .toList();
     newCardIds.add(morePossibleCardIds.removeLast());
     morePossibleCardIds.insert(0, cardId);
+    temporaryDeck = _deckService.deckFromDBModel(DeckDBModel(
+        null, "", null, newCardIds, oldDeck.creationDate, null, null));
+    return true;
+  }
+
+  Future<bool> replaceCardFromTemporaryDeckWithCardId(
+      String cardId, String newCardId) async {
+    DeckModel oldDeck = await temporaryDeck;
+    if (oldDeck.cards.any((element) => element.id == newCardId)) {
+      return false;
+    }
+    List<String> newCardIds =
+        oldDeck.cards.map((e) => e.id == cardId ? newCardId : e.id).toList();
     temporaryDeck = _deckService.deckFromDBModel(DeckDBModel(
         null, "", null, newCardIds, oldDeck.creationDate, null, null));
     return true;

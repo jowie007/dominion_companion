@@ -246,14 +246,25 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                               (newValue),
                                           dismissable:
                                               widget.deckModel.name == "",
-                                          onDismissed: (direction) {
+                                          onSwapRandom: () {
                                             setState(() {
                                               if (widget.onDeckChange != null) {
                                                 widget.onDeckChange!(
                                                     temporaryDeckService
-                                                        .replaceCardFromTemporaryDeck(
+                                                        .replaceCardFromTemporaryDeckRandom(
                                                             allCards[index]
                                                                 .id));
+                                              }
+                                            });
+                                          },
+                                          onSwapManual: (newCardId) {
+                                            setState(() {
+                                              if (widget.onDeckChange != null) {
+                                                widget.onDeckChange!(
+                                                    temporaryDeckService
+                                                        .replaceCardFromTemporaryDeckWithCardId(
+                                                            allCards[index].id,
+                                                            newCardId));
                                               }
                                             });
                                           },

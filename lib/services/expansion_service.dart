@@ -1,4 +1,3 @@
-
 import 'package:dominion_companion/database/expansion_database.dart';
 import 'package:dominion_companion/database/model/expansion/expansion_db_model.dart';
 import 'package:dominion_companion/model/card/card_model.dart';
@@ -206,5 +205,16 @@ class ExpansionService {
     return expansions
         .where((expansion) => expansion.id != expansionId)
         .toList();
+  }
+
+  Future<ExpansionModel> getExpansionById(String id) async {
+    return expansionModelFromExpansionDB(
+        await _expansionDatabase.getExpansionById(id));
+  }
+
+  Future<List<ExpansionModel>> getAllExpansions() async {
+    return _expansionDatabase.getExpansionList().then((expansions) =>
+        Future.wait(expansions
+            .map((expansion) => expansionModelFromExpansionDB(expansion))));
   }
 }

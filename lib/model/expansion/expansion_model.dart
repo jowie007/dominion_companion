@@ -86,4 +86,8 @@ class ExpansionModel {
   getVisibleCards() {
     return cards.where((card) => !card.invisible).toList();
   }
+
+  getFullName() {
+    return "$name - $version";
+  }
 }
