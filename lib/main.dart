@@ -9,12 +9,10 @@ Future<void> main() async {
   runApp(const DominionCompanion());
   final settingsService = SettingsService();
   try {
-    // Soft TODO: Remove checkCardNames and initializeExpansions
-    // TODO: Add database to save versions
-    // TODO: Clear database when everything is reloaded
-    // TODO: Add hint when card from another version is selected, for example in the top right corner of the expansion expandable
-    // TODO: Das ist nicht schön wenn es hardgecodet ist: CardModel? verbuendeteCard;
-    await settingsService.initializeApp(checkCardNamesAndImages: true, initializeExpansions: true, deleteSettings: false);
+    await settingsService.initializeApp(
+        checkCardNamesAndImages: false,
+        initializeExpansions: false,
+        deleteSettings: false);
     FlutterNativeSplash.remove();
   } on Exception catch (e) {
     settingsService.initException = e;

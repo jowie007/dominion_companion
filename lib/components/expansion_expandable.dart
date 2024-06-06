@@ -25,7 +25,6 @@ class ExpansionExpandable extends StatefulWidget {
 }
 
 class _ExpansionExpandableState extends State<ExpansionExpandable> {
-  // TODO Check if another version has selected cards and show a tooltip
   // https://stackoverflow.com/questions/53908025/flutter-sortable-drag-and-drop-listview
   @override
   Widget build(BuildContext context) {
