@@ -3,6 +3,8 @@ import 'package:dominion_companion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
+// TODO Add replace button for single cards
+// TODO Add deselect all button for deck create page
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
