@@ -5,6 +5,7 @@ class SettingsModel {
   late String sortKey;
   late bool sortAsc;
   late bool playAudio;
+  late bool gyroscopeCardPopup;
   late bool loadingSuccess;
 
   SettingsModel.fromJson(Map<String, dynamic> json) {
@@ -12,6 +13,7 @@ class SettingsModel {
     sortKey = json['sortKey'];
     sortAsc = json['sortAsc'] ?? false;
     playAudio = json['playAudio'] ?? false;
+    gyroscopeCardPopup = json['gyroscopeCardPopup'] ?? false;
     loadingSuccess = json['loadingSucess'] ?? false;
   }
 
@@ -20,6 +22,7 @@ class SettingsModel {
     sortKey = dbModel.sortKey;
     sortAsc = dbModel.sortAsc;
     playAudio = dbModel.playAudio;
+    gyroscopeCardPopup = dbModel.gyroscopeCardPopup;
     loadingSuccess = dbModel.loadingSuccess;
   }
 }

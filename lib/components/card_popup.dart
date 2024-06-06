@@ -2,13 +2,21 @@ import 'dart:async';
 
 import 'package:dominion_companion/components/border_button_component.dart';
 import 'package:dominion_companion/components/custom_alert_dialog.dart';
+import 'package:dominion_companion/model/settings/settings_model.dart';
 import 'package:dominion_companion/services/file_service.dart';
+import 'package:dominion_companion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:ui' as ui;
 
+import 'package:sensors_plus/sensors_plus.dart';
+
 class CardPopup extends StatefulWidget {
-  const CardPopup({super.key, required this.cardIds, this.expansionId = "", this.error = false});
+  const CardPopup(
+      {super.key,
+      required this.cardIds,
+      this.expansionId = "",
+      this.error = false});
 
   final List<String> cardIds;
   final String expansionId;
@@ -21,7 +29,8 @@ class CardPopup extends StatefulWidget {
 class _CardPopupState extends State<CardPopup> {
   // https://stackoverflow.com/questions/70529682/create-pop-up-dialog-in-flutter
   // https://daily-dev-tips.com/posts/flutter-3d-pan-effect/
-
+  SettingsModel settings = SettingsService().getCachedSettings();
+  StreamSubscription<GyroscopeEvent>? _gyroscopeSubscription;
   final _fileService = FileService();
   Offset _offset = Offset.zero;
   int _selectedCardPosition = 0;
@@ -74,6 +83,36 @@ class _CardPopupState extends State<CardPopup> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    if (settings.gyroscopeCardPopup) {
+      gyroscopeEventStream().listen(
+        (GyroscopeEvent event) {
+          try {
+            setState(() {
+              var tempOffset = _offset + Offset(-event.y * 16, -event.x * 16);
+              if (tempOffset.dx < 80 &&
+                  tempOffset.dx > -80 &&
+                  tempOffset.dy < 40 &&
+                  tempOffset.dy > -40) {
+                _offset = tempOffset;
+              }
+            });
+          } catch (_) {}
+        },
+        onError: (error) {},
+        cancelOnError: true,
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _gyroscopeSubscription?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var error = widget.error;
     try {
@@ -81,7 +120,7 @@ class _CardPopupState extends State<CardPopup> {
     } catch (_) {
       error = true;
     }
-    if(error) {
+    if (error) {
       return const CustomAlertDialog(
         title: "Fehler",
         message: "Karte konnte nicht geladen werden",
@@ -112,8 +151,10 @@ class _CardPopupState extends State<CardPopup> {
                         ..rotateY(-0.01 * _offset.dx),
                       alignment: FractionalOffset.center,
                       child: GestureDetector(
-                        onPanUpdate: (details) =>
-                            setState(() => updatePan(details)),
+                        onPanUpdate: (details) => setState(() => {
+                              if (!settings.gyroscopeCardPopup)
+                                {updatePan(details)}
+                            }),
                         onDoubleTap: () =>
                             setState(() => _offset = Offset.zero),
                         child: FittedBox(

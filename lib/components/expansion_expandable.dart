@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:dominion_companion/components/card_info_tile.dart';
 import 'package:dominion_companion/components/round_checkbox.dart';

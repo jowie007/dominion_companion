@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:dominion_companion/components/expansion_expandable.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';

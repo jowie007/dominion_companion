@@ -41,7 +41,7 @@ class SettingsService {
       initializeExpansions = false}) async {
     fileService.initializeBackgroundImagePath();
     if (deleteSettings) {
-      await deleteSettingsTable()
+      await deleteDb()
           .then((value) => initDatabase())
           .then((value) => initCachedSettings())
           .then((value) => log("ALL SETTINGS LOADED"));
@@ -120,6 +120,16 @@ class SettingsService {
     settings!.playAudio = playAudio;
     notifier.value = !notifier.value;
     updateSettingsTable(settings!);
+  }
+
+  void setCachedSettingsGyroscopeCardPopup(bool gyroscopeCardPopup) {
+    settings!.gyroscopeCardPopup = gyroscopeCardPopup;
+    notifier.value = !notifier.value;
+    updateSettingsTable(settings!);
+  }
+
+  Future<void> deleteDb() async {
+    _settingsDatabase.deleteDb();
   }
 
   Future<int> deleteSettingsTable() {

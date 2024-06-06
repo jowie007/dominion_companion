@@ -24,18 +24,24 @@ class _HomePageState extends State<HomePage> {
   final _fileService = FileService();
 
   @override
-  Widget build(BuildContext context) {
-    if (_settingsService.initException != null) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return ErrorDialog(
-              title: "Fehler",
-              message: _settingsService.initException.toString());
-        },
-      );
-    }
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () {
+      if (_settingsService.initException != null) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return ErrorDialog(
+                title: "Fehler",
+                message: _settingsService.initException.toString());
+          },
+        );
+      }
+    });
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [

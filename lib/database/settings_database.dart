@@ -18,6 +18,7 @@ class SettingsDatabase {
           "sortKey STRING, "
           "sortAsc BOOL, "
           "playAudio BOOL, "
+          "gyroscopeCardPopup BOOL, "
           "loadingSuccess BOOL)");
     });
     return _database;
@@ -37,6 +38,7 @@ class SettingsDatabase {
       "sortKey": "creationDate",
       "sortAsc": 1,
       "playAudio": 1,
+      "gyroscopeCardPopup": 0,
       "loadingSuccess": 0
     });
   }
@@ -52,5 +54,10 @@ class SettingsDatabase {
     await openDb();
     return await _database.update('settings', settings.toJson(),
         where: "id = ?", whereArgs: ["settings"]);
+  }
+
+  Future<void> deleteDb() async {
+    String path = join(await getDatabasesPath(), "settings.db");
+    await deleteDatabase(path);
   }
 }

@@ -175,6 +175,35 @@ class _DeckInfoState extends State<SettingsPage> {
                   ),
                   const SizedBox(height: 20),
                   const Text(
+                    "Kartenansicht:",
+                    style: TextStyle(
+                        fontSize: 20, decoration: TextDecoration.underline),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 44, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Checkbox(
+                          value: _settingsService
+                              .getCachedSettings()
+                              .gyroscopeCardPopup,
+                          onChanged: (bool? value) {
+                            _settingsService
+                                .setCachedSettingsGyroscopeCardPopup(
+                                    value ?? false);
+                            setState(() {});
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          "Gyroscope",
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
                     "Version:",
                     style: TextStyle(
                         fontSize: 20, decoration: TextDecoration.underline),

@@ -1,8 +1,6 @@
 import 'package:dominion_companion/components/basic_dropdown.dart';
 import 'package:dominion_companion/model/card/card_model.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
-import 'package:dominion_companion/services/card_service.dart';
-import 'package:dominion_companion/services/deck_service.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
 import 'package:flutter/material.dart';
 

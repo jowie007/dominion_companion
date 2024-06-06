@@ -3,8 +3,8 @@ import 'package:dominion_companion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-// TODO Add replace button for single cards
-// TODO Add deselect all button for deck create page
+// TODO Add older versions of expansions
+// TODO Improve performance when loading expansions
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
@@ -13,8 +13,8 @@ Future<void> main() async {
   try {
     await settingsService.initializeApp(
         checkCardNamesAndImages: false,
-        initializeExpansions: false,
-        deleteSettings: false);
+        initializeExpansions: true,
+        deleteSettings: true);
     FlutterNativeSplash.remove();
   } on Exception catch (e) {
     settingsService.initException = e;
