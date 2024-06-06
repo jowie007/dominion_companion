@@ -1,8 +1,6 @@
-import 'dart:developer';
 
 import 'package:dominion_companion/database/selected_cards_database.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
-import 'package:dominion_companion/services/active_expansion_version_service.dart';
 import 'package:dominion_companion/services/deck_service.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
 

@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:dominion_companion/database/active_expansion_version_database.dart';
 import 'package:dominion_companion/database/model/settings/settings_db_model.dart';
 import 'package:dominion_companion/database/settings_database.dart';
 import 'package:dominion_companion/model/settings/settings_model.dart';
@@ -14,7 +13,6 @@ import 'package:dominion_companion/services/hand_service.dart';
 import 'package:dominion_companion/services/selected_card_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class SettingsService {

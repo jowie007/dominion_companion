@@ -17,6 +17,8 @@ class DeckInfoPage extends StatefulWidget {
 }
 
 class _DeckInfoState extends State<DeckInfoPage> {
+  Key _deckKey = UniqueKey();
+
   @override
   initState() {
     super.initState();
@@ -48,10 +50,15 @@ class _DeckInfoState extends State<DeckInfoPage> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15.0),
                 child: DeckExpandableLoader(
+                  key: _deckKey,
                   futureDeckModel: _temporaryDeckService.temporaryDeck,
                   initiallyExpanded: true,
                   isNewlyCreated: true,
-                  onLoaded: (deckModel) => {temporaryDeck = deckModel, _audioService.stopPlaying()},
+                  onLoaded: (deckModel) =>
+                      {temporaryDeck = deckModel, _audioService.stopPlaying()},
+                  onDeckChange: (hasChanged) => setState(() {
+                    _deckKey = UniqueKey();
+                  }),
                 ),
               ),
             ),

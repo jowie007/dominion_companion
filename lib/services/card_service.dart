@@ -8,7 +8,6 @@ import 'package:dominion_companion/model/card/card_model.dart';
 import 'package:dominion_companion/model/card/card_type_colors_map.dart';
 import 'package:dominion_companion/model/card/card_type_enum.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CardService {

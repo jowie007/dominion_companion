@@ -3,13 +3,15 @@ import 'package:dominion_companion/model/deck/deck_model.dart';
 import 'package:flutter/material.dart';
 
 class DeckExpandableLoader extends StatelessWidget {
-  const DeckExpandableLoader(
-      {super.key,
-      required this.futureDeckModel,
-      this.onLoaded,
-      this.initiallyExpanded = false,
-      this.isNewlyCreated = false,
-      this.onLongPress});
+  const DeckExpandableLoader({
+    super.key,
+    required this.futureDeckModel,
+    this.onLoaded,
+    this.initiallyExpanded = false,
+    this.isNewlyCreated = false,
+    this.onLongPress,
+    this.onDeckChange,
+  });
 
   final Future<DeckModel> futureDeckModel;
 
@@ -17,6 +19,7 @@ class DeckExpandableLoader extends StatelessWidget {
   final bool initiallyExpanded;
   final bool isNewlyCreated;
   final void Function()? onLongPress;
+  final void Function(Future<bool> hasChanged)? onDeckChange;
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +59,7 @@ class DeckExpandableLoader extends StatelessWidget {
                     deckModel: snapshot.data!,
                     initiallyExpanded: initiallyExpanded,
                     isNewlyCreated: isNewlyCreated,
+                    onDeckChange: onDeckChange,
                   )
                 : const Text('Deck konnte nicht geladen werden');
           } else {

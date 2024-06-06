@@ -13,6 +13,7 @@ class CardInfoTile extends StatefulWidget {
     required this.card,
     required this.onChanged,
     required this.value,
+    this.dismissable = false,
     this.onDismissed,
     this.hasCheckbox = true,
     this.showCardCount = false,
@@ -22,6 +23,7 @@ class CardInfoTile extends StatefulWidget {
   final void Function(DismissDirection direction)? onDismissed;
   final CardModel card;
   final bool value;
+  final bool dismissable;
   final bool hasCheckbox;
   final bool showCardCount;
 
@@ -43,8 +45,8 @@ class _CardInfoTileState extends State<CardInfoTile> {
 
     // TODO Continue implementing card swapping
     return Dismissible(
-      key: Key(widget.card.id),
-      direction: widget.onDismissed != null
+      key: UniqueKey(),
+      direction: widget.dismissable
           ? DismissDirection.endToStart
           : DismissDirection.none,
       onDismissed: (direction) {

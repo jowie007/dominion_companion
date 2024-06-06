@@ -47,6 +47,7 @@ class TemporaryDeckService {
         .map((e) => e.id)
         .toList();
     newCardIds.add(morePossibleCardIds.removeLast());
+    morePossibleCardIds.insert(0, cardId);
     temporaryDeck = _deckService.deckFromDBModel(DeckDBModel(
         null, "", null, newCardIds, oldDeck.creationDate, null, null));
     return true;

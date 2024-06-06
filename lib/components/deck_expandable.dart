@@ -23,13 +23,15 @@ class DeckExpandable extends StatefulWidget {
       this.initiallyExpanded = false,
       this.isNewlyCreated = false,
       this.onChange,
-      this.onRouteLeave});
+      this.onRouteLeave,
+      this.onDeckChange});
 
   final DeckModel deckModel;
   final bool initiallyExpanded;
   final bool isNewlyCreated;
   final void Function()? onChange;
   final void Function()? onRouteLeave;
+  final void Function(Future<bool> isReloaded)? onDeckChange;
 
   @override
   State<DeckExpandable> createState() => _DeckExpandableState();
@@ -242,18 +244,19 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                       ? CardInfoTile(
                                           onChanged: (bool? newValue) =>
                                               (newValue),
-                                          onDismissed: widget.deckModel.name ==
-                                                  ""
-                                              ? (direction) {
-                                                  setState(() {
+                                          dismissable:
+                                              widget.deckModel.name == "",
+                                          onDismissed: (direction) {
+                                            setState(() {
+                                              if (widget.onDeckChange != null) {
+                                                widget.onDeckChange!(
                                                     temporaryDeckService
                                                         .replaceCardFromTemporaryDeck(
-                                                            allCards[index].id);
-                                                    deckService.updateDeck(
-                                                        widget.deckModel);
-                                                  });
-                                                }
-                                              : null,
+                                                            allCards[index]
+                                                                .id));
+                                              }
+                                            });
+                                          },
                                           card: allCards[index],
                                           value: true,
                                           hasCheckbox: false,
