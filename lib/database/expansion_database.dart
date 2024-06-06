@@ -32,9 +32,9 @@ class ExpansionDatabase {
   Future<ExpansionDBModel?> getActiveExpansionByPosition(
       int position, List<String> activeExpansionIds) async {
     await openDb();
-    String formattedIds = activeExpansionIds.map((id) => "'$id'").join(', ');
+    String placeholders = List.generate(activeExpansionIds.length, (index) => '?').join(', ');
     final List<Map<String, dynamic>> maps = await _database.rawQuery(
-        'SELECT * FROM expansion WHERE id IN ($formattedIds) LIMIT 1 OFFSET $position');
+        'SELECT * FROM expansion WHERE id IN ($placeholders) LIMIT 1 OFFSET $position', activeExpansionIds);
     return maps.isNotEmpty ? ExpansionDBModel.fromDB(maps.first) : null;
   }
 

@@ -244,7 +244,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                       ? CardInfoTile(
                                           onChanged: (bool? newValue) =>
                                               (newValue),
-                                          dismissable:
+                                          dismissible:
                                               widget.deckModel.name == "",
                                           onSwapRandom: () {
                                             setState(() {

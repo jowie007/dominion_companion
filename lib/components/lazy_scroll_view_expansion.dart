@@ -1,4 +1,3 @@
-
 import 'package:dominion_companion/components/expansion_expandable.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
@@ -16,18 +15,21 @@ class LazyScrollViewExpansions extends StatefulWidget {
 }
 
 class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
+  final ExpansionService _expansionService = ExpansionService();
   List<ExpansionModel> expansions = [];
   bool showLoadingIcon = true;
   bool disposed = false;
   int runCount = 0;
   int deselectAllCount = 0;
+  int batchSize = 5;
+  ValueNotifier<int> resetSelectionNotifier = ValueNotifier<int>(0);
 
   @override
   initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       runCount++;
-      loadExpansionRecursive(runCount);
+      loadExpansionBatch(runCount);
     });
   }
 
@@ -42,71 +44,78 @@ class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
       runCount++;
       expansions = [];
       showLoadingIcon = true;
-      loadExpansionRecursive(runCount);
+      loadExpansionBatch(runCount);
     });
   }
 
-  loadExpansionRecursive(int currentRunCount) async {
+  loadExpansionBatch(int currentRunCount) async {
     if (!disposed && runCount == currentRunCount) {
-      ExpansionService().getActiveExpansionByPosition(expansions.length).then(
-            (element) => {
-              if (!disposed && runCount == currentRunCount)
-                {
-                  setState(
-                    () {
-                      if (element != null) {
-                        expansions.add(element);
-                        loadExpansionRecursive(currentRunCount);
-                      } else {
-                        showLoadingIcon = false;
-                      }
-                    },
-                  ),
-                },
-            },
-          );
+      List<ExpansionModel> batch =
+          await _expansionService.getActiveExpansionsByRange(
+              expansions.length, expansions.length + batchSize);
+      if (!disposed && runCount == currentRunCount) {
+        setState(() {
+          expansions.addAll(batch);
+          showLoadingIcon = batch.length == batchSize;
+        });
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-              child: ElevatedButton(
-                onPressed: () async {
-                  await SelectedCardService().deleteSelectedCards();
-                  setState(() {
-                    deselectAllCount++;
-                    widget.onChanged();
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white),
-                child: const Text("Auswahl zurücksetzen"),
-              ),
+    return ListView.builder(
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
+      itemCount: expansions.length + (showLoadingIcon ? 2 : 1),
+      // Add 1 for the button
+      itemBuilder: (context, index) {
+        if (index == 0) {
+          // The first item is the button
+          return Container(
+            padding: const EdgeInsets.fromLTRB(40, 16, 40, 0),
+            child: ElevatedButton(
+              onPressed: () async {
+                await SelectedCardService().deleteSelectedCards();
+                setState(() {
+                  deselectAllCount++;
+                  widget.onChanged();
+                });
+                resetSelectionNotifier.value++;
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black, foregroundColor: Colors.white),
+              child: const Text("Auswahl zurücksetzen"),
             ),
-            ...expansions
-                .map<Widget>((e) => ExpansionExpandable(
-                      expansion: e,
-                      onChanged: () => {widget.onChanged()},
-                      onReload: reloadData,
-                    ))
-                .toList(),
-            showLoadingIcon
-                ? Padding(
-                    padding: EdgeInsets.fromLTRB(0, expansions.isEmpty ? 16 : 0,
-                        0, expansions.isEmpty ? 16 : 0),
-                    child: const Center(child: CircularProgressIndicator()))
-                : Container()
-          ],
-        ),
-      ),
+          );
+        } else if (index <= expansions.length) {
+          // The next items are the expansions
+          return ExpansionExpandable(
+            expansion: expansions[index - 1], // Subtract 1 for the button
+            onChanged: () => {widget.onChanged()},
+            onReload: reloadData,
+            resetSelectionNotifier: resetSelectionNotifier,
+          );
+        } else {
+          // The last item is the loading indicator
+          return FutureBuilder(
+            future: showLoadingIcon && expansions.isNotEmpty
+                ? loadExpansionBatch(runCount)
+                : null,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Padding(
+                  padding: EdgeInsets.fromLTRB(0, expansions.isEmpty ? 16 : 0,
+                      0, expansions.isEmpty ? 16 : 0),
+                  child: const Center(child: CircularProgressIndicator()),
+                );
+              } else {
+                // Rebuild the ListView when the future completes
+                return Container();
+              }
+            },
+          );
+        }
+      },
     );
   }
 }

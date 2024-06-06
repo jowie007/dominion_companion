@@ -204,4 +204,12 @@ class CardService {
   Future<CardModel> getCardById(String cardId) async {
     return CardModel.fromDBModel(await _cardDatabase.getCardById(cardId));
   }
+
+  bool cardIsNotACalculatedCard(CardModel card) {
+    return card.always == false &&
+        card.whenDeckContainsPotions == false &&
+        card.whenDeckConsistsOfXCards == null &&
+        card.whenDeckConsistsOfXCardsOfExpansionCount == null &&
+        card.whenDeckConsistsOfXCardsOfExpansionCount == null;
+  }
 }

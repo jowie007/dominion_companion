@@ -18,7 +18,8 @@ class ActiveExpansionVersionDatabase {
   }
 
   Future<void> deleteDb() async {
-    String path = join(await getDatabasesPath(), "active_expansion_versions.db");
+    String path =
+        join(await getDatabasesPath(), "active_expansion_versions.db");
     await deleteDatabase(path);
   }
 
@@ -36,8 +37,8 @@ class ActiveExpansionVersionDatabase {
 
   Future<List<String>> getActiveExpansionVersionIds() async {
     await openDb();
-    final List<Map<String, dynamic>> maps =
-        await _database.rawQuery('SELECT * FROM active_expansion_versions');
+    final List<Map<String, dynamic>> maps = await _database
+        .rawQuery('SELECT expansionId FROM active_expansion_versions');
     return List.generate(maps.length, (i) {
       return maps[i]["expansionId"].toString();
     });

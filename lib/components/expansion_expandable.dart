@@ -1,4 +1,3 @@
-
 import 'package:dominion_companion/components/card_info_tile.dart';
 import 'package:dominion_companion/components/round_checkbox.dart';
 import 'package:dominion_companion/components/round_tooltip.dart';
@@ -15,17 +14,56 @@ class ExpansionExpandable extends StatefulWidget {
       {super.key,
       required this.expansion,
       required this.onChanged,
-      required this.onReload});
+      required this.onReload,
+      required this.resetSelectionNotifier});
 
   final ExpansionModel expansion;
   final void Function() onChanged;
   final VoidCallback onReload;
+  final ValueNotifier<int> resetSelectionNotifier;
 
   @override
   State<ExpansionExpandable> createState() => _ExpansionExpandableState();
 }
 
-class _ExpansionExpandableState extends State<ExpansionExpandable> {
+class _ExpansionExpandableState extends State<ExpansionExpandable>
+    with AutomaticKeepAliveClientMixin<ExpansionExpandable> {
+  SelectedCardService selectedCardService = SelectedCardService();
+  bool anotherVersionOfExpansionHasSelectedCards = false;
+
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  initState() {
+    super.initState();
+    widget.resetSelectionNotifier.addListener(_resetSelection);
+    checkIfAnotherVersionOfExpansionHasSelectedCards();
+  }
+
+  @override
+  void dispose() {
+    // Remove the listener when the widget is disposed
+    widget.resetSelectionNotifier.removeListener(_resetSelection);
+    super.dispose();
+  }
+
+  void checkIfAnotherVersionOfExpansionHasSelectedCards() {
+    selectedCardService
+        .hasOtherVersionOfExpansionSelectedCards(widget.expansion)
+        .then((value) {
+      setState(() {
+        anotherVersionOfExpansionHasSelectedCards = value;
+      });
+    });
+  }
+
+  void _resetSelection() {
+    setState(() {
+      anotherVersionOfExpansionHasSelectedCards = false;
+    });
+  }
+
   // https://stackoverflow.com/questions/53908025/flutter-sortable-drag-and-drop-listview
   @override
   Widget build(BuildContext context) {
@@ -171,28 +209,17 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
                   }),
               value: selectedCardService.isExpansionSelected(widget.expansion)),
         ),
-        FutureBuilder<bool>(
-          future: SelectedCardService()
-              .hasOtherVersionOfExpansionSelectedCards(widget.expansion),
-          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting ||
-                snapshot.hasError) {
-              return Container();
-            } else {
-              return snapshot.data!
-                  ? const Positioned(
-                      right: 4.0,
-                      top: 12.0,
-                      child: RoundTooltip(
-                        title:
-                            "Eine andere Version dieser Erweiterung besitzt ausgewählte Karten.",
-                        icon: Icons.info,
-                      ),
-                    )
-                  : Container();
-            }
-          },
-        )
+        anotherVersionOfExpansionHasSelectedCards
+            ? const Positioned(
+                right: 4.0,
+                top: 12.0,
+                child: RoundTooltip(
+                  title:
+                      "Eine andere Version\ndieser Erweiterung\nbesitzt ausgewählte\nKarten",
+                  icon: Icons.info,
+                ),
+              )
+            : Container(),
       ],
     );
   }

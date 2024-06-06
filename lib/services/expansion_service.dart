@@ -40,6 +40,19 @@ class ExpansionService {
         : [expansion.name, expansion.version].join(" - ");
   }
 
+  Future<List<ExpansionModel>> getActiveExpansionsByRange(int start, int end) async {
+    List<ExpansionModel> expansions = [];
+    for (int i = start; i < end; i++) {
+      ExpansionModel? expansion = await getActiveExpansionByPosition(i);
+      if (expansion != null) {
+        expansions.add(expansion);
+      } else {
+        break;
+      }
+    }
+    return expansions;
+  }
+
   Future<void> insertExpansionModelsIntoDB(
       List<ExpansionModel> expansionModels) {
     return _expansionDatabase.insertExpansions(expansionModels
