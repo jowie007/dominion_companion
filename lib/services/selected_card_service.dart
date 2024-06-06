@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:dominion_companion/database/selected_cards_database.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
+import 'package:dominion_companion/services/active_expansion_version_service.dart';
 import 'package:dominion_companion/services/deck_service.dart';
+import 'package:dominion_companion/services/expansion_service.dart';
 
 class SelectedCardService {
   final DeckService deckService = DeckService();
@@ -101,5 +105,17 @@ class SelectedCardService {
         : containsOne
             ? null
             : false;
+  }
+
+  Future<bool> hasOtherVersionOfExpansionSelectedCards(
+      ExpansionModel expansion) async {
+    List<ExpansionModel> expansionsWithSamePrefix = await ExpansionService()
+        .getExpansionsWithSamePrefixExcludeItself(expansion.id);
+    for (var expansionWithSamePrefix in expansionsWithSamePrefix) {
+      if (isExpansionSelected(expansionWithSamePrefix) != false) {
+        return true;
+      }
+    }
+    return false;
   }
 }

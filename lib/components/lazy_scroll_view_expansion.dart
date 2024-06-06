@@ -17,12 +17,14 @@ class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
   List<ExpansionModel> expansions = [];
   bool showLoadingIcon = true;
   bool disposed = false;
+  int runCount = 0;
 
   @override
   initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      loadExpansionRecursive();
+      runCount++;
+      loadExpansionRecursive(runCount);
     });
   }
 
@@ -34,23 +36,24 @@ class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
 
   void reloadData() {
     setState(() {
+      runCount++;
       expansions = [];
       showLoadingIcon = true;
-      loadExpansionRecursive();
+      loadExpansionRecursive(runCount);
     });
   }
 
-  loadExpansionRecursive() async {
-    if (!disposed) {
+  loadExpansionRecursive(int currentRunCount) async {
+    if (!disposed && runCount == currentRunCount) {
       ExpansionService().getActiveExpansionByPosition(expansions.length).then(
             (element) => {
-              if (!disposed)
+              if (!disposed && runCount == currentRunCount)
                 {
                   setState(
                     () {
                       if (element != null) {
                         expansions.add(element);
-                        loadExpansionRecursive();
+                        loadExpansionRecursive(currentRunCount);
                       } else {
                         showLoadingIcon = false;
                       }

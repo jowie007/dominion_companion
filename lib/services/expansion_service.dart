@@ -190,4 +190,23 @@ class ExpansionService {
         .map((expansion) => expansion.id)
         .toList();
   }
+
+  Future<List<ExpansionModel>> getExpansionsWithSamePrefix(
+      String expansionId) async {
+    List<ExpansionDBModel> expansions = await getExpansionsFromDB();
+    return Future.wait(expansions
+        .where(
+            (expansion) => expansion.id.startsWith(expansionId.split("_")[0]))
+        .map((expansion) => expansionModelFromExpansionDB(expansion))
+        .toList());
+  }
+
+  Future<List<ExpansionModel>> getExpansionsWithSamePrefixExcludeItself(
+      String expansionId) async {
+    List<ExpansionModel> expansions =
+        await getExpansionsWithSamePrefix(expansionId);
+    return expansions
+        .where((expansion) => expansion.id != expansionId)
+        .toList();
+  }
 }
