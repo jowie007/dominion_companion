@@ -10,6 +10,7 @@ class TemporaryDeckService {
   final DeckService _deckService = DeckService();
   final CardService _cardService = CardService();
   late Future<DeckModel> temporaryDeck;
+  late List<String> morePossibleCardIds;
   bool saved = false;
 
   static final TemporaryDeckService _temporaryDeckService =
@@ -28,8 +29,27 @@ class TemporaryDeckService {
 
   Future<DeckModel> createTemporaryDeck(
       String name, List<String> cardIds, bool cardLimit) async {
-    return _deckService.deckFromDBModel(DeckDBModel(null, name, null,
-        await filterCards(cardIds, cardLimit), DateTime.now(), null, null));
+    List<String> cardIdsFiltered = await filterCards(cardIds, cardLimit);
+    morePossibleCardIds =
+        cardIds.where((element) => !cardIdsFiltered.contains(element)).toList();
+    morePossibleCardIds.shuffle();
+    return _deckService.deckFromDBModel(DeckDBModel(
+        null, name, null, cardIdsFiltered, DateTime.now(), null, null));
+  }
+
+  Future<bool> replaceCardFromTemporaryDeck(String cardId) async {
+    if (morePossibleCardIds.isEmpty) {
+      return false;
+    }
+    DeckModel oldDeck = await temporaryDeck;
+    List<String> newCardIds = oldDeck.cards
+        .where((element) => element.id != cardId)
+        .map((e) => e.id)
+        .toList();
+    newCardIds.add(morePossibleCardIds.removeLast());
+    temporaryDeck = _deckService.deckFromDBModel(DeckDBModel(
+        null, "", null, newCardIds, oldDeck.creationDate, null, null));
+    return true;
   }
 
   Future<List<String>> filterCards(List<String> cardIds, bool cardLimit) async {

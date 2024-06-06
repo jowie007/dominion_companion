@@ -13,11 +13,13 @@ class CardInfoTile extends StatefulWidget {
     required this.card,
     required this.onChanged,
     required this.value,
+    this.onDismissed,
     this.hasCheckbox = true,
     this.showCardCount = false,
   });
 
   final void Function(bool? value) onChanged;
+  final void Function(DismissDirection direction)? onDismissed;
   final CardModel card;
   final bool value;
   final bool hasCheckbox;
@@ -39,15 +41,23 @@ class _CardInfoTileState extends State<CardInfoTile> {
     final cardColors = cardService.getColorsByCardTypeString(cardTypeString);
     final PlayerService playerService = PlayerService();
 
-    // TODO Replace card
+    // TODO Continue implementing card swapping
     return Dismissible(
       key: Key(widget.card.id),
-      // Use card.id as the key
-      direction: DismissDirection.endToStart,
-      // Allow swiping from right to left
+      direction: widget.onDismissed != null
+          ? DismissDirection.endToStart
+          : DismissDirection.none,
       onDismissed: (direction) {
-        // Implement your logic to replace the card here
+        if (widget.onDismissed != null) {
+          widget.onDismissed!(direction);
+        }
       },
+      background: Container(
+        color: Colors.brown,
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: 26),
+        child: const Icon(Icons.swap_vert, color: Colors.white),
+      ),
       child: Container(
         color: Colors.white.withOpacity(0.4),
         child: Theme(

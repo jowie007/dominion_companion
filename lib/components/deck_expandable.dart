@@ -10,6 +10,7 @@ import 'package:dominion_companion/components/name_deck_dialog.dart';
 import 'package:dominion_companion/model/deck/deck_model.dart';
 import 'package:dominion_companion/services/audio_service.dart';
 import 'package:dominion_companion/services/deck_service.dart';
+import 'package:dominion_companion/services/temporary_deck_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -36,6 +37,7 @@ class DeckExpandable extends StatefulWidget {
 
 class _DeckExpandableState extends State<DeckExpandable> {
   DeckService deckService = DeckService();
+  TemporaryDeckService temporaryDeckService = TemporaryDeckService();
 
   // https://medium.com/unitechie/flutter-tutorial-image-picker-from-camera-gallery-c27af5490b74
   Future pickImage() async {
@@ -240,6 +242,18 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                       ? CardInfoTile(
                                           onChanged: (bool? newValue) =>
                                               (newValue),
+                                          onDismissed: widget.deckModel.name ==
+                                                  ""
+                                              ? (direction) {
+                                                  setState(() {
+                                                    temporaryDeckService
+                                                        .replaceCardFromTemporaryDeck(
+                                                            allCards[index].id);
+                                                    deckService.updateDeck(
+                                                        widget.deckModel);
+                                                  });
+                                                }
+                                              : null,
                                           card: allCards[index],
                                           value: true,
                                           hasCheckbox: false,

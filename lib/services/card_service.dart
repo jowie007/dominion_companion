@@ -201,4 +201,8 @@ class CardService {
     stops.add(scale);
     return stops;
   }
+
+  Future<CardModel> getCardById(String cardId) async {
+    return CardModel.fromDBModel(await _cardDatabase.getCardById(cardId));
+  }
 }
