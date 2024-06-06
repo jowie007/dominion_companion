@@ -82,13 +82,13 @@ class _CardInfoTileState extends State<CardInfoTile> {
         return false;
       },
       background: Container(
-        color: Colors.brown, // Change this to your desired color
+        color: Colors.black,
         alignment: Alignment.centerLeft,
         padding: const EdgeInsets.only(left: 26),
         child: const Icon(Icons.swap_vert_circle_outlined, color: Colors.white),
       ),
       secondaryBackground: Container(
-        color: Colors.brown,
+        color: Colors.black,
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.only(right: 26),
         child: const Icon(Icons.swap_vert, color: Colors.white),

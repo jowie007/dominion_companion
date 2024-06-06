@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:dominion_companion/components/expansion_expandable.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
+import 'package:dominion_companion/services/selected_card_service.dart';
 import 'package:flutter/material.dart';
 
 class LazyScrollViewExpansions extends StatefulWidget {
@@ -18,6 +21,7 @@ class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
   bool showLoadingIcon = true;
   bool disposed = false;
   int runCount = 0;
+  int deselectAllCount = 0;
 
   @override
   initState() {
@@ -72,6 +76,22 @@ class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 64),
         child: Column(
           children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+              child: ElevatedButton(
+                onPressed: () async {
+                  await SelectedCardService().deleteSelectedCards();
+                  setState(() {
+                    deselectAllCount++;
+                    widget.onChanged();
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white),
+                child: const Text("Auswahl zurücksetzen"),
+              ),
+            ),
             ...expansions
                 .map<Widget>((e) => ExpansionExpandable(
                       expansion: e,

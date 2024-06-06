@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:dominion_companion/database/selected_cards_database.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
@@ -38,6 +39,7 @@ class SelectedCardService {
   Future<void> deleteSelectedCards() async {
     if (!modifyDeck) {
       await _selectedCardDatabase.deleteSelectedCards();
+      selectedCardIds = [];
     }
   }
 

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_companion/components/card_info_tile.dart';
 import 'package:dominion_companion/components/round_checkbox.dart';
 import 'package:dominion_companion/components/round_tooltip.dart';
@@ -171,19 +173,24 @@ class _ExpansionExpandableState extends State<ExpansionExpandable> {
               value: selectedCardService.isExpansionSelected(widget.expansion)),
         ),
         FutureBuilder<bool>(
-          future: SelectedCardService().hasOtherVersionOfExpansionSelectedCards(widget.expansion),
+          future: SelectedCardService()
+              .hasOtherVersionOfExpansionSelectedCards(widget.expansion),
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting || snapshot.hasError) {
+            if (snapshot.connectionState == ConnectionState.waiting ||
+                snapshot.hasError) {
               return Container();
             } else {
-              return snapshot.data! ? const Positioned(
-                right: 4.0,
-                top: 12.0,
-                child: RoundTooltip(
-                  title: "Eine andere Version dieser Erweiterung besitzt ausgewählte Karten.",
-                  icon: Icons.info,
-                ),
-              ) : Container();
+              return snapshot.data!
+                  ? const Positioned(
+                      right: 4.0,
+                      top: 12.0,
+                      child: RoundTooltip(
+                        title:
+                            "Eine andere Version dieser Erweiterung besitzt ausgewählte Karten.",
+                        icon: Icons.info,
+                      ),
+                    )
+                  : Container();
             }
           },
         )
