@@ -1,3 +1,4 @@
+import 'package:dominion_companion/components/custom_alert_dialog.dart';
 import 'package:dominion_companion/components/expansion_expandable.dart';
 import 'package:dominion_companion/model/expansion/expansion_model.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
@@ -16,6 +17,7 @@ class LazyScrollViewExpansions extends StatefulWidget {
 
 class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
   final ExpansionService _expansionService = ExpansionService();
+  final SelectedCardService _selectedCardService = SelectedCardService();
   List<ExpansionModel> expansions = [];
   bool showLoadingIcon = true;
   bool disposed = false;
@@ -62,6 +64,28 @@ class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
     }
   }
 
+  Future<dynamic> showConfirmationDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CustomAlertDialog(
+          title: "Auswahl zurücksetzen",
+          message: "Möchtest du die ausgewählten Karten wirklich zurücksetzen?",
+          cancelText: "Abbrechen",
+          confirmText: "Ja",
+          onConfirm: () async => {
+            await SelectedCardService().deleteSelectedCards(),
+            setState(() {
+              deselectAllCount++;
+              widget.onChanged();
+            }),
+            resetSelectionNotifier.value++,
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -74,13 +98,10 @@ class _LazyScrollViewExpansionsState extends State<LazyScrollViewExpansions> {
           return Container(
             padding: const EdgeInsets.fromLTRB(40, 16, 40, 0),
             child: ElevatedButton(
-              onPressed: () async {
-                await SelectedCardService().deleteSelectedCards();
-                setState(() {
-                  deselectAllCount++;
-                  widget.onChanged();
-                });
-                resetSelectionNotifier.value++;
+              onPressed: () {
+                if (_selectedCardService.selectedCardIds.isNotEmpty) {
+                  showConfirmationDialog(context);
+                }
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black, foregroundColor: Colors.white),

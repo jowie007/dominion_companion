@@ -220,14 +220,20 @@ class ExpansionService {
         .toList();
   }
 
-  Future<ExpansionModel> getExpansionById(String id) async {
-    return expansionModelFromExpansionDB(
-        await _expansionDatabase.getExpansionById(id));
+  Future<ExpansionModel?> getExpansionById(String id) async {
+    ExpansionDBModel? expansionDBModel = await _expansionDatabase.getExpansionById(id);
+    return expansionDBModel != null
+        ? expansionModelFromExpansionDB(expansionDBModel)
+        : null;
   }
 
   Future<List<ExpansionModel>> getAllExpansions() async {
     return _expansionDatabase.getExpansionList().then((expansions) =>
         Future.wait(expansions
             .map((expansion) => expansionModelFromExpansionDB(expansion))));
+  }
+
+  Future<String> getExpansionNameByCardId(String cardId) {
+    return _expansionDatabase.getExpansionNameById(cardId.split("-")[0]);
   }
 }

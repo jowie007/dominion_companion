@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:dominion_companion/components/card_popup.dart';
 import 'package:dominion_companion/components/error_dialog.dart';
 import 'package:dominion_companion/components/menu_button.dart';
+import 'package:dominion_companion/model/card/card_model.dart';
 import 'package:dominion_companion/router/routes.dart' as route;
 import 'package:dominion_companion/services/card_service.dart';
 import 'package:dominion_companion/services/file_service.dart';
@@ -9,6 +12,7 @@ import 'package:dominion_companion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 
 import '../components/floating_action_button_coin.dart';
+import '../services/expansion_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,6 +26,11 @@ class _HomePageState extends State<HomePage> {
   final _cardService = CardService();
   final _settingsService = SettingsService();
   final _fileService = FileService();
+  final _expansionService = ExpansionService();
+  bool isLoadingCardOfTheDay = true;
+  List<String> cardOfTheDayIds = [];
+  String cardOfTheDayExpansionId = '';
+  String cardOfTheDayExpansionName = '';
 
   @override
   void initState() {
@@ -37,6 +46,21 @@ class _HomePageState extends State<HomePage> {
           },
         );
       }
+      initCardOfTheDay();
+    });
+  }
+
+  void initCardOfTheDay() async {
+    Map<CardModel, List<String>>? cardOfTheDayInfo =
+        await _cardService.getCardOfTheDay();
+    if (cardOfTheDayInfo != null) {
+      cardOfTheDayIds = cardOfTheDayInfo.values.first;
+      cardOfTheDayExpansionId = cardOfTheDayInfo.keys.first.getExpansionId();
+      cardOfTheDayExpansionName = await _expansionService
+          .getExpansionNameByCardId(cardOfTheDayExpansionId);
+    }
+    setState(() {
+      isLoadingCardOfTheDay = false;
     });
   }
 
@@ -49,11 +73,12 @@ class _HomePageState extends State<HomePage> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(_fileService.backgroundImagePath!),
+                alignment: _fileService.boxArtAlignment,
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          /*const Align(
+          /* const Align(
             alignment: Alignment.centerLeft,
             child: FractionallySizedBox(
               child: Image(
@@ -68,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                 image: AssetImage('assets/menu/spear-right.png'),
               ),
             ),
-          ),*/
+          ), */
           SingleChildScrollView(
             child: Align(
               alignment: Alignment.topCenter,
@@ -102,20 +127,15 @@ class _HomePageState extends State<HomePage> {
                         showDialog(
                           context: context,
                           builder: (context) {
-                            return FutureBuilder(
-                              future: _cardService.getCardOfTheDay(),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData && snapshot.data != null) {
-                                  return CardPopup(
-                                    cardIds: snapshot.data!.values.first,
-                                    expansionId: snapshot.data!.keys.first
-                                        .getExpansionId(),
-                                    error: snapshot.hasError,
+                            return isLoadingCardOfTheDay
+                                ? const Center(
+                                    child: CircularProgressIndicator(),
+                                  )
+                                : CardPopup(
+                                    cardIds: cardOfTheDayIds,
+                                    expansionId: cardOfTheDayExpansionId,
+                                    expansionName: cardOfTheDayExpansionName,
                                   );
-                                }
-                                return Container();
-                              },
-                            );
                           },
                         );
                       }),

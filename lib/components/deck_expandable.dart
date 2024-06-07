@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dominion_companion/components/card_info_tile.dart';
@@ -24,14 +25,16 @@ class DeckExpandable extends StatefulWidget {
       this.isNewlyCreated = false,
       this.onChange,
       this.onRouteLeave,
-      this.onDeckChange});
+      this.onCardReplace,
+      this.onCardAdd});
 
   final DeckModel deckModel;
   final bool initiallyExpanded;
   final bool isNewlyCreated;
   final void Function()? onChange;
   final void Function()? onRouteLeave;
-  final void Function(Future<bool> isReloaded)? onDeckChange;
+  final void Function(Future<bool> isCardReplaced)? onCardReplace;
+  final void Function(Future<bool> isCardAdded)? onCardAdd;
 
   @override
   State<DeckExpandable> createState() => _DeckExpandableState();
@@ -40,6 +43,7 @@ class DeckExpandable extends StatefulWidget {
 class _DeckExpandableState extends State<DeckExpandable> {
   DeckService deckService = DeckService();
   TemporaryDeckService temporaryDeckService = TemporaryDeckService();
+  bool isExpanded = false;
 
   // https://medium.com/unitechie/flutter-tutorial-image-picker-from-camera-gallery-c27af5490b74
   Future pickImage() async {
@@ -84,7 +88,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
         borderRadius: BorderRadius.circular(0.0),
         child: Dismissible(
           key: widget.key ?? Key(widget.deckModel.name),
-          direction: !widget.isNewlyCreated
+          direction: !widget.isNewlyCreated && !isExpanded
               ? DismissDirection.horizontal
               : DismissDirection.none,
           background: Container(
@@ -95,7 +99,7 @@ class _DeckExpandableState extends State<DeckExpandable> {
             child: const Icon(Icons.delete, color: Colors.white),
           ),
           secondaryBackground: Container(
-            color: Colors.blue,
+            color: Colors.black,
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.only(right: 20),
             // change this to your desired color or widget
@@ -173,6 +177,9 @@ class _DeckExpandableState extends State<DeckExpandable> {
                           .copyWith(dividerColor: Colors.transparent),
                       child: ExpansionTile(
                         onExpansionChanged: (value) => {
+                          setState(() {
+                            isExpanded = value;
+                          }),
                           if (value)
                             {audioService.playAudioOpen()}
                           else
@@ -243,24 +250,13 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                             (newValue),
                                         dismissible:
                                             widget.deckModel.name == "",
-                                        onSwapRandom: () {
+                                        onSwapDelete: () {
                                           setState(() {
-                                            if (widget.onDeckChange != null) {
-                                              widget.onDeckChange!(
+                                            if (widget.onCardReplace != null) {
+                                              widget.onCardReplace!(
                                                   temporaryDeckService
-                                                      .replaceCardFromTemporaryDeckRandom(
+                                                      .removeCardFromTemporaryDeck(
                                                           allCards[index].id));
-                                            }
-                                          });
-                                        },
-                                        onSwapManual: (newCardId) {
-                                          setState(() {
-                                            if (widget.onDeckChange != null) {
-                                              widget.onDeckChange!(
-                                                  temporaryDeckService
-                                                      .replaceCardFromTemporaryDeckWithCardId(
-                                                          allCards[index].id,
-                                                          newCardId));
                                             }
                                           });
                                         },
@@ -272,7 +268,15 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                     : DeckAdditionalInfoTile(
                                         deckModel: widget.deckModel,
                                         cards: allCards,
-                                        isTemporary: widget.isNewlyCreated);
+                                        isTemporary: widget.isNewlyCreated,
+                                        onAddCard: (isAdded) => {
+                                          setState(() {
+                                            if (widget.onCardAdd != null) {
+                                              widget.onCardAdd!(isAdded);
+                                            }
+                                          })
+                                        },
+                                      );
                               })
                         ],
                       ),

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:dominion_companion/database/model/expansion/expansion_db_model.dart';
 import 'package:path/path.dart';
@@ -32,9 +33,11 @@ class ExpansionDatabase {
   Future<ExpansionDBModel?> getActiveExpansionByPosition(
       int position, List<String> activeExpansionIds) async {
     await openDb();
-    String placeholders = List.generate(activeExpansionIds.length, (index) => '?').join(', ');
+    String placeholders =
+        List.generate(activeExpansionIds.length, (index) => '?').join(', ');
     final List<Map<String, dynamic>> maps = await _database.rawQuery(
-        'SELECT * FROM expansion WHERE id IN ($placeholders) LIMIT 1 OFFSET $position', activeExpansionIds);
+        'SELECT * FROM expansion WHERE id IN ($placeholders) LIMIT 1 OFFSET $position',
+        activeExpansionIds);
     return maps.isNotEmpty ? ExpansionDBModel.fromDB(maps.first) : null;
   }
 
@@ -82,7 +85,10 @@ class ExpansionDatabase {
 
   Future<List<ExpansionDBModel>> getExpansionList() async {
     await openDb();
-    final List<Map<String, dynamic>> maps = await _database.query('expansion');
+    final List<Map<String, dynamic>> maps = await _database.query(
+      'expansion',
+      orderBy: 'name, version',
+    );
     return List.generate(maps.length, (i) {
       return ExpansionDBModel.fromDB(maps[i]);
     });
@@ -100,10 +106,19 @@ class ExpansionDatabase {
         .delete('expansion', where: "id = ?", whereArgs: [id]);
   }
 
-  Future<ExpansionDBModel> getExpansionById(String id) async {
+  Future<ExpansionDBModel?> getExpansionById(String id) async {
     await openDb();
     final List<Map<String, dynamic>> maps =
         await _database.query('expansion', where: "id = ?", whereArgs: [id]);
-    return ExpansionDBModel.fromDB(maps.first);
+    return maps.isNotEmpty ? ExpansionDBModel.fromDB(maps.first) : null;
+  }
+
+  Future<String> getExpansionNameById(String split) async {
+    await openDb();
+    final List<Map<String, dynamic>> maps =
+        await _database.query('expansion', where: "id = ?", whereArgs: [split]);
+    return maps.isNotEmpty
+        ? maps.first['name'] + " - " + maps.first["version"]
+        : '';
   }
 }

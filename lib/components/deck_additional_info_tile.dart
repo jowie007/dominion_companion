@@ -1,8 +1,10 @@
+import 'package:dominion_companion/components/select_another_card_dialog.dart';
 import 'package:dominion_companion/model/card/card_model.dart';
 import 'package:dominion_companion/model/deck/deck_model.dart';
 import 'package:dominion_companion/services/card_service.dart';
 import 'package:dominion_companion/services/content_service.dart';
 import 'package:dominion_companion/services/player_service.dart';
+import 'package:dominion_companion/services/temporary_deck_service.dart';
 import 'package:flutter/material.dart';
 
 class DeckAdditionalInfoTile extends StatefulWidget {
@@ -10,11 +12,13 @@ class DeckAdditionalInfoTile extends StatefulWidget {
       {super.key,
       required this.deckModel,
       required this.cards,
+      this.onAddCard,
       this.isTemporary = false});
 
   final DeckModel deckModel;
   final List<CardModel> cards;
   final bool isTemporary;
+  final void Function(Future<bool> isAdded)? onAddCard;
 
   @override
   State<DeckAdditionalInfoTile> createState() => _DeckAdditionalInfoTileState();
@@ -24,10 +28,25 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
   final PlayerService _playerService = PlayerService();
   final CardService _cardService = CardService();
   final ContentService _contentService = ContentService();
+  final TemporaryDeckService _temporaryDeckService = TemporaryDeckService();
 
   String prettyDateString(DateTime date) {
     return "${date.day < 10 ? 0 : ""}${date.day}.${date.month < 10 ? 0 : ""}${date.month}.${date.year} "
         "${date.hour < 10 ? 0 : ""}${date.hour}:${date.minute < 10 ? 0 : ""}${date.minute} Uhr";
+  }
+
+  void onAddCard() async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SelectAnotherCardDialog(onSaved: (String selectedCard) {
+          Future<bool> isAdded = _temporaryDeckService.addCardToTemporaryDeck(selectedCard);
+          if(widget.onAddCard != null) {
+            widget.onAddCard!(isAdded);
+          }
+        });
+      },
+    );
   }
 
   @override
@@ -40,7 +59,22 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
           color: Colors.white.withOpacity(0.8),
           child: ListTile(
             title: Column(
+              mainAxisAlignment: MainAxisAlignment.center, // Add this line
               children: [
+                widget.deckModel.name == ""
+                    ? Container(
+                        margin: const EdgeInsets.fromLTRB(8, 0, 0, 8),
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: onAddCard,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.black,
+                            foregroundColor: Colors.white,
+                          ),
+                          child: const Icon(Icons.add_circle_outline_rounded),
+                        ),
+                      )
+                    : Container(),
                 widget.deckModel.content.isNotEmpty
                     ? Column(
                         children: [

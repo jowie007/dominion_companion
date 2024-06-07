@@ -28,6 +28,30 @@ class _DeckInfoState extends State<DeckInfoPage> {
   final _deckService = DeckService();
   final _audioService = AudioService();
 
+  ScaffoldMessengerState get scaffoldMessenger => ScaffoldMessenger.of(context);
+
+  void onCardReplace(Future<bool> hasChanged) async {
+    if (!(await hasChanged)) {
+      scaffoldMessenger.showSnackBar(const SnackBar(
+          content: Text('Die Karte konnte nicht ersetzt werden.')));
+    } else {
+      setState(() {
+        _deckKey = UniqueKey();
+      });
+    }
+  }
+
+  void onCardAdd(Future<bool> hasChanged) async {
+    if (!(await hasChanged)) {
+      scaffoldMessenger.showSnackBar(const SnackBar(
+          content: Text('Die Karte konnte nicht hinzugefügt werden.')));
+    } else {
+      setState(() {
+        _deckKey = UniqueKey();
+      });
+    }
+  }
+
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
@@ -50,16 +74,16 @@ class _DeckInfoState extends State<DeckInfoPage> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15.0),
                 child: DeckExpandableLoader(
-                  key: _deckKey,
-                  futureDeckModel: _temporaryDeckService.temporaryDeck,
-                  initiallyExpanded: true,
-                  isNewlyCreated: true,
-                  onLoaded: (deckModel) =>
-                      {temporaryDeck = deckModel, _audioService.stopPlaying()},
-                  onDeckChange: (hasChanged) => setState(() {
-                    _deckKey = UniqueKey();
-                  }),
-                ),
+                    key: _deckKey,
+                    futureDeckModel: _temporaryDeckService.temporaryDeck,
+                    initiallyExpanded: true,
+                    isNewlyCreated: true,
+                    onLoaded: (deckModel) => {
+                          temporaryDeck = deckModel,
+                          _audioService.stopPlaying()
+                        },
+                    onCardReplace: (hasChanged) => onCardReplace(hasChanged),
+                    onCardAdd: (hasChanged) => onCardAdd(hasChanged)),
               ),
             ),
           ),

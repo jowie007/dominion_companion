@@ -21,6 +21,10 @@ class FileService {
 
   String? backgroundImagePath;
 
+  String? backgroundImageName;
+
+  Alignment boxArtAlignment = Alignment.center;
+
   final boxartList = [
     "abenteuer_v1",
     "alchemisten_v1",
@@ -33,6 +37,7 @@ class FileService {
     "gilden_v1",
     "hinterland_v1",
     "hinterland_v2",
+    "intrige_v1",
     "intrige_v2",
     "menagerie_v1",
     "nocturne_v1",
@@ -44,8 +49,47 @@ class FileService {
     "verbuendete_v1",
   ];
 
+  Map<String, Alignment> boxArtAlignmentMap = {
+    "abenteuer_v1": Alignment.centerRight,
+    "alchemisten_v1": Alignment.lerp(Alignment.centerLeft, Alignment.centerRight, 0.6) ?? Alignment.center,
+    "basisspiel_v1": Alignment.centerRight,
+    "basisspiel_v2": Alignment.centerLeft,
+    "bluetezeit_v1": Alignment.center,
+    "bluetezeit_v2": Alignment.lerp(Alignment.centerLeft, Alignment.centerRight, 0.2) ?? Alignment.center,
+    "dark_ages_v1": Alignment.centerRight,
+    "empires_v2": Alignment.center,
+    "gilden_v1": Alignment.lerp(Alignment.centerLeft, Alignment.centerRight, 0.1) ?? Alignment.center,
+    "hinterland_v1": Alignment.lerp(Alignment.centerLeft, Alignment.centerRight, 0.48) ?? Alignment.center,
+    "hinterland_v2": Alignment.centerLeft,
+    "intrige_v1": Alignment.lerp(Alignment.topLeft, Alignment.topRight, 0.8) ?? Alignment.center,
+    "intrige_v2": Alignment.center,
+    "menagerie_v1": Alignment.lerp(Alignment.centerLeft, Alignment.centerRight, 0.16) ?? Alignment.center,
+    "nocturne_v1": Alignment.center,
+    "pluenderer_v1": Alignment.lerp(Alignment.centerLeft, Alignment.centerRight, 0.4) ?? Alignment.center,
+    "reiche_ernte_v1": Alignment.center,
+    "renaissance_v1": Alignment.center,
+    "seaside_v1": Alignment.center,
+    "seaside_v2": Alignment.center,
+    "verbuendete_v1": Alignment.lerp(Alignment.centerLeft, Alignment.centerRight, 0.75) ?? Alignment.center,
+  };
+
+  void initialize() {
+    initializeBackgroundImagePath();
+    initializeBoxArtAlignment();
+  }
+
   void initializeBackgroundImagePath() {
-    backgroundImagePath = "assets/artwork/boxart/${boxartList[Random().nextInt(boxartList.length)]}.jpg";
+    /*backgroundImageName = boxartList[Random().nextInt(boxartList.length)];*/
+    backgroundImageName = "verbuendete_v1";
+    backgroundImagePath = "assets/artwork/boxart/$backgroundImageName.jpg";
+  }
+
+  void initializeBoxArtAlignment() {
+    if (boxArtAlignmentMap.containsKey(backgroundImageName!)) {
+      boxArtAlignment = boxArtAlignmentMap[backgroundImageName]!;
+    } else {
+      boxArtAlignment = Alignment.center;
+    }
   }
 
   Future<File> getTempFile(String assetPath, String tempPath) async {

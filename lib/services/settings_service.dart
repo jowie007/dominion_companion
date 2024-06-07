@@ -39,7 +39,7 @@ class SettingsService {
       {deleteSettings = false,
       checkCardNamesAndImages = false,
       initializeExpansions = false}) async {
-    fileService.initializeBackgroundImagePath();
+    fileService.initialize();
     if (deleteSettings) {
       await deleteDb()
           .then((value) => initDatabase())

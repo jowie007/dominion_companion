@@ -6,6 +6,7 @@ import 'package:dominion_companion/components/expansion_icon.dart';
 import 'package:dominion_companion/components/select_another_card_dialog.dart';
 import 'package:dominion_companion/model/card/card_model.dart';
 import 'package:dominion_companion/services/card_service.dart';
+import 'package:dominion_companion/services/expansion_service.dart';
 import 'package:dominion_companion/services/player_service.dart';
 import 'package:flutter/material.dart';
 
@@ -16,15 +17,13 @@ class CardInfoTile extends StatefulWidget {
     required this.onChanged,
     required this.value,
     this.dismissible = false,
-    this.onSwapRandom,
-    this.onSwapManual,
+    this.onSwapDelete,
     this.hasCheckbox = true,
     this.showCardCount = false,
   });
 
   final void Function(bool? value) onChanged;
-  final void Function()? onSwapRandom;
-  final void Function(String newCardId)? onSwapManual;
+  final void Function()? onSwapDelete;
   final CardModel card;
   final bool value;
   final bool dismissible;
@@ -38,16 +37,22 @@ class CardInfoTile extends StatefulWidget {
 class _CardInfoTileState extends State<CardInfoTile> {
   late final CardService cardService;
   late final PlayerService playerService;
+  late final ExpansionService expansionService;
   late final String cardTypeString;
   late final List<Color> cardColors;
+  late final String expansionName;
 
   @override
   void initState() {
     super.initState();
     cardService = CardService();
     playerService = PlayerService();
+    expansionService = ExpansionService();
     cardTypeString = CardModel.getCardTypesString(widget.card.cardTypes);
     cardColors = cardService.getColorsByCardTypeString(cardTypeString);
+    expansionService
+        .getExpansionNameByCardId(widget.card.id)
+        .then((value) => expansionName = value);
   }
 
   @override
@@ -59,9 +64,9 @@ class _CardInfoTileState extends State<CardInfoTile> {
 
     return Dismissible(
       key: UniqueKey(),
-      direction: cardService.cardIsNotACalculatedCard(widget.card) &&
+      direction: cardService.cardIsNotInvisible(widget.card) &&
               widget.dismissible &&
-              widget.onSwapRandom != null
+              widget.onSwapDelete != null
           ? DismissDirection.horizontal
           : DismissDirection.none,
       confirmDismiss: (direction) async {
@@ -74,7 +79,7 @@ class _CardInfoTileState extends State<CardInfoTile> {
                 message:
                     'Möchtest du die Karte "${widget.card.name}" durch eine zufällige aus deiner Auswahl ersetzen?',
                 onConfirm: () {
-                  widget.onSwapRandom!();
+                  widget.onSwapDelete!();
                 },
               );
             },
@@ -83,20 +88,24 @@ class _CardInfoTileState extends State<CardInfoTile> {
           return await showDialog(
             context: context,
             builder: (BuildContext context) {
-              return SelectAnotherCardDialog(
-                  onSaved: (String newCardId) =>
-                      widget.onSwapManual!(newCardId),
-                  currentCard: widget.card);
+              return CustomAlertDialog(
+                title: 'Karte entfernen',
+                message:
+                    'Möchtest du die Karte wirklich aus dem Deck entfernen?',
+                onConfirm: () {
+                  widget.onSwapDelete!();
+                },
+              );
             },
           );
         }
         return false;
       },
       background: Container(
-        color: Colors.black,
+        color: Colors.red,
         alignment: Alignment.centerLeft,
         padding: const EdgeInsets.only(left: 26),
-        child: const Icon(Icons.swap_vert_circle_outlined, color: Colors.white),
+        child: const Icon(Icons.delete_sweep_outlined, color: Colors.white),
       ),
       secondaryBackground: Container(
         color: Colors.black,
@@ -122,7 +131,8 @@ class _CardInfoTileState extends State<CardInfoTile> {
                       } else if (snapshot.hasData && snapshot.data != null) {
                         return CardPopup(
                             cardIds: snapshot.data!,
-                            expansionId: snapshot.data![0].split("-")[0]);
+                            expansionId: snapshot.data![0].split("-")[0],
+                            expansionName: expansionName);
                       } else {
                         return const Text('Karte konnte nicht geladen werden');
                       }
@@ -144,24 +154,21 @@ class _CardInfoTileState extends State<CardInfoTile> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               // https://stackoverflow.com/questions/57699497/how-to-create-a-background-with-stripes-in-flutter
-                              cardColors != null
-                                  ? Container(
-                                      width: 68,
-                                      height: 48,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                        gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          stops: cardService.getStopsByColors(
-                                              cardColors, 1),
-                                          colors: cardColors,
-                                          tileMode: TileMode.repeated,
-                                        ),
-                                      ),
-                                    )
-                                  : Container(),
+                              Container(
+                                width: 68,
+                                height: 48,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    stops: cardService.getStopsByColors(
+                                        cardColors, 1),
+                                    colors: cardColors,
+                                    tileMode: TileMode.repeated,
+                                  ),
+                                ),
+                              )
                             ],
                           ),
                           widget.card.cardCost.debt != ''

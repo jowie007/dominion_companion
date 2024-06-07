@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:dominion_companion/components/border_button_component.dart';
 import 'package:dominion_companion/components/custom_alert_dialog.dart';
@@ -16,10 +17,12 @@ class CardPopup extends StatefulWidget {
       {super.key,
       required this.cardIds,
       this.expansionId = "",
+      this.expansionName = "",
       this.error = false});
 
   final List<String> cardIds;
   final String expansionId;
+  final String expansionName;
   final bool error;
 
   @override
@@ -117,8 +120,9 @@ class _CardPopupState extends State<CardPopup> {
     var error = widget.error;
     try {
       updateCardPath();
-    } catch (_) {
+    } catch (err) {
       error = true;
+      log(err.toString());
     }
     if (error) {
       return const CustomAlertDialog(
@@ -139,39 +143,44 @@ class _CardPopupState extends State<CardPopup> {
               var instructionExists = instructionSnapshot.hasData &&
                   instructionSnapshot.data as bool;
 
-              return Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                child: Stack(
-                  children: [
-                    Center(
-                      child: FractionallySizedBox(
-                        widthFactor: 0.7,
-                        heightFactor: 0.9,
-                        child: Transform(
-                          transform: Matrix4.identity()
-                            ..setEntry(3, 2, 0.001) // perspective
-                            ..rotateX(0.01 * _offset.dy) // changed
-                            ..rotateY(-0.01 * _offset.dx),
-                          alignment: FractionalOffset.center,
-                          child: GestureDetector(
-                            onPanUpdate: (details) => setState(() => {
-                                  if (!settings.gyroscopeCardPopup)
-                                    {updatePan(details)}
-                                }),
-                            onDoubleTap: () =>
-                                setState(() => _offset = Offset.zero),
-                            child: FittedBox(
-                              child: SizedBox(
-                                width: imageDimensions["width"]!.toDouble(),
-                                height: imageDimensions["height"]!.toDouble(),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(28.0),
-                                  child: Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        4.0, 0.0, 0.0, 0.0),
-                                    child: Image.asset(
-                                      _cardPath,
-                                      fit: BoxFit.cover,
+              return Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: Stack(
+                      children: [
+                        Center(
+                          child: FractionallySizedBox(
+                            widthFactor: 0.7,
+                            heightFactor: 0.9,
+                            child: Transform(
+                              transform: Matrix4.identity()
+                                ..setEntry(3, 2, 0.001) // perspective
+                                ..rotateX(0.01 * _offset.dy) // changed
+                                ..rotateY(-0.01 * _offset.dx),
+                              alignment: FractionalOffset.center,
+                              child: GestureDetector(
+                                onPanUpdate: (details) => setState(() => {
+                                      if (!settings.gyroscopeCardPopup)
+                                        {updatePan(details)}
+                                    }),
+                                onDoubleTap: () =>
+                                    setState(() => _offset = Offset.zero),
+                                child: FittedBox(
+                                  child: SizedBox(
+                                    width: imageDimensions["width"]!.toDouble(),
+                                    height:
+                                        imageDimensions["height"]!.toDouble(),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(28.0),
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            4.0, 0.0, 0.0, 0.0),
+                                        child: Image.asset(
+                                          _cardPath,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -179,67 +188,107 @@ class _CardPopupState extends State<CardPopup> {
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    widget.cardIds.length > 1
-                        ? Align(
-                            alignment: FractionalOffset.bottomLeft,
-                            child: BorderButtonComponent(
-                              icon: Icons.arrow_back_ios_new,
-                              color: 'blue',
-                              onClick: () => setState(
-                                () => previousCard(),
-                              ),
-                            ),
-                          )
-                        : Container(),
-                    widget.cardIds.length > 1
-                        ? Align(
-                            alignment: FractionalOffset.bottomRight,
-                            child: BorderButtonComponent(
-                              icon: Icons.arrow_forward_ios,
-                              color: 'blue',
-                              onClick: () => setState(
-                                () => nextCard(),
-                              ),
-                            ),
-                          )
-                        : Container(),
-                    OrientationBuilder(
-                      builder: (context, orientation) {
-                        return Align(
-                            alignment: orientation == Orientation.portrait
-                                ? FractionalOffset.bottomCenter
-                                : FractionalOffset.topLeft,
-                            child: BorderButtonComponent(
-                                icon: Icons.close,
-                                onClick: () =>
-                                    Navigator.of(context, rootNavigator: true)
-                                        .pop()));
-                      },
-                    ),
-                    widget.expansionId != "" && instructionExists
-                        ? Align(
-                            alignment: FractionalOffset.topRight,
-                            child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 12, 7, 0),
+                        widget.cardIds.length > 1
+                            ? Align(
+                                alignment: FractionalOffset.bottomLeft,
                                 child: BorderButtonComponent(
-                                    icon: Icons.description_outlined,
-                                    color: 'green',
-                                    width: 60,
-                                    /*onClick: () => showDialog(
-                    context: context,
-                    builder: (context) {
-                      return InstructionsPopup(expansionId: widget.expansionId);
-                    },
-                  ),*/
-                                    onClick: () async {
-                                      _fileService.openExpansionInstructions(
-                                          widget.expansionId);
-                                    })))
-                        : Container(),
-                  ],
-                ),
+                                  icon: Icons.arrow_back_ios_new,
+                                  color: 'blue',
+                                  onClick: () => setState(
+                                    () => previousCard(),
+                                  ),
+                                ),
+                              )
+                            : Container(),
+                        widget.cardIds.length > 1
+                            ? Align(
+                                alignment: FractionalOffset.bottomRight,
+                                child: BorderButtonComponent(
+                                  icon: Icons.arrow_forward_ios,
+                                  color: 'blue',
+                                  onClick: () => setState(
+                                    () => nextCard(),
+                                  ),
+                                ),
+                              )
+                            : Container(),
+                        OrientationBuilder(
+                          builder: (context, orientation) {
+                            return Align(
+                                alignment: orientation == Orientation.portrait
+                                    ? FractionalOffset.bottomCenter
+                                    : FractionalOffset.topLeft,
+                                child: BorderButtonComponent(
+                                    icon: Icons.close,
+                                    onClick: () => Navigator.of(context,
+                                            rootNavigator: true)
+                                        .pop()));
+                          },
+                        ),
+                        widget.expansionId != "" && instructionExists
+                            ? Align(
+                                alignment: FractionalOffset.topRight,
+                                child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 12, 7, 0),
+                                    child: BorderButtonComponent(
+                                        icon: Icons.description_outlined,
+                                        color: 'green',
+                                        width: 60,
+                                        onClick: () async {
+                                          _fileService
+                                              .openExpansionInstructions(
+                                                  widget.expansionId);
+                                        })))
+                            : Container(),
+                      ],
+                    ),
+                  ),
+                  widget.expansionId != ""
+                      ? OrientationBuilder(
+                          builder: (context, orientation) {
+                            return Align(
+                              alignment: orientation == Orientation.portrait
+                                  ? FractionalOffset.topCenter
+                                  : FractionalOffset.bottomCenter,
+                              child: Padding(
+                                padding: orientation == Orientation.portrait
+                                    ? const EdgeInsets.fromLTRB(0, 18, 0, 0)
+                                    : const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                child: Container(
+                                  padding: orientation == Orientation.portrait
+                                      ? const EdgeInsets.all(12)
+                                      : const EdgeInsets.fromLTRB(
+                                          12, 12, 12, 0),
+                                  // Add padding to the container
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    // Set the background color to black
+                                    borderRadius: orientation == Orientation.portrait
+                                        ? BorderRadius.circular(10)
+                                        : const BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            topRight: Radius.circular(10),
+                                          ),
+                                  ),
+                                  child: Text(
+                                    widget.expansionName,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Trajan Pro',
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      decoration: TextDecoration
+                                          .none, // Remove the underline
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        )
+                      : Container(),
+                ],
               );
             },
           );

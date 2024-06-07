@@ -8,11 +8,9 @@ class SelectAnotherCardDialog extends StatefulWidget {
   const SelectAnotherCardDialog({
     Key? key,
     required this.onSaved,
-    required this.currentCard,
   }) : super(key: key);
 
-  final void Function(String deckName) onSaved;
-  final CardModel currentCard;
+  final void Function(String selectedCard) onSaved;
 
   @override
   State<SelectAnotherCardDialog> createState() =>
@@ -21,10 +19,10 @@ class SelectAnotherCardDialog extends StatefulWidget {
 
 class _SelectAnotherCardDialogState extends State<SelectAnotherCardDialog> {
   Key key = UniqueKey();
-  late String selectedExpansion = widget.currentCard.id.split("-")[0];
-  late String selectedCard = widget.currentCard.id;
-  late Map<String, String> availableExpansions = {};
-  late Map<String, String> availableCards = {};
+  String selectedExpansion = '';
+  String selectedCard = '';
+  Map<String, String> availableExpansions = {};
+  Map<String, String> availableCards = {};
 
   @override
   void initState() {
@@ -45,14 +43,19 @@ class _SelectAnotherCardDialogState extends State<SelectAnotherCardDialog> {
         for (var expansion in allExpansions)
           expansion.id: expansion.getFullName()
       };
+      if (availableExpansions.isNotEmpty) {
+        selectedExpansion = availableExpansions.keys.first;
+        loadAvailableCards(selectedExpansion);
+      }
       key = UniqueKey();
     });
   }
 
   void loadAvailableCards(String expansionId) async {
+    ExpansionModel? expansion =
+        await ExpansionService().getExpansionById(expansionId);
     List<CardModel> availableCardsList =
-        (await ExpansionService().getExpansionById(expansionId))
-            .getVisibleCards();
+        expansion != null ? expansion.getVisibleCards() : [];
     updateAvailableCards(availableCardsList);
   }
 
@@ -62,7 +65,9 @@ class _SelectAnotherCardDialogState extends State<SelectAnotherCardDialog> {
       availableCards = {
         for (var card in availableCardsList) card.id: card.name
       };
-      selectedCard = availableCards.keys.first;
+      if (availableCards.isNotEmpty) {
+        selectedCard = availableCards.keys.first;
+      }
       key = UniqueKey();
     });
   }
@@ -91,7 +96,7 @@ class _SelectAnotherCardDialogState extends State<SelectAnotherCardDialog> {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text('Karte auswählen'),
+                    const Text('Karte hinzufügen'),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 28, vertical: 10),
