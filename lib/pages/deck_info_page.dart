@@ -97,9 +97,10 @@ class _DeckInfoState extends State<DeckInfoPage> {
               onPressed: () => showDialog<String>(
                 context: context,
                 builder: (BuildContext context) => NameDeckDialog(
-                  onSaved: (deckName) => setState(
+                  onSaved: (deckName, deckDescription) => setState(
                     () {
                       temporaryDeck.name = deckName;
+                      temporaryDeck.description = deckDescription;
                       _deckService.saveDeck(temporaryDeck);
                       _temporaryDeckService.saved = true;
                     },

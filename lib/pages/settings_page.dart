@@ -22,7 +22,6 @@ class _DeckInfoState extends State<SettingsPage> {
     super.initState();
   }
 
-  final _deckService = DeckService();
   final _settingsService = SettingsService();
 
   void onLoadDeck() async {
@@ -39,7 +38,6 @@ class _DeckInfoState extends State<SettingsPage> {
       final dbDecks = await DeckService().getDBDeckList();
       for (var importedDeck in importedDecks!) {
         int? existingId;
-        int? newId;
         for (var dbDeck in dbDecks) {
           if (dbDeck.name.toLowerCase() == importedDeck.name.toLowerCase()) {
             existingId = dbDeck.id;
@@ -58,17 +56,14 @@ class _DeckInfoState extends State<SettingsPage> {
                 cancelText: "Überspringen",
                 confirmText: "Überschreiben",
                 onConfirm: () async => {
-                  await _deckService.removeCachedImage(existingId!),
-                  newId = await DeckService()
+                  await DeckService()
                       .importDeck(importedDeck, deleteId: existingId),
-                  await _deckService.setCachedImage(newId!, importedDeck.image),
                 },
               );
             },
           );
         } else if (context.mounted) {
-          newId = await DeckService().importDeck(importedDeck);
-          await _deckService.setCachedImage(newId, importedDeck.image);
+          await DeckService().importDeck(importedDeck);
         }
       }
       if (context.mounted) {
@@ -107,30 +102,10 @@ class _DeckInfoState extends State<SettingsPage> {
                   const SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () async {
-                      var withImages = await showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return const CustomAlertDialog(
-                            title: "Decks exportieren",
-                            message:
-                                "Möchtest du die Decks mit oder ohne Bilder exportieren? Falls du dich für die Option mit Bildern entscheidest kann die Datei sehr groß werden und es kann eventuell zu Problemen beim Import kommen.",
-                            cancelText: "Ohne",
-                            confirmText: "Mit",
-                          );
-                        },
-                      );
-                      if (withImages != null) {
-                        List<DeckDBModel> deckDBList;
-                        if (withImages) {
-                          deckDBList =
-                              await DeckService().getDBDeckListWithImages();
-                        } else {
-                          deckDBList = await DeckService().getDBDeckList();
-                        }
-                        var jsonFile = jsonEncode(deckDBList);
-                        FileService().shareTemporaryJSONFile("decks", jsonFile);
-                        // Share.shareXFiles(['${directory.path}/image.jpg'], text: 'Great picture');
-                      }
+                      List<DeckDBModel> deckDBList;
+                      deckDBList = await DeckService().getDBDeckList();
+                      var jsonFile = jsonEncode(deckDBList);
+                      FileService().shareTemporaryJSONFile("decks", jsonFile);
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,

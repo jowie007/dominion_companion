@@ -1,20 +1,15 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'dart:io';
 
 import 'package:dominion_companion/components/card_info_tile.dart';
 import 'package:dominion_companion/components/custom_alert_dialog.dart';
 import 'package:dominion_companion/components/deck_additional_info_tile.dart';
 import 'package:dominion_companion/components/dropdown_rating.dart';
-import 'package:dominion_companion/components/error_dialog.dart';
 import 'package:dominion_companion/components/name_deck_dialog.dart';
 import 'package:dominion_companion/model/deck/deck_model.dart';
 import 'package:dominion_companion/services/audio_service.dart';
 import 'package:dominion_companion/services/deck_service.dart';
 import 'package:dominion_companion/services/temporary_deck_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:dominion_companion/router/routes.dart' as route;
 
 class DeckExpandable extends StatefulWidget {
@@ -45,28 +40,65 @@ class _DeckExpandableState extends State<DeckExpandable> {
   TemporaryDeckService temporaryDeckService = TemporaryDeckService();
   bool isExpanded = false;
 
-  // https://medium.com/unitechie/flutter-tutorial-image-picker-from-camera-gallery-c27af5490b74
-  Future pickImage() async {
-    try {
-      final image = await ImagePicker().pickImage(
-          source: ImageSource.gallery,
-          maxHeight: 600,
-          maxWidth: 600,
-          imageQuality: 70);
-      if (image == null) return;
-      setState(() {
-        widget.deckModel.image = File(image.path);
-        deckService.setCachedImage(widget.deckModel.id!,
-            base64Encode(widget.deckModel.image!.readAsBytesSync()));
-      });
-    } on PlatformException catch (_) {
-      return showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return const ErrorDialog(
-                title: "Fehler", message: "Bild konnte nicht geöffnet werden");
-          });
-    }
+  Color pickerColor = Colors.white;
+
+  void changeColor(Color color) {
+    setState(() => pickerColor = color);
+  }
+
+  Future pickColor() async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Scaffold(
+          backgroundColor: Colors.transparent,
+          body: AlertDialog(
+            content: Padding(
+              padding: const EdgeInsets.all(0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text('Farbe auswählen'),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: SingleChildScrollView(
+                      child: BlockPicker(
+                        pickerColor: pickerColor,
+                        onColorChanged: changeColor,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Abbrechen'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          deckService.saveNewColor(
+                              widget.deckModel.id, pickerColor);
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Speichern'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 
   // https://stackoverflow.com/questions/53908025/flutter-sortable-drag-and-drop-listview
@@ -161,14 +193,8 @@ class _DeckExpandableState extends State<DeckExpandable> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: 56,
-                    decoration:
-                        BoxDecoration(color: Colors.white.withOpacity(1)),
-                    child: widget.deckModel.image != null
-                        ? Image.file(
-                            widget.deckModel.image!,
-                            fit: BoxFit.cover,
-                          )
-                        : Container(),
+                    decoration: BoxDecoration(
+                        color: widget.deckModel.getColorAsColor()),
                   ),
                   Container(
                     alignment: Alignment.center,
@@ -192,21 +218,28 @@ class _DeckExpandableState extends State<DeckExpandable> {
                         ),
                         collapsedIconColor: Colors.white,
                         title: GestureDetector(
-                          onLongPress: () => showDialog<String>(
-                            context: context,
-                            useRootNavigator: false,
-                            builder: (innerContext) => NameDeckDialog(
-                              oldName: widget.deckModel.name,
-                              onSaved: (deckName) => setState(
-                                () {
-                                  DeckService()
-                                      .renameDeck(
-                                          widget.deckModel.id!, deckName)
-                                      .then((value) => onChange());
-                                },
-                              ),
-                            ),
-                          ),
+                          onLongPress: () => !widget.isNewlyCreated
+                              ? showDialog<String>(
+                                  context: context,
+                                  useRootNavigator: false,
+                                  builder: (innerContext) => NameDeckDialog(
+                                    oldName: widget.deckModel.name,
+                                    oldDescription:
+                                        widget.deckModel.description,
+                                    onSaved: (deckName, deckDescription) =>
+                                        setState(
+                                      () {
+                                        DeckService()
+                                            .changeDeckNameAndDescription(
+                                                widget.deckModel.id!,
+                                                deckName,
+                                                deckDescription)
+                                            .then((value) => onChange());
+                                      },
+                                    ),
+                                  ),
+                                )
+                              : null,
                           child: Container(
                             padding: const EdgeInsets.fromLTRB(60, 0, 20, 0),
                             child: ClipRRect(
@@ -260,6 +293,16 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                             }
                                           });
                                         },
+                                        onSwapRandom: () {
+                                          setState(() {
+                                            if (widget.onCardReplace != null) {
+                                              widget.onCardReplace!(
+                                                  temporaryDeckService
+                                                      .replaceCardFromTemporaryDeckRandom(
+                                                          allCards[index].id));
+                                            }
+                                          });
+                                        },
                                         card: allCards[index],
                                         value: true,
                                         hasCheckbox: false,
@@ -307,13 +350,12 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                       context: context,
                                       builder: (context) {
                                         return CustomAlertDialog(
-                                          title: "Bild entfernen",
+                                          title: "Farbe entfernen",
                                           message:
-                                              "Soll das aktuelle Bild entfernt werden?",
+                                              "Soll die aktuelle Farbe entfernt werden?",
                                           onConfirm: () => setState(() {
-                                            widget.deckModel.image = null;
-                                            deckService.removeCachedImage(
-                                                widget.deckModel.id!);
+                                            widget.deckModel.color =
+                                                Colors.white.toString();
                                           }),
                                         );
                                       },
@@ -321,11 +363,11 @@ class _DeckExpandableState extends State<DeckExpandable> {
                                   },
                                   child: IconButton(
                                     icon: const Icon(
-                                      Icons.camera,
+                                      Icons.color_lens,
                                       color: Colors.black,
                                     ),
                                     onPressed: () =>
-                                        {pickImage().then((_) => onChange())},
+                                        {pickColor().then((_) => onChange())},
                                   ),
                                 ),
                               ),

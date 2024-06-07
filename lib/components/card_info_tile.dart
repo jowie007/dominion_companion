@@ -3,7 +3,6 @@ import 'package:dominion_companion/components/coin_component.dart';
 import 'package:dominion_companion/components/custom_alert_dialog.dart';
 import 'package:dominion_companion/components/round_checkbox.dart';
 import 'package:dominion_companion/components/expansion_icon.dart';
-import 'package:dominion_companion/components/select_another_card_dialog.dart';
 import 'package:dominion_companion/model/card/card_model.dart';
 import 'package:dominion_companion/services/card_service.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
@@ -18,12 +17,14 @@ class CardInfoTile extends StatefulWidget {
     required this.value,
     this.dismissible = false,
     this.onSwapDelete,
+    this.onSwapRandom,
     this.hasCheckbox = true,
     this.showCardCount = false,
   });
 
   final void Function(bool? value) onChanged;
   final void Function()? onSwapDelete;
+  final void Function()? onSwapRandom;
   final CardModel card;
   final bool value;
   final bool dismissible;
@@ -79,7 +80,7 @@ class _CardInfoTileState extends State<CardInfoTile> {
                 message:
                     'Möchtest du die Karte "${widget.card.name}" durch eine zufällige aus deiner Auswahl ersetzen?',
                 onConfirm: () {
-                  widget.onSwapDelete!();
+                  widget.onSwapRandom!();
                 },
               );
             },

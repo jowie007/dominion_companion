@@ -8,15 +8,20 @@ class JsonService {
   List<String> files = [
     'basisspiel_v1',
     'basisspiel_v2',
+    'bluetezeit_v1',
     'bluetezeit_v2',
     'alchemisten_v1',
     'reiche_ernte_v1',
+    'intrige_v1',
     'intrige_v2',
+    'seaside_v1',
     'seaside_v2',
+    'hinterland_v1',
     'hinterland_v2',
     'dark_ages_v1',
     'gilden_v1',
     'abenteuer_v1',
+    'empires_v1',
     'empires_v2',
     'nocturne_v1',
     'renaissance_v1',
@@ -24,7 +29,6 @@ class JsonService {
     'verbuendete_v1',
     'pluenderer_v1',
     'promos_v1',
-    'ausgemustert_v1',
   ];
 
   Future<List<ExpansionModel>> getExpansionsFromJSON() async {

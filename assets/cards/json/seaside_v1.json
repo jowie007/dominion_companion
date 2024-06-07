@@ -5,7 +5,7 @@
   "priority": "1",
   "cards": [
     {
-      "id": "seaside_v2-card-eingeborenendorf",
+      "id": "seaside_v1-card-eingeborenendorf",
       "name": "Eingeborenendorf",
       "cardTypes": "aktion",
       "cardCost": {
@@ -29,7 +29,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-ausguck",
+      "id": "seaside_v1-card-ausguck",
       "name": "Ausguck",
       "cardTypes": "aktion",
       "cardCost": {
@@ -37,7 +37,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-lagerhaus",
+      "id": "seaside_v1-card-lagerhaus",
       "name": "Lagerhaus",
       "cardTypes": "aktion",
       "cardCost": {
@@ -45,7 +45,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-schmuggler",
+      "id": "seaside_v1-card-schmuggler",
       "name": "Schmuggler",
       "cardTypes": "aktion",
       "cardCost": {
@@ -53,7 +53,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-muellverwerter",
+      "id": "seaside_v1-card-muellverwerter",
       "name": "Müllverwerter",
       "cardTypes": "aktion",
       "cardCost": {
@@ -69,7 +69,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-schatzkarte",
+      "id": "seaside_v1-card-schatzkarte",
       "name": "Schatzkarte",
       "cardTypes": "aktion",
       "cardCost": {
@@ -77,7 +77,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-bazar",
+      "id": "seaside_v1-card-bazar",
       "name": "Bazar",
       "cardTypes": "aktion",
       "cardCost": {
@@ -93,7 +93,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-schatzkammer",
+      "id": "seaside_v1-card-schatzkammer",
       "name": "Schatzkammer",
       "cardTypes": "aktion",
       "cardCost": {
@@ -101,7 +101,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-hafen",
+      "id": "seaside_v1-card-hafen",
       "name": "Hafen",
       "cardTypes": "aktion, dauer",
       "cardCost": {
@@ -109,7 +109,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-leuchtturm",
+      "id": "seaside_v1-card-leuchtturm",
       "name": "Leuchtturm",
       "cardTypes": "aktion, dauer",
       "cardCost": {
@@ -117,7 +117,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-fischerdorf",
+      "id": "seaside_v1-card-fischerdorf",
       "name": "Fischerdorf",
       "cardTypes": "aktion, dauer",
       "cardCost": {
@@ -125,7 +125,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-karawane",
+      "id": "seaside_v1-card-karawane",
       "name": "Karawane",
       "cardTypes": "aktion, dauer",
       "cardCost": {
@@ -133,7 +133,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-aussenposten",
+      "id": "seaside_v1-card-aussenposten",
       "name": "Aussenposten",
       "cardTypes": "aktion, dauer",
       "cardCost": {
@@ -141,7 +141,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-handelsschiff",
+      "id": "seaside_v1-card-handelsschiff",
       "name": "Handelsschiff",
       "cardTypes": "aktion, dauer",
       "cardCost": {
@@ -149,7 +149,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-taktiker",
+      "id": "seaside_v1-card-taktiker",
       "name": "Taktiker",
       "cardTypes": "aktion, dauer",
       "cardCost": {
@@ -157,7 +157,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-werft",
+      "id": "seaside_v1-card-werft",
       "name": "Werft",
       "cardTypes": "aktion, dauer",
       "cardCost": {
@@ -165,15 +165,7 @@
       }
     },
     {
-      "id": "hinterland_v1-card-botschaft",
-      "name": "Botschaft",
-      "cardTypes": "aktion",
-      "cardCost": {
-        "coin": "5"
-      }
-    },
-    {
-      "id": "seaside_v2-card-beutelschneider",
+      "id": "seaside_v1-card-beutelschneider",
       "name": "Beutelschneider",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -205,7 +197,7 @@
       }
     },
     {
-      "id": "seaside_v2-card-insel",
+      "id": "seaside_v1-card-insel",
       "name": "Insel",
       "cardTypes": "aktion, punkte",
       "cardCost": {
@@ -216,82 +208,82 @@
   ],
   "content": [
     {
-      "id": "seaside_v2-content-insel_tableau",
+      "id": "seaside_v1-content-insel_tableau",
       "name": "Insel Tableau",
       "whenDeckConsistsOfXCards": {
         "1": [
-          "seaside_v2-card-insel"
+          "seaside_v1-card-insel"
         ]
       }
     },
     {
-      "id": "seaside_v2-content-piratenschiff_tableau",
+      "id": "seaside_v1-content-piratenschiff_tableau",
       "name": "Piratenschiff Tableau",
       "whenDeckConsistsOfXCards": {
         "1": [
-          "seaside_v2-card-piratenschiff"
+          "seaside_v1-card-piratenschiff"
         ]
       }
     },
     {
-      "id": "seaside_v2-content-eingeborenendorf_tableau",
+      "id": "seaside_v1-content-eingeborenendorf_tableau",
       "name": "Eingeborenendorf Tableau",
       "whenDeckConsistsOfXCards": {
         "1": [
-          "seaside_v2-card-eingeborenendorf"
+          "seaside_v1-card-eingeborenendorf"
         ]
       }
     },
     {
-      "id": "seaside_v2-content-muenzen",
+      "id": "seaside_v1-content-muenzen",
       "name": "Münzen",
       "whenDeckConsistsOfXCards": {
         "1": [
-          "seaside_v2-card-piratenschiff"
+          "seaside_v1-card-piratenschiff"
         ]
       }
     },
     {
-      "id": "seaside_v2-content-embargomarker",
+      "id": "seaside_v1-content-embargomarker",
       "name": "Embargomarker",
       "whenDeckConsistsOfXCards": {
         "1": [
-          "seaside_v2-card-embargo"
+          "seaside_v1-card-embargo"
         ]
       }
     }
   ],
   "handContents": [
     {
-      "id": "seaside_v2-hand_contents-1",
+      "id": "seaside_v1-hand_contents-1",
       "additionalElements": {
-        "seaside_v2-content-insel_tableau": 1
+        "seaside_v1-content-insel_tableau": 1
       },
       "whenDeckConsistsOfXCards": {
         "1": [
-          "seaside_v2-card-insel"
+          "seaside_v1-card-insel"
         ]
       }
     },
     {
-      "id": "seaside_v2-hand_contents-2",
+      "id": "seaside_v1-hand_contents-2",
       "additionalElements": {
-        "seaside_v2-content-piratenschiff_tableau": 1
+        "seaside_v1-content-piratenschiff_tableau": 1
       },
       "whenDeckConsistsOfXCards": {
         "1": [
-          "seaside_v2-card-piratenschiff"
+          "seaside_v1-card-piratenschiff"
         ]
       }
     },
     {
-      "id": "seaside_v2-hand_contents-2",
+      "id": "seaside_v1-hand_contents-3",
       "additionalElements": {
-        "seaside_v2-content-eingeborenendorf_tableau": 1
+        "seaside_v1-content-eingeborenendorf_tableau": 1
       },
       "whenDeckConsistsOfXCards": {
         "1": [
-          "seaside_v2-card-eingeborenendorf"
+          "seaside_v1-card-eingeborenendorf"
         ]
       }
     }

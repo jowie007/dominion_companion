@@ -264,22 +264,21 @@ class _CardPopupState extends State<CardPopup> {
                                   decoration: BoxDecoration(
                                     color: Colors.black,
                                     // Set the background color to black
-                                    borderRadius: orientation == Orientation.portrait
-                                        ? BorderRadius.circular(10)
-                                        : const BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10),
-                                          ),
+                                    borderRadius:
+                                        orientation == Orientation.portrait
+                                            ? BorderRadius.circular(10)
+                                            : const BorderRadius.only(
+                                                topLeft: Radius.circular(10),
+                                                topRight: Radius.circular(10),
+                                              ),
                                   ),
                                   child: Text(
                                     widget.expansionName,
                                     style: const TextStyle(
                                       color: Colors.white,
-                                      fontFamily: 'Trajan Pro',
+                                      fontFamily: 'TrajanPro',
                                       fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      decoration: TextDecoration
-                                          .none, // Remove the underline
+                                      decoration: TextDecoration.none,
                                     ),
                                   ),
                                 ),

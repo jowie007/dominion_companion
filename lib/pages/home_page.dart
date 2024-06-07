@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:dominion_companion/components/card_popup.dart';
 import 'package:dominion_companion/components/error_dialog.dart';

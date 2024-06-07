@@ -16,6 +16,8 @@ class DeckDatabase {
         "CREATE TABLE deck("
         "id INTEGER PRIMARY KEY, "
         "name STRING, "
+        "color STRING, "
+        "description STRING, "
         "rating STRING, "
         "cardIds STRING, "
         "creationDate STRING, "
@@ -95,10 +97,22 @@ class DeckDatabase {
         : 0;
   }
 
-  Future<int> renameDeck(int id, String newName) async {
+  Future<int> changeDeckNameAndDescription(
+      int id, String newName, String newDescription) async {
     await openDb();
-    return await _database.update('deck',
-        {"name": newName, "editDate": DateTime.now().millisecondsSinceEpoch},
-        where: "id = ?", whereArgs: [id]);
+    return await _database.update(
+        'deck',
+        {
+          "name": newName,
+          "description": newDescription,
+          "editDate": DateTime.now().millisecondsSinceEpoch
+        },
+        where: "id = ?",
+        whereArgs: [id]);
+  }
+
+  Future<void> deleteDb() async {
+    String path = join(await getDatabasesPath(), "deck.db");
+    await deleteDatabase(path);
   }
 }

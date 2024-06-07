@@ -6,6 +6,7 @@ import 'package:dominion_companion/model/settings/settings_model.dart';
 import 'package:dominion_companion/services/active_expansion_version_service.dart';
 import 'package:dominion_companion/services/card_service.dart';
 import 'package:dominion_companion/services/content_service.dart';
+import 'package:dominion_companion/services/deck_service.dart';
 import 'package:dominion_companion/services/end_service.dart';
 import 'package:dominion_companion/services/expansion_service.dart';
 import 'package:dominion_companion/services/file_service.dart';
@@ -37,6 +38,7 @@ class SettingsService {
   // Adjust version in pubspec.yaml
   Future<void> initializeApp(
       {deleteSettings = false,
+      deleteDecks = false,
       checkCardNamesAndImages = false,
       initializeExpansions = false}) async {
     fileService.initialize();
@@ -52,6 +54,10 @@ class SettingsService {
       log("SETTING IS NULL");
       await initDatabase();
       await initCachedSettings();
+    }
+
+    if(deleteDecks) {
+      await DeckService().deleteDb();
     }
 
     await PackageInfo.fromPlatform().then((packageInfo) async {

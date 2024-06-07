@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dominion_companion/database/expansion_database.dart';
 import 'package:dominion_companion/database/model/expansion/expansion_db_model.dart';
 import 'package:dominion_companion/model/card/card_model.dart';
@@ -62,23 +64,27 @@ class ExpansionService {
 
   Future<void> insertExpansionsWithDependenciesIntoDB(
       List<ExpansionModel> expansionModels) async {
-    await insertExpansionModelsIntoDB(expansionModels);
-    var cards = expansionModels.expand((e) => e.cards).toList();
-    await _cardService.insertCardModelsIntoDB(cards);
-    var contents = expansionModels.expand((e) => e.content).toList();
-    await _contentService.insertContentModelsIntoDB(contents);
-    var hands = expansionModels
-        .expand((e) =>
-            [...e.handMoneyCards, ...e.handOtherCards, ...e.handContents])
-        .toList();
-    await _handService.insertHandModelsIntoDB(hands);
-    List<EndModel> ends = [];
-    for (var expansionModel in expansionModels) {
-      if (expansionModel.end != null) {
-        ends.add(expansionModel.end!);
+    try {
+      await insertExpansionModelsIntoDB(expansionModels);
+      var cards = expansionModels.expand((e) => e.cards).toList();
+      await _cardService.insertCardModelsIntoDB(cards);
+      var contents = expansionModels.expand((e) => e.content).toList();
+      await _contentService.insertContentModelsIntoDB(contents);
+      var hands = expansionModels
+          .expand((e) =>
+      [...e.handMoneyCards, ...e.handOtherCards, ...e.handContents])
+          .toList();
+      await _handService.insertHandModelsIntoDB(hands);
+      List<EndModel> ends = [];
+      for (var expansionModel in expansionModels) {
+        if (expansionModel.end != null) {
+          ends.add(expansionModel.end!);
+        }
       }
+      await _endService.insertEndModelsIntoDB(ends);
+    } catch (e) {
+      log(e.toString());
     }
-    await _endService.insertEndModelsIntoDB(ends);
   }
 
   Future<void> loadJsonExpansionsIntoDB() async {

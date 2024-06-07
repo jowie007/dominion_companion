@@ -18,7 +18,7 @@ import 'package:dominion_companion/services/end_service.dart';
 import 'package:dominion_companion/services/file_service.dart';
 import 'package:dominion_companion/services/hand_service.dart';
 import 'package:flutter/foundation.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:flutter/material.dart';
 
 class DeckService {
   final DeckDatabase _deckDatabase = DeckDatabase();
@@ -73,19 +73,6 @@ class DeckService {
     return await _deckDatabase.getDeckList(sortAsc, sortKey);
   }
 
-  Future<List<DeckDBModel>> getDBDeckListWithImages(
-      {bool sortAsc = true, String sortKey = "creationDate"}) async {
-    var dbDeckList = await _deckDatabase.getDeckList(sortAsc, sortKey);
-    for (var dbDeck in dbDeckList) {
-      var image = dbDeck.id != null ? await getCachedImage(dbDeck.id!) : null;
-      if (image != null && await image.exists()) {
-        List<int> bytes = await image.readAsBytes();
-        dbDeck.image = base64Encode(bytes);
-      }
-    }
-    return dbDeckList;
-  }
-
   Future<List<DeckModel>> getDeckList(
       {bool sortAsc = true, String sortKey = "creationDate"}) async {
     var deckList = await getDBDeckList(sortKey: sortKey, sortAsc: sortAsc);
@@ -130,13 +117,14 @@ class DeckService {
     notifier.value = !notifier.value;
     var newDeckId =
         await _deckDatabase.insertDeck(DeckDBModel.fromModel(deckModel));
-    await removeCachedImage(newDeckId);
     return newDeckId;
   }
 
-  Future<int> renameDeck(int id, String newName) {
+  Future<int> changeDeckNameAndDescription(
+      int id, String newName, String newDescription) {
     notifier.value = !notifier.value;
-    return _deckDatabase.renameDeck(id, newName);
+    return _deckDatabase.changeDeckNameAndDescription(
+        id, newName, newDescription);
   }
 
   Future<int> deleteDeckByName(String name) {
@@ -149,42 +137,12 @@ class DeckService {
     return _deckDatabase.deleteDeckById(id);
   }
 
-  Future<void> setCachedImage(int deckId, String? base64String) async {
-    appDocumentsDir ??= await getApplicationDocumentsDirectory();
-    final path = '${appDocumentsDir!.path}/decks/images/$deckId.jpg';
-    await removeCachedImage(deckId);
-    if (base64String != null) {
-      try {
-        if (!(await File(path).exists())) {
-          final file = await File(path).create(recursive: true);
-          file.writeAsBytesSync(base64Decode(base64String));
-        }
-      } catch (_) {}
-    }
-  }
-
-  Future<File?> getCachedImage(int deckId) async {
-    appDocumentsDir ??= await getApplicationDocumentsDirectory();
-    final path = '${appDocumentsDir!.path}/decks/images/$deckId.jpg';
-    try {
-      if (await File(path).exists()) {
-        return File(path);
-      } else {
-        return null;
-      }
-    } catch (_) {
-      return null;
-    }
-  }
-
-  Future<void> removeCachedImage(int deckId) async {
-    appDocumentsDir ??= await getApplicationDocumentsDirectory();
-    final path = '${appDocumentsDir!.path}/decks/images/$deckId.jpg';
-    try {
-      if (await File(path).exists()) {
-        File(path).delete();
-      }
-    } catch (_) {}
+  Future<void> saveNewColor(int? deckId, Color color) async {
+    String colorValue = color.value.toRadixString(16);
+    if (deckId == null) return;
+    var deck = await _deckDatabase.getDeckById(deckId);
+    deck!.color = colorValue;
+    await _deckDatabase.updateDeck(deck);
   }
 
   Future<DeckModel> deckFromDBModel(DeckDBModel deckDBModel) async {
@@ -196,7 +154,8 @@ class DeckService {
     var ret = DeckModel(
       deckDBModel.id,
       deckDBModel.name,
-      deckDBModel.id != null ? await getCachedImage(deckDBModel.id!) : null,
+      deckDBModel.color,
+      deckDBModel.description,
       deckDBModel.creationDate,
       deckDBModel.editDate,
       deckDBModel.rating,
@@ -330,7 +289,8 @@ class DeckService {
     if (verbuendeteCard != null) {
       ret.add(verbuendeteCard);
     }
-    return ret;
+    var uniqueCardNames = ret.map((card) => card.name).toSet();
+    return ret.where((card) => uniqueCardNames.remove(card.name)).toList();
   }
 
   List<String> getActiveExpansionIdsByCardIds(List<String> cardIds) {
@@ -373,7 +333,10 @@ class DeckService {
         }
       }
     }
-    return ret;
+    var uniqueContentNames = ret.map((content) => content.name).toSet();
+    return ret
+        .where((content) => uniqueContentNames.remove(content.name))
+        .toList();
   }
 
   Future<HandModel> getHandByCardsAndActiveExpansionIdsAndType(
@@ -426,8 +389,17 @@ class DeckService {
           }
           if (handModel.additionalElementIdCountMap != null) {
             hand.additionalElementIdCountMap ??= {};
-            hand.additionalElementIdCountMap!
-                .addAll(handModel.additionalElementIdCountMap!);
+            handModel.additionalElementIdCountMap!.forEach((key, value) {
+              bool alreadyContainsItemWithName = false;
+              for (var element in hand.additionalElementIdCountMap!.entries) {
+                if(element.key.split("-")[1] == key.split("-")[1]) {
+                  alreadyContainsItemWithName = true;
+                }
+              }
+              if (!alreadyContainsItemWithName) {
+                hand.additionalElementIdCountMap![key] = value;
+              }
+            });
           }
         }
       }
@@ -490,6 +462,14 @@ class DeckService {
         }
       }
     }
+    var uniqueCardIds = end.additionalEmptyCards.toSet();
+    end.additionalEmptyCards = end.additionalEmptyCards
+        .where((cardId) => uniqueCardIds.remove(cardId))
+        .toList();
     return end;
+  }
+
+  Future<void> deleteDb() async {
+    _deckDatabase.deleteDb();
   }
 }

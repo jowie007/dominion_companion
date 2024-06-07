@@ -9,7 +9,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 // TODO Add a setting to configure your sets
 // TODO Add a setting to show only one version of expansion (the other is stacked)
 // TODO Make background configurable
-// TODO Fix possible errors with calculated cards when cards of different versions are in the same deck
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
@@ -18,8 +17,9 @@ Future<void> main() async {
   try {
     await settingsService.initializeApp(
         checkCardNamesAndImages: false,
-        initializeExpansions: true,
-        deleteSettings: true);
+        initializeExpansions: false,
+        deleteDecks: false,
+        deleteSettings: false);
     FlutterNativeSplash.remove();
   } on Exception catch (e) {
     settingsService.initException = e;

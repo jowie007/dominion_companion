@@ -1,14 +1,15 @@
-import 'dart:io';
 
 import 'package:dominion_companion/model/card/card_model.dart';
 import 'package:dominion_companion/model/content/content_model.dart';
 import 'package:dominion_companion/model/end/end_model.dart';
 import 'package:dominion_companion/model/hand/hand_model.dart';
+import 'package:flutter/material.dart';
 
 class DeckModel {
   late int? id;
   late String name;
-  late File? image;
+  late String color;
+  late String description;
   late DateTime creationDate;
   late DateTime? editDate;
   late int? rating;
@@ -23,7 +24,8 @@ class DeckModel {
   DeckModel(
       this.id,
       this.name,
-      this.image,
+      this.color,
+      this.description,
       this.creationDate,
       this.editDate,
       this.rating,
@@ -42,5 +44,16 @@ class DeckModel {
     }
     allCards.sort((a, b) => CardModel.sortCardComparisonDeck(a, b));
     return allCards;
+  }
+
+  Color getColorAsColor() {
+    Color ret;
+    try {
+      String colorString = '0xff$color';
+      ret = Color(int.parse(colorString));
+    } catch (e) {
+      ret = Colors.white;
+    }
+    return ret;
   }
 }

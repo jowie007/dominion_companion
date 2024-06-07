@@ -40,8 +40,9 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
       context: context,
       builder: (BuildContext context) {
         return SelectAnotherCardDialog(onSaved: (String selectedCard) {
-          Future<bool> isAdded = _temporaryDeckService.addCardToTemporaryDeck(selectedCard);
-          if(widget.onAddCard != null) {
+          Future<bool> isAdded =
+              _temporaryDeckService.addCardToTemporaryDeck(selectedCard);
+          if (widget.onAddCard != null) {
             widget.onAddCard!(isAdded);
           }
         });
@@ -237,6 +238,29 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                             width: 20,
                           ),
                           Expanded(child: Text(widget.deckModel.name)),
+                        ],
+                      )
+                    : Container(),
+                !widget.isTemporary && widget.deckModel.description != ''
+                    ? const Row(
+                        children: [
+                          Icon(Icons.info_outline, size: 14),
+                          SizedBox(width: 8),
+                          Text(
+                            "Beschreibung:",
+                            style:
+                                TextStyle(decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      )
+                    : Container(),
+                !widget.isTemporary && widget.deckModel.description != ''
+                    ? Row(
+                        children: [
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Expanded(child: Text(widget.deckModel.description)),
                         ],
                       )
                     : Container(),

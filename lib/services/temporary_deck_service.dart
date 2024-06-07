@@ -1,3 +1,4 @@
+
 import 'package:dominion_companion/database/model/deck/deck_db_model.dart';
 import 'package:dominion_companion/model/card/card_model.dart';
 import 'package:dominion_companion/model/card/card_type_enum.dart';
@@ -5,6 +6,7 @@ import 'package:dominion_companion/model/card/card_type_infos.dart';
 import 'package:dominion_companion/model/deck/deck_model.dart';
 import 'package:dominion_companion/services/card_service.dart';
 import 'package:dominion_companion/services/deck_service.dart';
+import 'package:flutter/material.dart';
 
 class TemporaryDeckService {
   final DeckService _deckService = DeckService();
@@ -34,7 +36,14 @@ class TemporaryDeckService {
         cardIds.where((element) => !cardIdsFiltered.contains(element)).toList();
     morePossibleCardIds.shuffle();
     return _deckService.deckFromDBModel(DeckDBModel(
-        null, name, null, cardIdsFiltered, DateTime.now(), null, null));
+        null,
+        name,
+        Colors.white.toString(),
+        '',
+        cardIdsFiltered,
+        DateTime.now(),
+        null,
+        null));
   }
 
   Future<bool> replaceCardFromTemporaryDeckRandom(String cardId) async {
@@ -49,7 +58,14 @@ class TemporaryDeckService {
     newCardIds.add(morePossibleCardIds.removeLast());
     morePossibleCardIds.insert(0, cardId);
     temporaryDeck = _deckService.deckFromDBModel(DeckDBModel(
-        null, "", null, newCardIds, oldDeck.creationDate, null, null));
+        null,
+        "",
+        Colors.white.toString(),
+        '',
+        newCardIds,
+        oldDeck.creationDate,
+        null,
+        null));
     return true;
   }
 
@@ -61,7 +77,14 @@ class TemporaryDeckService {
         .toList();
     morePossibleCardIds.insert(0, cardId);
     temporaryDeck = _deckService.deckFromDBModel(DeckDBModel(
-        null, "", null, newCardIds, oldDeck.creationDate, null, null));
+        null,
+        "",
+        Colors.white.toString(),
+        '',
+        newCardIds,
+        oldDeck.creationDate,
+        null,
+        null));
     return true;
   }
 
@@ -70,12 +93,22 @@ class TemporaryDeckService {
     if (oldDeck.cards.any((element) => element.id == cardId)) {
       return false;
     }
-    if(morePossibleCardIds.contains(cardId)){
+    if (morePossibleCardIds.contains(cardId)) {
       morePossibleCardIds.remove(cardId);
     }
-    List<String> newCardIds = [...oldDeck.cards.map((e) => e.id).toList(), cardId];
+    List<String> newCardIds = [
+      ...oldDeck.cards.map((e) => e.id).toList(),
+      cardId
+    ];
     temporaryDeck = _deckService.deckFromDBModel(DeckDBModel(
-        null, "", null, newCardIds, oldDeck.creationDate, null, null));
+        null,
+        "",
+        Colors.white.toString(),
+        '',
+        newCardIds,
+        oldDeck.creationDate,
+        null,
+        null));
     return true;
   }
 
@@ -89,7 +122,14 @@ class TemporaryDeckService {
     List<String> newCardIds =
         oldDeck.cards.map((e) => e.id == cardId ? newCardId : e.id).toList();
     temporaryDeck = _deckService.deckFromDBModel(DeckDBModel(
-        null, "", null, newCardIds, oldDeck.creationDate, null, null));
+        null,
+        "",
+        Colors.white.toString(),
+        '',
+        newCardIds,
+        oldDeck.creationDate,
+        null,
+        null));
     return true;
   }
 

@@ -79,8 +79,7 @@ class FileService {
   }
 
   void initializeBackgroundImagePath() {
-    /*backgroundImageName = boxartList[Random().nextInt(boxartList.length)];*/
-    backgroundImageName = "verbuendete_v1";
+    backgroundImageName = boxartList[Random().nextInt(boxartList.length)];
     backgroundImagePath = "assets/artwork/boxart/$backgroundImageName.jpg";
   }
 
