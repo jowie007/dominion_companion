@@ -79,12 +79,14 @@ flutter:
     - assets/cards/other/
     - assets/cards/json/
     - assets/cards/full/alchemisten_v1/
+    - assets/cards/full/basisspiel_v1/
     - assets/cards/full/basisspiel_v2/
     - assets/cards/full/bluetezeit_v1/
     - assets/cards/full/bluetezeit_v2/
     - assets/cards/full/reiche_ernte_v1/
     - assets/cards/full/seaside_v1/
     - assets/cards/full/seaside_v2/
+    - assets/cards/full/intrige_v1/
     - assets/cards/full/intrige_v2/
     - assets/cards/full/hinterland_v1/
     - assets/cards/full/hinterland_v2/

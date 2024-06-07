@@ -1,0 +1,210 @@
+{
+  "id": "intrige_v1",
+  "name": "Intrige",
+  "version": "V1",
+  "priority": "1",
+  "cards": [
+    {
+      "id": "intrige_v1-card-burghof",
+      "name": "Burghof",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "intrige_v1-card-handlanger",
+      "name": "Handlanger",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "intrige_v1-card-armenviertel",
+      "name": "Armenviertel",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "intrige_v1-card-maskerade",
+      "name": "Maskerade",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "intrige_v1-card-verwalter",
+      "name": "Verwalter",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "intrige_v1-card-wunschbrunnen",
+      "name": "Wunschbrunnen",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },    {
+      "id": "intrige_v1-card-baron",
+      "name": "Baron",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "intrige_v1-card-bergwerk",
+      "name": "Bergwerk",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "intrige_v1-card-bruecke",
+      "name": "Brücke",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "intrige_v1-card-kupferschmied",
+      "name": "Kupferschmied",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "intrige_v1-card-eisenhuette",
+      "name": "Eisenhütte",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "intrige_v1-card-spaeher",
+      "name": "Späher",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "intrige_v1-card-verschwoerer",
+      "name": "Verschwörer",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "intrige_v1-card-anbau",
+      "name": "Anbau",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "intrige_v1-card-handelsposten",
+      "name": "Handelsposten",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "intrige_v1-card-tribut",
+      "name": "Tribut",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "intrige_v1-card-geheimkammer",
+      "name": "Geheimkammer",
+      "cardTypes": "aktion, reaktion",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "intrige_v1-card-trickser",
+      "name": "Trickser",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "intrige_v1-card-kerkermeister",
+      "name": "Kerkermeister",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "intrige_v1-card-lakai",
+      "name": "Lakai",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "intrige_v1-card-saboteur",
+      "name": "Saboteur",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "intrige_v1-card-herzog",
+      "name": "Herzog",
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "intrige_v1-card-grosse_halle",
+      "name": "Grosse Halle",
+      "cardTypes": "aktion, punkte",
+      "cardCost": {
+        "coin": "3"
+      },
+      "count": "0,8,12,12,12,12"
+    },
+    {
+      "id": "intrige_v1-card-adlige",
+      "name": "Adlige",
+      "cardTypes": "aktion, punkte",
+      "cardCost": {
+        "coin": "6"
+      },
+      "count": "0,8,12,12,12,12"
+    },
+    {
+      "id": "intrige_v1-card-harem",
+      "name": "Harem",
+      "cardTypes": "geld, punkte",
+      "cardCost": {
+        "coin": "6"
+      },
+      "count": "0,8,12,12,12,12"
+    }
+  ]
+}

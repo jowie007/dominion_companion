@@ -3,14 +3,13 @@ import 'package:dominion_companion/services/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-// TODO Add older versions of expansions
 // TODO Add licence
 // TODO Dont delete databases
 // TODO Fix verbuendete card hardcoding
-// TODO Custom alignment for background
 // TODO Add a setting to configure your sets
-// TODO Add a setting to show only one version of expansion
+// TODO Add a setting to show only one version of expansion (the other is stacked)
 // TODO Make background configurable
+// TODO Fix possible errors with calculated cards when cards of different versions are in the same deck
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);

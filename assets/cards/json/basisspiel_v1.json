@@ -5,9 +5,9 @@
   "priority": "1",
   "cards": [
     {
-      "id": "basisspiel_v1-card-kapelle",
-      "name": "Kapelle",
-      "cardTypes": "aktion",
+      "id": "basisspiel_v1-card-burggraben",
+      "name": "Burggraben",
+      "cardTypes": "aktion, reaktion",
       "cardCost": {
         "coin": "2"
       }
@@ -29,22 +29,6 @@
       }
     },
     {
-      "id": "basisspiel_v1-card-haendlerin",
-      "name": "Händlerin",
-      "cardTypes": "aktion",
-      "cardCost": {
-        "coin": "3"
-      }
-    },
-    {
-      "id": "basisspiel_v1-card-vasall",
-      "name": "Vasall",
-      "cardTypes": "aktion",
-      "cardCost": {
-        "coin": "3"
-      }
-    },
-    {
       "id": "basisspiel_v1-card-werkstatt",
       "name": "Werkstatt",
       "cardTypes": "aktion",
@@ -53,24 +37,16 @@
       }
     },
     {
-      "id": "basisspiel_v1-card-geldverleiher",
-      "name": "Geldverleiher",
+      "id": "basisspiel_v1-card-holzfaeller",
+      "name": "Holzfäller",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": "4"
+        "coin": "3"
       }
     },
     {
       "id": "basisspiel_v1-card-schmiede",
       "name": "Schmiede",
-      "cardTypes": "aktion",
-      "cardCost": {
-        "coin": "4"
-      }
-    },
-    {
-      "id": "basisspiel_v1-card-thronsaal",
-      "name": "Thronsaal",
       "cardTypes": "aktion",
       "cardCost": {
         "coin": "4"
@@ -85,35 +61,11 @@
       }
     },
     {
-      "id": "basisspiel_v1-card-wilddiebin",
-      "name": "Wilddiebin",
-      "cardTypes": "aktion",
+      "id": "basisspiel_v1-card-miliz",
+      "name": "Miliz",
+      "cardTypes": "aktion, angriff",
       "cardCost": {
         "coin": "4"
-      }
-    },
-    {
-      "id": "basisspiel_v1-card-bibliothek",
-      "name": "Bibliothek",
-      "cardTypes": "aktion",
-      "cardCost": {
-        "coin": "5"
-      }
-    },
-    {
-      "id": "basisspiel_v1-card-jahrmarkt",
-      "name": "Jahrmarkt",
-      "cardTypes": "aktion",
-      "cardCost": {
-        "coin": "5"
-      }
-    },
-    {
-      "id": "basisspiel_v1-card-laboratorium",
-      "name": "Laboratorium",
-      "cardTypes": "aktion",
-      "cardCost": {
-        "coin": "5"
       }
     },
     {
@@ -133,24 +85,16 @@
       }
     },
     {
-      "id": "basisspiel_v1-card-ratsversammlung",
-      "name": "Ratsversammlung",
+      "id": "basisspiel_v1-card-abenteurer",
+      "name": "Abenteurer",
       "cardTypes": "aktion",
       "cardCost": {
-        "coin": "5"
+        "coin": "6"
       }
     },
     {
-      "id": "basisspiel_v1-card-torwaechterin",
-      "name": "Torwächterin",
-      "cardTypes": "aktion",
-      "cardCost": {
-        "coin": "5"
-      }
-    },
-    {
-      "id": "basisspiel_v1-card-toepferei",
-      "name": "Töpferei",
+      "id": "basisspiel_v1-card-bibliothek",
+      "name": "Bibliothek",
       "cardTypes": "aktion",
       "cardCost": {
         "coin": "5"
@@ -165,19 +109,35 @@
       }
     },
     {
-      "id": "basisspiel_v1-card-miliz",
-      "name": "Miliz",
+      "id": "basisspiel_v1-card-dieb",
+      "name": "Dieb",
       "cardTypes": "aktion, angriff",
       "cardCost": {
         "coin": "4"
       }
     },
     {
-      "id": "basisspiel_v1-card-banditin",
-      "name": "Banditin",
-      "cardTypes": "aktion, angriff",
+      "id": "basisspiel_v1-card-festmahl",
+      "name": "Festmahl",
+      "cardTypes": "aktion",
       "cardCost": {
-        "coin": "5"
+        "coin": "4"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-gaerten",
+      "name": "Gärten",
+      "cardTypes": "punkte",
+      "cardCost": {
+        "coin": "2"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-geldverleiher",
+      "name": "Geldverleiher",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
       }
     },
     {
@@ -189,19 +149,59 @@
       }
     },
     {
-      "id": "basisspiel_v1-card-burggraben",
-      "name": "Burggraben",
-      "cardTypes": "aktion, reaktion",
+      "id": "basisspiel_v1-card-jahrmarkt",
+      "name": "Jahrmarkt",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-kanzler",
+      "name": "Kanzler",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-kapelle",
+      "name": "Kapelle",
+      "cardTypes": "aktion",
       "cardCost": {
         "coin": "2"
       }
     },
     {
-      "id": "basisspiel_v1-card-gaerten",
-      "name": "Gärten",
-      "cardTypes": "punkte",
+      "id": "basisspiel_v1-card-laboratorium",
+      "name": "Laboratorium",
+      "cardTypes": "aktion",
       "cardCost": {
-        "coin": "2"
+        "coin": "5"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-ratsversammlung",
+      "name": "Ratsversammlung",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-spion",
+      "name": "Spion",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
+      }
+    },
+    {
+      "id": "basisspiel_v1-card-thronsaal",
+      "name": "Thronsaal",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "4"
       }
     },
     {

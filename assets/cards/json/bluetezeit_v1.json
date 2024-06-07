@@ -1,11 +1,18 @@
 {
-  "id": "bluetezeit_v2",
+  "id": "bluetezeit_v1",
   "name": "Blütezeit",
   "version": "V2",
-  "priority": "2",
   "cards": [
     {
-      "id": "bluetezeit_v2-card-arbeiterdorf",
+      "id": "bluetezeit_v1-card-handelsroute",
+      "name": "Handelsroute",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "3"
+      }
+    },
+    {
+      "id": "bluetezeit_v1-card-arbeiterdorf",
       "name": "Arbeitderdorf",
       "cardTypes": "aktion",
       "cardCost": {
@@ -13,7 +20,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-bischof",
+      "id": "bluetezeit_v1-card-bischof",
       "name": "Bischof",
       "cardTypes": "aktion",
       "cardCost": {
@@ -21,7 +28,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-denkmal",
+      "id": "bluetezeit_v1-card-denkmal",
       "name": "Denkmal",
       "cardTypes": "aktion",
       "cardCost": {
@@ -29,7 +36,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-gewoelbe",
+      "id": "bluetezeit_v1-card-gewoelbe",
       "name": "Gewölbe",
       "cardTypes": "aktion",
       "cardCost": {
@@ -37,7 +44,15 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-muenzer",
+      "id": "bluetezeit_v1-card-leihhaus",
+      "name": "Leihhaus",
+      "cardTypes": "aktion",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v1-card-muenzer",
       "name": "Münzer",
       "cardTypes": "aktion",
       "cardCost": {
@@ -45,7 +60,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-stadt",
+      "id": "bluetezeit_v1-card-stadt",
       "name": "Stadt",
       "cardTypes": "aktion",
       "cardCost": {
@@ -53,7 +68,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-grosser_markt",
+      "id": "bluetezeit_v1-card-grosser_markt",
       "name": "Grosser Markt",
       "cardTypes": "aktion",
       "cardCost": {
@@ -61,7 +76,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-ausbau",
+      "id": "bluetezeit_v1-card-ausbau",
       "name": "Ausbau",
       "cardTypes": "aktion",
       "cardCost": {
@@ -69,7 +84,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-koenigshof",
+      "id": "bluetezeit_v1-card-koenigshof",
       "name": "Königshof",
       "cardTypes": "aktion",
       "cardCost": {
@@ -77,7 +92,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-kunstschmiede",
+      "id": "bluetezeit_v1-card-kunstschmiede",
       "name": "Kunstschmiede",
       "cardTypes": "aktion",
       "cardCost": {
@@ -85,7 +100,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-hausiererin",
+      "id": "bluetezeit_v1-card-hausiererin",
       "name": "Hausiererin",
       "cardTypes": "aktion",
       "cardCost": {
@@ -93,7 +108,23 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-gesindel",
+      "id": "bluetezeit_v1-card-halsabschneider",
+      "name": "Halsabschneider",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "6"
+      }
+    },
+    {
+      "id": "bluetezeit_v1-card-quacksalber",
+      "name": "Quacksalber",
+      "cardTypes": "aktion, angriff",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v1-card-gesindel",
       "name": "Gesindel",
       "cardTypes": "aktion, angriff",
       "cardCost": {
@@ -101,7 +132,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-wachturm",
+      "id": "bluetezeit_v1-card-wachturm",
       "name": "Wachturm",
       "cardTypes": "aktion, reaktion",
       "cardCost": {
@@ -109,31 +140,7 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-buchhalterin",
-      "name": "Buchhalterin",
-      "cardTypes": "aktion, angriff, reaktion",
-      "cardCost": {
-        "coin": "4"
-      }
-    },
-    {
-      "id": "bluetezeit_v2-card-magnatin",
-      "name": "Magnatin",
-      "cardTypes": "aktion",
-      "cardCost": {
-        "coin": "5"
-      }
-    },
-    {
-      "id": "bluetezeit_v2-card-wunderheilerin",
-      "name": "Wunderheilerin",
-      "cardTypes": "aktion, angriff",
-      "cardCost": {
-        "coin": "5"
-      }
-    },
-    {
-      "id": "bluetezeit_v2-card-bank",
+      "id": "bluetezeit_v1-card-bank",
       "name": "Bank",
       "cardTypes": "geld",
       "cardCost": {
@@ -141,7 +148,15 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-hort",
+      "id": "bluetezeit_v1-card-abenteuer",
+      "name": "Abenteuer",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v1-card-hort",
       "name": "Hort",
       "cardTypes": "geld",
       "cardCost": {
@@ -149,31 +164,15 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-kristallkugel",
-      "name": "Kristallkugel",
+      "id": "bluetezeit_v1-card-lohn",
+      "name": "Lohn",
       "cardTypes": "geld",
       "cardCost": {
-        "coin": "5"
+        "coin": "3"
       }
     },
     {
-      "id": "bluetezeit_v2-card-sammelsurium",
-      "name": "Sammelsurium",
-      "cardTypes": "geld",
-      "cardCost": {
-        "coin": "5"
-      }
-    },
-    {
-      "id": "bluetezeit_v2-card-waffenkiste",
-      "name": "Waffenkiste",
-      "cardTypes": "geld",
-      "cardCost": {
-        "coin": "5"
-      }
-    },
-    {
-      "id": "bluetezeit_v2-card-steinbruch",
+      "id": "bluetezeit_v1-card-steinbruch",
       "name": "Steinbruch",
       "cardTypes": "geld",
       "cardCost": {
@@ -181,31 +180,31 @@
       }
     },
     {
-      "id": "bluetezeit_v2-card-brautkrone",
-      "name": "Brautkrone",
+      "id": "bluetezeit_v1-card-koenigliches_siegel",
+      "name": "Königliches Siegel",
+      "cardTypes": "geld",
+      "cardCost": {
+        "coin": "5"
+      }
+    },
+    {
+      "id": "bluetezeit_v1-card-talisman",
+      "name": "Talisman",
       "cardTypes": "geld",
       "cardCost": {
         "coin": "4"
       }
     },
     {
-      "id": "bluetezeit_v2-card-geldanlage",
-      "name": "Geldanlage",
+      "id": "bluetezeit_v1-card-schmuggelware",
+      "name": "Schmuggelware",
       "cardTypes": "geld",
       "cardCost": {
         "coin": "4"
       }
     },
     {
-      "id": "bluetezeit_v2-card-amboss",
-      "name": "Amboss",
-      "cardTypes": "geld",
-      "cardCost": {
-        "coin": "3"
-      }
-    },
-    {
-      "id": "bluetezeit_v2-card-platin",
+      "id": "bluetezeit_v1-card-platin",
       "name": "Platin",
       "whenDeckConsistsOfXCardTypesOfExpansion": {
         "4": [
@@ -222,7 +221,7 @@
       "count": "0,12,12,12,12,12"
     },
     {
-      "id": "bluetezeit_v2-card-kolonie",
+      "id": "bluetezeit_v1-card-kolonie",
       "name": "Kolonie",
       "whenDeckConsistsOfXCardTypesOfExpansion": {
         "4": [
@@ -241,39 +240,54 @@
   ],
   "content": [
     {
-      "id": "bluetezeit_v2-content-spieler_tableau",
-      "name": "Spieler*innen Tableau",
+      "id": "bluetezeit_v1-content-handelsrouten_tableau",
+      "name": "Handelsrouten Tableau",
       "whenDeckConsistsOfXCards": {
         "1": [
-          "bluetezeit_v2-card-bischof",
-          "bluetezeit_v2-card-denkmal",
-          "bluetezeit_v2-card-geldanlage",
-          "bluetezeit_v2-card-sammelsurium"
+          "bluetezeit_v1-card-handelsroute"
         ]
       }
     },
     {
-      "id": "bluetezeit_v2-content-siegpunktemarker_5",
+      "id": "bluetezeit_v1-content-spieler_tableau",
+      "name": "Spieler*innen Tableau",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "bluetezeit_v1-card-bischof",
+          "bluetezeit_v1-card-denkmal",
+          "bluetezeit_v1-card-halsabschneider"
+        ]
+      }
+    },
+    {
+      "id": "bluetezeit_v1-content-geldmarker",
+      "name": "Geldmarker",
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "bluetezeit_v1-card-handelsroute"
+        ]
+      }
+    },
+    {
+      "id": "bluetezeit_v1-content-siegpunktemarker_5",
       "name": "Siegpunktemarker mit Wert 5",
       "whenDeckConsistsOfXCards": {
         "1": [
-          "bluetezeit_v2-card-bischof",
-          "bluetezeit_v2-card-denkmal",
-          "bluetezeit_v2-card-geldanlage",
-          "bluetezeit_v2-card-sammelsurium"
+          "bluetezeit_v1-card-bischof",
+          "bluetezeit_v1-card-denkmal",
+          "bluetezeit_v1-card-halsabschneider"
         ]
       },
       "count": "0,15,15,15,15,15"
     },
     {
-      "id": "bluetezeit_v2-content-siegpunktemarker_1",
+      "id": "bluetezeit_v1-content-siegpunktemarker_1",
       "name": "Siegpunktemarker mit Wert 1",
       "whenDeckConsistsOfXCards": {
         "1": [
-          "bluetezeit_v2-card-bischof",
-          "bluetezeit_v2-card-denkmal",
-          "bluetezeit_v2-card-geldanlage",
-          "bluetezeit_v2-card-sammelsurium"
+          "bluetezeit_v1-card-bischof",
+          "bluetezeit_v1-card-denkmal",
+          "bluetezeit_v1-card-halsabschneider"
         ]
       },
       "count": "0,16,16,16,16,16"
@@ -281,24 +295,34 @@
   ],
   "handContents": [
     {
-      "id": "bluetezeit_v2-hand_contents-2",
+      "id": "bluetezeit_v1-hand_contents-1",
       "additionalElements": {
-        "bluetezeit_v2-content-spieler_tableau": 1
+        "bluetezeit_v1-content-handelsrouten_tableau": 1
       },
       "whenDeckConsistsOfXCards": {
         "1": [
-          "bluetezeit_v2-card-bischof",
-          "bluetezeit_v2-card-denkmal",
-          "bluetezeit_v2-card-geldanlage",
-          "bluetezeit_v2-card-sammelsurium"
+          "bluetezeit_v1-card-handelsroute"
+        ]
+      }
+    },
+    {
+      "id": "bluetezeit_v1-hand_contents-2",
+      "additionalElements": {
+        "bluetezeit_v1-content-spieler_tableau": 1
+      },
+      "whenDeckConsistsOfXCards": {
+        "1": [
+          "bluetezeit_v1-card-bischof",
+          "bluetezeit_v1-card-denkmal",
+          "bluetezeit_v1-card-halsabschneider"
         ]
       }
     }
   ],
   "end": {
-    "id": "bluetezeit_v2-end",
+    "id": "bluetezeit_v1-end",
     "additionalEmptyCards": [
-      "bluetezeit_v2-card-kolonie"
+      "bluetezeit_v1-card-kolonie"
     ]
   }
 }
