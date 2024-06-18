@@ -186,6 +186,33 @@ class _DeckInfoState extends State<SettingsPage> {
                   Text(
                     _settingsService.getCachedSettings().version,
                   ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Lizenzen:",
+                    style: TextStyle(
+                        fontSize: 20, decoration: TextDecoration.underline),
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white),
+                    onPressed: () {
+                      showLicensePage(
+                        context: context,
+                        applicationIcon: SizedBox(
+                          height: 200, // Set the height as needed
+                          child: Image.asset("assets/logo/logo_white.png"),
+                        ),
+                      );
+                    },
+                    child: const Text('Lizenzen anzeigen'),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                        "Ein Großteil der genutzten Inhalte wurde von www.dominion-welt.de, www.dominion.games, sowie dem Videospiel (store.steampowered.com/app/1131620/Dominion/) übernommen. Etwaige Rechte liegen nicht bei mir. Diese App wird kostenlos zur Verfügung gestellt und soll eine Unterstützung bei der Erstellung von Kartendecks des Spiels 'Dominion' bieten. Sollte es dennoch Probleme bezüglich der Bereitsstellung geben, bitte ich um eine kurze Nachricht."),
+                  )
                 ]),
               ),
             ),
