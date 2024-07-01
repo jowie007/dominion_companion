@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dominion_companion/components/basic_appbar.dart';
 import 'package:dominion_companion/components/custom_alert_dialog.dart';
@@ -24,7 +25,7 @@ class _DeckInfoState extends State<SettingsPage> {
 
   final _settingsService = SettingsService();
 
-  void onLoadDeck() async {
+  void onLoadDeck(BuildContext context) async {
     final importedDecks = await DeckService().pickDeckJSONFile();
     if (importedDecks == null && context.mounted) {
       showDialog(
@@ -73,8 +74,15 @@ class _DeckInfoState extends State<SettingsPage> {
     }
   }
 
-  void checkForUpdates() async {
+  void onCheckForUpdates(BuildContext context) async {
     final updateAvailable = await _settingsService.checkForUpdates();
+    if (updateAvailable == null) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Updates können zur Zeit nicht abgerufen werden.')));
+      }
+      return;
+    }
     if (updateAvailable) {
       if (context.mounted) {
         showDialog(
@@ -87,16 +95,29 @@ class _DeckInfoState extends State<SettingsPage> {
               cancelText: "Nein",
               confirmText: "Ja",
               onConfirm: () async => {
-                await _settingsService.downloadUpdate(),
+                onDownloadUpdate(context),
               },
             );
           },
         );
       }
-    } else {
+      return;
+    }
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Keine Updates verfügbar.')));
+    }
+  }
+
+  void onDownloadUpdate(BuildContext context) async {
+    await _settingsService.downloadUpdate();
+    try {
+      await _settingsService.downloadUpdate();
+    } catch (e) {
+      log(e.toString());
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Keine Updates verfügbar.')));
+            const SnackBar(content: Text('Update konnte nicht heruntergeladen werden.')));
       }
     }
   }
@@ -143,7 +164,7 @@ class _DeckInfoState extends State<SettingsPage> {
                   const SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () async {
-                      onLoadDeck();
+                      onLoadDeck(context);
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
@@ -220,7 +241,7 @@ class _DeckInfoState extends State<SettingsPage> {
                         backgroundColor: Colors.black,
                         foregroundColor: Colors.white),
                     onPressed: () {
-                      checkForUpdates();
+                      onCheckForUpdates(context);
                     },
                     child: const Text('Auf Updates prüfen'),
                   ),

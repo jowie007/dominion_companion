@@ -1,5 +1,7 @@
 import 'dart:developer';
+import 'dart:convert';
 
+import 'package:http/http.dart' as http;
 import 'package:dominion_companion/database/model/settings/settings_db_model.dart';
 import 'package:dominion_companion/database/settings_database.dart';
 import 'package:dominion_companion/model/settings/settings_model.dart';
@@ -15,6 +17,7 @@ import 'package:dominion_companion/services/selected_card_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsService {
   static final SettingsService _settingsService = SettingsService._internal();
@@ -34,6 +37,8 @@ class SettingsService {
   Exception? initException;
 
   FileService fileService = FileService();
+
+  String? downloadUrl = null;
 
   // Adjust version in pubspec.yaml
   Future<void> initializeApp(
@@ -56,7 +61,7 @@ class SettingsService {
       await initCachedSettings();
     }
 
-    if(deleteDecks) {
+    if (deleteDecks) {
       await DeckService().deleteDb();
     }
 
@@ -169,11 +174,27 @@ class SettingsService {
         .updateSettings(SettingsDBModel.fromModel(settings!));
   }
 
-  Future<bool> checkForUpdates() {
-    return Future.value(false);
+  Future<bool?> checkForUpdates() async {
+    final response = await http
+        .get(Uri.parse('https://api.github.com/repos/jowie007/dominion_companion/releases/latest'));
+
+    if (response.statusCode == 200) {
+      var jsonResponse = jsonDecode(response.body);
+      downloadUrl = jsonResponse['assets'][0]['browser_download_url'];
+      return jsonResponse['tag_name'] != settings!.version;
+    } else {
+      return null;
+    }
   }
 
-  downloadUpdate() {
-
+  downloadUpdate() async {
+    if (downloadUrl != null) {
+      var uri = Uri.parse(downloadUrl!);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri);
+      } else {
+        throw 'Could not launch $downloadUrl';
+      }
+    }
   }
 }

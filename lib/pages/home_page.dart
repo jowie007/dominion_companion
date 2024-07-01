@@ -1,4 +1,3 @@
-
 import 'package:dominion_companion/components/card_popup.dart';
 import 'package:dominion_companion/components/error_dialog.dart';
 import 'package:dominion_companion/components/menu_button.dart';
@@ -53,7 +52,8 @@ class _HomePageState extends State<HomePage> {
     Map<CardModel, List<String>>? cardOfTheDayInfo =
         await _cardService.getCardOfTheDay();
     if (cardOfTheDayInfo != null) {
-      cardOfTheDayIds = (await _cardService.getCardIdsForPopup(cardOfTheDayInfo.keys.first));
+      cardOfTheDayIds =
+          (await _cardService.getCardIdsForPopup(cardOfTheDayInfo.keys.first));
       cardOfTheDayExpansionId = cardOfTheDayIds.first.split("-")[0];
       cardOfTheDayExpansionName = await _expansionService
           .getExpansionNameByCardId(cardOfTheDayExpansionId);
@@ -63,8 +63,18 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void checkForUpdates(BuildContext context) async {
+    if (await _settingsService.checkForUpdates() == true) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Neue Updates sind verfügbar. Gehe zu Einstellungen zum Herunterladen.')));
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    checkForUpdates(context);
     return Scaffold(
       body: Stack(
         children: [
