@@ -73,6 +73,34 @@ class _DeckInfoState extends State<SettingsPage> {
     }
   }
 
+  void checkForUpdates() async {
+    final updateAvailable = await _settingsService.checkForUpdates();
+    if (updateAvailable) {
+      if (context.mounted) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return CustomAlertDialog(
+              title: "Update verfügbar",
+              message:
+                  "Es ist ein Update verfügbar. Möchtest du es jetzt herunterladen?",
+              cancelText: "Nein",
+              confirmText: "Ja",
+              onConfirm: () async => {
+                await _settingsService.downloadUpdate(),
+              },
+            );
+          },
+        );
+      }
+    } else {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Keine Updates verfügbar.')));
+      }
+    }
+  }
+
   // https://www.woolha.com/tutorials/flutter-using-futurebuilder-widget-examples
   @override
   Widget build(BuildContext context) {
@@ -185,6 +213,16 @@ class _DeckInfoState extends State<SettingsPage> {
                   ),
                   Text(
                     _settingsService.getCachedSettings().version,
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white),
+                    onPressed: () {
+                      checkForUpdates();
+                    },
+                    child: const Text('Auf Updates prüfen'),
                   ),
                   const SizedBox(height: 20),
                   const Text(

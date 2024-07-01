@@ -168,4 +168,12 @@ class SettingsService {
     return _settingsDatabase
         .updateSettings(SettingsDBModel.fromModel(settings!));
   }
+
+  Future<bool> checkForUpdates() {
+    return Future.value(false);
+  }
+
+  downloadUpdate() {
+
+  }
 }
