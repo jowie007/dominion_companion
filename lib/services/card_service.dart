@@ -87,15 +87,18 @@ class CardService {
   }
 
   Future<List<String>> getCardIdsBySetId(String setId) async {
-    return await Future.wait(
+    List<String> cardIds = await Future.wait(
         (await getCardsBySetId(setId)).map((card) async => card.id));
+    return await Future.wait(
+        cardIds.map((cardId) async => await getCardImageId(cardId) ?? ''));
   }
 
   Future<bool> testCardImage(String cardId) async {
     var split = cardId.split("-");
     if (split[1] != "set") {
       try {
-        await rootBundle.load('assets/cards/converted_images/${split[0]}/${split[2]}.jpg');
+        await rootBundle
+            .load('assets/cards/converted_images/${split[0]}/${split[2]}.jpg');
         return true;
       } catch (_) {}
     }

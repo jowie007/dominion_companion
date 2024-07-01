@@ -53,8 +53,8 @@ class _HomePageState extends State<HomePage> {
     Map<CardModel, List<String>>? cardOfTheDayInfo =
         await _cardService.getCardOfTheDay();
     if (cardOfTheDayInfo != null) {
-      cardOfTheDayIds = cardOfTheDayInfo.values.first;
-      cardOfTheDayExpansionId = cardOfTheDayInfo.keys.first.getExpansionId();
+      cardOfTheDayIds = (await _cardService.getCardIdsForPopup(cardOfTheDayInfo.keys.first));
+      cardOfTheDayExpansionId = cardOfTheDayIds.first.split("-")[0];
       cardOfTheDayExpansionName = await _expansionService
           .getExpansionNameByCardId(cardOfTheDayExpansionId);
     }

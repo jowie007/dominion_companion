@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:dominion_companion/components/border_button_component.dart';
 import 'package:dominion_companion/components/custom_alert_dialog.dart';
@@ -117,20 +116,7 @@ class _CardPopupState extends State<CardPopup> {
 
   @override
   Widget build(BuildContext context) {
-    var error = widget.error;
-    try {
-      updateCardPath();
-    } catch (err) {
-      error = true;
-      log(err.toString());
-    }
-    if (error) {
-      return const CustomAlertDialog(
-        title: "Fehler",
-        message: "Karte konnte nicht geladen werden",
-        onlyCancelButton: true,
-      );
-    }
+    updateCardPath();
     return FutureBuilder(
       future: getImageDimensions(),
       builder: (context, snapshot) {
@@ -161,9 +147,10 @@ class _CardPopupState extends State<CardPopup> {
                               alignment: FractionalOffset.center,
                               child: GestureDetector(
                                 onPanUpdate: (details) => setState(() {
-                                      if (!settings.gyroscopeCardPopup)
-                                        {updatePan(details);}
-                                    }),
+                                  if (!settings.gyroscopeCardPopup) {
+                                    updatePan(details);
+                                  }
+                                }),
                                 onDoubleTap: () =>
                                     setState(() => _offset = Offset.zero),
                                 child: FittedBox(
@@ -290,6 +277,12 @@ class _CardPopupState extends State<CardPopup> {
                 ],
               );
             },
+          );
+        } else if(snapshot.connectionState == ConnectionState.done) {
+          return const CustomAlertDialog(
+            title: "Fehler",
+            message: "Karte konnte nicht geladen werden",
+            onlyCancelButton: true,
           );
         } else {
           return Container();

@@ -132,7 +132,7 @@ class _CardInfoTileState extends State<CardInfoTile> {
                       } else if (snapshot.hasData && snapshot.data != null) {
                         return CardPopup(
                             cardIds: snapshot.data!,
-                            expansionId: snapshot.data![0].split("-")[0],
+                            expansionId: widget.card.id.split("-")[0],
                             expansionName: expansionName);
                       } else {
                         return const Text('Karte konnte nicht geladen werden');
