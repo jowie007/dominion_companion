@@ -8,7 +8,7 @@ class MusicService {
   AssetsAudioPlayer? assetsAudioPlayer;
 
   final Audio audio = Audio(
-    "assets/audio/soundtrack/dominion.wav",
+    "assets/audio/soundtrack/dominion.mp3",
     metas: Metas(
       title: "Julias' Dominion Companion",
       // At the moment the image is pixelated

@@ -95,7 +95,7 @@ class CardService {
     var split = cardId.split("-");
     if (split[1] != "set") {
       try {
-        await rootBundle.load('assets/cards/full/${split[0]}/${split[2]}.png');
+        await rootBundle.load('assets/cards/converted_images/${split[0]}/${split[2]}.jpg');
         return true;
       } catch (_) {}
     }

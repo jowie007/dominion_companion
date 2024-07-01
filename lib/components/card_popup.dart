@@ -49,7 +49,7 @@ class _CardPopupState extends State<CardPopup> {
 
   updateCardPath() {
     _cardPath =
-        'assets/cards/full/${widget.cardIds[_selectedCardPosition].split("-")[0]}/${widget.cardIds[_selectedCardPosition].split("-")[2]}.png';
+        'assets/cards/converted_images/${widget.cardIds[_selectedCardPosition].split("-")[0]}/${widget.cardIds[_selectedCardPosition].split("-")[2]}.jpg';
   }
 
   previousCard() {
@@ -160,9 +160,9 @@ class _CardPopupState extends State<CardPopup> {
                                 ..rotateY(-0.01 * _offset.dx),
                               alignment: FractionalOffset.center,
                               child: GestureDetector(
-                                onPanUpdate: (details) => setState(() => {
+                                onPanUpdate: (details) => setState(() {
                                       if (!settings.gyroscopeCardPopup)
-                                        {updatePan(details)}
+                                        {updatePan(details);}
                                     }),
                                 onDoubleTap: () =>
                                     setState(() => _offset = Offset.zero),

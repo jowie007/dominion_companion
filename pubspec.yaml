@@ -34,19 +34,19 @@ dependencies:
   sqflite:
   path: ^1.8.3
   open_filex: ^4.3.2
-  package_info_plus: ^4.0.2
+  package_info_plus: ^8.0.0
   path_provider: ^2.0.15
   assets_audio_player: ^3.1.1
-  share_plus: ^7.0.2
+  share_plus: ^9.0.0
   flutter_cache_manager: ^3.3.0
-  file_picker: ^5.3.2
+  file_picker: ^8.0.5
   flutter_native_splash: ^2.3.1
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  sensors_plus: ^4.0.2
+  sensors_plus: ^5.0.1
   flutter_colorpicker: ^1.1.0
 
 dev_dependencies:
@@ -58,7 +58,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -75,32 +75,31 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/audio/soundeffects/
-    - assets/audio/soundtrack/
+    - assets/audio/soundtrack/dominion.mp3
     - assets/cards/other/
     - assets/cards/json/
-    - assets/cards/full/alchemisten_v1/
-    - assets/cards/full/basisspiel_v1/
-    - assets/cards/full/basisspiel_v2/
-    - assets/cards/full/bluetezeit_v1/
-    - assets/cards/full/bluetezeit_v2/
-    - assets/cards/full/reiche_ernte_v1/
-    - assets/cards/full/seaside_v1/
-    - assets/cards/full/seaside_v2/
-    - assets/cards/full/intrige_v1/
-    - assets/cards/full/intrige_v2/
-    - assets/cards/full/hinterland_v1/
-    - assets/cards/full/hinterland_v2/
-    - assets/cards/full/dark_ages_v1/
-    - assets/cards/full/gilden_v1/
-    - assets/cards/full/abenteuer_v1/
-    - assets/cards/full/empires_v1/
-    - assets/cards/full/empires_v2/
-    - assets/cards/full/nocturne_v1/
-    - assets/cards/full/renaissance_v1/
-    - assets/cards/full/menagerie_v1/
-    - assets/cards/full/verbuendete_v1/
-    - assets/cards/full/pluenderer_v1/
-    - assets/cards/full/promos_v1/
+    - assets/cards/converted_images/alchemisten_v1/
+    - assets/cards/converted_images/basisspiel_v1/
+    - assets/cards/converted_images/basisspiel_v2/
+    - assets/cards/converted_images/bluetezeit_v1/
+    - assets/cards/converted_images/bluetezeit_v2/
+    - assets/cards/converted_images/reiche_ernte_v1/
+    - assets/cards/converted_images/seaside_v1/
+    - assets/cards/converted_images/seaside_v2/
+    - assets/cards/converted_images/intrige_v1/
+    - assets/cards/converted_images/intrige_v2/
+    - assets/cards/converted_images/hinterland_v1/
+    - assets/cards/converted_images/hinterland_v2/
+    - assets/cards/converted_images/dark_ages_v1/
+    - assets/cards/converted_images/gilden_v1/
+    - assets/cards/converted_images/abenteuer_v1/
+    - assets/cards/converted_images/empires_v2/
+    - assets/cards/converted_images/nocturne_v1/
+    - assets/cards/converted_images/renaissance_v1/
+    - assets/cards/converted_images/menagerie_v1/
+    - assets/cards/converted_images/verbuendete_v1/
+    - assets/cards/converted_images/pluenderer_v1/
+    - assets/cards/converted_images/promos_v1/
     - assets/menu/
     - assets/logo/
     - assets/instructions/
