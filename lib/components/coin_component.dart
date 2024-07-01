@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class CostComponent extends StatelessWidget {
   const CostComponent(
-      {Key? key, required this.width, required this.type, this.value})
-      : super(key: key);
+      {super.key, required this.width, required this.type, this.value});
 
   final double width;
   final String type;
@@ -26,13 +25,18 @@ class CostComponent extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/cards/other/$type.png'),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fitWidth,
                   ),
                 ),
                 width: width,
                 // Adjusted for two digit numbers
-                padding: EdgeInsets.fromLTRB(
-                    splitValuePlus[0].toString().length > 1 ? 0 : 2, 5, 0, 0),
+                padding: type != 'debt'
+                    ? EdgeInsets.fromLTRB(
+                        splitValuePlus[0].toString().length > 1 ? 0 : 2,
+                        5,
+                        0,
+                        0)
+                    : const EdgeInsets.fromLTRB(1, 5, 0, 0),
                 child: value != null && splitValuePlus.isNotEmpty
                     ? FittedBox(
                         fit: BoxFit.scaleDown,

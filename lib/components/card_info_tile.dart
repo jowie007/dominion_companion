@@ -175,7 +175,6 @@ class _CardInfoTileState extends State<CardInfoTile> {
                           widget.card.cardCost.debt != ''
                               ? widget.card.cardCost.coin != ''
                                   ? Positioned(
-                                      top: 3,
                                       left: 24,
                                       child: CostComponent(
                                           width: 40,
@@ -184,7 +183,6 @@ class _CardInfoTileState extends State<CardInfoTile> {
                                     )
                                   : Positioned(
                                       left: 2,
-                                      top: 3,
                                       child: CostComponent(
                                           width: 40,
                                           type: 'debt',
@@ -208,7 +206,7 @@ class _CardInfoTileState extends State<CardInfoTile> {
                               : Container(),
                           widget.card.cardCost.coin != ''
                               ? Positioned(
-                                  top: 3,
+                                  top: 0,
                                   left: 2,
                                   child: CostComponent(
                                       width: 40,
