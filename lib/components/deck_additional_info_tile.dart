@@ -94,6 +94,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                             children: [
                               for (var content in widget.deckModel.content)
                                 Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     const SizedBox(
                                       width: 20,
@@ -101,7 +102,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                                     Text(content
                                         .count[_playerService.players - 1]),
                                     const Text("x "),
-                                    Text(content.name),
+                                    Expanded(child: Text(content.name)),
                                   ],
                                 ),
                             ],
@@ -127,6 +128,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                         for (var card
                             in widget.deckModel.handMoneyCards.getAllElements())
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const SizedBox(
                                 width: 20,
@@ -137,9 +139,10 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                                 future: _cardService.filterCardName(
                                     widget.cards, card.key),
                                 builder: (context, snapshot) {
-                                  return Text(snapshot.data != null
-                                      ? snapshot.data!
-                                      : '');
+                                  return Expanded(
+                                      child: Text(snapshot.data != null
+                                          ? snapshot.data!
+                                          : ''));
                                 },
                               ),
                             ],
@@ -147,6 +150,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                         for (var card
                             in widget.deckModel.handOtherCards.getAllElements())
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const SizedBox(
                                 width: 20,
@@ -157,9 +161,10 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                                 future: _cardService.filterCardName(
                                     widget.cards, card.key),
                                 builder: (context, snapshot) {
-                                  return Text(snapshot.data != null
-                                      ? snapshot.data!
-                                      : '');
+                                  return Expanded(
+                                      child: Text(snapshot.data != null
+                                          ? snapshot.data!
+                                          : ''));
                                 },
                               ),
                             ],
@@ -167,6 +172,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                         for (var content
                             in widget.deckModel.handContents.getAllElements())
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const SizedBox(
                                 width: 20,
@@ -177,9 +183,10 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                                 future: _contentService
                                     .getContentById(content.key.toString()),
                                 builder: (context, snapshot) {
-                                  return Text(snapshot.data != null
-                                      ? snapshot.data!.name
-                                      : 'Fehler');
+                                  return Expanded(
+                                      child: Text(snapshot.data != null
+                                          ? snapshot.data!.name
+                                          : 'Fehler'));
                                 },
                               ),
                             ],
@@ -244,7 +251,7 @@ class _DeckAdditionalInfoTileState extends State<DeckAdditionalInfoTile> {
                 !widget.isTemporary && widget.deckModel.description != ''
                     ? const Row(
                         children: [
-                          Icon(Icons.info_outline, size: 14),
+                          Icon(Icons.description, size: 14),
                           SizedBox(width: 8),
                           Text(
                             "Beschreibung:",

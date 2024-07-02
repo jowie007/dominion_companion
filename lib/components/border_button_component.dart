@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 
 class BorderButtonComponent extends StatelessWidget {
   const BorderButtonComponent(
-      {Key? key,
+      {super.key,
       this.color = 'red',
       this.width = 80,
       required this.icon,
-      required this.onClick})
-      : super(key: key);
+      required this.onClick});
 
   final String? color;
   final double? width;

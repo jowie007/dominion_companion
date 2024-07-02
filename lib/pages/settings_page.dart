@@ -116,8 +116,19 @@ class _DeckInfoState extends State<SettingsPage> {
     } catch (e) {
       log(e.toString());
       if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Update konnte nicht heruntergeladen werden.')));
+      }
+    }
+  }
+
+  void onShareApp(BuildContext context) async {
+    try {
+      await _settingsService.shareApp(context);
+    } catch (e) {
+      if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Update konnte nicht heruntergeladen werden.')));
+            const SnackBar(content: Text('App konnte nicht geteilt werden.')));
       }
     }
   }
@@ -244,6 +255,16 @@ class _DeckInfoState extends State<SettingsPage> {
                       onCheckForUpdates(context);
                     },
                     child: const Text('Auf Updates prüfen'),
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white),
+                    onPressed: () {
+                      onShareApp(context);
+                    },
+                    child: const Text('App teilen'),
                   ),
                   const SizedBox(height: 20),
                   const Text(

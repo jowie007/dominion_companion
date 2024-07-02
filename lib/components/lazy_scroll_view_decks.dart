@@ -96,27 +96,25 @@ class _LazyScrollViewDecksState extends State<LazyScrollViewDecks> {
                   )
                 : Column(
                     children: [
-                      ...decks
-                          .map<Widget>((e) => DeckExpandable(
-                                key: keys[decks.indexOf(e)],
-                                deckModel: e,
-                                onRouteLeave: () {
-                                  setState(() {
-                                    disposed = true;
-                                    decks = [];
-                                  });
-                                },
-                                onChange: () {
-                                  if (widget.onChange != null) {
-                                    widget.onChange!();
-                                  }
-                                  setState(() {
-                                    disposed = false;
-                                    init();
-                                  });
-                                },
-                              ))
-                          .toList(),
+                      ...decks.map<Widget>((e) => DeckExpandable(
+                            key: keys[decks.indexOf(e)],
+                            deckModel: e,
+                            onRouteLeave: () {
+                              setState(() {
+                                disposed = true;
+                                decks = [];
+                              });
+                            },
+                            onChange: () {
+                              if (widget.onChange != null) {
+                                widget.onChange!();
+                              }
+                              setState(() {
+                                disposed = false;
+                                init();
+                              });
+                            },
+                          )),
                       showLoadingIcon
                           ? const Center(child: CircularProgressIndicator())
                           : Container()

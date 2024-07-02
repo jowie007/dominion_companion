@@ -1,4 +1,3 @@
-
 import 'package:dominion_companion/components/card_info_tile.dart';
 import 'package:dominion_companion/components/custom_alert_dialog.dart';
 import 'package:dominion_companion/components/deck_additional_info_tile.dart';
@@ -118,76 +117,76 @@ class _DeckExpandableState extends State<DeckExpandable> {
       padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(0.0),
-        child: Dismissible(
-          key: widget.key ?? Key(widget.deckModel.name),
-          direction: !widget.isNewlyCreated && !isExpanded
-              ? DismissDirection.horizontal
-              : DismissDirection.none,
-          background: Container(
-            color: Colors.red,
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.only(left: 20),
-            // change this to your desired color or widget
-            child: const Icon(Icons.delete, color: Colors.white),
-          ),
-          secondaryBackground: Container(
-            color: Colors.black,
-            alignment: Alignment.centerRight,
-            padding: const EdgeInsets.only(right: 20),
-            // change this to your desired color or widget
-            child: const Icon(Icons.edit, color: Colors.white),
-          ),
-          confirmDismiss: (direction) async {
-            if (direction == DismissDirection.startToEnd) {
-              final delete = await showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const CustomAlertDialog(
-                        title: "Löschen",
-                        message: "Soll das Deck wirklich gelöscht werden?",
-                      );
-                    },
-                  ) ??
-                  false;
-              if (delete == true) {
-                setState(() {
-                  DeckService().deleteDeckById(widget.deckModel.id);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Deck wurde gelöscht")));
-                });
-                onChange();
-              }
-              return delete;
-            }
-            if (direction == DismissDirection.endToStart) {
-              return await showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const CustomAlertDialog(
-                        title: "Bearbeiten",
-                        message:
-                            "Sollen die enthaltenen Karten angepasst werden?",
-                      );
-                    },
-                  ) ??
-                  false;
-            }
-            return false;
-          },
-          onDismissed: (direction) async {
-            if (direction == DismissDirection.endToStart) {
-              if (widget.onRouteLeave != null) {
-                widget.onRouteLeave!();
-              }
-              Navigator.pushNamed(context, route.createDeckPage,
-                      arguments: {"deckId": widget.deckModel.id})
-                  .then((value) => onChange());
-            }
-          },
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15.0),
+            child: Dismissible(
+              key: widget.key ?? Key(widget.deckModel.name),
+              direction: !widget.isNewlyCreated && !isExpanded
+                  ? DismissDirection.horizontal
+                  : DismissDirection.none,
+              background: Container(
+                color: Colors.red,
+                alignment: Alignment.centerLeft,
+                padding: const EdgeInsets.only(left: 20),
+                // change this to your desired color or widget
+                child: const Icon(Icons.delete, color: Colors.white),
+              ),
+              secondaryBackground: Container(
+                color: Colors.black,
+                alignment: Alignment.centerRight,
+                padding: const EdgeInsets.only(right: 20),
+                // change this to your desired color or widget
+                child: const Icon(Icons.edit, color: Colors.white),
+              ),
+              confirmDismiss: (direction) async {
+                if (direction == DismissDirection.startToEnd) {
+                  final delete = await showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const CustomAlertDialog(
+                            title: "Löschen",
+                            message: "Soll das Deck wirklich gelöscht werden?",
+                          );
+                        },
+                      ) ??
+                      false;
+                  if (delete == true) {
+                    setState(() {
+                      DeckService().deleteDeckById(widget.deckModel.id);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Deck wurde gelöscht")));
+                    });
+                    onChange();
+                  }
+                  return delete;
+                }
+                if (direction == DismissDirection.endToStart) {
+                  return await showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const CustomAlertDialog(
+                            title: "Bearbeiten",
+                            message:
+                                "Sollen die enthaltenen Karten angepasst werden?",
+                          );
+                        },
+                      ) ??
+                      false;
+                }
+                return false;
+              },
+              onDismissed: (direction) async {
+                if (direction == DismissDirection.endToStart) {
+                  if (widget.onRouteLeave != null) {
+                    widget.onRouteLeave!();
+                  }
+                  Navigator.pushNamed(context, route.createDeckPage,
+                          arguments: {"deckId": widget.deckModel.id})
+                      .then((value) => onChange());
+                }
+              },
               child: Stack(
                 children: [
                   Container(

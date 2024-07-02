@@ -17,6 +17,7 @@ import 'package:dominion_companion/services/selected_card_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsService {
@@ -38,7 +39,10 @@ class SettingsService {
 
   FileService fileService = FileService();
 
-  String? downloadUrl = null;
+  String? downloadUrl;
+
+  final String releasesUrl =
+      'https://github.com/jowie007/dominion_companion/releases';
 
   // Adjust version in pubspec.yaml
   Future<void> initializeApp(
@@ -139,6 +143,10 @@ class SettingsService {
     updateSettingsTable(settings!);
   }
 
+  String? getDownloadUrl() {
+    return downloadUrl;
+  }
+
   Future<void> deleteDb() async {
     _settingsDatabase.deleteDb();
   }
@@ -175,8 +183,8 @@ class SettingsService {
   }
 
   Future<bool?> checkForUpdates() async {
-    final response = await http
-        .get(Uri.parse('https://api.github.com/repos/jowie007/dominion_companion/releases/latest'));
+    final response = await http.get(Uri.parse(
+        'https://api.github.com/repos/jowie007/dominion_companion/releases/latest'));
 
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
@@ -196,5 +204,18 @@ class SettingsService {
         throw 'Could not launch $downloadUrl';
       }
     }
+  }
+
+  shareApp(BuildContext context) {
+    String url = downloadUrl ?? releasesUrl;
+    String shareText =
+        "Erstelle Dominion Decks nach deinen Vorlieben! Lade dir jetzt die neueste Version von Julia's Dominion Companion runter:"
+        '\n$url';
+    if (downloadUrl != null) {
+      shareText += '\n\n'
+          'Für mehr Infos besuche diese Seite:'
+          '\n$releasesUrl';
+    }
+    Share.share(shareText);
   }
 }
